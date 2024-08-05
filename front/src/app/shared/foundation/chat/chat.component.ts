@@ -10,7 +10,6 @@ import moment from "moment";
 import {MessageMapperService} from "../../../mapper/message-mapper.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {interval, Subscription} from "rxjs";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {UserMapperService} from "../../../mapper/user-mapper.service";
 
 export type ChatTarget = {subject:'prestation'|'reservation'|'ticket', id:number|bigint}
@@ -61,23 +60,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   submit_message():void{
     if (this.currentUser?.id && this.target && this.free) {
       const message: MessagePostObject = {
-        texte: this.new_message,
-        date_envoie: DateService.to_api()
-      }
-      switch (this.target.subject) {
-        case 'prestation':
-          message.id_SERVICE_UTILISEE = this.target.id
-          break
-        case 'ticket':
-          message.id_TICKET = this.target.id
-          break
-        case 'reservation':
-          message.id_RESERVATION = this.target.id
-          break
+        text: this.new_message,
+        date_send: DateService.to_api()
       }
       this.free = false;
       this.sending_message = {
-          content: message.texte,
+          content: message.text,
           date: moment().toDate(),
           user: this.currentUser
       }

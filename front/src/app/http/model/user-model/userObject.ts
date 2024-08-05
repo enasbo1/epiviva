@@ -1,26 +1,22 @@
 export interface UserObject extends UserRecap{
-  prenom: string,
-  nom: string,
-  mail: string,
-  adresse: string,
-  pays: string,
-  ville: string,
-  code_postal: string,
-  numero: string,
-  role: string,
+  id: number;
+  prenom: string;
+  nom: string;
+  mail: string;
+  status: string;
+  num:string;
+  id_address: number
 }
 
 export interface UserRecap{
-  id ?: bigint,
-  prenom: string,
-  nom: string,
-  mail?: string,
-  mdp?: string,
-  adresse?: string,
-  pays?: string,
-  ville?: string,
-  code_postal?: string,
-  numero?: string,
-  role?: string,
-  id_entreprise?:number,
+  id?: number;
+  prenom: string;
+  nom: string;
+  mail: string;
+  status?: string;
+  mdp?: string;
+  num?:string;
+  id_service?: number;
+  id_secteur?: number;
+  id_address?: number
 }

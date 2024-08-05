@@ -1,37 +1,37 @@
 <?php
-namespace user;
+namespace service;
 use token\Privilege;
 use shared\CrudController;
 
-require_once 'UserService.php';
+require_once 'ServiceService.php';
 
 
 
-class UserController extends CrudController{
+class ServiceController extends CrudController{
     function get(array $id): void
     {
-        $request = new UserService();
+        $request = new ServiceService();
         if ($id == []) {
-            $user = $request->getAll();
+            $service = $request->getAll();
         } else {
-            $user = $request->findById($id[0]);
+            $service = $request->findById($id[0]);
         }
-        echo json_encode($user);
+        echo json_encode($service);
     }
 
     function post(array $id, object $input): void
     {
-        $request = new UserService();
+        $request = new ServiceService();
 
         Privilege::admin();
         $request->save($input);
         http_response_code(201);
-        echo('{"message" : "user créé avec succès"}');
+        echo('{"message" : "service créé avec succès"}');
     }
 
     function patch(array $id, object $input): void
     {
-        $request = new UserService();
+        $request = new ServiceService();
 
         Privilege::admin();
         $request->update($input);
@@ -39,7 +39,7 @@ class UserController extends CrudController{
 
     function delete(array $id): void
     {
-        $request = new UserService();
+        $request = new ServiceService();
         Privilege::admin();
         $request->delete($id[0]);
     }

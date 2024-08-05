@@ -10,7 +10,7 @@ import {WpPath} from "./view/routes";
   ]
 })
 export class AppComponent implements OnInit, OnChanges{
-  pageTitle: string = "wanderPlace";
+  pageTitle: string = "Epivia";
   title:string = "title 1";
 
   ngOnInit(): void {

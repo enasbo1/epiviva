@@ -1,16 +1,16 @@
 <?php
-namespace user;
+namespace product;
 
 use Exception;
 use shared\Service;
 
-include_once "UserRepository.php";
+include_once "ProductRepository.php";
 
-class UserService extends Service
+class ProductService extends Service
 {
     public function __construct()
     {
-        parent::__construct(new UserModelType());
+        parent::__construct(new ProductModelType());
     }
 
     /**
@@ -18,16 +18,16 @@ class UserService extends Service
      */
     public function getAll(): array
     {
-        $repo = new UserRepository();
+        $repo = new ProductRepository();
 
-        $user = [];
-        $result = $repo->readAll("unable to find any user");
+        $product = [];
+        $result = $repo->readAll("unable to find any product");
 
         foreach($result as $row) {
-            $user[] = $row;
+            $product[] = $row;
         }
 
-        return $user;
+        return $product;
     }
 
     /**
@@ -35,8 +35,8 @@ class UserService extends Service
      */
     public function findById(int $id): array
     {
-        $repo = new UserRepository();
-        return $repo->read($id, "user not found");
+        $repo = new ProductRepository();
+        return $repo->read($id, "product not found");
     }
 
     /**
@@ -44,9 +44,9 @@ class UserService extends Service
      */
     public function save(object $input): void
     {
-        $repo = new UserRepository();
+        $repo = new ProductRepository();
         $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create user");
+        $repo->create($toquery, "unable to create product");
     }
 
     /**
@@ -54,9 +54,9 @@ class UserService extends Service
      */
     public function update(object $input): void
     {
-        $repo = new UserRepository();
+        $repo = new ProductRepository();
         $toquery = $this->modelType->isValidType($input);
-        $repo->update($toquery, "unable to update user");
+        $repo->update($toquery, "unable to update product");
     }
 
     /**
@@ -64,8 +64,7 @@ class UserService extends Service
      */
     public function delete(int $id): void
     {
-        $repo = new UserRepository();
+        $repo = new ProductRepository();
         $repo->delete($id);
     }
 }
-

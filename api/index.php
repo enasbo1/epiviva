@@ -1,9 +1,16 @@
 <?php
 namespace api;
 
+use address\AddressController;
+use distribute\DistributeController;
 use Exception;
+use message\MessageController;
+use product\ProductController;
+use secteur\SecteurController;
+use service\ServiceController;
 use token\Token;
 use user\UserController;
+use users\UsersController;
 
 require_once 'src/shared/ModelType.php';
 require_once 'src/shared/Repository.php';
@@ -15,8 +22,33 @@ require_once 'src/token/Privilege.php';
 require_once 'src/token/Token.php';
 
 // import {
-require_once "crud/user/UserModelType.php";
-require_once 'src/user/UserController.php';
+// Imports pour le modèle et le contrôleur des utilisateurs
+require_once "crud/users/UsersModelType.php";
+require_once 'src/users/UsersController.php';
+
+// Imports pour le modèle et le contrôleur des messages
+require_once "crud/message/MessageModelType.php";
+require_once 'src/message/MessageController.php';
+
+// Imports pour le modèle et le contrôleur des services
+require_once "crud/service/ServiceModelType.php";
+require_once 'src/service/ServiceController.php';
+
+// Imports pour le modèle et le contrôleur des secteurs
+require_once "crud/secteur/SecteurModelType.php";
+require_once 'src/secteur/SecteurController.php';
+
+// Imports pour le modèle et le contrôleur des adresses
+require_once "crud/address/AddressModelType.php";
+require_once 'src/address/AddressController.php';
+
+// Imports pour le modèle et le contrôleur des produits
+require_once "crud/product/ProductModelType.php";
+require_once 'src/product/ProductController.php';
+
+// Imports pour le modèle et le contrôleur de la distribution
+require_once "crud/distribute/DistributeModelType.php";
+require_once 'src/distribute/DistributeController.php';
 // }
 
 
@@ -48,7 +80,13 @@ if (isset($_SERVER["HTTP_TOKEN"]) && (strlen($_SERVER["HTTP_TOKEN"])>20)){
 
 // controllerList {
 $controllerList = [
-    "user" => new UserController(),
+    "users"     => new UsersController(),
+    "message"   => new MessageController(),
+    "service"   => new ServiceController(),
+    "secteur"   => new SecteurController(),
+    "address"   => new AddressController(),
+    "product"   => new ProductController(),
+    "distribute"=> new DistributeController()
 ];
 // }
 

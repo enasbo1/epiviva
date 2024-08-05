@@ -1,0 +1,217 @@
+/* You can add global styles to this file, and also import other style files */
+@use "./app/shared/palette.scss" as styles;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+// @import 'font-awesome/css/font-awesome.min.css';
+
+
+*{
+  box-sizing: border-box;
+}
+
+div.card-header {
+ font-size: large;
+}
+
+div.card {
+  margin-top: 10px
+}
+
+.table {
+  margin-top: 10px
+}
+
+.nav-link {
+  font-size: large;
+}
+
+.bubble {
+  border-radius: 1rem 0 1rem 1rem;
+
+  &.reversed-bubble{
+    border-radius: 0 1rem 1rem 1rem;
+  }
+
+  &.circle-bubble{
+    border-radius: 1rem;
+  }
+
+  &.bubble-right{
+    padding-left : 0.25rem;
+    border-radius: 0 0 1rem 0;
+    &.reversed-bubble{
+      border-radius: 0 1rem 0 0;
+    }
+  }
+
+  &.bubble-left{
+    border-radius: 1rem 0 0 1rem;
+    border-right: 0;
+  }
+  &.bubble-up{
+    border-radius: 1rem 0 0 0;
+    &.reversed-bubble{
+      border-radius: 0 1rem 0 0;
+    }
+  }
+  &.bubble-down{
+    border-radius: 0 0 1rem 1rem;
+  }
+}
+
+.bubble,.bubble_padding{
+  padding : 0.25rem 1.5rem  0.25rem 1.5rem;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+
+  &.align-start{
+    align-items: start;
+  }
+
+  &.justify-start{
+    justify-content: start;
+  }
+
+  &.justify-end{
+    justify-content: end;
+  }
+  &.align-end{
+    align-items: end;
+  }
+
+  &.align-center{
+    align-items: center;
+  }
+
+  &.short-line{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  &.justify-spaced{
+    justify-content: space-between;
+
+  }
+}
+
+.bordered, .hover-bordered:hover {
+  border-width: 2px;
+  border-style: inset;
+  border-color: rgb(118, 118, 118) rgb(133, 133, 133);
+  border-image: initial;
+}
+
+.un-bordered{
+  border-width: 0;
+}
+
+.hover-bordered{
+  transition: all;
+  transition-duration: 350ms;
+}
+
+.disabled{
+  color : styles.$color-blanc-gris-1;
+  cursor: auto;
+}
+
+.hided {
+  display: none;
+}
+
+.italic{
+  font-style: italic;
+}
+
+.font-colored{
+  font-weight: bold;
+  color: styles.$color-colored-gris;
+
+}
+
+.colored{
+  font-weight: bold;
+  background-color: styles.$color-colored-gris;
+}
+
+.colored-red{
+  font-weight: bold;
+  background-color: styles.$color-error;
+}
+
+.hover-1{
+  background-color: styles.$color-blanc-gris-colored;
+}
+
+.hover-1:hover{
+  background-color: styles.$color-blanc-gris-1;
+}
+
+.hover-0:hover, input{
+  background-color: styles.$color-blanc-gris-0 !important;
+}
+
+.hover-w:hover, input:hover{
+  background-color: styles.$color-blanc;
+}
+
+.hover-0,.hover-1,.hover-w,input{
+  transition: background-color;
+  transition-duration: 250ms;
+}
+
+.transition{
+  transition: all;
+  transition-duration: 250ms;
+}
+
+.oneline{
+  white-space : nowrap;
+}
+
+button{
+  min-height: 2rem;
+}
+
+mainTitle{
+  text-align: center;
+}
+
+.text-hover{
+  color: styles.$color-colored-gris;
+
+  &:hover{
+    color: black;
+  }
+}
+
+.clickable, .text-hover{
+  cursor: pointer;
+}
+
+h1,h2,h3,h4,h5{
+  text-align: center;
+}
+
+.spaced>button, .spaced>div{
+  margin: 0.5rem;
+}
+
+.chat-col{
+  width: 60vw;
+  max-width: 50rem;
+}
+
+
+.icon{
+  padding: 0.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.font-red{
+  color: styles.$color-error;
+}
