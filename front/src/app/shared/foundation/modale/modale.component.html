@@ -1,0 +1,41 @@
+<ng-container *ngIf="modalObject.visible">
+  <section id="modal">
+    <div class = 'bubble'>
+      <div class="hover-1 bubble bordered">
+        <ng-container [ngSwitch]="modalObject.content.type">
+
+          <div *ngSwitchCase="'text'" class="text">
+            <span>
+              {{translator.echo(modalObject.content.text)}}
+            </span>
+          </div>
+
+          <div *ngSwitchCase="'form'" class="form">
+            <ep-form
+              *ngIf="modalObject.content.form"
+              [items]="[modalObject.content.form.fields]"
+              (submit)="submit_form($event)"
+            ></ep-form>
+          </div>
+
+          <div *ngSwitchCase="'rubric'" class="rubric">
+            <ep-rubric
+              *ngIf="modalObject.content.rubric"
+              [content]="modalObject.content.rubric"
+            ></ep-rubric>
+          </div>
+
+          <div *ngSwitchCase="'image'" class="image">
+            <img *ngIf="modalObject.content.image" [src]="modalObject.content.image" alt="nope" class="image">
+          </div>
+        </ng-container>
+
+        <div class="flex">
+          <button *ngFor="let option of modalObject.options"
+               class="bubble {{option.sclass?option.sclass:'hover-0 colored'}} {{option.end?'bordered':''}}"
+               (click)="submit(option)">{{ translator.echo(option.name, "Quitter") }}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>

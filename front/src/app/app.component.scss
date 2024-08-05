@@ -1,0 +1,21 @@
+main{
+  max-height: 99vh;
+
+  >div{
+    height: 6vw;
+  }
+  >section{
+    margin: 0;
+    padding: 2vw 2vw 0;
+    overflow-y: scroll;
+    overflow-x: unset;
+    height: calc(100vh - 6vw);
+
+    >div{
+      max-width: 100%;
+      >div.page{
+        min-height: calc(100vh - 8vw - 3rem);
+      }
+    }
+  }
+}

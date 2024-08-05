@@ -1,0 +1,37 @@
+<div class="message-container bubble">
+    <div class = "message-formatter">
+      <div *ngIf="sending_message" class="flex justify-end">
+        <div class="message-wrapper">
+          <div class="bubble message message-right sending">{{ translator.echo(sending_message.content) }}</div>
+        </div>
+        <div class="avatar-circle">
+          {{ getInitials(sending_message.user) }}
+          <div class="date">{{ sending_message.date | date: 'dd/MM' }}</div>
+        </div>
+      </div>
+
+      <div *ngFor="let message of sortedMessages" class="flex {{is_current(message.user) ? 'justify-end' : 'justify-start'}}">
+        <div *ngIf="!is_current(message.user)" class="avatar-circle" [title]="UserMapperService.get_U_Name(message.user)">
+          {{ getInitials(message.user) }}
+          <div class="date" [title]="message.date | date : 'HH:mm \ndd/MM/YYYY'">{{ message.date | date: 'dd/MM' }}</div>
+        </div>
+        <div class="message-wrapper">
+          <div *ngIf="!is_current(message.user)" class="bubble hover-1 reversed-bubble message-left message">{{ translator.echo(message.content) }}</div>
+          <div *ngIf="is_current(message.user)" class="bubble hover-1 message-right message">{{ translator.echo(message.content) }}</div>
+        </div>
+        <div *ngIf="is_current(message.user)" class="avatar-circle">
+          {{ getInitials(message.user) }}
+          <div class="date" [title]="message.date | date : 'HH:mm \ndd/MM/YYYY'">{{ message.date | date: 'dd/MM' }}</div>
+        </div>
+      </div>
+
+  </div>
+  <div class="flex input-bar bubble">
+    <textarea
+           class="bubble col-9 {{can_submit()?'':'disabled'}}"
+           (keydown.enter)="submit_message()"
+           [disabled] = !can_submit()
+           [(ngModel)]="new_message"
+    ></textarea>
+  </div>
+</div>

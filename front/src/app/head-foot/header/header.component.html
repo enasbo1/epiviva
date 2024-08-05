@@ -1,0 +1,32 @@
+<nav class='navbar navbar-expand bg-light'>
+  <div class = "col-3 flex">
+    <ep-image class = "logo" [title]="'logo'" [imageUrl]="logoUrl" [routerLink]="''"></ep-image>
+    <div id="nav-parts" style="height: 0; margin-top:1rem">
+      <ep-dropdown
+        *ngIf="GlobalService.token"
+        [default]="'partie-voyageur'"
+        [styles]="'col-6 circle-bubble transition bg-light hover-0 un-bordered'"
+        [choices]="keys"
+        (value_up)="change_part($event)"
+      ></ep-dropdown>
+    </div>
+  </div>
+  <div class = "col-6">
+      <div class="flex w-100">
+        <ul class="nav nav-pills">
+          <li *ngFor="let navli of navLinks"><a class = "nav-link {{is_part(navli.link)?'':'actif'}}" (click)="link(navli.link)">{{navli.name}}</a></li>
+          <li>
+            <a class = "nav-link actif" [routerLink]="GlobalService.token?'/'+WpPath.logout:'/'+WpPath.login">
+              {{translator.echo(GlobalService.token?'Logout':'Login')}}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <h2>
+        {{translator.echo(GlobalService.pageName)}}
+      </h2>
+  </div>
+  <div class = "col-3 flex">
+    <h1 class="navbar-brand" [routerLink]="''">{{translator.echo(pageTitle)}}</h1>
+  </div>
+</nav>

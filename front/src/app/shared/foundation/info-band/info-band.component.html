@@ -1,0 +1,17 @@
+<ng-container *ngIf="bandeau">
+  <section class="flex w-100 align-center">
+    <button class="bubble {{is_prev?'valid':'disabled'}} transition" (click)="prev()">
+      ⏴
+    </button>
+    <div class="banner" [class.high-priority]="((bandeau.priority)?bandeau.priority:0) > 3">
+      <a *ngIf="bandeau.link" [href]="bandeau.link">
+        <h3 *ngIf="bandeau.title">{{ bandeau.title }}</h3>
+        <p *ngIf="bandeau.description">{{ bandeau.description }}</p>
+      </a>
+    </div>
+    <button class="bubble {{is_next?'valid':'disabled'}} transition" (click)="next()">
+      ⏵
+    </button>
+
+  </section>
+</ng-container>

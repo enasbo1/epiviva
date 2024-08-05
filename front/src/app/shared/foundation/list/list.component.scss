@@ -1,0 +1,132 @@
+@use "../../palette.scss" as styles;
+@import '../../../app.component.scss';
+
+section{
+  margin: 2vw;
+  width: 100%;
+
+  div.flex{
+    width: 100%;
+  }
+
+  ul{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow : overlay;
+    max-height: 55vh;
+
+    h4.empty-list{
+      padding: 4vw;
+      text-align: center;
+    }
+
+    li{
+      display: block;
+      padding : 1rem;
+
+      .list-element:hover{
+        background-color: styles.$color-blanc-gris-1;
+
+        &.linked{
+          background-color: styles.$color-blanc-gris-0;
+        }
+
+        .mid {
+          display: flex !important;
+        }
+
+        .left {
+          display: flex !important;
+        }
+
+        .img-pannel{
+          width: 0;
+        }
+
+      }
+
+      .list-element{
+        width: 100%;
+        text-align: start;
+        background-color: styles.$color-blanc-gris-colored;
+        transition: all;
+        transition-duration: 200ms;
+        display: flex;
+        align-items: stretch;
+        padding: 0;
+
+        &.passe{
+          border-color: styles.$color-gris;
+          h6{
+            color : styles.$color-gris;
+          }
+        }
+        &.present{
+          border-color: styles.$color-colored-gris;
+          h6{
+            color: styles.$color-colored-gris;
+          }
+        }
+        &.futur{
+          border-color: styles.$color-noir;
+          h6{
+            color: styles.$color-noir;
+          }
+        }
+        >.content {
+          width: 100%;
+
+          > div.container {
+            padding: 0.5rem;
+            display: flex;
+
+            > .right {
+              display: flex;
+              white-space : nowrap;
+              justify-content: flex-start;
+            }
+
+            > .mid {
+              display: none;
+              white-space : nowrap;
+              justify-content: space-around;
+            }
+
+            > .left {
+              display: none;
+              white-space : nowrap;
+              justify-content: end;
+            }
+
+            .el-content{
+              min-height: 33%;
+            }
+          }
+        }
+
+        .img-pannel{
+          width: 150%;
+          transition: all;
+          transition-duration: 200ms;
+
+
+          :only-child{
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+a{
+  color: styles.$color-noir;
+}
+
+.line{
+  height : 3rem;
+}
+
+

@@ -1,0 +1,27 @@
+@use "../../palette.scss" as styles;
+@import '../../../app.component.scss';
+
+h4{
+  text-align: center;
+}
+
+a{
+  color : black;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover{
+    color : styles.$color-colored-gris;
+  }
+}
+table{
+  td{
+    padding: 0 1rem 0 1rem;
+    &:first-child{
+      text-align: center;
+    }
+    &:last-child{
+      text-align: left;
+    }
+  }
+}

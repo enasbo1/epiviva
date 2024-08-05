@@ -1,0 +1,5 @@
+id-|-!int
+prenom-|-r :M,30
+nom-|-r :M,100
+mail-|-r :M,100
+mdp-|-r :M,255

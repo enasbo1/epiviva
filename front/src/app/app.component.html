@@ -1,0 +1,25 @@
+<div class = "flex" style="flex-direction: column-reverse">
+  <main>
+    <div></div>
+    <section>
+      <div>
+        <div class="page">
+          <router-outlet></router-outlet>
+        </div>
+        <ep-line></ep-line>
+
+      </div>
+
+    </section>
+  </main>
+
+  <header [ngSwitch]="status">
+    <ep-admin-header *ngSwitchCase="WpPath.admin.root" [pageTitle]="pageTitle"></ep-admin-header>
+    <ep-voyageur-header *ngSwitchCase="WpPath.voyageur.root" [pageTitle]="pageTitle"></ep-voyageur-header>
+    <ep-bailleur-header *ngSwitchCase="WpPath.bailleur.root" [pageTitle]="pageTitle"></ep-bailleur-header>
+    <ep-presta-header *ngSwitchCase="WpPath.prestate.root" [pageTitle]="pageTitle"></ep-presta-header>
+    <ep-header *ngSwitchDefault [pageTitle]="pageTitle"></ep-header>
+  </header>
+</div>
+
+<ep-modale></ep-modale>

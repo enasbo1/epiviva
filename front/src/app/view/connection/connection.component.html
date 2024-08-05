@@ -1,0 +1,10 @@
+<h5 class="mainTitle error" *ngIf="error">{{translator.echo(error)}}</h5>
+<section  class = "flex" style="padding-top: 5vh">
+  <div id="form-container">
+    <ep-form
+      [items]="items"
+      (submit)="submit($event)"
+      [justify]="'center'">
+    </ep-form>
+  </div>
+</section>

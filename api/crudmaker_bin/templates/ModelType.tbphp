@@ -1,0 +1,35 @@
+<?php
+
+namespace {|{name}|};
+
+use shared\ModelType;
+use shared\Verif;
+use Exception;
+
+class {|{Name}|}ModelType implements ModelType
+{
+    /**
+     * @throws Exception
+     */
+    public function isValidType(object $params): array
+    {
+        $arr_params = $this->toArray($params);
+        $valid = Verif::verification($arr_params,[
+{|{list_colomn_verif}|}
+        ]);
+        if (
+            $valid != "validated"
+        ) {
+            throw new Exception(json_encode($valid),400);
+        }
+
+        return $arr_params;
+    }
+
+    public function toArray(object $params): array
+    {
+        return array_filter([
+{|{list_colomn_array}|}
+        ]);
+    }
+}

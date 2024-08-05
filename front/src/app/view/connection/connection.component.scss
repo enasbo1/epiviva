@@ -1,0 +1,7 @@
+@use "../../shared/palette.scss" as styles;
+@import "../../app.component.scss";
+
+.error{
+  color: styles.$color-error;
+  text-align : center !important;
+}

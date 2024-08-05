@@ -1,0 +1,7 @@
+@use "../../shared/palette.scss" as styles;
+@import "../../app.component.scss";
+
+.title{
+  color: styles.$color-colored-gris;
+  text-align : center !important;
+}

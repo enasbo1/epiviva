@@ -1,0 +1,40 @@
+@use "../../palette.scss" as styles;
+@import '../../../app.component.scss';
+
+
+#modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top:0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  >div{
+    text-align: center;
+    margin: 0;
+    padding: 2px;
+    background-color: styles.$color-blanc;
+    >div{
+      box-shadow: 1rem 0.5rem 0.5rem styles.$color-colored-gris ;
+
+      >.text{
+        padding: 1rem;
+      }
+
+      >.image{
+        margin: 0.5rem;
+        >.image{
+          border-radius: 0.5rem;
+          max-width: 80vw;
+          max-height: 60vh;
+        }
+      }
+
+      >.rubric{
+        padding: 1rem 1rem 0.5rem;
+      }
+    }
+  }
+}

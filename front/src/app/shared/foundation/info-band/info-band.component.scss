@@ -1,0 +1,36 @@
+@use "../../palette.scss" as styles;
+@import '../../../app.component.scss';
+
+/* src/app/components/info-band/info-band.component.scss */
+.banner {
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  min-width: 50%;
+  max-width: 32rem;
+  text-align: center;
+
+  a{
+    color: black;
+    text-decoration: none;
+    :hover{
+      text-decoration: none;
+    }
+  }
+}
+
+button{
+  font-size: xx-large;
+  background: none;
+  border : none;
+  flex-grow: 0;
+
+  &.valid:hover{
+    color : styles.$color-colored-gris;
+  }
+}
+
+.high-priority {
+  border-color: red;
+}
+

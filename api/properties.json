@@ -1,0 +1,7 @@
+{
+  "username" : "unknown",
+  "password": "password",
+  "db-name": "epiviva",
+  "host": "database",
+  "port": "5432"
+}

@@ -1,0 +1,46 @@
+<?php
+namespace {|{name}|};
+use token\Privilege;
+use shared\CrudController;
+
+require_once '{|{Name}|}Service.php';
+
+
+
+class {|{Name}|}Controller extends CrudController{
+    function get(array $id): void
+    {
+        $request = new {|{Name}|}Service();
+        if ($id == []) {
+            ${|{name}|} = $request->getAll();
+        } else {
+            ${|{name}|} = $request->findById($id[0]);
+        }
+        echo json_encode(${|{name}|});
+    }
+
+    function post(array $id, object $input): void
+    {
+        $request = new {|{Name}|}Service();
+
+        Privilege::admin();
+        $request->save($input);
+        http_response_code(201);
+        echo('{"message" : "{|{name}|} créé avec succès"}');
+    }
+
+    function patch(array $id, object $input): void
+    {
+        $request = new {|{Name}|}Service();
+
+        Privilege::admin();
+        $request->update($input);
+    }
+
+    function delete(array $id): void
+    {
+        $request = new {|{Name}|}Service();
+        Privilege::admin();
+        $request->delete($id[0]);
+    }
+}

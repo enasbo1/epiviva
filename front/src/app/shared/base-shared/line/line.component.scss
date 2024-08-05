@@ -1,0 +1,7 @@
+@use "../../palette.scss" as styles;
+@import '../../../app.component.scss';
+
+.line{
+  background-color: #111111;
+  height: 2px;
+}
