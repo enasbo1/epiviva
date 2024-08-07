@@ -7,6 +7,8 @@ import {DiconnectionComponent } from './connection/diconnection/diconnection.com
 import {WpPath} from "./routes";
 import {ErrorModule} from "./error/error.module";
 import { InscriptionComponent } from './connection/inscription/inscription.component';
+import { HomeComponent } from './home/home.component';
+import { VisitorHomeComponent } from './home/visitor-home/visitor-home.component';
 
 
 
@@ -15,6 +17,8 @@ import { InscriptionComponent } from './connection/inscription/inscription.compo
     ConnectionComponent,
     DiconnectionComponent,
     InscriptionComponent,
+    HomeComponent,
+    VisitorHomeComponent,
   ],
   imports: [
     CommonModule,

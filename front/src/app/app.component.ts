@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {GlobalService} from "./shared/global.service";
 import {LanguageService} from "./shared/base-shared/language.service";
+import _ from "lodash";
 
 @Component({
   selector:"ep-root",
@@ -10,7 +11,7 @@ import {LanguageService} from "./shared/base-shared/language.service";
   ]
 })
 export class AppComponent implements OnInit, OnChanges{
-  pageTitle: string = "Epivia";
+  pageTitle: string = "title";
   title:string = "title 1";
 
   constructor(
@@ -23,7 +24,9 @@ export class AppComponent implements OnInit, OnChanges{
     this.languageService.getJson(GlobalService.language)
         .subscribe(
           file=>{
-            if (GlobalService.languageFile=={}){
+            if (this.languageService.get_language(GlobalService.languageFile)
+                !==
+                this.languageService.get_language(file)){
               GlobalService.languageFile = file
               location.reload()
             }else{

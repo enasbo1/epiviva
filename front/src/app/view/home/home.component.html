@@ -1,0 +1,16 @@
+<ng-container [ngSwitch]="status">
+    <epv-visitor-home *ngSwitchDefault></epv-visitor-home>
+</ng-container>
+<div class="card">
+    <div class="card-header">
+        {{pageTitle | langue}}
+    </div>
+    <div class="card-body">
+        <div class="container-fluid">
+            <div class="text-center">{{ 'home.developed' | langue}}</div>
+            <div class="text-center">
+                <h3>Irenee du Gardin</h3>
+            </div>
+        </div>
+    </div>
+</div>
