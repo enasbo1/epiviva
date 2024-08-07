@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TranslatorService} from "../../base-shared/translator.service";
 import {ListObject, ListObjectPropriety} from "./listObject";
 import {TextStyle} from "../../base-shared/textStyle";
 import {_FilterObject, Act, FilterObject} from "./filterObject";
@@ -10,6 +9,7 @@ import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
 import {FormService} from "../form/form.service";
 import {DateService} from "../../../http/shared/date.service";
 import {Params} from "@angular/router";
+import {LanguePipe} from "../../base-shared/langue.pipe";
 
 @Component({
   selector: 'ep-list',
@@ -25,7 +25,6 @@ export class ListComponent implements OnInit {
   _filters:_FilterObject[]|undefined;
   protected act?:Act<_FilterObject>;
   search_crit:string="Title";
-  translatorService: TranslatorService= new TranslatorService();
   search_value:string="";
   constructor() {}
 
@@ -111,10 +110,9 @@ export class ListComponent implements OnInit {
           this.findFlilter(item, this.search_crit)
             ?.value?.toString().toLowerCase().includes(this.search_value.toLowerCase())
       ).sort((a,b)=>
-        this.translatorService.echo(
-          this.findFlilter(a,this.search_crit)?.name
-        ).localeCompare(
-            this.translatorService.echo(this.findFlilter(b,this.search_crit)?.name)
+          (this.findFlilter(a,this.search_crit)?.name?? "")
+              .localeCompare(
+                  this.findFlilter(b,this.search_crit)?.name?? ""
         )
       );
     }

@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormStepObject} from "./formStepObject";
-import {TranslatorService} from "../translator.service";
 
 @Component({
   selector: 'ep-form-step',
@@ -10,7 +9,6 @@ import {TranslatorService} from "../translator.service";
 export class FormStepComponent implements OnInit {
   @Input() items?:FormStepObject;
   @Input() justify:"right"|"center"|""="";
-  constructor(public translator:TranslatorService) { }
 
   ngOnInit(): void {
   }

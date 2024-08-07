@@ -18,7 +18,7 @@ class Token
 
     }
 
-    static function createToken(int $user_id, string $user_firstname, string $user_lastname,  int $user_role, string $user_enterprise):string{
+    static function createToken(int $user_id, string $user_firstname, string $user_lastname,  int $user_role):string{
         // Create token header as a JSON string
         $header = json_encode(
             [
@@ -33,7 +33,6 @@ class Token
                 'user_firstname' => $user_firstname,
                 'user_lastname' => $user_lastname,
                 'user_role' => $user_role,
-                'user_enterprise'=> $user_enterprise
             ]
         );
 

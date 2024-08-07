@@ -23,10 +23,17 @@ class UsersController extends CrudController{
     {
         $request = new UsersService();
 
-        Privilege::admin();
-        $request->save($input);
-        http_response_code(201);
-        echo('{"message" : "users créé avec succès"}');
+        if ($id[0]=="inscription"){
+            $answer = $request->inscrit($input);
+            http_response_code(201);
+            echo(json_encode($answer));
+        }else{
+            Privilege::admin();
+            $request->save($input);
+            http_response_code(201);
+            echo('{"message" : "users créé avec succès"}');
+        }
+
     }
 
     function patch(array $id, object $input): void

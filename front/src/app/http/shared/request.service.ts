@@ -2,7 +2,6 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {ConstancesService} from "./constances.service";
-import {TranslatorService} from "../../shared/base-shared/translator.service";
 import {GlobalService} from "../../shared/global.service";
 
 @Injectable({
@@ -12,7 +11,6 @@ export class RequestService{
 
   constructor(
     public httpClient:HttpClient,
-    public translator:TranslatorService
   ) { }
 
   handelError(errorMessage: HttpErrorResponse){
@@ -28,7 +26,6 @@ export class RequestService{
   }
 
   post(content:object, url:string, errorCatch?:EventEmitter<HttpErrorResponse>):Observable<object>{
-    console.log('hi');
     return this.httpClient.post(ConstancesService.api_url + "/" +url,
       JSON.stringify(content),
       {

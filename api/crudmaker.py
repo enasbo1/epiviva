@@ -5,11 +5,11 @@ def to_array_string(col: list) -> str:
     ret = ""
     for i, j in enumerate(col):
         t = '$params->' + j[0]
-        if (len(j) > 2):
+        if len(j) > 2:
             default = j[2]
         else:
             default = 'null'
-        ret += '\t\t\t"' + j[0] + f'" => isset({t})?{t}:{default}'
+        ret += '\t\t\t"' + j[0] + f'" => {t} ?? {default}'
         if (i + 1) < len(col):
             ret += ',\n'
     return ret

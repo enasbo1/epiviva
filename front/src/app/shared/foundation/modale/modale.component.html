@@ -6,7 +6,7 @@
 
           <div *ngSwitchCase="'text'" class="text">
             <span>
-              {{translator.echo(modalObject.content.text)}}
+              {{modalObject.content.text | langue}}
             </span>
           </div>
 
@@ -33,7 +33,7 @@
         <div class="flex">
           <button *ngFor="let option of modalObject.options"
                class="bubble {{option.sclass?option.sclass:'hover-0 colored'}} {{option.end?'bordered':''}}"
-               (click)="submit(option)">{{ translator.echo(option.name, "Quitter") }}</button>
+               (click)="submit(option)">{{ option.name | langue : "Quitter" }}</button>
         </div>
       </div>
     </div>

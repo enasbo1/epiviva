@@ -4,7 +4,7 @@
     <div id="nav-parts" style="height: 0; margin-top:1rem">
       <ep-dropdown
         *ngIf="GlobalService.token"
-        [default]="'partie-voyageur'"
+        [default]="'partie-admin'"
         [styles]="'col-6 circle-bubble transition bg-light hover-0 un-bordered'"
         [choices]="keys"
         (value_up)="change_part($event)"
@@ -14,19 +14,19 @@
   <div class = "col-6">
       <div class="flex w-100">
         <ul class="nav nav-pills">
-          <li *ngFor="let navli of navLinks"><a class = "nav-link {{is_part(navli.link)?'':'actif'}}" (click)="link(navli.link)">{{navli.name}}</a></li>
+          <li *ngFor="let navli of navLinks"><a class = "nav-link {{is_part(navli.link)?'':'actif'}}" (click)="link(navli.link)">{{navli.name | langue}}</a></li>
           <li>
             <a class = "nav-link actif" [routerLink]="GlobalService.token?'/'+WpPath.logout:'/'+WpPath.login">
-              {{translator.echo(GlobalService.token?'Logout':'Login')}}
+              {{(GlobalService.token?'nav.logout':'nav.login') | langue}}
             </a>
           </li>
         </ul>
       </div>
       <h2>
-        {{translator.echo(GlobalService.pageName)}}
+        {{GlobalService.pageName | langue}}
       </h2>
   </div>
   <div class = "col-3 flex">
-    <h1 class="navbar-brand" [routerLink]="''">{{translator.echo(pageTitle)}}</h1>
+    <h1 class="navbar-brand" [routerLink]="''">{{pageTitle | langue}}</h1>
   </div>
 </nav>

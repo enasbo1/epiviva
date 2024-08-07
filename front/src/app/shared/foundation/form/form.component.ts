@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormRubricObject, FormStepObject} from "../../base-shared/form-step/formStepObject";
-import {TranslatorService} from "../../base-shared/translator.service";
 import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
 
 @Component({
@@ -14,7 +13,6 @@ export class FormComponent implements OnInit {
   @Input() endpage?:boolean = true;
   @Output() submit:EventEmitter<FormFieldObject[]> = new EventEmitter<FormFieldObject[]>();
   public step:number = 0;
-  constructor(public translator:TranslatorService) { }
 
   ngOnInit(): void {
   }
@@ -32,14 +30,14 @@ export class FormComponent implements OnInit {
   }
 
   public next_step():EventEmitter<boolean>|false|void{
-    const current = this.get_current()
+    const current:FormStepObject|undefined = this.get_current()
     let error:boolean = current?.content.find((rubric:FormRubricObject):boolean=>
       rubric.content.find(
         (field:FormFieldObject):boolean=>{
-          const val = field._value?.toString();
+          const val:string = field._value?.toString()?? '';
           return field.reg_error?.find(
             (regtest):boolean=>{
-              if (!regtest.regex.test(val?val:'')){
+              if (!regtest.regex.test(val)){
                 current.errorEvent?.emit(regtest.message)
                 return true;
               }

@@ -2,7 +2,7 @@
     <div class = "message-formatter">
       <div *ngIf="sending_message" class="flex justify-end">
         <div class="message-wrapper">
-          <div class="bubble message message-right sending">{{ translator.echo(sending_message.content) }}</div>
+          <div class="bubble message message-right sending">{{ sending_message.content | langue }}</div>
         </div>
         <div class="avatar-circle">
           {{ getInitials(sending_message.user) }}
@@ -16,8 +16,8 @@
           <div class="date" [title]="message.date | date : 'HH:mm \ndd/MM/YYYY'">{{ message.date | date: 'dd/MM' }}</div>
         </div>
         <div class="message-wrapper">
-          <div *ngIf="!is_current(message.user)" class="bubble hover-1 reversed-bubble message-left message">{{ translator.echo(message.content) }}</div>
-          <div *ngIf="is_current(message.user)" class="bubble hover-1 message-right message">{{ translator.echo(message.content) }}</div>
+          <div *ngIf="!is_current(message.user)" class="bubble hover-1 reversed-bubble message-left message">{{ message.content | langue }}</div>
+          <div *ngIf="is_current(message.user)" class="bubble hover-1 message-right message">{{ message.content |langue }}</div>
         </div>
         <div *ngIf="is_current(message.user)" class="avatar-circle">
           {{ getInitials(message.user) }}

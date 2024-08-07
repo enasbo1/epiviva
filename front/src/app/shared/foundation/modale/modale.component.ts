@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalService} from "../../global.service";
 import {ModalObject, ModalOption} from "./modalObject";
-import {TranslatorService} from "../../base-shared/translator.service";
 import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
 
 @Component({
@@ -15,8 +14,6 @@ export class ModaleComponent implements OnInit {
     options:[],
     content:{type:'void'}
   }
-
-  constructor(public translator:TranslatorService) { }
 
   ngOnInit(): void {
   }

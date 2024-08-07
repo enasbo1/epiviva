@@ -1,10 +1,10 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {FormFieldObject} from "../../shared/base-shared/form-field/formFieldObject";
-import { FormStepObject } from "../../shared/base-shared/form-step/formStepObject";
-import {ConnectionService} from "../../http/shared/connection.service";
-import {TranslatorService} from "../../shared/base-shared/translator.service";
+import {FormFieldObject} from "../../../shared/base-shared/form-field/formFieldObject";
+import { FormStepObject } from "../../../shared/base-shared/form-step/formStepObject";
+import {ConnectionService} from "../../../http/shared/connection.service";
 import {Router} from "@angular/router";
-import * as events from "node:events";
+import {GlobalService} from "../../../shared/global.service";
+import {WpPath} from "../../routes";
 
 @Component({
   selector: 'ep-connection',
@@ -22,8 +22,8 @@ export class ConnectionComponent implements OnInit {
       content:[
         {
           content:[
-            {name:"mail", title: "email",type:"email", instruction:"your email", placeholder:"wandermail@mail.vo"},
-            {name:"password",title:"password", type:"password", instruction:"your password", placeholder:"*******"}
+            {name:"mail", title: "connexion.email",type:"email", instruction:"your email", placeholder:"wandermail@mail.vo"},
+            {name:"mdp",title:"connexion.password", type:"password", instruction:"your password", placeholder:"*******"}
           ]
         }
       ]
@@ -33,11 +33,11 @@ export class ConnectionComponent implements OnInit {
   values?:FormFieldObject[]
   constructor(
     private connectionService:ConnectionService,
-    public translator:TranslatorService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    GlobalService.pageName = "nav.login"
   }
 
   fail(message:string|undefined):void{
@@ -71,4 +71,6 @@ export class ConnectionComponent implements OnInit {
     this.nextstep?.emit(true);
     this.error = undefined
   }
+
+  protected readonly WpPath = WpPath;
 }

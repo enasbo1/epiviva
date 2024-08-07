@@ -10,12 +10,14 @@ import { FormFieldComponent } from './form-field/form-field.component';
 import {FormsModule} from "@angular/forms";
 import {DateForHtmlPipe} from "./date-for-html.pipe";
 import { LineComponent } from './line/line.component';
+import {LanguePipe} from "./langue.pipe";
 
 
 
 @NgModule({
   declarations: [
     StarComponent,
+    LanguePipe,
     convertToSpacesPipe,
     ImageComponent,
     DropdownComponent,
@@ -38,7 +40,8 @@ import { LineComponent } from './line/line.component';
         RubricComponent,
         FormStepComponent,
         FormFieldComponent,
-        LineComponent
+        LineComponent,
+        LanguePipe
     ]
 })
 export class BaseSharedModule { }

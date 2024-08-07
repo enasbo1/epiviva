@@ -1,0 +1,11 @@
+<h5 class="mainTitle error" *ngIf="error">{{error | langue}}</h5>
+<section  class = "flex justify-content-center">
+
+    <div id="form-container"  style="margin:2rem">
+        <ep-form
+                [items]="items"
+                (submit)="submit($event)"
+                [justify]="'center'">
+        </ep-form>
+    </div>
+</section>

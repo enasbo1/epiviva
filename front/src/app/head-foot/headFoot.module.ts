@@ -7,17 +7,17 @@ import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
+    declarations: [
       HeaderComponent
-  ],
+    ],
     imports: [
         CommonModule,
         RouterLinkWithHref,
         SharedModule,
         RouterLink,
     ],
-  exports: [
-    HeaderComponent
-  ]
+    exports: [
+        HeaderComponent
+    ]
 })
 export class HeadFootModule { }

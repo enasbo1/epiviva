@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
 import { ChatObject } from "./chatObject";
-import { TranslatorService } from "../../base-shared/translator.service";
 import {GlobalService} from "../../global.service";
 import { UserRecap } from "../../../http/model/user-model/userObject";
 import {MessageModelService} from "../../../http/model/message-model/message-model.service";
@@ -35,7 +34,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   periodic?:Subscription;
 
   constructor(
-    public translator: TranslatorService,
     private messageService : MessageModelService
   ) {}
 

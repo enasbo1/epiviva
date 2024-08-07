@@ -8,6 +8,11 @@ export interface UserObject extends UserRecap{
   id_address: number
 }
 
+export interface UserPost extends UserRecap {
+  mdp: string;
+}
+
+
 export interface UserRecap{
   id?: number;
   prenom: string;

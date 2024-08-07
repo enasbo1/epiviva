@@ -1,6 +1,7 @@
 <?php
 namespace users;
 
+use connexion\ConnexionService;
 use Exception;
 use shared\Service;
 
@@ -66,5 +67,21 @@ class UsersService extends Service
     {
         $repo = new UsersRepository();
         $repo->delete($id);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function inscrit(object $input):array
+    {
+        $repo = new UsersRepository();
+        $connect_input = clone $input;
+        $input->status = "1";
+        $input->num = "0102030405";
+        $input->mdp = ConnexionService::hash_password($input->mdp);
+        $toquery = $this->modelType->isValidType($input);
+        $repo->create($toquery, "unable to create users");
+        $connection = new ConnexionService();
+        return $connection->connect($connect_input);
     }
 }

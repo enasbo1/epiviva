@@ -5,19 +5,19 @@
       *ngIf="step!==0"
       (click)="previus_step()"
       class="bubble hover-0"
-    >{{translator.echo("precedent")}}</button>
+    >{{"form.previous" | langue}}</button>
     <button
       *ngIf="(step+1)<(items.length)"
       (click)="next_step()"
       class="bubble hover-w"
-    >{{translator.echo("suivant")}}</button>
+    >{{"form.next" | langue}}</button>
     <button
       *ngIf="(step+1)==(items.length)"
       (click)="onSumbit()"
       class="bubble colored hover-0"
-    >{{translator.echo("valider")}}</button>
+    >{{"form.validate" | langue}}</button>
   </div>
 </ng-container>
 <div *ngIf="(step)==(items?.length)">
-  <h3> le formulaire a bien été validé </h3>
+  <h3> {{"form.validated" | langue}} </h3>
 </div>

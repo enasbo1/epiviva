@@ -1,77 +1,75 @@
 <section>
-  <div class="flex">
-    <div class = 'flex align-start w-50 line'>
-      <div class="col-3" *ngIf="critera">
-        <ep-dropdown
-          [styles]="'bubble-left'"
-          [choices]="critera"
-          (value_up)="switch_rubric($event)"
-        ></ep-dropdown>
-      </div>
-      <input type="text" [(ngModel)]="search_value" placeholder="search - WIP" class="bubble {{critera?'bubble-right col-9':'col-12'}} hover-w">
-    </div>
-  </div>
-  <div class="flex short-line">
-    <div *ngFor="let filt of filtered" class = 'line flex w-100'>
-      <ng-container [ngSwitch]="filt.type">
-        <div *ngSwitchCase="'period'">
-          <button class="bubble col-12 {{(filt.value==='all'?'hover-w':'hover-1')}}"
-                  (click)="set_period(filt)"
-          >
-            {{filt.value==='all'?filt.name:filt.value?? filt.name}}
-          </button>
-        </div>
-        <div *ngSwitchCase="'free'">
-          <button class="bubble col-12 {{(!filt.value || filt.value==='all' )?'hover-w':'hover-1'}}"
-                  (click)="set_period(filt)"
-          >
-            {{filt.value==='all'?filt.name:filt.value?? filt.name}}
-          </button>
-        </div>
-        <ep-dropdown *ngSwitchDefault
-          [set_value]="filt.set_value"
-          [choices]="filt.choices"
-          [default]="filt.default?filt.default:'all'"
-          [set]="filt.set"
-          [prefix]="(filt.type === 'search')?'':filt.name + ' | '"
-          (click)="refresh_filter()"
-          (value_up)="filter_update(filt, $event)"
-        ></ep-dropdown>
-      </ng-container>
-
-    </div>
-  </div>
-  <ep-line [short]="true"></ep-line>
-  <div class="flex">
-    <ul class="container">
-      <h4 class="empty-list" *ngIf="(filter_item().length==0)">
-        <ng-container *ngIf="act">
-          {{act.text}} <b class="text-hover" (click)="act.play()"> {{act.clickable_text}} </b>
-        </ng-container>
-        <ng-container *ngIf="!act">
-          aucune donnée à afficher <b class="text-hover" (click)="reset_filter()">vider les filtres</b>
-        </ng-container>
-      </h4>
-      <li *ngFor="let item of filter_item()" class="{{elements_size()}} col-12">
-        <button class="list-element bubble {{item.link?'linked':''}} {{item.style}}" [routerLink]=item.link [queryParams]="query">
-          <div class="content bubble_padding">
-            <h6>{{translatorService.echo(item?.title)}}</h6>
-            <div class="container">
-              <div *ngFor="let pannel of element(item)" [class]="pannel.side">
-                <div>
-                  <div class = "el-content" *ngFor="let content of pannel.content" [style]="content?.style">
-                    {{translatorService.echo(content?.text)}}
-                  </div>
-                </div>
-              </div>
+    <div class="flex">
+        <div class='flex align-start w-50 line'>
+            <div class="col-3" *ngIf="critera">
+                <ep-dropdown
+                        [styles]="'bubble-left'"
+                        [choices]="critera"
+                        (value_up)="switch_rubric($event)"
+                ></ep-dropdown>
             </div>
-          </div>
-          <div class = "img-pannel">
-            <ep-image [style]="'cover fond angled-rb'" [imageUrl]="translatorService.echo(item?.image)"></ep-image>
-          </div>
-        </button>
-      </li>
-    </ul>
-  </div>
+            <input type="text" [(ngModel)]="search_value" placeholder="search - WIP" class="bubble {{critera ? 'bubble-right col-9' : 'col-12'}} hover-w">
+        </div>
+    </div>
+    <div class="flex short-line">
+        <div *ngFor="let filt of filtered" class='line flex w-100'>
+            <ng-container [ngSwitch]="filt.type">
+                <div *ngSwitchCase="'period'">
+                    <button class="bubble col-12 {{(filt.value === 'all' ? 'hover-w' : 'hover-1')}}"
+                            (click)="set_period(filt)"
+                    >
+                        {{filt.value === 'all' ? filt.name : filt.value ?? filt.name}}
+                    </button>
+                </div>
+                <div *ngSwitchCase="'free'">
+                    <button class="bubble col-12 {{(!filt.value || filt.value === 'all') ? 'hover-w' : 'hover-1'}}"
+                            (click)="set_period(filt)"
+                    >
+                        {{filt.value === 'all' ? filt.name : filt.value ?? filt.name}}
+                    </button>
+                </div>
+                <ep-dropdown *ngSwitchDefault
+                             [set_value]="filt.set_value"
+                             [choices]="filt.choices"
+                             [default]="filt.default ? filt.default : 'all'"
+                             [set]="filt.set"
+                             [prefix]="(filt.type === 'search') ? '' : filt.name + ' | '"
+                             (click)="refresh_filter()"
+                             (value_up)="filter_update(filt, $event)"
+                ></ep-dropdown>
+            </ng-container>
+        </div>
+    </div>
+    <ep-line [short]="true"></ep-line>
+    <div class="flex">
+        <ul class="container">
+            <h4 class="empty-list" *ngIf="(filter_item().length == 0)">
+                <ng-container *ngIf="act">
+                    {{act.text | langue}} <b class="text-hover" (click)="act.play()">{{act.clickable_text | langue}}</b>
+                </ng-container>
+                <ng-container *ngIf="!act">
+                    {{'aucune donnée à afficher' | langue}} <b class="text-hover" (click)="reset_filter()">{{'vider les filtres' | langue}}</b>
+                </ng-container>
+            </h4>
+            <li *ngFor="let item of filter_item()" class="{{elements_size()}} col-12">
+                <button class="list-element bubble {{item.link ? 'linked' : ''}} {{item.style}}" [routerLink]="item.link" [queryParams]="query">
+                    <div class="content bubble_padding">
+                        <h6>{{item?.title | langue}}</h6>
+                        <div class="container">
+                            <div *ngFor="let pannel of element(item)" [class]="pannel.side">
+                                <div>
+                                    <div class="el-content" *ngFor="let content of pannel.content" [style]="content?.style">
+                                        {{content?.text | langue}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-pannel">
+                        <ep-image [style]="'cover fond angled-rb'" [imageUrl]="item?.image | langue"></ep-image>
+                    </div>
+                </button>
+            </li>
+        </ul>
+    </div>
 </section>
-

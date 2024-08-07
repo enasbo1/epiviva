@@ -1,0 +1,32 @@
+{
+  "title" : "Epivia",
+  "connexion": {
+    "email" : "email",
+    "password" : "password",
+    "title" : "connection",
+    "no_account" : "don't have an account?",
+    "new_account": "sign up"
+  },
+  "user": {
+    "credential": "Credentials"
+  },
+  "inscription": {
+    "title": "Inscription",
+    "first_name": "Nom",
+    "name":"Prenom"
+  },
+  "form": {
+    "previous": "previous",
+    "next": "next",
+    "validate": "validate",
+    "validated": "the form has been successfully validated"
+  },
+  "nav": {
+    "home" : "Home",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "home": {
+    "developed": "Developed by :"
+  }
+}

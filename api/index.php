@@ -2,6 +2,7 @@
 namespace api;
 
 use address\AddressController;
+use connexion\ConnexionController;
 use distribute\DistributeController;
 use Exception;
 use message\MessageController;
@@ -49,6 +50,10 @@ require_once 'src/product/ProductController.php';
 // Imports pour le modèle et le contrôleur de la distribution
 require_once "crud/distribute/DistributeModelType.php";
 require_once 'src/distribute/DistributeController.php';
+
+require_once "crud/connexion/ConnexionModelType.php";
+require_once 'src/connexion/ConnexionController.php';
+
 // }
 
 
@@ -86,7 +91,8 @@ $controllerList = [
     "secteur"   => new SecteurController(),
     "address"   => new AddressController(),
     "product"   => new ProductController(),
-    "distribute"=> new DistributeController()
+    "distribute"=> new DistributeController(),
+    "connection"=> new ConnexionController(),
 ];
 // }
 

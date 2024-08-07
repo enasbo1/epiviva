@@ -1,11 +1,11 @@
 <ng-container *ngIf="items">
-  <h3 *ngIf="items.title" [class]="justify">{{translator.echo(items.title)}}</h3>
-  <ng-container *ngFor="let rubric of items.content">
-    <ep-line [short]="true"></ep-line>
+    <h3 *ngIf="items.title" [class]="justify">{{ items.title | langue }}</h3>
+    <ng-container *ngFor="let rubric of items.content">
+        <ep-line [short]="true"></ep-line>
 
-    <h4 *ngIf="rubric.title">{{translator.echo(rubric.title)}}</h4>
-    <div *ngFor="let item of rubric.content" class="form-element">
-      <ep-form-field [field]="item"></ep-form-field>
-    </div>
-  </ng-container>
+        <h4 *ngIf="rubric.title">{{ rubric.title | langue }}</h4>
+        <div *ngFor="let item of rubric.content" class="form-element">
+            <ep-form-field [field]="item"></ep-form-field>
+        </div>
+    </ng-container>
 </ng-container>

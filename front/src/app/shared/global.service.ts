@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ModalObject} from "./foundation/modale/modalObject";
 import {WP_global} from "./sharedGlobal";
 import {UserObject, UserRecap} from "../http/model/user-model/userObject";
+import {LanguageService} from "./base-shared/language.service";
 
 type cookiesType = {token?:string}
 
@@ -25,7 +26,7 @@ export class GlobalService {
 
   public static get token():string|undefined{
     const token:string|null = sessionStorage.getItem('token');
-    return token?token:undefined;
+    return token?? undefined;
   }
 
   public static set token(token:string|undefined){
@@ -55,5 +56,18 @@ export class GlobalService {
   }
   public static set pageName(name:string){
     WP_global.pageTitle = name;
+  }
+
+  public static get language():string{
+    return "fr";
+  }
+
+  public static get languageFile():object{
+    const languageFile:string|null = sessionStorage.getItem('language');
+    return JSON.parse(languageFile?? "{}");
+  }
+
+  public static set languageFile(languageFile:object){
+    sessionStorage.setItem('language',languageFile?JSON.stringify(languageFile):'')
   }
 }

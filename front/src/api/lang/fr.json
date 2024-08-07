@@ -1,0 +1,33 @@
+{
+  "title" : "Epivia",
+  "connexion": {
+    "email" : "mail",
+    "password" : "mot de passe",
+    "title" : "connection",
+    "no_account" : "vous n'avez pas de compte ?",
+    "new_account": "s'inscrire"
+  },
+  "user": {
+    "credential": "Authentifiacation",
+    "first_name": "Nom",
+    "name":"Prenom"
+  },
+  "inscription": {
+    "title": "Inscription",
+    "passwords_match_error": "les mots de passe ne correspondent pas"
+  },
+  "form": {
+    "previous": "precendent",
+    "next": "suivant",
+    "validate": "valider",
+    "validated": "le formulaire a bien été validé"
+  },
+  "nav": {
+    "home" : "Acceuil",
+    "logout": "Déconnection",
+    "login": "Connection"
+  },
+  "home": {
+    "developed": "Développé  par :"
+  }
+}

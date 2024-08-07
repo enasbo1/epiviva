@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from "../../../shared/global.service";
-import { TranslatorService } from "../../../shared/base-shared/translator.service";
-
+8
 @Component({
   templateUrl: './welcome.component.html'
 })
 export class WelcomeComponent implements OnInit {
   public pageTitle: string = '';
 
-  constructor(protected translator: TranslatorService) { }
-
   ngOnInit() {
-    GlobalService.pageName = "Home";  
-    this.pageTitle = GlobalService.pageName;  
+    GlobalService.pageName = "nav.home";
+    this.pageTitle = 'nav.home';
   }
+
+    protected readonly GlobalService = GlobalService;
 }

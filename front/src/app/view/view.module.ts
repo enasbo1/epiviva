@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConnectionComponent } from './connection/connection.component';
+import { ConnectionComponent } from './connection/connection/connection.component';
 import { RouterModule } from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
-import {DiconnectionComponent } from './diconnection/diconnection.component';
+import {DiconnectionComponent } from './connection/diconnection/diconnection.component';
 import {WpPath} from "./routes";
 import {ErrorModule} from "./error/error.module";
+import { InscriptionComponent } from './connection/inscription/inscription.component';
 
 
 
@@ -13,6 +14,7 @@ import {ErrorModule} from "./error/error.module";
   declarations: [
     ConnectionComponent,
     DiconnectionComponent,
+    InscriptionComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import {ErrorModule} from "./error/error.module";
     ErrorModule,
     RouterModule.forChild([
       { path: WpPath.login, component: ConnectionComponent},
+      { path: WpPath.inscription, component: InscriptionComponent},
       { path: WpPath.logout, component: DiconnectionComponent},
       ]
     )

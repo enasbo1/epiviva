@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RubricElement, RubricObject} from "./rubricObject";
-import {TranslatorService} from "../translator.service";
 import {ModaleService} from "../../foundation/modale/modale.service";
 
 @Component({
@@ -12,7 +11,6 @@ export class RubricComponent implements OnInit {
   @Input() content?:RubricObject;
 
   constructor(
-    public translatorService:TranslatorService,
   ) { }
   ngOnInit(): void {
 

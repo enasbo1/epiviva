@@ -1,0 +1,22 @@
+<h5 class="mainTitle error" *ngIf="error">{{error | langue}}</h5>
+<section  class = "flex justify-content-center">
+
+    <div id="form-container"  style="padding-top: 5vh;margin:2rem">
+        <ep-form
+          [items]="items"
+          (submit)="submit($event)"
+          [justify]="'center'">
+        </ep-form>
+    </div>
+    <div id="insc-container" class="flex align-center text-center"  style="padding-top: 5vh;margin:2rem">
+        <div>
+            {{"connexion.no_account" | langue}}
+            <br><br>
+            <button class="bubble colored hover-w"
+                    [routerLink]="'/'+WpPath.inscription"
+            >
+                {{"connexion.new_account" | langue}}
+            </button>
+        </div>
+    </div>
+</section>

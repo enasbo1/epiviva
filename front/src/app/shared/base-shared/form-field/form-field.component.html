@@ -1,5 +1,5 @@
 <div *ngIf="field" [ngSwitch]="field.type" [class]="is_invalid()?'reg-error':''">
-  <h6 *ngIf="field.title">{{translator.echo(field.title)}}</h6>
+  <h6 *ngIf="field.title">{{field.title | langue}}</h6>
   <ng-container *ngSwitchCase="'dropdown'" >
     <ep-dropdown
       [default]="field.default"
@@ -13,16 +13,16 @@
   <ng-container *ngSwitchCase="'text'">
     <input type="text" class="bubble hover-w w-100 {{field.sclass}}"
        [name] ="field.name"
-       [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-       [placeholder]="translator.echo(field.placeholder)"
+       [title]="(field.instruction?? field.placeholder) | langue"
+       [placeholder]="field.placeholder | langue"
        [(ngModel)]="field._value"
     >
   </ng-container>
   <ng-container *ngSwitchCase="'longtext'">
     <textarea type="text" class="bubble hover-w w-100 {{field.sclass}}"
           [name] ="field.name"
-          [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-          [placeholder]="translator.echo(field.placeholder)"
+          [title]="(field.instruction?? field.placeholder) | langue"
+          [placeholder]="field.placeholder | langue"
           [(ngModel)]="field._value"
     >{{field.default}}</textarea>
   </ng-container>
@@ -33,8 +33,8 @@
            [step]="field.step"
            [max]="number_limit_pipe(field.number_limit?.max)"
            [min]="number_limit_pipe(field.number_limit?.min)"
-           [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-           [placeholder]="translator.echo(field.placeholder)"
+           [title]="(field.instruction?? field.placeholder) | langue"
+           [placeholder]="field.placeholder | langue"
            [(ngModel)]="field._value"
     >
   </ng-container>
@@ -42,8 +42,8 @@
   <ng-container *ngSwitchCase="'email'">
     <input type="email" class="bubble hover-w w-100 {{field.sclass}}"
            [name] ="field.name"
-           [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-           [placeholder]="translator.echo(field.placeholder)"
+           [title]="(field.instruction?? field.placeholder) | langue"
+           [placeholder]="field.placeholder | langue"
            [(ngModel)]="field._value"
     >
   </ng-container>
@@ -51,8 +51,8 @@
   <ng-container *ngSwitchCase="'password'">
     <input type="password" class="bubble hover-w w-100 {{field.sclass}}"
            [name] ="field.name"
-           [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-           [placeholder]="translator.echo(field.placeholder)"
+           [title]="(field.instruction?? field.placeholder) | langue"
+           [placeholder]="field.placeholder | langue"
            [(ngModel)]="field._value"
     >
   </ng-container>
@@ -65,8 +65,8 @@
     <input [type]="date" class="bubble hover-w w-100 {{field.sclass}}"
            [value]="field.default"
            [name] ="field.name"
-           [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-           [placeholder]="translator.echo(field.placeholder)"
+           [title]="(field.instruction?? field.placeholder) | langue"
+           [placeholder]="field.placeholder | langue"
            [min]="field.min | dateForHtml : field.time"
            [max]="field.max | dateForHtml : field.time"
            [(ngModel)]="field._value"
@@ -77,8 +77,8 @@
     <div class = "flex" *ngIf="field._values">
       <input [type]="date" class="bubble bubble-left hover-w col-6 {{field.sclass}}"
              [name] ="field.name + '-start'"
-             [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-             [placeholder]="translator.echo(field.placeholder)"
+             [title]="(field.instruction?? field.placeholder) | langue"
+             [placeholder]="field.placeholder | langue"
              [min]="field.min | dateForHtml : field.time"
              [max]="field._values[1] | dateForHtml  : field.time"
              [(ngModel)]="field._values[0]"
@@ -87,8 +87,8 @@
       <input [type]="date" class="bubble bubble-right hover-w col-6 {{field.sclass}}"
              [value]="field.default"
              [name] ="field.name + '-end'"
-             [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-             [placeholder]="translator.echo(field.placeholder)"
+             [title]="(field.instruction?? field.placeholder) | langue"
+             [placeholder]="field.placeholder | langue"
              [min]="field._values[0] | dateForHtml : field.time"
              [max]="field.max | dateForHtml  : field.time"
              (change)="onChange()"
@@ -101,8 +101,8 @@
     <input type="url" class="bubble hover-w w-100 {{field.sclass}}"
            [value]="field.default"
            [name] ="field.name"
-           [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-           [placeholder]="translator.echo(field.placeholder)"
+           [title]="(field.instruction?? field.placeholder) | langue"
+           [placeholder]="field.placeholder | langue"
            [(ngModel)]="field._value"
     >
   </ng-container>
@@ -111,8 +111,8 @@
     <div  class="bubble hover-w w-100 bordered">
       <input type="file" class = "w-100 hover-w {{field.sclass}}"
            [name] ="field.name"
-           [title]="translator.echo(field.instruction?field.instruction:field.placeholder)"
-           [placeholder]="translator.echo(field.placeholder)"
+           [title]="(field.instruction?? field.placeholder) | langue"
+           [placeholder]="field.placeholder | langue"
            [(ngModel)]="field._value"
       >
     </div>

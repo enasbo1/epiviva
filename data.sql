@@ -32,11 +32,11 @@ INSERT INTO product (code_barre, name, marque, id_address) VALUES
 
 -- Remplissage de la table 'users'
 INSERT INTO users (prenom, nom, mail, status, mdp, id_service, id_secteur, id_address) VALUES
-    ('Alice', 'Dupont', 'alice.dupont@example.com', 1, 'mdpAlice', 1, 1, 1),
-    ('Bob', 'Martin', 'bob.martin@example.com', 1, 'mdpBob', 2, 2, 2),
-    ('Charlie', 'Durand', 'charlie.durand@example.com', 1, 'mdpCharlie', 3, 3, 3),
-    ('David', 'Lefevre', 'david.lefevre@example.com', 1, 'mdpDavid', 4, 4, 4),
-    ('Eve', 'Moreau', 'eve.moreau@example.com', 1, 'mdpEve', 5, 5, 5);
+    ('Alice', 'Dupont', 'alice.dupont@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 1, 1, 1),
+    ('Bob', 'Martin', 'bob.martin@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 2, 2, 2),
+    ('Charlie', 'Durand', 'charlie.durand@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 3, 3, 3),
+    ('David', 'Lefevre', 'david.lefevre@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 4, 4, 4),
+    ('Eve', 'Moreau', 'eve.moreau@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 5, 5, 5);
 
 -- Remplissage de la table 'message'
 INSERT INTO message (text, date_send, sender_id, receiver_id) VALUES

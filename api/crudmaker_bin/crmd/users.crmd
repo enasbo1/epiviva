@@ -1,10 +1,10 @@
 id-|-!int
 prenom-|-:M,25
 nom-|-:M,100
-mail-|-!email
+mail-|-r !email
 status-|-r :M,2
 num-|-r :e,10
-mdp-|-:m,1
+mdp-|-r :m,5
 id_service-|-!int
 id_secteur-|-!int
 id_address-|-!int

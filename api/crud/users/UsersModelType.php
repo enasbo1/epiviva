@@ -18,9 +18,10 @@ class UsersModelType implements ModelType
 			"id" => "!int",
 			"prenom" => ":M,25",
 			"nom" => ":M,100",
-			"mail" => "!email",
-			"status" => "!int",
-			"mdp" => ":m,1",
+			"mail" => "r !email",
+			"status" => "r :M,2",
+			"num" => "r :e,10",
+			"mdp" => "r :m,5",
 			"id_service" => "!int",
 			"id_secteur" => "!int",
 			"id_address" => "!int"
@@ -37,15 +38,16 @@ class UsersModelType implements ModelType
     public function toArray(object $params): array
     {
         return array_filter([
-			"id" => isset($params->id)?$params->id:null,
-			"prenom" => isset($params->prenom)?$params->prenom:null,
-			"nom" => isset($params->nom)?$params->nom:null,
-			"mail" => isset($params->mail)?$params->mail:null,
-			"status" => isset($params->status)?$params->status:null,
-			"mdp" => isset($params->mdp)?$params->mdp:null,
-			"id_service" => isset($params->id_service)?$params->id_service:null,
-			"id_secteur" => isset($params->id_secteur)?$params->id_secteur:null,
-			"id_address" => isset($params->id_address)?$params->id_address:null
+			"id" => $params->id ?? null,
+			"prenom" => $params->prenom ?? null,
+			"nom" => $params->nom ?? null,
+			"mail" => $params->mail ?? null,
+			"status" => $params->status ?? null,
+			"num" => $params->num ?? null,
+			"mdp" => $params->mdp ?? null,
+			"id_service" => $params->id_service ?? null,
+			"id_secteur" => $params->id_secteur ?? null,
+			"id_address" => $params->id_address ?? null
         ]);
     }
 }

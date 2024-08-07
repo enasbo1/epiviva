@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {NavLink} from "../navLink";
 import {GlobalService} from "../../shared/global.service";
-import {TranslatorService} from "../../shared/base-shared/translator.service";
 import {Router} from "@angular/router";
 import {WpPath} from "../../view/routes";
 
@@ -15,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   navLinks : NavLink[] = [
     {
-      name : "Home",
+      name : "nav.home",
       link : WpPath.home
     }
 
@@ -26,14 +25,10 @@ export class HeaderComponent implements OnInit {
 
   keys : string[]=[
     'partie-admin',
-    'partie-prestataire',
-    'partie-bailleur',
-    'partie-voyageur'
   ]
 
   logoUrl:string = "assets/images/logo.png";
   constructor(
-    protected readonly translator:TranslatorService,
     private router:Router
   ) { }
 

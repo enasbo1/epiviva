@@ -6,7 +6,7 @@ import {GlobalService} from "../../shared/global.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {UserRecap} from "../model/user-model/userObject";
 
-type WPTokenRequestType = {token?:string, user:UserRecap, message?:string, id?:string}
+export type WPTokenRequestType = {token?:string, user:UserRecap, message?:string, id?:string}
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +24,9 @@ export class ConnectionService extends RequestService{
       (errorMessage:HttpErrorResponse)=>this.handelError(errorMessage)
     )
 
-    let connectionvalues:{password:FormFieldValue, mail:FormFieldValue} = {
-      password:connectionForm.find((x)=>x.name=="password")?._value,
-      mail:connectionForm.find((x)=>x.name=="mail")?._value
+    let connectionvalues:{mdp:string, mail:string} = {
+      mdp:connectionForm.find((x)=>x.name=="mdp")?._value as string,
+      mail:connectionForm.find((x)=>x.name=="mail")?._value as string
     };
     this.post(connectionvalues, "connection", errorCatch)
       .subscribe(

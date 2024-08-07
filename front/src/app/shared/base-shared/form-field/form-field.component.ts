@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormFieldObject} from "./formFieldObject";
-import {TranslatorService} from "../translator.service";
-import moment from "moment";
 import {RegexBase} from "../../RegexBase";
 
 @Component({
@@ -16,7 +14,6 @@ export class FormFieldComponent implements OnInit {
   date:string = "date";
   start_date?:Date;
   end_date?:Date;
-  constructor(public translator:TranslatorService) { }
 
   ngOnInit(): void {
     if (this.field?.min)
@@ -71,11 +68,11 @@ export class FormFieldComponent implements OnInit {
   }
 
   is_invalid():boolean{
-    const value = this.field?._value?.toString()
+    const value = this.field?._value?.toString()??''
     if (this.field?.reg_error){
       return this.field?.reg_error?.find((reg_error):boolean=>
-        reg_error.regex.test(value?value:'')
-      )==undefined
+        !reg_error.regex.test(value)
+      )!==undefined
     }
     return false
 
