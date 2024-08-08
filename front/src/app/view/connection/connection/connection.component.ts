@@ -4,7 +4,7 @@ import { FormStepObject } from "../../../shared/base-shared/form-step/formStepOb
 import {ConnectionService} from "../../../http/shared/connection.service";
 import {Router} from "@angular/router";
 import {GlobalService} from "../../../shared/global.service";
-import {WpPath} from "../../routes";
+import {EpvPath, EpvRolePart} from "../../routes";
 
 @Component({
   selector: 'ep-connection',
@@ -13,17 +13,19 @@ import {WpPath} from "../../routes";
 })
 export class ConnectionComponent implements OnInit {
   error?:string;
+  errorEvent:EventEmitter<string> = new EventEmitter<string>();
   private nextstep?:EventEmitter<boolean>;
 
   items:FormStepObject[]=[
     {
-      title:"connection",
+      title:"connexion.title",
+      errorEvent: this.errorEvent,
       validator:(step:FormStepObject):EventEmitter<boolean>=>this.verify(step),
       content:[
         {
           content:[
-            {name:"mail", title: "connexion.email",type:"email", instruction:"your email", placeholder:"wandermail@mail.vo"},
-            {name:"mdp",title:"connexion.password", type:"password", instruction:"your password", placeholder:"*******"}
+            {name:"mail", title: "connexion.email",type:"email", instruction:"your email", placeholder:"*wandermail@mail.vo*"},
+            {name:"mdp",title:"connexion.password", type:"password", instruction:"your password", placeholder:"*********"}
           ]
         }
       ]
@@ -38,10 +40,13 @@ export class ConnectionComponent implements OnInit {
 
   ngOnInit(): void {
     GlobalService.pageName = "nav.login"
+    this.errorEvent.subscribe(
+        error=>
+        this.error = error
+    )
   }
 
   fail(message:string|undefined):void{
-    console.log("fail");
     this.nextstep?.emit(false);
     this.error = message?message:"email or password invalid";
   }
@@ -62,8 +67,7 @@ export class ConnectionComponent implements OnInit {
   }
 
   submit(values:FormFieldObject[]) : void {
-    this.values = values;
-    this.router.navigate([""],{queryParams:{message:"utilisateur connecté"}});
+    this.router.navigateByUrl('/'+(EpvRolePart[GlobalService.currentUser?.status?? '0']?? EpvPath.home)).then();
 
   }
 
@@ -72,5 +76,5 @@ export class ConnectionComponent implements OnInit {
     this.error = undefined
   }
 
-  protected readonly WpPath = WpPath;
+  protected readonly EpvPath = EpvPath;
 }

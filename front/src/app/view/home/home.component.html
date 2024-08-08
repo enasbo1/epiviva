@@ -1,5 +1,14 @@
+<section class = "flex">
+    <div class = "row w-100 flex">
+        <div *ngFor="let cont of content" [class]=divide_space(4)>
+            <a [routerLink]="cont.link">
+                <button class="card-service" ><span class="text-center col-6">{{cont.value | langue}}</span></button>
+            </a>
+        </div>
+    </div>
+</section>
 <ng-container [ngSwitch]="status">
-    <epv-visitor-home *ngSwitchDefault></epv-visitor-home>
+    <epv-visitor-home *ngSwitchCase="'visitor'"></epv-visitor-home>
 </ng-container>
 <div class="card">
     <div class="card-header">

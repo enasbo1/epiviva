@@ -1,6 +1,6 @@
 {
   "language": "fr",
-  "title" : "Epivia",
+  "title" : "Epivi'a",
   "connexion": {
     "email" : "mail",
     "password" : "mot de passe",
@@ -29,6 +29,7 @@
     "login": "Connection"
   },
   "home": {
-    "developed": "Développé  par :"
+    "developed": "Développé  par :",
+    "engage": "Engagez-vous"
   }
 }

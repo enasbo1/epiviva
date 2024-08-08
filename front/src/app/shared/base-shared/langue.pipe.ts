@@ -12,6 +12,9 @@ export class LanguePipe implements PipeTransform {
     }
 
     transform(value: string|number|undefined , default_value:string = ""): string {
+        if (value && /^\*.*\*$/.test(value.toString())){
+            return value.toString().replace(/\*$/, '').replace(/^\*/, '');
+        }
         if (GlobalService.languageFile && value){
             if (!this.languageService.get_language(GlobalService.languageFile)){
                 this.languageService.reload_language();

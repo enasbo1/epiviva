@@ -4,7 +4,7 @@ services:
     depends_on:
       - database
     ports:
-      - 8081:80
+      - "8081:80"
     volumes:
       - ./api/index.php:/var/www/html/index.php
       - ./api/properties.json:/var/www/html/properties.json
@@ -18,7 +18,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/0-init.sql
       - ./data.sql:/docker-entrypoint-initdb.d/1-data.sql
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=epivia

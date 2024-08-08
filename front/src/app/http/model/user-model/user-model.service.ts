@@ -42,7 +42,6 @@ export class UserModelService extends RequestService{
             case 400:
             case 401:
               if (is_error){
-                console.log('error')
                 is_error.emit(errorMessage.error.message)
               }
               break;

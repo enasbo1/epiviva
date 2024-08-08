@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {NavLink} from "../navLink";
 import {GlobalService} from "../../shared/global.service";
 import {Router} from "@angular/router";
-import {WpPath} from "../../view/routes";
+import {EpvPath} from "../../view/routes";
 
 @Component({
   selector: 'ep-header',
@@ -15,16 +15,18 @@ export class HeaderComponent implements OnInit {
   navLinks : NavLink[] = [
     {
       name : "nav.home",
-      link : WpPath.home
+      link : EpvPath.home
     }
 
   ];
 
   parts : Record<string, string> = {
+    "partie-visiteur":"visitor"
   }
 
   keys : string[]=[
-    'partie-admin',
+    'partie-visiteur',
+    'partie-admin'
   ]
 
   logoUrl:string = "assets/images/logo.png";
@@ -55,5 +57,5 @@ export class HeaderComponent implements OnInit {
   }
 
   protected readonly GlobalService = GlobalService;
-  protected readonly WpPath= WpPath;
+  protected readonly WpPath= EpvPath;
 }

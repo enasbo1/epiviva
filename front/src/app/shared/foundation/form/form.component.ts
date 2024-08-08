@@ -31,6 +31,8 @@ export class FormComponent implements OnInit {
 
   public next_step():EventEmitter<boolean>|false|void{
     const current:FormStepObject|undefined = this.get_current()
+
+    //regex validation
     let error:boolean = current?.content.find((rubric:FormRubricObject):boolean=>
       rubric.content.find(
         (field:FormFieldObject):boolean=>{
@@ -61,8 +63,9 @@ export class FormComponent implements OnInit {
         return false;
       } else{
         verified.subscribe(
-          (val:boolean):void  =>
+          (val:boolean):void  =>{
             val?this._next_step():undefined
+          }
         )
         return verified;
       }
@@ -80,9 +83,12 @@ export class FormComponent implements OnInit {
   public onSumbit(){
     let verif:void|false|EventEmitter<boolean>= this.next_step();
     if (verif){
+
       verif.subscribe(
-        (val:boolean):void=>
-          val?this._submit():undefined
+        (val:boolean):void=>{
+          val?this._submit():undefined;
+        }
+
       )
     }else if(verif!==false){
       this._submit();
@@ -109,6 +115,5 @@ export class FormComponent implements OnInit {
         value
       )
     }
-
   }
 }

@@ -49,7 +49,6 @@ export class ConnectionService extends RequestService{
       case 400:
       case 401:
         if (this.success){
-          console.log('error')
           this.success(false, errorMessage.error.message)
         }
         break;

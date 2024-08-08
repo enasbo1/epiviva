@@ -27,3 +27,9 @@ export interface ListObjectPropriety {
   name:string;
   value:string[]|string|number|bigint|boolean|undefined;
 }
+
+export interface SampleListElement{
+  value:any;
+  link:string;
+  condition?:()=>boolean;
+}

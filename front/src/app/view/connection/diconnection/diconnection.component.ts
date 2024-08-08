@@ -13,7 +13,8 @@ export class DiconnectionComponent implements OnInit {
 
   ngOnInit(): void {
     GlobalService.token = undefined;
-    this.router.navigate([''], {queryParams:{message:"utilisateur déconnecté"}});
+    GlobalService.currentUser = undefined;
+    this.router.navigate(['']).then();
   }
 
 }

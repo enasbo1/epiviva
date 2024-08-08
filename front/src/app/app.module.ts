@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import {HeadFootModule} from "./head-foot/headFoot.module";
 import {SharedModule} from "./shared/shared.module";
 import {ViewModule} from "./view/view.module";
-import {WpPath} from "./view/routes";
+import {EpvPath} from "./view/routes";
 import {Error404Component} from "./view/error/error404/error404.component";
 import {HomeComponent} from "./view/home/home.component";
 
@@ -21,8 +21,8 @@ import {HomeComponent} from "./view/home/home.component";
     ViewModule,
     HeadFootModule,
     RouterModule.forRoot([
-      { path: WpPath.home, component: HomeComponent},
-      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: EpvPath.home, component: HomeComponent},/*
+      { path: '', redirectTo: 'home', pathMatch: 'full'},*/
       { path: '**', component: Error404Component}
     ]),
   ],

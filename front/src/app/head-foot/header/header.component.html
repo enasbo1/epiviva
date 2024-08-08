@@ -1,15 +1,6 @@
 <nav class='navbar navbar-expand bg-light'>
   <div class = "col-3 flex">
     <ep-image class = "logo" [title]="'logo'" [imageUrl]="logoUrl" [routerLink]="''"></ep-image>
-    <div id="nav-parts" style="height: 0; margin-top:1rem">
-      <ep-dropdown
-        *ngIf="GlobalService.token"
-        [default]="'partie-admin'"
-        [styles]="'col-6 circle-bubble transition bg-light hover-0 un-bordered'"
-        [choices]="keys"
-        (value_up)="change_part($event)"
-      ></ep-dropdown>
-    </div>
   </div>
   <div class = "col-6">
       <div class="flex w-100">

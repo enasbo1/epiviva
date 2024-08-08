@@ -7,6 +7,7 @@ import {RegexBase} from "../../../shared/RegexBase";
 import {UserModelService} from "../../../http/model/user-model/user-model.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {EpvPath, EpvRolePart} from "../../routes";
 
 @Component({
   selector: 'ep-inscription',
@@ -28,31 +29,31 @@ export class InscriptionComponent implements OnInit {
           {
             name: "name",
             type: "text",
-            placeholder: "Irénée",
+            placeholder: "*Irénée*",
             title: "user.name",
             instruction: "Please enter your desired username.",
             reg_error: [
-              {regex:RegexBase.required, message: 'name required'},
+              {regex:RegexBase.required, message: '*name required*'},
               {regex:RegexBase.nonum, message: '' },
-              {regex:/^.{0,25}$/, message: 'max name size : 25' }
+              {regex:/^.{0,25}$/, message: '*max name size : 25*' }
             ],
           },
           {
             name: "first_name",
             type: "text",
-            placeholder: "du Gardin",
+            placeholder: "*du Gardin*",
             title: "user.first_name",
             instruction: "Please enter your desired username.",
             reg_error: [
-              {regex:RegexBase.required, message: 'first_name required'},
+              {regex:RegexBase.required, message: '*first_name required*'},
               {regex:RegexBase.nonum, message: ''},
-              {regex:/^.{0,100}$/, message: 'max firstName size : 100'}
+              {regex:/^.{0,100}$/, message: '*max firstName size : 100*'}
             ],
           },
           {
             name: "email",
             type: "email",
-            placeholder: "exemple@mail.com",
+            placeholder: "*exemple@mail.com*",
             title: "connexion.email",
             instruction: "Please enter a valid email address.",
           },
@@ -64,21 +65,21 @@ export class InscriptionComponent implements OnInit {
           {
             name: "password",
             type: "password",
-            placeholder: "*******",
+            placeholder: "*********",
             title: "connexion.password",
             instruction: "Your password must be at least 8 characters long and include a mix of letters and numbers.",
             reg_error: [
-                {regex:RegexBase.required, message: 'password required'},
+                {regex:RegexBase.required, message: '*password required*'},
             ],
           },
           {
             name: "confirm_password",
             type: "password",
-            placeholder: "*******",
+            placeholder: "*********",
             title: "connexion.password",
             instruction: "Please confirm your password.",
             reg_error: [
-                {regex:RegexBase.required, message: 'password required'},
+                {regex:RegexBase.required, message: '*password required*'},
             ],
           }
         ]
@@ -102,7 +103,6 @@ export class InscriptionComponent implements OnInit {
   }
 
   fail(message:string|undefined):void{
-    console.log(message??"fail");
     this.nextstep?.emit(false);
     this.error = message?message:"email or password invalid";
   }
@@ -141,7 +141,7 @@ export class InscriptionComponent implements OnInit {
 
   submit(values:FormFieldObject[]) : void {
     this.values = values;
-    this.router.navigate([""], {queryParams: {message: "nouvel utilisateur connecté"}}).then();
+    this.router.navigateByUrl('/'+(EpvRolePart[GlobalService.currentUser?.status?? '0']?? EpvPath.home)).then();
   }
 
   private validated():void{
