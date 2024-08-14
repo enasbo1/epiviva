@@ -98,10 +98,13 @@ class Verif{
         return ("validated");
     }
 
-    static function verification(array $values, array $form)
+    static function verification(array $values, array $form): array|string
     {
         foreach ($form as $key => $type) {
-            if (!isset($values[$key]) || empty($values[$key])) {
+            if ($type == ''){
+                return "validated";
+            }
+            if (empty($values[$key])) {
                 if ($type[0] == "r") {
                     $msg = 'le champ "' . $key . '" doit être remplit';
                     return(["message"=>$msg, "id"=>$key]);

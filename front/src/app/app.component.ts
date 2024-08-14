@@ -2,6 +2,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {GlobalService} from "./shared/global.service";
 import {LanguageService} from "./shared/base-shared/language.service";
 import _ from "lodash";
+import {EpvPath} from "./view/routes";
 
 @Component({
   selector:"ep-root",
@@ -48,4 +49,5 @@ export class AppComponent implements OnInit, OnChanges{
   }
 
   protected readonly GlobalService = GlobalService;
+    protected readonly EpvPath = EpvPath;
 }

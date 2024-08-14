@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormRubricObject, FormStepObject} from "../../base-shared/form-step/formStepObject";
 import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
+import {FormService} from "./form.service";
 
 @Component({
   selector: 'ep-form',
@@ -100,17 +101,7 @@ export class FormComponent implements OnInit {
       this.previus_step();
     }
     if (this.items){
-      const value:FormFieldObject[] = [];
-      this.items.forEach(
-        (step:FormStepObject) =>
-          step.content.forEach(
-            (rubrics:FormRubricObject)=>
-              rubrics.content.forEach(
-                (field:FormFieldObject)=>
-                  value.push(field)
-              )
-          )
-      )
+      const value  = FormService.extract_values(this.items)
       this.submit?.emit(
         value
       )

@@ -1,6 +1,6 @@
 <div>
   <button (click)="toggle()" class="bubble col-12 {{styles}} {{(value==='all'?'hover-w':(styles.includes('hover-'))?'':'hover-1')}} oneline {{open?'bubble-up':''}}">{{prefix + value}} ⌄</button>
-  <ul class='out col-12' *ngIf="open">
-    <button  *ngFor="let ch of choices" (click)="selectValue(ch)" class = "bubble_padding oneline {{styles}} {{styles.includes('hover-')?'':'hover-1'}}"><li>{{ch}}</li></button>
-  </ul>
+  <div class='dropdown-list out w-100' *ngIf="open">
+    <button  *ngFor="let ch of choices" (click)="selectValue(ch)" class = "bubble_padding oneline {{styles}} {{styles.includes('hover-')?'':'hover-1'}}">{{ch | langue}}</button>
+  </div>
 </div>

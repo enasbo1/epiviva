@@ -7,7 +7,7 @@ import {
 } from "../../base-shared/form-field/formFieldObject";
 import {DateService} from "../../../http/shared/date.service";
 import {ModaleService} from "../modale/modale.service";
-import {FormStepObject} from "../../base-shared/form-step/formStepObject";
+import {FormRubricObject, FormStepObject} from "../../base-shared/form-step/formStepObject";
 
 @Injectable({
   providedIn: 'root'
@@ -121,5 +121,20 @@ export class FormService {
 
     }
     return fields
+  }
+
+  static extract_values(steps: FormStepObject[]) :FormFieldObject[]{
+    const values:FormFieldObject[] = [];
+    steps.forEach(
+        (step:FormStepObject) =>
+            step.content.forEach(
+                (rubrics:FormRubricObject)=>
+                    rubrics.content.forEach(
+                        (field:FormFieldObject)=>
+                            values.push(field)
+                    )
+            )
+    )
+    return values;
   }
 }

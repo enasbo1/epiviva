@@ -19,10 +19,11 @@ export class LanguePipe implements PipeTransform {
             if (!this.languageService.get_language(GlobalService.languageFile)){
                 this.languageService.reload_language();
             }
+            const n = value.toString().split('.');
             return _.get(
                 GlobalService.languageFile,
                 value.toString(),
-                value.toString().split('.')[-1]
+                n[n.length - 1]
             )
         }
 

@@ -1,6 +1,6 @@
 id-|-!int
-address-|-:m,1
-postal_code-|-:m,1
-instruction-|-r
+address-|-r
+postal_code-|-r
+instruction-|-
 kind-|-:M,50
-id_secteur-|-r !int
+id_secteur-|-!int

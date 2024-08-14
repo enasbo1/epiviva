@@ -12,8 +12,14 @@ class UsersController extends CrudController{
     {
         $request = new UsersService();
         if ($id == []) {
+            Privilege::admin();
             $users = $request->getAll();
-        } else {
+        } else if($id[0]=='self') {
+            Privilege::allowed();
+            global $_TOKEN;
+            $users = $request->findById($_TOKEN->user_id);
+        }else{
+            Privilege::admin();
             $users = $request->findById($id[0]);
         }
         echo json_encode($users);

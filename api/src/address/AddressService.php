@@ -3,6 +3,7 @@ namespace address;
 
 use Exception;
 use shared\Service;
+use users\UsersRepository;
 
 include_once "AddressRepository.php";
 
@@ -39,6 +40,29 @@ class AddressService extends Service
         return $repo->read($id, "address not found");
     }
 
+
+    /**
+     * @throws Exception
+     */
+    public function replaceFromUser(object $input, int $userId): void
+    {
+        $userRepo = new UsersRepository();
+        $repo = new AddressRepository();
+        $user = $userRepo->read($userId)[0] ?? [];
+        if (isset($user['id_address'])){
+            $n = $userRepo->get($userRepo->modelName, ['id'], ['id_address'=>$user['id_address']]);
+
+            if (count($n) < 2){
+                $repo->delete($user['id_address']);
+            }
+        }
+        $toquery = $this->modelType->isValidType($input);
+        ;
+        $userRepo->update(
+            ['id_address'=>
+                $repo->create($toquery, "unable to create address")
+            , 'id'=>$userId]);
+    }
     /**
      * @throws Exception
      */

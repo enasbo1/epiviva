@@ -10,6 +10,7 @@ export interface FormStepObject{
 
 export interface FormRubricObject{
   title? : string
+  online ?: boolean;
   content : FormFieldObject[]
 }
 

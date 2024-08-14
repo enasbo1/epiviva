@@ -13,6 +13,10 @@
     "first_name": "Nom",
     "name":"Prenom"
   },
+  "address": {
+    "title": "Adresse",
+    "address": ""
+  },
   "inscription": {
     "title": "Inscription",
     "passwords_match_error": "les mots de passe ne correspondent pas"

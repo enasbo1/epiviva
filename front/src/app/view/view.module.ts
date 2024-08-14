@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConnectionComponent } from './connection/connection/connection.component';
 import { RouterModule } from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
+import {SharedModule as ViewSharedModule} from "../view/shared/shared.module";
 import {DiconnectionComponent } from './connection/diconnection/diconnection.component';
 import {EpvPath} from "./routes";
 import {ErrorModule} from "./error/error.module";
@@ -24,6 +25,7 @@ import {VisitorModule} from "./visitor/visitor.module";
   imports: [
     CommonModule,
     SharedModule,
+    ViewSharedModule,
     VisitorModule,
     ErrorModule,
     RouterModule.forChild([

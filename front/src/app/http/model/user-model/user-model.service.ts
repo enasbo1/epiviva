@@ -73,4 +73,8 @@ export class UserModelService extends RequestService{
         )
     return is_error
   }
+
+  get_self():Observable<UserObject[]> {
+    return (this.get('users/self') as Observable<UserObject[]>);
+  }
 }

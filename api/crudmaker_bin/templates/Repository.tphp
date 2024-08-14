@@ -6,6 +6,6 @@ use shared\Repository;
 class {|{Name}|}Repository extends Repository {
     public function __construct()
     {
-        parent::__construct('"{|{table}|}"', new {|{Name}|}ModelType());
+        parent::__construct('{|{table}|}', new {|{Name}|}ModelType());
     }
 }

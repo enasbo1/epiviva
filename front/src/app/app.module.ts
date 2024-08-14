@@ -21,17 +21,15 @@ import {HomeComponent} from "./view/home/home.component";
     ViewModule,
     HeadFootModule,
     RouterModule.forRoot([
-      { path: EpvPath.home, component: HomeComponent},/*
-      { path: '', redirectTo: 'home', pathMatch: 'full'},*/
+      { path: EpvPath.home, component: HomeComponent},
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: '**', component: Error404Component}
     ]),
   ],
-  bootstrap: [ // the starters components (or mains components)
+  bootstrap: [
     AppComponent
   ],
-  exports: [ // witch elements and modules other modules needs from you,
-             // /!\ export are inherited by export but NOT BY IMPORT
-    //...
+  exports: [
   ]
 })
 export class AppModule { }

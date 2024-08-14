@@ -16,11 +16,11 @@ class AddressModelType implements ModelType
         $arr_params = $this->toArray($params);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
-			"address" => ":m,1",
-			"postal_code" => ":m,1",
-			"instruction" => "r",
+			"address" => "r",
+			"postal_code" => "r",
+			"instruction" => "",
 			"kind" => ":M,50",
-			"id_secteur" => "r !int"
+			"id_secteur" => "!int"
         ]);
         if (
             $valid != "validated"
@@ -34,12 +34,12 @@ class AddressModelType implements ModelType
     public function toArray(object $params): array
     {
         return array_filter([
-			"id" => isset($params->id)?$params->id:null,
-			"address" => isset($params->address)?$params->address:null,
-			"postal_code" => isset($params->postal_code)?$params->postal_code:null,
-			"instruction" => isset($params->instruction)?$params->instruction:null,
-			"kind" => isset($params->kind)?$params->kind:null,
-			"id_secteur" => isset($params->id_secteur)?$params->id_secteur:null
+			"id" => $params->id ?? null,
+			"address" => $params->address ?? null,
+			"postal_code" => $params->postal_code ?? null,
+			"instruction" => $params->instruction ?? null,
+			"kind" => $params->kind ?? null,
+			"id_secteur" => $params->id_secteur ?? null
         ]);
     }
 }

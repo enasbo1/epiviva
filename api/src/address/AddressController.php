@@ -21,10 +21,16 @@ class AddressController extends CrudController{
 
     function post(array $id, object $input): void
     {
+        global $_TOKEN;
         $request = new AddressService();
+        if ($id == []) {
+            //Privilege::admin();
+            $request->save($input);
+        }elseif ($id[0] ==='user'){
+            Privilege::allowed();
+            $request->replaceFromUser($input, $_TOKEN->user_id);
+        }
 
-        Privilege::admin();
-        $request->save($input);
         http_response_code(201);
         echo('{"message" : "address créé avec succès"}');
     }

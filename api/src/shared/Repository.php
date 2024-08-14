@@ -38,11 +38,12 @@ class Repository
     /**
      * @param array $params
      * @param string $error
+     * @return string
      * @throws Exception
      */
-    public function create(array $params, string $error = ""): void
+    public function create(array $params, string $error = ""): string
     {
-        $this->post($this->modelName, $params);
+        return ($this->post($this->modelName, $params)[0]['id']);
     }
 
     /**
@@ -116,6 +117,8 @@ class Repository
     public function update_abs(string $table, array $updates, array $restrict, string $error = "")
     {
         try {
+            $updates['id'] = null;
+            $updates = array_filter($updates);
             $q = "UPDATE $table SET ";
             $i = 1;
             foreach ($updates as $col => $value) {
@@ -148,7 +151,7 @@ class Repository
     /**
      * @throws Exception
      */
-    public function post(string $table, array $array, string $error = "")
+    public function post(string $table, array $array, string $error = ""): array
     {
         try {
             $q = 'INSERT INTO ' . strtoupper($table) . ' (';
@@ -170,9 +173,9 @@ class Repository
                 }
                 $i += 1;
             }
-            $q = $q . ')';
+            $q = $q . ') RETURNING id';
             pg_prepare($this->connection,"", $q);
-            return pg_execute($this->connection,"", $array);
+            return pg_fetch_all(pg_execute($this->connection,"", $array));
         } catch (Exception $e) {
             $error = ($error=="")?"$this->modelName instance creation failed: ":$error;
             throw new Exception($error . $e->getMessage(), 400);

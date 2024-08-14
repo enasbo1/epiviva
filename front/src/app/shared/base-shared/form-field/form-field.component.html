@@ -1,13 +1,14 @@
 <div *ngIf="field" [ngSwitch]="field.type" [class]="is_invalid()?'reg-error':''">
   <h6 *ngIf="field.title">{{field.title | langue}}</h6>
   <ng-container *ngSwitchCase="'dropdown'" >
-    <ep-dropdown
-      [default]="field.default"
-      [title]="field.instruction"
-      [choices] = "(field.choices)?field.choices:[]"
-      [class]="field.sclass"
-      (value_up)="onSubmit($event)"
-    ></ep-dropdown>
+      <div [class]="field.sclass">
+          <ep-dropdown
+                  [default]="field.default"
+                  [title]="field.instruction"
+                  [choices] = "(field.choices)?field.choices:[]"
+                  (value_up)="onSubmit($event)"
+          ></ep-dropdown>
+      </div>
   </ng-container>
 
   <ng-container *ngSwitchCase="'text'">
