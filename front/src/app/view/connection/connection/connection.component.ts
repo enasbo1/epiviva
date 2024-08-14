@@ -7,7 +7,7 @@ import {GlobalService} from "../../../shared/global.service";
 import {EpvPath, EpvRolePart} from "../../routes";
 
 @Component({
-  selector: 'ep-connection',
+  selector: 'epv-connection',
   templateUrl: './connection.component.html',
   styleUrls: ['./connection.component.scss']
 })

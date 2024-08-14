@@ -14,7 +14,7 @@ import {UserMapperService} from "../../../mapper/user-mapper.service";
 export type ChatTarget = {subject:'prestation'|'reservation'|'ticket', id:number|bigint}
 
 @Component({
-  selector: 'ep-chat',
+  selector: 'epv-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })

@@ -1,8 +1,8 @@
-<section class = "flex">
+<section class = "flex line-container">
     <div class = "row w-100 flex">
         <div *ngFor="let cont of content" [class]=divide_space(4)>
             <a [routerLink]="cont.link">
-                <button class="card-service" ><span class="text-center col-6">{{cont.value | langue}}</span></button>
+                <button class="card-service" ><span class="text-center col-6 oneline">{{cont.value | langue}}</span></button>
             </a>
         </div>
     </div>

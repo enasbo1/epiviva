@@ -15,7 +15,21 @@
   },
   "address": {
     "title": "Adresse",
-    "address": ""
+    "exemple": "13 rue de la chance",
+    "postal_code": {
+      "title": "Code postal",
+      "exemple": "53120"
+    },
+    "kind": {
+      "title": "Type",
+      "home": "Habitation",
+      "work": "Travail",
+      "other": "Autre"
+    },
+    "instruction": {
+      "title": "Instructions",
+      "exemple": "apartement n°16, 3e étage"
+    }
   },
   "inscription": {
     "title": "Inscription",
@@ -32,8 +46,19 @@
     "logout": "Déconnection",
     "login": "Connection"
   },
+  "service": {
+    "name": "Nom du service",
+    "description": "Description du service"
+  },
+  "service-list": {
+    "title": "Liste des Services"
+  },
   "home": {
     "developed": "Développé  par :",
-    "engage": "Engagez-vous"
+    "engage": "Engagez-vous",
+    "engaged": "Vos Candidatures"
+  },
+  "candidate": {
+    "title": "Candidater"
   }
 }

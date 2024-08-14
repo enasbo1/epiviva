@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RubricObject} from "../../base-shared/rubric/rubricObject";
 
 @Component({
-  selector: 'ep-rubric-list',
+  selector: 'epv-rubric-list',
   templateUrl: './rubric-list.component.html',
   styleUrls: ['./rubric-list.component.scss']
 })

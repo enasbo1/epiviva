@@ -41,9 +41,9 @@ class Repository
      * @return string
      * @throws Exception
      */
-    public function create(array $params, string $error = ""): string
+    public function create(array $params, string $error = "", string $return = "id"): string
     {
-        return ($this->post($this->modelName, $params)[0]['id']);
+        return ($this->post($this->modelName, $params, $error, $return)[0][$return]);
     }
 
     /**
@@ -151,7 +151,7 @@ class Repository
     /**
      * @throws Exception
      */
-    public function post(string $table, array $array, string $error = ""): array
+    public function post(string $table, array $array, string $error = "", string $return = null): array
     {
         try {
             $q = 'INSERT INTO ' . strtoupper($table) . ' (';
@@ -173,7 +173,7 @@ class Repository
                 }
                 $i += 1;
             }
-            $q = $q . ') RETURNING id';
+            $q = "$q) " . ($return?"RETURNING $return":'');
             pg_prepare($this->connection,"", $q);
             return pg_fetch_all(pg_execute($this->connection,"", $array));
         } catch (Exception $e) {

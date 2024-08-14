@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'ep-line',
+  selector: 'epv-line',
   templateUrl: './line.component.html',
   styleUrls: ['./line.component.scss']
 })

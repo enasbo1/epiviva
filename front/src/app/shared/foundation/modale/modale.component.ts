@@ -4,7 +4,7 @@ import {ModalObject, ModalOption} from "./modalObject";
 import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
 
 @Component({
-  selector: 'ep-modale',
+  selector: 'epv-modale',
   templateUrl: './modale.component.html',
   styleUrls: ['./modale.component.scss']
 })

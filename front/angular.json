@@ -9,7 +9,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "apm": {
+    "epv": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -23,7 +23,7 @@
               "moment",
               "events"
             ],
-            "outputPath": "dist/apm",
+            "outputPath": "dist/epv",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "apm:build:production"
+              "browserTarget": "epv:build:production"
             },
             "development": {
-              "browserTarget": "apm:build:development"
+              "browserTarget": "epv:build:development"
             }
           },
           "defaultConfiguration": "development"

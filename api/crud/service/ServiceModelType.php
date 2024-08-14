@@ -16,7 +16,9 @@ class ServiceModelType implements ModelType
         $arr_params = $this->toArray($params);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
-			"nom" => "r"
+			"nom" => "r",
+			"form" => "",
+			"description" => ""
         ]);
         if (
             $valid != "validated"
@@ -30,8 +32,10 @@ class ServiceModelType implements ModelType
     public function toArray(object $params): array
     {
         return array_filter([
-			"id" => isset($params->id)?$params->id:null,
-			"nom" => isset($params->nom)?$params->nom:null
+			"id" => $params->id ?? null,
+			"nom" => $params->nom ?? null,
+			"form" => $params->form ?? null,
+			"description" => $params->description ?? null
         ]);
     }
 }

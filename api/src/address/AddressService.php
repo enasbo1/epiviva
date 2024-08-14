@@ -46,6 +46,7 @@ class AddressService extends Service
      */
     public function replaceFromUser(object $input, int $userId): void
     {
+        $n = 0;
         $userRepo = new UsersRepository();
         $repo = new AddressRepository();
         $user = $userRepo->read($userId)[0] ?? [];
@@ -53,7 +54,7 @@ class AddressService extends Service
             $n = $userRepo->get($userRepo->modelName, ['id'], ['id_address'=>$user['id_address']]);
 
             if (count($n) < 2){
-                $repo->delete($user['id_address']);
+                $n = $user['id_address'];
             }
         }
         $toquery = $this->modelType->isValidType($input);
@@ -62,6 +63,10 @@ class AddressService extends Service
             ['id_address'=>
                 $repo->create($toquery, "unable to create address")
             , 'id'=>$userId]);
+
+        if ($n!==0){
+            $repo->delete($n);
+        }
     }
     /**
      * @throws Exception

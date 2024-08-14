@@ -6,6 +6,7 @@ import {AddressObject} from "../../../http/model/address-model/addressObject";
 import {FormService} from "../../../shared/foundation/form/form.service";
 import {EpvPath} from "../../routes";
 import {ActivatedRoute, Router} from "@angular/router";
+import {GlobalService} from "../../../shared/global.service";
 
 @Component({
   selector: 'epv-addresses',
@@ -26,7 +27,7 @@ export class AddressesComponent implements OnInit {
               name: "address",
               title: "address.title",
               type: "text",
-              placeholder: "Enter your address",
+              placeholder: "address.exemple",
               reg_error: [
                 { regex: RegexBase.required, message: "Address is required" }
               ],
@@ -38,18 +39,18 @@ export class AddressesComponent implements OnInit {
           content:[
             {
               name: "postal_code",
-              title: "*Postal Code*",
+              title: "address.postal_code.title",
               type: "text",
-              placeholder: "Enter your postal code",
+              placeholder: "address.postal_code.exemple",
               reg_error: [
                 { regex: RegexBase.code_postal, message: "Enter a valid postal code (5 digits)" }
               ],
             },
             {
               name: "kind",
-              title: "*Address Type*",
+              title: "address.kind.title",
               type: "dropdown",
-              choices: ["Home", "Work"],
+              choices: ["address.kind.home", "address.kind.work", "address.kind.other"],
             },
           ]
         },
@@ -57,9 +58,9 @@ export class AddressesComponent implements OnInit {
           content:[
             {
               name: "instruction",
-              title: "*Delivery Instructions*",
+              title: "address.instruction.title",
               type: "longtext",
-              placeholder: "*Any special instructions?*",
+              placeholder: "address.instruction.exemple",
               sclass: "instruction-field",
             },
           ]
@@ -75,6 +76,7 @@ export class AddressesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    GlobalService.pageName = "address.title"
     this.route.queryParams.subscribe(params => {
       if (params && params['targetPage']) {
         this.targetPage = params['targetPage'];

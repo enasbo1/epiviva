@@ -2,11 +2,11 @@
     <div class="flex">
         <div class='flex align-start w-50 line'>
             <div class="col-3" *ngIf="critera">
-                <ep-dropdown
+                <epv-dropdown
                         [styles]="'bubble-left'"
                         [choices]="critera"
                         (value_up)="switch_rubric($event)"
-                ></ep-dropdown>
+                ></epv-dropdown>
             </div>
             <input type="text" [(ngModel)]="search_value" placeholder="search - WIP" class="bubble {{critera ? 'bubble-right col-9' : 'col-12'}} hover-w">
         </div>
@@ -28,7 +28,7 @@
                         {{filt.value === 'all' ? filt.name : filt.value ?? filt.name}}
                     </button>
                 </div>
-                <ep-dropdown *ngSwitchDefault
+                <epv-dropdown *ngSwitchDefault
                              [set_value]="filt.set_value"
                              [choices]="filt.choices"
                              [default]="filt.default ? filt.default : 'all'"
@@ -36,11 +36,11 @@
                              [prefix]="(filt.type === 'search') ? '' : filt.name + ' | '"
                              (click)="refresh_filter()"
                              (value_up)="filter_update(filt, $event)"
-                ></ep-dropdown>
+                ></epv-dropdown>
             </ng-container>
         </div>
     </div>
-    <ep-line [short]="true"></ep-line>
+    <epv-line [short]="true"></epv-line>
     <div class="flex">
         <ul class="container">
             <h4 class="empty-list" *ngIf="(filter_item().length == 0)">
@@ -54,7 +54,7 @@
             <li *ngFor="let item of filter_item()" class="{{elements_size()}} col-12">
                 <button class="list-element bubble {{item.link ? 'linked' : ''}} {{item.style}}" [routerLink]="item.link" [queryParams]="query">
                     <div class="content bubble_padding">
-                        <h6>{{item?.title | langue}}</h6>
+                        <h6 [class]="item.image?'':'oneline'">{{item?.title | langue}}</h6>
                         <div class="container">
                             <div *ngFor="let pannel of element(item)" [class]="pannel.side">
                                 <div>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="img-pannel">
-                        <ep-image [style]="'cover fond angled-rb'" [imageUrl]="item?.image | langue"></ep-image>
+                        <epv-image [style]="'cover fond angled-rb'" [imageUrl]="item?.image | langue"></epv-image>
                     </div>
                 </button>
             </li>

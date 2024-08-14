@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'ep-image',
+  selector: 'epv-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })

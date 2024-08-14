@@ -4,7 +4,7 @@ import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
 import {FormService} from "./form.service";
 
 @Component({
-  selector: 'ep-form',
+  selector: 'epv-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
@@ -40,7 +40,7 @@ export class FormComponent implements OnInit {
           const val:string = field._value?.toString()?? '';
           return field.reg_error?.find(
             (regtest):boolean=>{
-              if (!regtest.regex.test(val)){
+              if (!RegExp(regtest.regex).test(val)){
                 current.errorEvent?.emit(regtest.message)
                 return true;
               }

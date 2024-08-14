@@ -1,5 +1,5 @@
 <div *ngIf="content">
-    <ep-line [short]="true"></ep-line>
+    <epv-line [short]="true"></epv-line>
     <h4 *ngIf="content.title">{{ content.title | langue }}</h4>
     <table>
         <tbody>
@@ -14,7 +14,7 @@
                 <td *ngSwitchCase="'panel'" class="clickable" (click)="open_panel(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? '<' : '>' }}</b></td>
                 <td *ngSwitchCase="'modal'" class="clickable" (click)="open_modal(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? 'x' : 'o' }}</b></td>
                 <td *ngSwitchCase="'image'" class="clickable" (click)="open_image(item)">{{ item.text | langue : '...' }}</td>
-                <td *ngSwitchCase="'stars'" class="clickable"><ep-star [rating]="rate(item.value)"></ep-star></td>
+                <td *ngSwitchCase="'stars'" class="clickable"><epv-star [rating]="rate(item.value)"></epv-star></td>
             </ng-container>
         </tr>
         </tbody>

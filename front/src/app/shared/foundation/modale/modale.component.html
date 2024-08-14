@@ -11,18 +11,18 @@
           </div>
 
           <div *ngSwitchCase="'form'" class="form">
-            <ep-form
+            <epv-form
               *ngIf="modalObject.content.form"
               [items]="[modalObject.content.form.fields]"
               (submit)="submit_form($event)"
-            ></ep-form>
+            ></epv-form>
           </div>
 
           <div *ngSwitchCase="'rubric'" class="rubric">
-            <ep-rubric
+            <epv-rubric
               *ngIf="modalObject.content.rubric"
               [content]="modalObject.content.rubric"
-            ></ep-rubric>
+            ></epv-rubric>
           </div>
 
           <div *ngSwitchCase="'image'" class="image">

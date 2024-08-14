@@ -1,10 +1,10 @@
 -- Remplissage de la table 'service'
-INSERT INTO service (nom) VALUES
-    ('Informatique'),
-    ('Ressources Humaines'),
-    ('Marketing'),
-    ('Finance'),
-    ('Support Client');
+INSERT INTO service (nom, description, form) VALUES
+    ('Informatique', 'description du service informatique','[{"content":[{"content":[{"name":"address","title":"address.title","type":"text","placeholder":"Enter your address","reg_error":[{"regex":".+","message":"Address is required"}]}]},{"online":true,"content":[{"name":"postal_code","title":"*Postal Code*","type":"text","placeholder":"Enter your postal code","reg_error":[{"regex":"^[0-9]{5}$","message":"Enter a valid postal code (5 digits)"}]},{"name":"kind","title":"*Address Type*","type":"dropdown","choices":["Home","Work"]}]},{"content":[{"name":"instruction","title":"*Delivery Instructions*","type":"longtext","placeholder":"*Any special instructions?*","sclass":"instruction-field"}]}]}]'),
+    ('Ressources Humaines', 'description du service RH','[]'),
+    ('Marketing', 'description du service marketing','[]'),
+    ('Finance', 'description du service finance','[]'),
+    ('Support Client', 'description du service support client','[]');
 
 -- Remplissage de la table 'secteur'
 INSERT INTO secteur (nom) VALUES
@@ -31,12 +31,12 @@ INSERT INTO product (code_barre, name, marque, id_address) VALUES
     ('5678901234567', 'Souris', 'Microsoft', 5);
 
 -- Remplissage de la table 'users'
-INSERT INTO users (prenom, nom, mail, status, mdp, id_service, id_secteur, id_address) VALUES
-    ('Alice', 'Dupont', 'alice.dupont@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 1, 1, 1),
-    ('Bob', 'Martin', 'bob.martin@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 2, 2, 2),
-    ('Charlie', 'Durand', 'charlie.durand@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 3, 3, 3),
-    ('David', 'Lefevre', 'david.lefevre@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 4, 4, 4),
-    ('Eve', 'Moreau', 'eve.moreau@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 5, 5, 5);
+INSERT INTO users (prenom, nom, mail, status, mdp, id_secteur, id_address) VALUES
+    ('Alice', 'Dupont', 'alice.dupont@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 1,  1),
+    ('Bob', 'Martin', 'bob.martin@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 2, 2),
+    ('Charlie', 'Durand', 'charlie.durand@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 3, 3),
+    ('David', 'Lefevre', 'david.lefevre@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 4, 4),
+    ('Eve', 'Moreau', 'eve.moreau@example.com', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 5, 5);
 
 -- Remplissage de la table 'message'
 INSERT INTO message (text, date_send, sender_id, receiver_id) VALUES
@@ -53,3 +53,10 @@ INSERT INTO distribute (user_id, secteur_id) VALUES
     (3, 3),
     (4, 4),
     (5, 5);
+
+INSERT INTO candidate (user_id, service_id, creation_date, last_edited) VALUES
+    (1, 1, now(), now()),
+    (2, 2, now(), now()),
+    (3, 3, now(), now()),
+    (4, 4, now(), now()),
+    (5, 5, now(), now());

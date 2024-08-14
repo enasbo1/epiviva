@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
 
 @Component({
-    selector: 'ep-star',
+    selector: 'epv-star',
     templateUrl: 'star.component.html',
     styleUrls: ['./star.component.scss'],
 })

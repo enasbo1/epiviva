@@ -1,0 +1,5 @@
+id-|-!int
+user_id-|-r
+service_id-|-r
+answer-|-r
+validated-|--|-false

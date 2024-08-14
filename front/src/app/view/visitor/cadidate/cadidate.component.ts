@@ -20,9 +20,9 @@ export class CadidateComponent implements OnInit {
         (users)=>{
           if (users?.length > 0) {
             if (users[0].id_address){
-              this.route.navigate(['/'+EpvPath.visitor.services]).then()
+              this.route.navigate(['/'+EpvPath.visitor.services.list]).then()
             }else{
-              this.route.navigate(['/'+EpvPath.visitor.addresses]).then()
+              this.route.navigate(['/'+EpvPath.visitor.addresses], {queryParams:{targetPage:EpvPath.visitor.services.list}}).then()
             }
           }
         }

@@ -8,6 +8,7 @@ import {
 import {DateService} from "../../../http/shared/date.service";
 import {ModaleService} from "../modale/modale.service";
 import {FormRubricObject, FormStepObject} from "../../base-shared/form-step/formStepObject";
+import moment from "moment";
 
 @Injectable({
   providedIn: 'root'
@@ -136,5 +137,19 @@ export class FormService {
             )
     )
     return values;
+  }
+
+  static extract_answer(fields:FormFieldObject[]):{name:string, value:string}[] {
+    return fields.map(
+        field=>
+            (field.type==='period' && field._values)?
+              {name:field.name, value:DateService.period_to_string({start:moment((field._values[0] as Date)), end: moment((field._values[1] as Date))})}
+              :
+                (field.type==='date' && field._value)?
+                  {name:field.name, value:DateService.to_api(field._value as Date)?? ''}
+                  :
+                  {name:field.name, value:field._value?.toString()?? ''}
+
+    )
   }
 }

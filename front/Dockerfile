@@ -23,7 +23,7 @@ RUN npm run build
 FROM steebchen/nginx-spa:stable
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist/apm /app
+COPY --from=build /usr/local/app/dist/epv /app
 
 # Expose port 80
 EXPOSE 80

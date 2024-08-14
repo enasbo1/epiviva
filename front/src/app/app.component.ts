@@ -5,7 +5,7 @@ import _ from "lodash";
 import {EpvPath} from "./view/routes";
 
 @Component({
-  selector:"ep-root",
+  selector:"epv-root",
   templateUrl:'./app.component.html',
   styleUrls:[
     'app.component.scss'
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
+    GlobalService.pageName = '';
     this.languageService.getJson(GlobalService.language)
         .subscribe(
           file=>{

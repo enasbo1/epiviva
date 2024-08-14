@@ -24,7 +24,7 @@ class AddressController extends CrudController{
         global $_TOKEN;
         $request = new AddressService();
         if ($id == []) {
-            //Privilege::admin();
+            Privilege::admin();
             $request->save($input);
         }elseif ($id[0] ==='user'){
             Privilege::allowed();

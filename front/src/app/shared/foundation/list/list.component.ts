@@ -12,7 +12,7 @@ import {Params} from "@angular/router";
 import {LanguePipe} from "../../base-shared/langue.pipe";
 
 @Component({
-  selector: 'ep-list',
+  selector: 'epv-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })

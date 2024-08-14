@@ -101,21 +101,20 @@ class Verif{
     static function verification(array $values, array $form): array|string
     {
         foreach ($form as $key => $type) {
-            if ($type == ''){
-                return "validated";
-            }
-            if (empty($values[$key])) {
-                if ($type[0] == "r") {
-                    $msg = 'le champ "' . $key . '" doit être remplit';
-                    return(["message"=>$msg, "id"=>$key]);
-                } else {
-                    $type = "";
-                    $values[$key] = "";
+            if ($type != ''){
+                if (empty($values[$key])) {
+                    if ($type[0] == "r") {
+                        $msg = 'le champ "' . $key . '" doit être remplit';
+                        return(["message"=>$msg, "id"=>$key]);
+                    } else {
+                        $type = "";
+                        $values[$key] = "";
+                    }
                 }
-            }
-            $passed = Verif::dechiffre($values[$key], $type, $key);
-            if ($passed !="validated"){
-                return $passed ;
+                $passed = Verif::dechiffre($values[$key], $type, $key);
+                if ($passed !="validated"){
+                    return $passed ;
+                }
             }
         }
         return "validated";

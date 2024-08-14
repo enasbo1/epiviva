@@ -1,0 +1,25 @@
+<section class="flex justify-spaced" xmlns="http://www.w3.org/1999/html">
+    <div class=" col-3 flex-shrink-light">
+        <span><b>{{'service.name' | langue}} :</b> {{service?.nom | langue}}</span>
+        <br><br>
+        <span *ngIf="service?.description">
+            <b>{{"service.description" | langue}} :</b>
+            <p>
+            {{service?.description | langue}}
+            </p>
+        </span>
+    </div>
+    <div class = "flex col-7 flex-shrink-light">
+        <div>
+            <h4 *ngIf="error" class="error">{{error | langue}}</h4>
+            <epv-form
+                    *ngIf="serviceForm && (serviceForm.length>0)"
+                    [items]="serviceForm"
+                    (submit)="submit($event)"
+                    [endpage]="false"
+            ></epv-form>
+        </div>
+    </div>
+    <div class = "col-9 flex-shrink-2">
+    </div>
+</section>

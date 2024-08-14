@@ -42,6 +42,10 @@ export class DateService {
     }
   }
 
+  static period_to_string(period:Period):string{
+    return DateService.to_front(period.start.toDate()) + " - " + DateService.to_front(period.end.toDate());
+  }
+
   static checkDateStatus(startDate: string | undefined, endDate: string | undefined, date: moment.Moment = moment()): string {
 
     if (date.isBefore(moment(startDate))) {

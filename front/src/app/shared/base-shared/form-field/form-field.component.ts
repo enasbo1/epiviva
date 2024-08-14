@@ -3,7 +3,7 @@ import {FormFieldObject} from "./formFieldObject";
 import {RegexBase} from "../../RegexBase";
 
 @Component({
-  selector: 'ep-form-field',
+  selector: 'epv-form-field',
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss']
 })
@@ -71,7 +71,7 @@ export class FormFieldComponent implements OnInit {
     const value = this.field?._value?.toString()??''
     if (this.field?.reg_error){
       return this.field?.reg_error?.find((reg_error):boolean=>
-        !reg_error.regex.test(value)
+        !RegExp(reg_error.regex).test(value)
       )!==undefined
     }
     return false

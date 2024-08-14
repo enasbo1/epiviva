@@ -6,7 +6,7 @@
         <div class="page">
           <router-outlet></router-outlet>
         </div>
-        <ep-line></ep-line>
+        <epv-line></epv-line>
 
       </div>
 
@@ -15,8 +15,8 @@
 
   <header [ngSwitch]="status">
     <epv-visitor-header *ngSwitchCase="EpvPath.visitor.root" [pageTitle]="pageTitle"></epv-visitor-header>
-    <ep-header *ngSwitchDefault [pageTitle]="pageTitle"></ep-header>
+    <epv-header *ngSwitchDefault [pageTitle]="pageTitle"></epv-header>
   </header>
 </div>
 
-<ep-modale></ep-modale>
+<epv-modale></epv-modale>

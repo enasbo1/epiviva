@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {EpvPath} from "../../view/routes";
 
 @Component({
-  selector: 'ep-header',
+  selector: 'epv-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })

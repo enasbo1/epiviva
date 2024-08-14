@@ -2,12 +2,12 @@
   <h6 *ngIf="field.title">{{field.title | langue}}</h6>
   <ng-container *ngSwitchCase="'dropdown'" >
       <div [class]="field.sclass">
-          <ep-dropdown
+          <epv-dropdown
                   [default]="field.default"
                   [title]="field.instruction"
                   [choices] = "(field.choices)?field.choices:[]"
                   (value_up)="onSubmit($event)"
-          ></ep-dropdown>
+          ></epv-dropdown>
       </div>
   </ng-container>
 

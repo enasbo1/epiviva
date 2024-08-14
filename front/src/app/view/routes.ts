@@ -6,7 +6,10 @@ export const  EpvPath={
   visitor: {
     home:'visitor/home',
     candidate:'visitor/candidate',
-    services:'visitor/service-list',
+    services:{
+      list:'visitor/service-list',
+      detail:'visitor/service/:id'
+    },
     addresses:'visitor/addresses',
     root:'visitor'
   },

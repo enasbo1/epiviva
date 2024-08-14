@@ -10,7 +10,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 import {EpvPath, EpvRolePart} from "../../routes";
 
 @Component({
-  selector: 'ep-inscription',
+  selector: 'epv-inscription',
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.scss']
 })

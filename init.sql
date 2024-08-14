@@ -1,7 +1,9 @@
 
 CREATE TABLE service (
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(50)
+    nom VARCHAR(50),
+    form TEXT,
+    description VARCHAR(512)
 );
 
 CREATE TABLE secteur (
@@ -34,7 +36,6 @@ CREATE TABLE users (
     status SMALLINT,
     num VARCHAR(11),
     mdp VARCHAR(255),
-    id_service INTEGER REFERENCES service(id),
     id_secteur INTEGER REFERENCES secteur(id),
     id_address INTEGER REFERENCES address(id)
 );
@@ -52,4 +53,15 @@ CREATE TABLE distribute (
     user_id INTEGER REFERENCES users(id),
     secteur_id INTEGER REFERENCES secteur(id),
     PRIMARY KEY (user_id, secteur_id)
+);
+
+CREATE TABLE candidate(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  service_id INTEGER REFERENCES service(id),
+  answer TEXT,
+  validated BOOLEAN default false,
+  creation_date TIMESTAMP not null,
+  validation_date TIMESTAMP,
+  last_edited TIMESTAMP not null
 );

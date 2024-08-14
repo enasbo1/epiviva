@@ -2,6 +2,7 @@
 namespace api;
 
 use address\AddressController;
+use candidate\CandidateController;
 use connexion\ConnexionController;
 use distribute\DistributeController;
 use Exception;
@@ -10,7 +11,6 @@ use product\ProductController;
 use secteur\SecteurController;
 use service\ServiceController;
 use token\Token;
-use user\UserController;
 use users\UsersController;
 
 require_once 'src/shared/ModelType.php';
@@ -54,6 +54,9 @@ require_once 'src/distribute/DistributeController.php';
 require_once "crud/connexion/ConnexionModelType.php";
 require_once 'src/connexion/ConnexionController.php';
 
+require_once "crud/candidate/CandidateModelType.php";
+require_once 'src/candidate/CandidateController.php';
+
 // }
 
 
@@ -93,6 +96,7 @@ $controllerList = [
     "product"   => new ProductController(),
     "distribute"=> new DistributeController(),
     "connection"=> new ConnexionController(),
+    "candidate"=> new CandidateController(),
 ];
 // }
 

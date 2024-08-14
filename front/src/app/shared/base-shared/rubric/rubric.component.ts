@@ -3,7 +3,7 @@ import {RubricElement, RubricObject} from "./rubricObject";
 import {ModaleService} from "../../foundation/modale/modale.service";
 
 @Component({
-  selector: 'ep-rubric',
+  selector: 'epv-rubric',
   templateUrl: './rubric.component.html',
   styleUrls: ['./rubric.component.scss']
 })

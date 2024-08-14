@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'ep-dropdown',
+  selector: 'epv-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })

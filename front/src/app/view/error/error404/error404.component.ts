@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GlobalService} from "../../../shared/global.service";
 
 @Component({
-  selector: 'ep-error404',
+  selector: 'epv-error404',
   templateUrl: './error404.component.html',
   styleUrls: ['./error404.component.scss']
 })

@@ -3,7 +3,7 @@ import {GlobalService} from "../../../shared/global.service";
 import { Router} from "@angular/router";
 
 @Component({
-  selector: 'ep-diconnection',
+  selector: 'epv-diconnection',
   templateUrl: './diconnection.component.html',
   styleUrls: ['./diconnection.component.scss']
 })
