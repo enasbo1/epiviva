@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest} from "@angular/common/http";
-import {catchError, Observable, tap, throwError} from "rxjs";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {GlobalService} from "../global.service";
 import _ from "lodash";
 import {RegexBase} from "../RegexBase";
@@ -43,22 +43,12 @@ export class LanguageService {
   }
 
   public resolve(value: string|number|undefined , default_value:string = ""):string{
-      if (value && /^\*.*\*$/.test(value.toString())){
-          return value.toString().replace(/\*$/, '').replace(/^\*/, '');
-      }
       if (GlobalService.languageFile && value){
           if (!this.get_language(GlobalService.languageFile)){
               this.reload_language();
           }
-          const n = value.toString().split('.');
-          return _.get(
-              GlobalService.languageFile,
-              value.toString(),
-              RegexBase.lang_path.test(value.toString())?n[n.length - 1]:value.toString()
-          )
       }
-
-      return value?.toString() ?? default_value;
+      return LanguageService.static_resolve(value, default_value);
   }
 
   static static_resolve(value: string|number|undefined , default_value:string = ""):string{
@@ -67,11 +57,13 @@ export class LanguageService {
       }
       if (GlobalService.languageFile && value){
           const n = value.toString().split('.');
-          return _.get(
+          const d = RegexBase.lang_path.test(value.toString())?n[n.length - 1]:value.toString()
+          const v =  _.get(
               GlobalService.languageFile,
               value.toString(),
-              RegexBase.lang_path.test(value.toString())?n[n.length - 1]:value.toString()
-          )
+              d
+          );
+          return typeof v === "string" ? v : d;
       }
 
       return value?.toString() ?? default_value;

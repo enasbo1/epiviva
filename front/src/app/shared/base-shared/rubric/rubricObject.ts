@@ -5,8 +5,12 @@ export interface RubricObject{
 
 export interface RubricElement{
   name : string
-  type : "text"|"file"|"panel"|"modal"|"image"|"stars"|'link'
+  type : RubricType
   text ?: string
   value? : string|RubricObject|number
   _open?:boolean
 }
+
+export const RubricTypeList = ["text","file","panel","modal","image","stars","link", "hided"] as const;
+export type RubricType = typeof RubricTypeList[number]
+

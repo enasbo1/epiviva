@@ -12,10 +12,19 @@ export interface CandidateObject {
     last_edited:Date
 }
 
-export interface CandidatePostObject {
-    id?:number|bigint,
-    user_id?:number|bigint,
+export interface CandidatePostObject extends CandidateBaseObject {
     service_id:number|bigint,
     answer:string,
-    validated?:boolean
+}
+
+export interface CandidateEditObject extends CandidateBaseObject{
+    id:number|bigint
+}
+
+interface CandidateBaseObject {
+    id?:number|bigint,
+    user_id?:number|bigint,
+    service_id?:number|bigint,
+    answer?:string,
+    validated?:'valid'|'wait'|'reject'
 }

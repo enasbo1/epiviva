@@ -1,5 +1,6 @@
 id-|-!int
-date_envoie-|-:d,MDY
+date_send-|-:d,MDY
 text-|-r
 sender_id-|-r !int
-receiver_id-|-r !int
+receiver_id-|-!int
+candidate_id-|-!int

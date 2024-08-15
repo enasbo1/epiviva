@@ -2,6 +2,7 @@
 namespace distribute;
 
 use Exception;
+use shared\Formater;
 use shared\Service;
 
 include_once "DistributeRepository.php";
@@ -24,7 +25,7 @@ class DistributeService extends Service
         $result = $repo->readAll("unable to find any distribute");
 
         foreach($result as $row) {
-            $distribute[] = $row;
+            $distribute[] = Formater::prepareGet($row);
         }
 
         return $distribute;
@@ -36,7 +37,16 @@ class DistributeService extends Service
     public function findById(int $id): array
     {
         $repo = new DistributeRepository();
-        return $repo->read($id, "distribute not found");
+
+        $distribute = [];
+        $result = $repo->read($id, "distribute not found");
+
+        foreach($result as $row) {
+            $distribute[] = Formater::prepareGet($row);
+        }
+
+        return $distribute;
+
     }
 
     /**
@@ -45,8 +55,8 @@ class DistributeService extends Service
     public function save(object $input): void
     {
         $repo = new DistributeRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create distribute");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create distribute");
     }
 
     /**
@@ -55,8 +65,9 @@ class DistributeService extends Service
     public function update(object $input): void
     {
         $repo = new DistributeRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->update($toquery, "unable to update distribute");
+        $updated = $repo->read($input->id)[0] ?? [];
+        $toQuery = $this->modelType->isValidType($input, $updated);
+        $repo->update($toQuery, "unable to update distribute");
     }
 
     /**

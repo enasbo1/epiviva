@@ -40,7 +40,7 @@ export class UserMapperService {
                 {text : "Nom : "+ user?.nom },
                 {text : "Prenom : "+ user?.prenom }
             ],
-            propriete:[
+            properties:[
                 {name : 'mail' , value: user?.mail},
                 {name : 'nom' , value: user?.nom},
                 {name : 'prenom' , value: user?.prenom},

@@ -11,15 +11,15 @@
       </div>
 
       <div *ngFor="let message of sortedMessages" class="flex {{is_current(message.user) ? 'justify-end' : 'justify-start'}}">
-        <div *ngIf="!is_current(message.user)" class="avatar-circle" [title]="UserMapperService.get_U_Name(message.user)">
+        <div *ngIf="!is_current(message.user)" class="avatar-circle {{is_system(message)?'bordered':''}}" [title]="UserMapperService.get_U_Name(message.user)">
           {{ getInitials(message.user) }}
           <div class="date" [title]="message.date | date : 'HH:mm \ndd/MM/YYYY'">{{ message.date | date: 'dd/MM' }}</div>
         </div>
         <div class="message-wrapper">
-          <div *ngIf="!is_current(message.user)" class="bubble hover-1 reversed-bubble message-left message">{{ message.content | langue }}</div>
-          <div *ngIf="is_current(message.user)" class="bubble hover-1 message-right message">{{ message.content |langue }}</div>
+          <div *ngIf="!is_current(message.user)" class="bubble hover-1 reversed-bubble message-left message {{is_system(message)?'bordered':''}}">{{ message.content | langue }}</div>
+          <div *ngIf="is_current(message.user)" class="bubble hover-1 message-right message {{is_system(message)?'bordered':''}}">{{ message.content |langue }}</div>
         </div>
-        <div *ngIf="is_current(message.user)" class="avatar-circle">
+        <div *ngIf="is_current(message.user)" class="avatar-circle {{is_system(message)?'bordered':''}}">
           {{ getInitials(message.user) }}
           <div class="date" [title]="message.date | date : 'HH:mm \ndd/MM/YYYY'">{{ message.date | date: 'dd/MM' }}</div>
         </div>

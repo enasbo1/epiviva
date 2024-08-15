@@ -6,6 +6,6 @@ use shared\Repository;
 class ServiceRepository extends Repository {
     public function __construct()
     {
-        parent::__construct('"service"', new ServiceModelType());
+        parent::__construct('service', new ServiceModelType());
     }
 }

@@ -2,6 +2,7 @@
 namespace secteur;
 
 use Exception;
+use shared\Formater;
 use shared\Service;
 
 include_once "SecteurRepository.php";
@@ -24,7 +25,7 @@ class SecteurService extends Service
         $result = $repo->readAll("unable to find any secteur");
 
         foreach($result as $row) {
-            $secteur[] = $row;
+            $secteur[] = Formater::prepareGet($row);
         }
 
         return $secteur;
@@ -36,7 +37,16 @@ class SecteurService extends Service
     public function findById(int $id): array
     {
         $repo = new SecteurRepository();
-        return $repo->read($id, "secteur not found");
+
+        $secteur = [];
+        $result = $repo->read($id, "secteur not found");
+
+        foreach($result as $row) {
+            $secteur[] = Formater::prepareGet($row);
+        }
+
+        return $secteur;
+
     }
 
     /**
@@ -45,8 +55,8 @@ class SecteurService extends Service
     public function save(object $input): void
     {
         $repo = new SecteurRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create secteur");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create secteur");
     }
 
     /**
@@ -55,8 +65,9 @@ class SecteurService extends Service
     public function update(object $input): void
     {
         $repo = new SecteurRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->update($toquery, "unable to update secteur");
+        $updated = $repo->read($input->id)[0] ?? [];
+        $toQuery = $this->modelType->isValidType($input, $updated);
+        $repo->update($toQuery, "unable to update secteur");
     }
 
     /**

@@ -9,6 +9,9 @@ import {ModaleService} from "../../foundation/modale/modale.service";
 })
 export class RubricComponent implements OnInit {
   @Input() content?:RubricObject;
+  @Input() name_class?:string;
+  @Input() title_class?:string;
+  @Input() line:boolean = true;
 
   constructor(
   ) { }
@@ -37,9 +40,15 @@ export class RubricComponent implements OnInit {
   open_modal(src?:RubricElement):void {
     if (src){
       src._open = true;
-      ModaleService.createRubricModal(<RubricObject> src.value).subscribe(()=>
-        src._open = false
-      )
+      if (typeof src.value === 'object' ){
+        ModaleService.createRubricModal(src.value).subscribe(()=>
+            src._open = false
+        )
+      }else{
+        ModaleService.createTextModal(src.value?.toString()?? '').subscribe(()=>
+            src._open = false
+        )
+      }
     }
   }
 

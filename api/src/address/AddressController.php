@@ -12,6 +12,7 @@ class AddressController extends CrudController{
     {
         $request = new AddressService();
         if ($id == []) {
+            Privilege::admin();
             $address = $request->getAll();
         } else {
             $address = $request->findById($id[0]);

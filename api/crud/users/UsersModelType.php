@@ -11,9 +11,9 @@ class UsersModelType implements ModelType
     /**
      * @throws Exception
      */
-    public function isValidType(object $params): array
+    public function isValidType(object $params, array $default=[]): array
     {
-        $arr_params = $this->toArray($params);
+        $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
 			"prenom" => ":M,25",
@@ -35,19 +35,19 @@ class UsersModelType implements ModelType
         return $arr_params;
     }
 
-    public function toArray(object $params): array
+    public function toArray(object $params, array $default=[]): array
     {
         return array_filter([
-			"id" => $params->id ?? null,
-			"prenom" => $params->prenom ?? null,
-			"nom" => $params->nom ?? null,
-			"mail" => $params->mail ?? null,
-			"status" => $params->status ?? null,
-			"num" => $params->num ?? null,
-			"mdp" => $params->mdp ?? null,
-			"id_service" => $params->id_service ?? null,
-			"id_secteur" => $params->id_secteur ?? null,
-			"id_address" => $params->id_address ?? null
+			"id" => $params->id ?? $default["id"]  ?? null,
+			"prenom" => $params->prenom ?? $default["prenom"]  ?? null,
+			"nom" => $params->nom ?? $default["nom"]  ?? null,
+			"mail" => $params->mail ?? $default["mail"]  ?? null,
+			"status" => $params->status ?? $default["status"]  ?? null,
+			"num" => $params->num ?? $default["num"]  ?? null,
+			"mdp" => $params->mdp ?? $default["mdp"]  ?? null,
+			"id_service" => $params->id_service ?? $default["id_service"]  ?? null,
+			"id_secteur" => $params->id_secteur ?? $default["id_secteur"]  ?? null,
+			"id_address" => $params->id_address ?? $default["id_address"]  ?? null
         ]);
     }
 }

@@ -2,6 +2,7 @@
 namespace {|{name}|};
 
 use Exception;
+use shared\Formater;
 use shared\Service;
 
 include_once "{|{Name}|}Repository.php";
@@ -24,7 +25,7 @@ class {|{Name}|}Service extends Service
         $result = $repo->readAll("unable to find any {|{name}|}");
 
         foreach($result as $row) {
-            ${|{name}|}[] = $row;
+            ${|{name}|}[] = Formater::prepareGet($row);
         }
 
         return ${|{name}|};
@@ -36,7 +37,16 @@ class {|{Name}|}Service extends Service
     public function findById(int $id): array
     {
         $repo = new {|{Name}|}Repository();
-        return $repo->read($id, "{|{name}|} not found");
+
+        ${|{name}|} = [];
+        $result = $repo->read($id, "{|{name}|} not found");
+
+        foreach($result as $row) {
+            ${|{name}|}[] = Formater::prepareGet($row);
+        }
+
+        return ${|{name}|};
+
     }
 
     /**
@@ -45,8 +55,8 @@ class {|{Name}|}Service extends Service
     public function save(object $input): void
     {
         $repo = new {|{Name}|}Repository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create {|{name}|}");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create {|{name}|}");
     }
 
     /**
@@ -55,8 +65,9 @@ class {|{Name}|}Service extends Service
     public function update(object $input): void
     {
         $repo = new {|{Name}|}Repository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->update($toquery, "unable to update {|{name}|}");
+        $updated = $repo->read($input->id)[0] ?? [];
+        $toQuery = $this->modelType->isValidType($input, $updated);
+        $repo->update($toQuery, "unable to update {|{name}|}");
     }
 
     /**

@@ -1,14 +1,14 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   FormFieldObject,
   FormFieldType,
-  FormFieldTypeList,
   FormFieldValue
 } from "../../base-shared/form-field/formFieldObject";
 import {DateService} from "../../../http/shared/date.service";
 import {ModaleService} from "../modale/modale.service";
 import {FormRubricObject, FormStepObject} from "../../base-shared/form-step/formStepObject";
 import moment from "moment";
+import {RubricType} from "../../base-shared/rubric/rubricObject";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,20 @@ export class FormService {
 
   constructor() { }
 
+  static type_formToRubric:Record<string, RubricType>={
+    "num" :'text',
+    "longtext" :"modal",
+    "dropdown" : "text",
+    "text": "text",
+    "email": "text",
+    "password":"text",
+    "place": "text",
+    "date":  'text',
+    "period":'text',
+    "url":  'link',
+    "file": 'file'
+  }
+  
   static require_values(formFields:FormFieldObject[], names:string[]):string|void{
     for (const name of names) {
       if (!FormService.get_value(formFields, name)){
@@ -26,7 +40,7 @@ export class FormService {
   }
 
   static get_period(formFields:FormFieldObject[],name:string, defaut?:Date[]):{start:string, end:string}{
-    let dates:Date[]|undefined = formFields.find((form:FormFieldObject):boolean=>form.name===name)?._values?.map(x=> x?? new Date());
+    let dates:Date[]|undefined = FormService.get_field(formFields, name)?._values?.map(x=> x?? new Date());
     dates = dates?dates:defaut;
     if (dates){
       return {
@@ -42,8 +56,12 @@ export class FormService {
   }
 
   static get_value(formFields:FormFieldObject[],name:string, defaut?:FormFieldValue):FormFieldValue{
-    const v:FormFieldValue = formFields.find((form:FormFieldObject):boolean=>form.name===name)?._value
+    const v:FormFieldValue = FormService.get_field(formFields, name)?._value
     return v?v:defaut;
+  }
+
+  static get_field(formFields:FormFieldObject[],name:string):FormFieldObject|undefined{
+    return formFields.find((form:FormFieldObject):boolean=>form.name===name)
   }
 
   static edit_field(formField:FormFieldObject):void{
@@ -151,5 +169,23 @@ export class FormService {
                   {name:field.name, value:field._value?.toString()?? ''}
 
     )
+  }
+
+  static set_answer(field:FormFieldObject, answer:{name:string, value:string}):void{
+    switch(field.type){
+      case 'period':
+        let per = DateService.front_period_to_period(answer.value);
+        field._values = [
+            per.start.toDate(),
+            per.end.toDate()
+        ]
+        break;
+      case 'date':
+        field._value = new Date(answer.value);
+        break;
+      default:
+        field._value = answer.value;
+        break;
+    }
   }
 }

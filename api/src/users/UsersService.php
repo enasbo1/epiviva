@@ -3,6 +3,7 @@ namespace users;
 
 use connexion\ConnexionService;
 use Exception;
+use shared\Formater;
 use shared\Service;
 
 include_once "UsersRepository.php";
@@ -25,7 +26,7 @@ class UsersService extends Service
         $result = $repo->readAll("unable to find any users");
 
         foreach($result as $row) {
-            $users[] = $row;
+            $users[] = Formater::prepareGet($row);
         }
 
         return $users;
@@ -37,7 +38,16 @@ class UsersService extends Service
     public function findById(int $id): array
     {
         $repo = new UsersRepository();
-        return $repo->read($id, "users not found");
+
+        $users = [];
+        $result = $repo->read($id, "users not found");
+
+        foreach($result as $row) {
+            $users[] = Formater::prepareGet($row);
+        }
+
+        return $users;
+
     }
 
     /**
@@ -46,8 +56,8 @@ class UsersService extends Service
     public function save(object $input): void
     {
         $repo = new UsersRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create users");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create users");
     }
 
     /**
@@ -56,8 +66,9 @@ class UsersService extends Service
     public function update(object $input): void
     {
         $repo = new UsersRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->update($toquery, "unable to update users");
+        $updated = $repo->read($input->id)[0] ?? [];
+        $toQuery = $this->modelType->isValidType($input, $updated);
+        $repo->update($toQuery, "unable to update users");
     }
 
     /**
@@ -79,8 +90,8 @@ class UsersService extends Service
         $input->status = "1";
         $input->num = "0102030405";
         $input->mdp = ConnexionService::hash_password($input->mdp);
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create users");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create users");
         $connection = new ConnexionService();
         return $connection->connect($connect_input);
     }

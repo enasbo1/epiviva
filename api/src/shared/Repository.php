@@ -128,18 +128,7 @@ class Repository
                 }
                 $i += 1;
             }
-
-            $j = 1;
-            foreach ($restrict as $key => $val) {
-                if ($j == 1) {
-                    $q .= " WHERE ";
-                } else {
-                    $q .= " AND ";
-                }
-                $q .= $key . ' = $' . $i;
-                $i+=1;
-                $j+=1;
-            }
+            $q.= $this->restrict($restrict, $i);
             pg_prepare($this->connection,"", $q);
             return pg_execute($this->connection,"",$updates+$restrict);
         } catch (Exception $e) {
@@ -202,16 +191,9 @@ class Repository
             }
 
             $q = "SELECT $r FROM $this->modelName ";
-            $i = 1;
-            foreach ($restrict as $key => $val) {
-                if ($i == 1) {
-                    $q .= " WHERE ";
-                } else {
-                    $q .= " AND ";
-                }
-                $q .= $key . ' = $' . $i;
-                $i += 1;
-            }
+
+            $q.= $this->restrict($restrict);
+
             pg_prepare($this->connection,"", $q);
             $elements = pg_execute($this->connection,"", $restrict);
             return pg_fetch_all($elements);
@@ -222,6 +204,28 @@ class Repository
 
     }
 
+    protected function restrict(array $restrict, int $start = 1):string
+    {
+        $q = '';
+        $i = $start;
+        $j = 1;
+        foreach ($restrict as $key => $val) {
+            if ($j == 1) {
+                $q .= " WHERE ";
+            } else {
+                $q .= " AND ";
+            }
+            $q .= $key . ' = $' . $i;
+            $i+=1;
+            $j+=1;
+        }
+        return $q;
+    }
+
+
+    /**
+     * @throws Exception
+     */
     public function query(string $query, array $values, string $error=""): array
     {
     try{

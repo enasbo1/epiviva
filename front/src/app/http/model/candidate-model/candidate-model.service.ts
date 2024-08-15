@@ -2,16 +2,18 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {RequestService} from "../../shared/request.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {CandidateObject, CandidatePostObject} from "./candidateObject";
+import {CandidateEditObject, CandidateObject, CandidatePostObject} from "./candidateObject";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CandidateModelService extends RequestService {
 
-  edit_userCandidate(content: CandidateObject, errorEvent?: EventEmitter<HttpErrorResponse>): Observable<object> {
-    return (this.post(content, 'candidate/user'));
+  edit_candidate(content: CandidateObject, errorEvent?: EventEmitter<HttpErrorResponse>): Observable<object> {
+    return (this.post(content, 'candidate'));
   }
+
+
 
   post_candidate(content: CandidatePostObject, errorEvent?: EventEmitter<HttpErrorResponse>): Observable<object> {
     return (this.post(content, 'candidate', errorEvent));
@@ -30,7 +32,7 @@ export class CandidateModelService extends RequestService {
 
   }
 
-  update_candidate(content: CandidateObject): Observable<object> {
+  update_candidate(content: CandidateEditObject): Observable<object> {
     return (this.edit(content, 'candidate'))
   }
 
@@ -40,5 +42,13 @@ export class CandidateModelService extends RequestService {
 
   get_self_candidate(): Observable<CandidateObject[]>{
     return (this.get('candidate/self') as Observable<CandidateObject[]>);
+  }
+
+  get_one_self_candidate(id: number|bigint): Observable<CandidateObject[]> {
+    return (this.get(`candidate/self/${id}`) as Observable<CandidateObject[]>);
+  }
+
+  update_selfCandidate(content: CandidateEditObject, errorEvent?: EventEmitter<HttpErrorResponse>): Observable<object> {
+    return (this.edit(content, `candidate/self`, errorEvent));
   }
 }

@@ -11,9 +11,9 @@ class {|{Name}|}ModelType implements ModelType
     /**
      * @throws Exception
      */
-    public function isValidType(object $params): array
+    public function isValidType(object $params, array $default=[]): array
     {
-        $arr_params = $this->toArray($params);
+        $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 {|{list_colomn_verif}|}
         ]);
@@ -26,7 +26,7 @@ class {|{Name}|}ModelType implements ModelType
         return $arr_params;
     }
 
-    public function toArray(object $params): array
+    public function toArray(object $params, array $default=[]): array
     {
         return array_filter([
 {|{list_colomn_array}|}

@@ -1,5 +1,7 @@
 <?php
 namespace message;
+use candidate\CandidateService;
+use Exception;
 use token\Privilege;
 use shared\CrudController;
 
@@ -12,9 +14,23 @@ class MessageController extends CrudController{
     {
         $request = new MessageService();
         if ($id == []) {
+            Privilege::admin();
             $message = $request->getAll();
         } else {
-            $message = $request->findById($id[0]);
+            Privilege::allowed();
+            global $_TOKEN;
+            switch ($id[0]){
+                case 'candidate':
+                    $candidate = new CandidateService();
+                    if (!$candidate->is_candidate($id[1], $_TOKEN->user_id)) {
+                        Privilege::admin();
+                    }
+                    $message = $request->getFromCandidate($id[1]);
+                    break;
+                default:
+                    $message = $request->findById($id[0]);
+                    break;
+            }
         }
         echo json_encode($message);
     }
@@ -22,9 +38,26 @@ class MessageController extends CrudController{
     function post(array $id, object $input): void
     {
         $request = new MessageService();
+        global $_TOKEN;
+        Privilege::allowed();
+        if ($id == []) {
+            throw new Exception('invalid request', 404);
+        }else{
+            switch ($id[0]) {
+                case 'candidate':
+                    $candidate = new CandidateService();
+                    if ($candidate->is_candidate($input->candidate_id, $_TOKEN->user_id)){
+                        $request->send($input, $_TOKEN->user_id);
+                    }else{
+                        throw new Exception('{message:"not allowed"}', 403);
+                    }
+                    break;
+                default:
+                    Privilege::admin();
+                    break;
+            }
+        }
 
-        Privilege::admin();
-        $request->save($input);
         http_response_code(201);
         echo('{"message" : "message créé avec succès"}');
     }

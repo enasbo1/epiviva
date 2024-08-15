@@ -1,20 +1,22 @@
 <div *ngIf="content">
-    <epv-line [short]="true"></epv-line>
-    <h4 *ngIf="content.title">{{ content.title | langue }}</h4>
+    <epv-line [short]="true" *ngIf="line"></epv-line>
+    <h4 *ngIf="content.title" [class]="title_class">{{ content.title | langue }}</h4>
     <table>
         <tbody>
         <tr *ngFor="let item of content.content">
-            <td>
-                {{ item.name | langue : '...' }}
-            </td>
-            <ng-container [ngSwitch]="item.type">
-                <td *ngSwitchCase="'text'">{{ item.text | langue : '...' }}</td>
-                <td *ngSwitchCase="'link'"><a [href]="item.value">{{ item.text | langue : '...' }}</a></td>
-                <td *ngSwitchCase="'file'"><a [href]="item.value" target="_blank">{{ item.text | langue : '...' }}</a></td>
-                <td *ngSwitchCase="'panel'" class="clickable" (click)="open_panel(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? '<' : '>' }}</b></td>
-                <td *ngSwitchCase="'modal'" class="clickable" (click)="open_modal(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? 'x' : 'o' }}</b></td>
-                <td *ngSwitchCase="'image'" class="clickable" (click)="open_image(item)">{{ item.text | langue : '...' }}</td>
-                <td *ngSwitchCase="'stars'" class="clickable"><epv-star [rating]="rate(item.value)"></epv-star></td>
+            <ng-container *ngIf="item.type!=='hided'">
+                <td [class]="name_class">
+                    {{ item.name | langue : '...' }}
+                </td>
+                <ng-container [ngSwitch]="item.type">
+                    <td *ngSwitchCase="'text'">{{ item.text | langue : '...' }}</td>
+                    <td *ngSwitchCase="'link'"><a [href]="item.value">{{ item.text | langue : '...' }}</a></td>
+                    <td *ngSwitchCase="'file'"><a [href]="item.value" target="_blank">{{ item.text | langue : '...' }}</a></td>
+                    <td *ngSwitchCase="'panel'" class="clickable" (click)="open_panel(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? '<' : '>' }}</b></td>
+                    <td *ngSwitchCase="'modal'" class="clickable" (click)="open_modal(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? 'x' : 'o' }}</b></td>
+                    <td *ngSwitchCase="'image'" class="clickable" (click)="open_image(item)">{{ item.text | langue : '...' }}</td>
+                    <td *ngSwitchCase="'stars'" class="clickable"><epv-star [rating]="rate(item.value)"></epv-star></td>
+                </ng-container>
             </ng-container>
         </tr>
         </tbody>

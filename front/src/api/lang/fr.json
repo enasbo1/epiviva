@@ -39,7 +39,12 @@
     "previous": "precendent",
     "next": "suivant",
     "validate": "valider",
-    "validated": "le formulaire a bien été validé"
+    "validated": "le formulaire a bien été validé",
+    "answer": "Réponses saisies :"
+  },
+  "rubric": {
+    "unspecified": "non spécifié",
+    "edit": "Modifier"
   },
   "nav": {
     "home" : "Acceuil",
@@ -59,16 +64,22 @@
     "engaged": "Vos Candidatures"
   },
   "date": {
-    "creation_date": "Date de création"
+    "creation_date": "Date de création",
+    "edition_date": "Date de modification"
   },
   "candidate": {
     "title": "Candidater",
     "registered": "Votre candidature a bien été enregistrée",
+    "updated": "Votre candidature a bien été modifiée",
     "creation_date": "Date de candidature",
     "validated": "candidature acceptée",
+    "validated_on" : " validée le",
+    "validation" : "validation",
     "waiting" : "en attente",
     "valid": "acceptée",
     "rejected": "rejetée",
-    "the": "le"
+    "the": "le",
+    "name": "Candidature",
+    "updateMessage" : "La candidature a été modifiée"
   }
 }

@@ -2,6 +2,7 @@
 namespace product;
 
 use Exception;
+use shared\Formater;
 use shared\Service;
 
 include_once "ProductRepository.php";
@@ -24,7 +25,7 @@ class ProductService extends Service
         $result = $repo->readAll("unable to find any product");
 
         foreach($result as $row) {
-            $product[] = $row;
+            $product[] = Formater::prepareGet($row);
         }
 
         return $product;
@@ -36,7 +37,16 @@ class ProductService extends Service
     public function findById(int $id): array
     {
         $repo = new ProductRepository();
-        return $repo->read($id, "product not found");
+
+        $product = [];
+        $result = $repo->read($id, "product not found");
+
+        foreach($result as $row) {
+            $product[] = Formater::prepareGet($row);
+        }
+
+        return $product;
+
     }
 
     /**
@@ -45,8 +55,8 @@ class ProductService extends Service
     public function save(object $input): void
     {
         $repo = new ProductRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create product");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create product");
     }
 
     /**
@@ -55,8 +65,9 @@ class ProductService extends Service
     public function update(object $input): void
     {
         $repo = new ProductRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->update($toquery, "unable to update product");
+        $updated = $repo->read($input->id)[0] ?? [];
+        $toQuery = $this->modelType->isValidType($input, $updated);
+        $repo->update($toQuery, "unable to update product");
     }
 
     /**

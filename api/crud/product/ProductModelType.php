@@ -11,9 +11,9 @@ class ProductModelType implements ModelType
     /**
      * @throws Exception
      */
-    public function isValidType(object $params): array
+    public function isValidType(object $params, array $default=[]): array
     {
-        $arr_params = $this->toArray($params);
+        $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
 			"code_barre" => ":M,24",
@@ -30,14 +30,14 @@ class ProductModelType implements ModelType
         return $arr_params;
     }
 
-    public function toArray(object $params): array
+    public function toArray(object $params, array $default=[]): array
     {
         return array_filter([
-			"id" => isset($params->id)?$params->id:null,
-			"code_barre" => isset($params->code_barre)?$params->code_barre:null,
-			"name" => isset($params->name)?$params->name:null,
-			"marque" => isset($params->marque)?$params->marque:null,
-			"id_address" => isset($params->id_address)?$params->id_address:null
+			"id" => $params->id ?? $default["id"]  ?? null,
+			"code_barre" => $params->code_barre ?? $default["code_barre"]  ?? null,
+			"name" => $params->name ?? $default["name"]  ?? null,
+			"marque" => $params->marque ?? $default["marque"]  ?? null,
+			"id_address" => $params->id_address ?? $default["id_address"]  ?? null
         ]);
     }
 }

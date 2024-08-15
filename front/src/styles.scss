@@ -176,8 +176,16 @@ button{
   min-height: 2rem;
 }
 
-mainTitle{
+.mainTitle{
   text-align: center;
+}
+
+.text-size-normal{
+  font-size: medium;
+}
+
+.bolder{
+  font-weight: bolder;
 }
 
 .text-hover{
@@ -243,4 +251,8 @@ a{
     max-width: 80rem;
 
   }
+}
+
+.rubric-container{
+  max-width: 100rem;
 }

@@ -4,11 +4,11 @@ import { Router} from "@angular/router";
 import {EpvPath} from "../../routes";
 
 @Component({
-  selector: 'epv-cadidate',
-  templateUrl: './cadidate.component.html',
-  styleUrls: ['./cadidate.component.scss']
+  selector: 'epv-candidate',
+  templateUrl: './candidate.component.html',
+  styleUrls: ['./candidate.component.scss']
 })
-export class CadidateComponent implements OnInit {
+export class CandidateComponent implements OnInit {
 
   constructor(
       private userModelService: UserModelService,

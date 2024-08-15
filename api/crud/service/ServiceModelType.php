@@ -11,9 +11,9 @@ class ServiceModelType implements ModelType
     /**
      * @throws Exception
      */
-    public function isValidType(object $params): array
+    public function isValidType(object $params, array $default=[]): array
     {
-        $arr_params = $this->toArray($params);
+        $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
 			"nom" => "r",
@@ -29,13 +29,13 @@ class ServiceModelType implements ModelType
         return $arr_params;
     }
 
-    public function toArray(object $params): array
+    public function toArray(object $params, array $default=[]): array
     {
         return array_filter([
-			"id" => $params->id ?? null,
-			"nom" => $params->nom ?? null,
-			"form" => $params->form ?? null,
-			"description" => $params->description ?? null
+			"id" => $params->id ?? $default["id"]  ?? null,
+			"nom" => $params->nom ?? $default["nom"]  ?? null,
+			"form" => $params->form ?? $default["form"]  ?? null,
+			"description" => $params->description ?? $default["description"]  ?? null
         ]);
     }
 }

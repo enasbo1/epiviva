@@ -11,9 +11,9 @@ class AddressModelType implements ModelType
     /**
      * @throws Exception
      */
-    public function isValidType(object $params): array
+    public function isValidType(object $params, array $default=[]): array
     {
-        $arr_params = $this->toArray($params);
+        $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
 			"address" => "r",
@@ -31,15 +31,15 @@ class AddressModelType implements ModelType
         return $arr_params;
     }
 
-    public function toArray(object $params): array
+    public function toArray(object $params, array $default=[]): array
     {
         return array_filter([
-			"id" => $params->id ?? null,
-			"address" => $params->address ?? null,
-			"postal_code" => $params->postal_code ?? null,
-			"instruction" => $params->instruction ?? null,
-			"kind" => $params->kind ?? null,
-			"id_secteur" => $params->id_secteur ?? null
+			"id" => $params->id ?? $default["id"]  ?? null,
+			"address" => $params->address ?? $default["address"]  ?? null,
+			"postal_code" => $params->postal_code ?? $default["postal_code"]  ?? null,
+			"instruction" => $params->instruction ?? $default["instruction"]  ?? null,
+			"kind" => $params->kind ?? $default["kind"]  ?? null,
+			"id_secteur" => $params->id_secteur ?? $default["id_secteur"]  ?? null
         ]);
     }
 }

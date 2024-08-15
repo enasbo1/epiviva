@@ -1,5 +1,8 @@
 import os
 
+from pandas.core.array_algos.replace import replace_regex
+from pandas.core.indexes.multi import names_compat
+
 
 def to_array_string(col: list) -> str:
     ret = ""
@@ -9,7 +12,7 @@ def to_array_string(col: list) -> str:
             default = j[2]
         else:
             default = 'null'
-        ret += '\t\t\t"' + j[0] + f'" => {t} ?? {default}'
+        ret += '\t\t\t"' + j[0] + f'" => {t} ?? $default["{j[0]}"]  ?? {default}'
         if (i + 1) < len(col):
             ret += ',\n'
     return ret
@@ -23,17 +26,13 @@ def to_verif_string(col: list) -> str:
             ret += ',\n'
     return ret;
 
-
-def main():
+def generate(name:str, table:str, data_files:list[str], validation:bool = True):
     location: str = 'src'
     target: str = 'crud'
-    name: str = input("model_name:\n >> ")
-    table: str = input("table_name:\n >> ")
-    data_files = os.listdir("crudmaker_bin/crmd");
     valide = False
     if table.lower() + ".crmd" in data_files:
-        valide = (input(
-            f'table-model file "{table}.crmd" detected, do you want to use it ? (y/n, default "y"): ') or "y") == "y"
+        valide = (not validation)  or ((input(
+            f'table-model file "{table}.crmd" detected, do you want to use it ? (y/n, default "y"): ') or "y") == "y")
     if valide:
         with open(f'crudmaker_bin/crmd/{table}.crmd', 'r', encoding='UTF-8') as text:
             _file = text.read()
@@ -120,4 +119,16 @@ def main():
     print(f'\nplease add the {name} model to the route manualy');
 
 
+def main():
+    data_files = os.listdir("crudmaker_bin/crmd")
+    name: str = input("model_name:\n >> ")
+    table: str = input("table_name:\n >> ") or name
+    if name!= '':
+        generate(name, table, data_files)
+    else:
+        if (input('do you really want to reload all project crud ? (y/n default "y"): ') or "y") == 'y':
+            for i in data_files:
+                if i[-5:] == '.crmd':
+                    name = i[:-5]
+                    generate(name, name, data_files, validation=False)
 main()

@@ -2,6 +2,7 @@
 namespace service;
 
 use Exception;
+use shared\Formater;
 use shared\Service;
 
 include_once "ServiceRepository.php";
@@ -24,7 +25,7 @@ class ServiceService extends Service
         $result = $repo->readAll("unable to find any service");
 
         foreach($result as $row) {
-            $service[] = $row;
+            $service[] = Formater::prepareGet($row);
         }
 
         return $service;
@@ -36,7 +37,16 @@ class ServiceService extends Service
     public function findById(int $id): array
     {
         $repo = new ServiceRepository();
-        return $repo->read($id, "service not found");
+
+        $service = [];
+        $result = $repo->read($id, "service not found");
+
+        foreach($result as $row) {
+            $service[] = Formater::prepareGet($row);
+        }
+
+        return $service;
+
     }
 
     /**
@@ -45,8 +55,8 @@ class ServiceService extends Service
     public function save(object $input): void
     {
         $repo = new ServiceRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create service");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create service");
     }
 
     /**
@@ -55,8 +65,9 @@ class ServiceService extends Service
     public function update(object $input): void
     {
         $repo = new ServiceRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->update($toquery, "unable to update service");
+        $updated = $repo->read($input->id)[0] ?? [];
+        $toQuery = $this->modelType->isValidType($input, $updated);
+        $repo->update($toQuery, "unable to update service");
     }
 
     /**

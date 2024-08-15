@@ -40,15 +40,6 @@ CREATE TABLE users (
     id_address INTEGER REFERENCES address(id)
 );
 
--- Création de la table 'message'
-CREATE TABLE message (
-    id SERIAL PRIMARY KEY,
-    text VARCHAR(255),
-    date_send timestamp,
-    sender_id INTEGER REFERENCES users(id),
-    receiver_id INTEGER REFERENCES users(id)
-);
-
 CREATE TABLE distribute (
     user_id INTEGER REFERENCES users(id),
     secteur_id INTEGER REFERENCES secteur(id),
@@ -64,4 +55,15 @@ CREATE TABLE candidate(
   creation_date TIMESTAMP not null,
   validation_date TIMESTAMP,
   last_edited TIMESTAMP not null
+);
+
+
+-- Création de la table 'message'
+CREATE TABLE message (
+    id SERIAL PRIMARY KEY,
+    text VARCHAR(255),
+    date_send timestamp,
+    sender_id INTEGER not null REFERENCES users(id),
+    receiver_id INTEGER REFERENCES users(id),
+    candidate_id integer references candidate(id)
 );

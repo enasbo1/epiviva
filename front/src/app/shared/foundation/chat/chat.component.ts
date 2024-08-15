@@ -10,8 +10,9 @@ import {MessageMapperService} from "../../../mapper/message-mapper.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {interval, Subscription} from "rxjs";
 import {UserMapperService} from "../../../mapper/user-mapper.service";
+import {RegexBase} from "../../RegexBase";
 
-export type ChatTarget = {subject:'prestation'|'reservation'|'ticket', id:number|bigint}
+export type ChatTarget = {subject:'candidate', id:number|bigint}
 
 @Component({
   selector: 'epv-chat',
@@ -25,7 +26,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   };
   @Input() auto:boolean = true;
-  @Input() target ?: ChatTarget;
+  @Input() set target(target :ChatTarget|undefined){
+    this._target = target;
+    this.reload()
+  }
+  get target():ChatTarget|undefined {
+    return this._target;
+  }
+
+  private _target?:ChatTarget;
   free:boolean = true;
   sending_message?:ChatObject;
   currentUser?:UserRecap = GlobalService.currentUser;
@@ -40,7 +49,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.free){
       this.periodic  = interval(4000).subscribe(() => this.reload())
-
     }
   }
 
@@ -59,7 +67,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (this.currentUser?.id && this.target && this.free) {
       const message: MessagePostObject = {
         text: this.new_message,
-        date_send: DateService.to_api()
       }
       this.free = false;
       this.sending_message = {
@@ -74,16 +81,22 @@ export class ChatComponent implements OnInit, OnDestroy {
           this.sending_message = undefined;
         }
       )
-      this.messageService.post_message(
-        message,
-        error
-        ).subscribe(
-        () => {
-          this.new_message = '';
-          this.free = true;
-          this.reload()
-        }
-      );
+      switch (this.target.subject) {
+        case 'candidate':
+          message.candidate_id = this.target.id;
+          this.messageService.post_message_for_candidate(
+              message,
+              error
+          ).subscribe(
+              () => {
+                this.new_message = '';
+                this.free = true;
+                this.reload()
+              }
+          );
+          break
+      }
+
     }
   }
 
@@ -92,22 +105,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.sending_message = undefined;
 
       switch (this.target.subject) {
-        case 'prestation':
-          this.messageService.get_messages_from_prestation(this.target.id).subscribe((messages)=>
-            this.items = messages.map(
-              (m)=>
-                MessageMapperService.model_to_chat(m))
-          );
-          break
-        case 'ticket':
-          this.messageService.get_messages_from_ticket(this.target.id).subscribe((messages)=>
-            this.items = messages.map(
-              (m)=>
-                MessageMapperService.model_to_chat(m))
-          );
-          break;
-        case 'reservation':
-          this.messageService.get_messages_from_reservation(this.target.id).subscribe((messages)=>
+        case 'candidate':
+          this.messageService.get_messages_from_candidate(this.target.id).subscribe((messages)=>
             this.items = messages.map(
               (m)=>
                 MessageMapperService.model_to_chat(m))
@@ -122,4 +121,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   protected readonly UserMapperService = UserMapperService;
+
+  is_system(message: ChatObject) {
+    return RegexBase.lang_path.test(message.content);
+  }
 }

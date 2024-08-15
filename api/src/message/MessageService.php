@@ -2,6 +2,7 @@
 namespace message;
 
 use Exception;
+use shared\Formater;
 use shared\Service;
 
 include_once "MessageRepository.php";
@@ -24,7 +25,7 @@ class MessageService extends Service
         $result = $repo->readAll("unable to find any message");
 
         foreach($result as $row) {
-            $message[] = $row;
+            $message[] = Formater::prepareGet($row);
         }
 
         return $message;
@@ -36,7 +37,15 @@ class MessageService extends Service
     public function findById(int $id): array
     {
         $repo = new MessageRepository();
-        return $repo->read($id, "message not found");
+
+        $message = [];
+        $result =  $repo->read($id, "message not found");
+
+        foreach($result as $row) {
+            $message[] = Formater::prepareGet($row);
+        }
+
+        return $message;
     }
 
     /**
@@ -45,8 +54,8 @@ class MessageService extends Service
     public function save(object $input): void
     {
         $repo = new MessageRepository();
-        $toquery = $this->modelType->isValidType($input);
-        $repo->create($toquery, "unable to create message");
+        $toQuery = $this->modelType->isValidType($input);
+        $repo->create($toQuery, "unable to create message");
     }
 
     /**
@@ -66,5 +75,33 @@ class MessageService extends Service
     {
         $repo = new MessageRepository();
         $repo->delete($id);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function send(object $input, int $user_id): void
+    {
+        $input->sender_id = $user_id;
+        $input->date_send = date("Y-m-d H:i:s");
+        $input->text = '*'.$input->text.'*';
+        $this->save($input);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getFromCandidate(int $candidate_id): array
+    {
+        $repo = new MessageRepository();
+
+        $message = [];
+        $result = $repo->get_message(['m.candidate_id'=>$candidate_id]);
+
+        foreach($result as $row) {
+            $message[] = Formater::prepareGet($row);
+        }
+
+        return $message;
     }
 }

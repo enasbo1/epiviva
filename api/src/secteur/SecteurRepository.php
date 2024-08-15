@@ -6,6 +6,6 @@ use shared\Repository;
 class SecteurRepository extends Repository {
     public function __construct()
     {
-        parent::__construct('"secteur"', new SecteurModelType());
+        parent::__construct('secteur', new SecteurModelType());
     }
 }

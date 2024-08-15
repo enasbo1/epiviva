@@ -8,7 +8,7 @@
                         (value_up)="switch_rubric($event)"
                 ></epv-dropdown>
             </div>
-            <input type="text" [(ngModel)]="search_value" placeholder="search - WIP" class="bubble {{critera ? 'bubble-right col-9' : 'col-12'}} hover-w">
+            <input type="text" [(ngModel)]="search_value" placeholder="search" class="bubble {{critera ? 'bubble-right col-9' : 'col-12'}} hover-w">
         </div>
     </div>
     <div class="flex short-line">
@@ -33,7 +33,7 @@
                              [choices]="filt.choices"
                              [default]="filt.default ? filt.default : 'all'"
                              [set]="filt.set"
-                             [prefix]="(filt.type === 'search') ? '' : filt.name + ' | '"
+                             [prefix]="(filt.type === 'search') ? '' : filt.name"
                              (click)="refresh_filter()"
                              (value_up)="filter_update(filt, $event)"
                 ></epv-dropdown>

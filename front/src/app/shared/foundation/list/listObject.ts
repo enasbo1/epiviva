@@ -20,7 +20,7 @@ export interface ListObject {
     TextStyle|null,
     TextStyle|null,
   ];
-  propriete ?: ListObjectPropriety[];
+  properties ?: ListObjectPropriety[];
 }
 
 export interface ListObjectPropriety {

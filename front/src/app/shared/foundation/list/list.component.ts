@@ -120,7 +120,7 @@ export class ListComponent implements OnInit {
   }
 
   findFlilter(item:ListObject, name:string):ListObjectPropriety|undefined{
-    return item.propriete?.find(
+    return item.properties?.find(
       value =>
         value.name?.toLowerCase() === name.toLowerCase()
     )
