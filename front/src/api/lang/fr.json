@@ -58,7 +58,17 @@
     "engage": "Engagez-vous",
     "engaged": "Vos Candidatures"
   },
+  "date": {
+    "creation_date": "Date de création"
+  },
   "candidate": {
-    "title": "Candidater"
+    "title": "Candidater",
+    "registered": "Votre candidature a bien été enregistrée",
+    "creation_date": "Date de candidature",
+    "validated": "candidature acceptée",
+    "waiting" : "en attente",
+    "valid": "acceptée",
+    "rejected": "rejetée",
+    "the": "le"
   }
 }

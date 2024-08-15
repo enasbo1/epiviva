@@ -6,7 +6,10 @@ export interface CandidateObject {
     user:UserRecap,
     service:ServiceObject,
     answer:string,
-    validated:boolean
+    validated?:'valid'|'wait'|'reject',
+    creation_date:Date,
+    validation_date?:Date,
+    last_edited:Date
 }
 
 export interface CandidatePostObject {

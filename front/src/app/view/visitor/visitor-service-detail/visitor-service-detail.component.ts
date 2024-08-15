@@ -57,9 +57,10 @@ export class VisitorServiceDetailComponent implements OnInit {
         }
     ).subscribe(()=>{
           this.error = undefined
-          this.router.navigate(['/' + EpvPath.visitor.home]).then()
+          this.router.navigate(['/' + EpvPath.visitor.home],
+              {queryParams: {message: 'candidate.registered'}}
+          ).then()
         }
-
     )
   }
 }

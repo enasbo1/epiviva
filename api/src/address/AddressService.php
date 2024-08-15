@@ -51,7 +51,7 @@ class AddressService extends Service
         $repo = new AddressRepository();
         $user = $userRepo->read($userId)[0] ?? [];
         if (isset($user['id_address'])){
-            $n = $userRepo->get($userRepo->modelName, ['id'], ['id_address'=>$user['id_address']]);
+            $n = $userRepo->get(['id'], ['id_address'=>$user['id_address']]);
 
             if (count($n) < 2){
                 $n = $user['id_address'];

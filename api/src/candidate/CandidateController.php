@@ -12,8 +12,14 @@ class CandidateController extends CrudController{
     {
         $request = new CandidateService();
         if ($id == []) {
+            Privilege::admin();
             $candidate = $request->getAll();
-        } else {
+        } elseif ($id[0] == 'self') {
+            Privilege::allowed();
+            global $_TOKEN;
+            $candidate = $request->getFromUser($_TOKEN->user_id);
+        }else{
+            Privilege::admin();
             $candidate = $request->findById($id[0]);
         }
         echo json_encode($candidate);

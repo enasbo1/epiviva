@@ -43,7 +43,7 @@ class Repository
      */
     public function create(array $params, string $error = "", string $return = "id"): string
     {
-        return ($this->post($this->modelName, $params, $error, $return)[0][$return]);
+        return ($this->post($params, $error, $return)[0][$return]);
     }
 
     /**
@@ -53,21 +53,21 @@ class Repository
      * @throws Exception
      */
     public function read(int $id, string $error = ""):array{
-        return $this->get($this->modelName, [], ["id" => $id], $error);
+        return $this->get([], ["id" => $id], $error);
     }
 
     /**
      * @throws Exception
      */
     public function readAll(string $error = ""):array{
-        return $this->get($this->modelName, [], [], $error);
+        return $this->get([], [], $error);
     }
 
     /**
      * @throws Exception
      */
     public function readActif(string $error = ""):array{
-        return $this->get($this->modelName, [], ["actif"=>true], $error);
+        return $this->get([], ["actif"=>true], $error);
     }
 
     /**
@@ -76,7 +76,7 @@ class Repository
     public function update(array $params, string $error = ""): bool|Exception
     {
         if ($this->read($params['id'])!=[]){
-            $this->update_abs($this->modelName, $params, ["id"=>$params['id']], $error);
+            $this->update_abs($params, ["id"=>$params['id']], $error);
             return true;
         }
         else{
@@ -99,10 +99,10 @@ class Repository
         }
     }
 
-    public function delete_abs(String $table, string $attribute, string $value, string $error = ""): void
+    public function delete_abs(string $attribute, string $value, string $error = ""): void
     {
         try{
-            $q = 'DELETE FROM ' . strtoupper($table) . " WHERE  \"".$attribute."\" = $1";
+            $q = 'DELETE FROM ' . strtoupper($this->modelName) . " WHERE  \"".$attribute."\" = $1";
             pg_prepare($this->connection, "", $q);
             pg_execute($this->connection, "", array($value));
         } catch (Exception $e) {
@@ -114,12 +114,12 @@ class Repository
     /**
      * @throws Exception
      */
-    public function update_abs(string $table, array $updates, array $restrict, string $error = "")
+    public function update_abs(array $updates, array $restrict, string $error = "")
     {
         try {
             $updates['id'] = null;
             $updates = array_filter($updates);
-            $q = "UPDATE $table SET ";
+            $q = "UPDATE $this->modelName SET ";
             $i = 1;
             foreach ($updates as $col => $value) {
                 $q .= $col . " = $" . $i;
@@ -151,10 +151,10 @@ class Repository
     /**
      * @throws Exception
      */
-    public function post(string $table, array $array, string $error = "", string $return = null): array
+    public function post(array $array, string $error = "", string $return = null): array
     {
         try {
-            $q = 'INSERT INTO ' . strtoupper($table) . ' (';
+            $q = 'INSERT INTO ' . strtoupper($this->modelName) . ' (';
             $i = 1;
             foreach ($array as $key => $value) {
                 $q = $q . $key;
@@ -185,7 +185,7 @@ class Repository
     /**
      * @throws Exception
      */
-    public function get(string $table, array $attributes, array $restrict, string $error = ""):array{
+    public function get(array $attributes, array $restrict, string $error = ""):array{
         try{
             $r = '';
             if ($attributes!==[]){
@@ -201,7 +201,7 @@ class Repository
                 $r="*";
             }
 
-            $q = "SELECT $r FROM $table ";
+            $q = "SELECT $r FROM $this->modelName ";
             $i = 1;
             foreach ($restrict as $key => $val) {
                 if ($i == 1) {
@@ -222,7 +222,8 @@ class Repository
 
     }
 
-    public function query(string $query, array $values, string $error=""){
+    public function query(string $query, array $values, string $error=""): array
+    {
     try{
         pg_prepare($this->connection,"", $query);
         $elements = pg_execute($this->connection,"", $values);

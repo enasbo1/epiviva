@@ -30,8 +30,8 @@ class DistributeModelType implements ModelType
     public function toArray(object $params): array
     {
         return array_filter([
-			"user_id" => isset($params->user_id)?$params->user_id:null,
-			"secteur_id" => isset($params->secteur_id)?$params->secteur_id:null
+			"user_id" => $params->user_id ?? null,
+			"secteur_id" => $params->secteur_id ?? null
         ]);
     }
 }

@@ -3,6 +3,7 @@ import {GlobalService} from "./shared/global.service";
 import {LanguageService} from "./shared/base-shared/language.service";
 import _ from "lodash";
 import {EpvPath} from "./view/routes";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector:"epv-root",
@@ -14,15 +15,18 @@ import {EpvPath} from "./view/routes";
 export class AppComponent implements OnInit, OnChanges{
   pageTitle: string = "title";
   title:string = "title 1";
+  message?:string;
 
   constructor(
       private languageService: LanguageService,
+      private route: ActivatedRoute,
   ) {
 
   }
 
   ngOnInit(): void {
     GlobalService.pageName = '';
+    this.message = undefined;
     this.languageService.getJson(GlobalService.language)
         .subscribe(
           file=>{
@@ -35,7 +39,14 @@ export class AppComponent implements OnInit, OnChanges{
               GlobalService.languageFile = file
             }
           }
-        )
+        );
+    this.route.queryParams.subscribe(params => {
+      if (params['message']){
+        this.message = params["message"];
+      }else{
+        this.message = undefined;
+      }
+    })
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -51,4 +62,8 @@ export class AppComponent implements OnInit, OnChanges{
 
   protected readonly GlobalService = GlobalService;
     protected readonly EpvPath = EpvPath;
+
+  delete_message() {
+    this.message = undefined
+  }
 }

@@ -15,6 +15,6 @@ class UsersRepository extends Repository {
      */
     public function connect(string $email, string $password): array
     {
-        return $this->get($this->modelName, ["id", "prenom", "nom", "status"], ["mail" => $email, "mdp"=>$password], "users not found");
+        return $this->get(["id", "prenom", "nom", "status"], ["mail" => $email, "mdp"=>$password], "users not found");
     }
 }

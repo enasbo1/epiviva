@@ -60,7 +60,7 @@ CREATE TABLE candidate(
   user_id INTEGER REFERENCES users(id),
   service_id INTEGER REFERENCES service(id),
   answer TEXT,
-  validated BOOLEAN default false,
+  validated VARCHAR(8) default 'wait',
   creation_date TIMESTAMP not null,
   validation_date TIMESTAMP,
   last_edited TIMESTAMP not null

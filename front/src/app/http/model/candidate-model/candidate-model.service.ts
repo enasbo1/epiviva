@@ -37,4 +37,8 @@ export class CandidateModelService extends RequestService {
   delete_candidate(id: bigint): Observable<object> {
     return (this.delete('candidate', id))
   }
+
+  get_self_candidate(): Observable<CandidateObject[]>{
+    return (this.get('candidate/self') as Observable<CandidateObject[]>);
+  }
 }

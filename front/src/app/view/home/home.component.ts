@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from "../../shared/global.service";
 import { Space_divider } from "../../shared/base-shared/space_divider";
 import { SampleListElement } from "../../shared/foundation/list/listObject";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {context_nav} from "./context_nav";
 
 @Component({
@@ -15,7 +15,8 @@ export class HomeComponent  extends Space_divider implements OnInit {
   public pageTitle: string = '';
   public content: SampleListElement[] = [];
 
-  constructor(private router: Router) {
+  constructor(
+  ) {
     super();
   }
 

@@ -37,7 +37,7 @@ class CandidateModelType implements ModelType
 			"user_id" => $params->user_id ?? null,
 			"service_id" => $params->service_id ?? null,
 			"answer" => $params->answer ?? null,
-			"validated" => $params->validated ?? false
+			"validated" => $params->validated ?? "wait"
         ]);
     }
 }
