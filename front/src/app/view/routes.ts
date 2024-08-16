@@ -18,6 +18,14 @@ export const  EpvPath={
     addresses:'visitor/addresses',
     root:'visitor'
   },
+  rh : {
+    home:'rh/home',
+    candidate:{
+      list:'rh/candidate',
+      details:'rh/candidate/:id'
+    },
+    root:'rh'
+  },
   admin: {
     home:'admin/home',
     root:'admin'
@@ -27,5 +35,6 @@ export const  EpvPath={
 export const EpvRolePart:Record<string, string> = {
   "0":EpvPath.home,
   "1":EpvPath.visitor.root,
+  "3":EpvPath.rh.root,
   "4":EpvPath.admin.root
 }

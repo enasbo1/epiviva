@@ -18,6 +18,14 @@
                     (submit)="submit($event)"
                     [endpage]="false"
             ></epv-form>
+            <div *ngIf="!(serviceForm && (serviceForm.length>0))">
+                <br><br><br>
+                <button
+
+                        (click)="submit([])"
+                        class="bubble colored clickable"
+                >{{'form.validate' | langue}}</button>
+            </div>
         </div>
     </div>
     <div class = "col-9 flex-shrink-2">

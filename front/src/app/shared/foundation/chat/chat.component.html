@@ -11,7 +11,7 @@
       </div>
 
       <div *ngFor="let message of sortedMessages" class="flex {{is_current(message.user) ? 'justify-end' : 'justify-start'}}">
-        <div *ngIf="!is_current(message.user)" class="avatar-circle {{is_system(message)?'bordered':''}}" [title]="UserMapperService.get_U_Name(message.user)">
+        <div *ngIf="!is_current(message.user)" class="avatar-circle {{(message.user?.id==1)?'font-black':''}} {{is_system(message)?'bordered':''}}" [title]="UserMapperService.get_U_Name(message.user)">
           {{ getInitials(message.user) }}
           <div class="date" [title]="message.date | date : 'HH:mm \ndd/MM/YYYY'">{{ message.date | date: 'dd/MM' }}</div>
         </div>

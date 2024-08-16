@@ -25,7 +25,10 @@ export class UserMapperService {
         '4': UserMapperService.rolesList[3]
     }
 
-    static get_U_Name(user?: { prenom?:string, nom?:string }):string{
+    static get_U_Name(user?: { prenom:string, nom:string }, fullname:boolean=false):string{
+        if (fullname && user){
+            return `${user.prenom[0].toUpperCase() + user.prenom.slice(1).toLowerCase()} ${user.nom.toUpperCase()}`
+        }
         let i:string|undefined = user?.prenom;
         i = i?i[0].toUpperCase():'';
         return i+". " +user?.nom

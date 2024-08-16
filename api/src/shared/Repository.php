@@ -91,7 +91,7 @@ class Repository
     public function delete(int $id, string $error = ""): void
     {
         if ($this->read($id)!=[]){
-            $this->delete_abs($this->modelName, "id", $id, $error);
+            $this->delete_abs("id", $id, $error);
         }
         else{
             $error = ($error == "") ? "$this->modelName instance not found: " : $error;

@@ -15,7 +15,7 @@ abstract class Service
 
     abstract public function findById(int $id): array;
 
-    abstract public function save(object $input): void;
+    abstract public function save(object $input);
 
     abstract public function update(object $input): void;
 

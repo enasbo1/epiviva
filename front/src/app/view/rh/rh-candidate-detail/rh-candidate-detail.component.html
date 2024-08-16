@@ -11,33 +11,33 @@
         <br>
         <div *ngIf="(answerRubric?.content?.length??0)>0">
             <epv-rubric
-                [name_class]="'text-start'"
-                [title_class]="'text-start text-size-normal bolder'"
-                [line]="false"
-                [content]="answerRubric"
+                    [name_class]="'text-start'"
+                    [title_class]="'text-start text-size-normal bolder'"
+                    [line]="false"
+                    [content]="answerRubric"
             ></epv-rubric>
-            <br>
-            <div class="flex">
-                <button
-                        class="bubble hover-0 clickable colored"
-                        [routerLink]="'/'+EpvPath.visitor.candidated.edit.replace(':id', candidate?.id?.toString()??'0')"
-                >{{'candidate.edit' | langue}}</button>
-                <br>
-            </div>
             <br>
         </div>
         <div class="flex">
             <button
-                    class="bubble hover-0 clickable {{candidate?'colored-red':''}}"
-                    (click)="delete()"
-            >{{'candidate.delete' | langue}}</button>
+                    class="bubble hover-0 clickable {{(candidate && candidate.validated!=='valid')?'colored':''}}"
+                    (click)="validate()"
+            >{{'candidate.validate' | langue}}</button>
+            <br>
+        </div>
+        <br>
+        <div class="flex">
+            <button
+                    class="bubble hover-0 clickable {{(candidate && candidate.validated!=='reject')?'colored-red':''}}"
+                    (click)="reject()"
+            >{{'candidate.reject' | langue}}</button>
             <br>
         </div>
     </div>
     <div class = "flex col-7 flex-shrink-light">
         <div style="width: 35rem">
             <epv-chat
-                [target]="chat_target"
+                    [target]="chat_target"
             ></epv-chat>
         </div>
     </div>

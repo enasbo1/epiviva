@@ -10,26 +10,6 @@ include_once "CandidateRepository.php";
 
 class CandidateService extends Service
 {
-    private string $query=
-"SELECT 
-    c.id as id, 
-    answer, 
-    validated, 
-    creation_date, 
-    validation_date, 
-    last_edited,
-    s.id as service__id,
-    s.nom as service__nom, 
-    form as service__form, 
-    description as service__description,
-    u.id as user__id, 
-    prenom as user__prenom, 
-    u.nom as user__nom, 
-    mail as user__mail
-FROM candidate c
-inner join public.service s on s.id = c.service_id
-inner join public.users u on u.id = c.user_id
-";
     public function __construct()
     {
         parent::__construct(new CandidateModelType());
@@ -43,10 +23,10 @@ inner join public.users u on u.id = c.user_id
         $repo = new CandidateRepository();
 
         $candidate = [];
-        $result = $repo->readAll("unable to find any candidate");
+        $result = $repo->get_candidates([]);
 
         foreach($result as $row) {
-            $candidate[] = $row;
+            $candidate[] = Formater::prepareGet($row);
         }
 
         return $candidate;
@@ -58,19 +38,27 @@ inner join public.users u on u.id = c.user_id
     public function findById(int $id): array
     {
         $repo = new CandidateRepository();
-        return $repo->read($id, "candidate not found");
+
+        $candidate = [];
+        $result = $repo->get_candidates(['c.id'=>$id]);
+
+        foreach($result as $row) {
+            $candidate[] = Formater::prepareGet($row);
+        }
+
+        return $candidate;
     }
 
     /**
      * @throws Exception
      */
-    public function save(object $input): void
+    public function save(object $input): string
     {
         $repo = new CandidateRepository();
         $toQuery = $this->modelType->isValidType($input);
         $toQuery['creation_date'] = date("Y-m-d H:i:s");
         $toQuery['last_edited'] = date("Y-m-d H:i:s");
-        $repo->create($toQuery, "unable to create candidate");
+        return $repo->create($toQuery, "unable to create candidate");
     }
 
     /**
@@ -90,6 +78,8 @@ inner join public.users u on u.id = c.user_id
     public function delete(int $id): void
     {
         $repo = new CandidateRepository();
+        $message = new MessageRepository();
+        $message->delete_abs('candidate_id', $id);
         $repo->delete($id);
     }
 
@@ -100,7 +90,16 @@ inner join public.users u on u.id = c.user_id
     {
         $input->user_id = $user_id;
         $input->validated = "wait";
-        $this->save($input);
+        $id = $this->save($input);
+        $message = new MessageRepository();
+        $message->create(
+            [
+                'sender_id' => $user_id,
+                'text'=>'candidate.createMessage',
+                'candidate_id' => $id,
+                'date_send' => date("Y-m-d H:i:s")
+            ]
+        );
     }
 
     /**
@@ -110,7 +109,7 @@ inner join public.users u on u.id = c.user_id
     {
         $repo = new CandidateRepository();
         $candidate = [];
-        $result = $repo->query($this->query.'where c.user_id = $1', ['user_id' => $user_id]);
+        $result = $repo->get_candidates(['c.user_id' => $user_id]);
 
         foreach($result as $row) {
             $candidate[] = Formater::prepareGet($row);
@@ -126,7 +125,7 @@ inner join public.users u on u.id = c.user_id
     {
         $repo = new CandidateRepository();
         $candidate = [];
-        $result = $repo->query($this->query.'where c.user_id = $1 and c.id = $2', ['user_id' => $user_id, 'id'=>$id]);
+        $result = $repo->get_candidates(['c.user_id' => $user_id, 'id'=>$id]);
 
         foreach($result as $row) {
             $candidate[] = Formater::prepareGet($row);
@@ -159,8 +158,7 @@ inner join public.users u on u.id = c.user_id
                 ]
             );
         }else{
-            http_response_code(403);
-            throw new Exception("not allowed");
+            throw new Exception("not allowed", 403);
         }
     }
 
@@ -172,5 +170,50 @@ inner join public.users u on u.id = c.user_id
         $repo = new CandidateRepository();
         return count($repo->get(['id'], ['id'=>$id, 'user_id'=>$user_id]))>0;
 
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function validate(object $input):void
+    {
+        $this->update_status($input, 'valid', 'candidate.validateMessage');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function reject(object $input):void
+    {
+        $this->update_status($input, 'reject', 'candidate.rejectMessage');
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function update_status(object $input, string $status, string $message): void
+    {
+        $repo = new CandidateRepository();
+        $messages = new MessageRepository();
+        $edited = $repo->read($input->id)[0];
+        if (isset($edited)){
+            if ($edited['validated'] !== $status) {
+                $edited["validated"] = $status;
+                $input->answer = $edited['answer']?? '{}';
+                $toQuery = $this->modelType->isValidType($input, $edited);
+                $repo->update($toQuery, "unable to update candidate");
+
+                $messages->create(
+                    [
+                        'sender_id' => 1,
+                        'text' => $message,
+                        'candidate_id' => $input->id,
+                        'date_send' => date("Y-m-d H:i:s")
+                    ]
+                );
+            }
+        }else{
+            throw new Exception("not found", 404);
+        }
     }
 }

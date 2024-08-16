@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CandidateModelService} from "../../../http/model/candidate-model/candidate-model.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CandidateObject} from "../../../http/model/candidate-model/candidateObject";
 import {RubricObject} from "../../../shared/base-shared/rubric/rubricObject";
 import {CandidateMapperService} from "../../../mapper/candidate-mapper.service";
@@ -27,6 +27,7 @@ export class VisitorCandidateDetailComponent implements OnInit {
   constructor(
       private candidateModelService:CandidateModelService,
       private route: ActivatedRoute,
+      private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -50,5 +51,17 @@ export class VisitorCandidateDetailComponent implements OnInit {
     })
   }
 
+  delete() {
+    if (this.candidate) {
+      this.candidateModelService.delete_candidate(this.candidate.id ?? 0).subscribe(()=>
+        {
+          this.router.navigate(
+              ['/'+EpvPath.visitor.candidated.list],
+              {queryParams:{message:"candidate.deleteMessage"}}
+          ).then();
+        }
+      )
+    }
+  }
   protected readonly EpvPath = EpvPath;
 }

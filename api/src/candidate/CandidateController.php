@@ -1,5 +1,6 @@
 <?php
 namespace candidate;
+use Exception;
 use token\Privilege;
 use shared\CrudController;
 
@@ -12,7 +13,7 @@ class CandidateController extends CrudController{
     {
         $request = new CandidateService();
         if ($id == []) {
-            Privilege::admin();
+            Privilege::rh();
             $candidate = $request->getAll();
         } elseif ($id[0] == 'self') {
             Privilege::allowed();
@@ -23,7 +24,7 @@ class CandidateController extends CrudController{
                 $candidate = $request->getOneFromUser($id[1], $_TOKEN->user_id);
             }
         }else{
-            Privilege::admin();
+            Privilege::rh();
             $candidate = $request->findById($id[0]);
         }
         echo json_encode($candidate);
@@ -51,10 +52,22 @@ class CandidateController extends CrudController{
         if ($id==[]){
             Privilege::admin();
             $request->update($input);
-        }elseif ($id[0]== 'self') {
+        }else {
             Privilege::allowed();
             global $_TOKEN;
-            $request->editCandidate($input, $_TOKEN->user_id);
+            switch ($id[0]){
+                case 'self':
+                    $request->editCandidate($input, $_TOKEN->user_id);
+                    break;
+                case 'validate':
+                    Privilege::rh();
+                    $request->validate($input);
+                    break;
+                case 'reject':
+                    Privilege::rh();
+                    $request->reject($input);
+                    break;
+            }
         }
         echo('{"message" : "candidature modifiée avec succès"}');
     }
@@ -62,7 +75,15 @@ class CandidateController extends CrudController{
     function delete(array $id): void
     {
         $request = new CandidateService();
-        Privilege::admin();
-        $request->delete($id[0]);
+        if ($id==[]){
+            throw new Exception('invalid request',404);
+        }else{
+            global $_TOKEN;
+            Privilege::allowed();
+            if (!$request->is_candidate($id[0], $_TOKEN->user_id)){
+                Privilege::rh();
+            }
+            $request->delete($id[0]);
+        }
     }
 }

@@ -11,7 +11,7 @@ class Privilege{
     {
         global $_TOKEN;
         if ($_TOKEN->user_role!==4){
-            throw new Exception('{message:"not allowed"}', 403);
+            throw new Exception('{message:"only admin allowed"}', 403);
         }
     }
     /**
@@ -38,6 +38,17 @@ class Privilege{
         global $_TOKEN;
         if ($_TOKEN->user_role==0){
             throw new Exception('{message:"not allowed"}', 403);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function rh(): void
+    {
+        global $_TOKEN;
+        if ($_TOKEN->user_role<3){
+            throw new Exception('{message:"only rh or higher allowed"}', 403);
         }
     }
 }

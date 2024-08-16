@@ -9,6 +9,8 @@
 </section>
 <ng-container [ngSwitch]="status">
     <epv-visitor-home *ngSwitchCase="'visitor'"></epv-visitor-home>
+    <epv-rh-home *ngSwitchCase="'rh'"></epv-rh-home>
+    <epv-admin-home *ngSwitchCase="'admin'"></epv-admin-home>
 </ng-container>
 <div class="card">
     <div class="card-header">

@@ -78,11 +78,11 @@ class AddressService extends Service
     /**
      * @throws Exception
      */
-    public function save(object $input): void
+    public function save(object $input): string
     {
         $repo = new AddressRepository();
         $toQuery = $this->modelType->isValidType($input);
-        $repo->create($toQuery, "unable to create address");
+        return $repo->create($toQuery, "unable to create address");
     }
 
     /**

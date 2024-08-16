@@ -61,7 +61,8 @@
   "home": {
     "developed": "Développé  par :",
     "engage": "Engagez-vous",
-    "engaged": "Vos Candidatures"
+    "engaged": "Vos Candidatures",
+    "candidates": "Candidatures"
   },
   "date": {
     "creation_date": "Date de création",
@@ -80,6 +81,15 @@
     "rejected": "rejetée",
     "the": "le",
     "name": "Candidature",
-    "updateMessage" : "La candidature a été modifiée"
+    "updateMessage" : "La candidature a été modifiée",
+    "deleteMessage" : "La candidature a bien été supprimée",
+    "rejectMessage" : "La candidature a été rejetée",
+    "validateMessage" : "La candidature a été validée",
+    "validate": "Valider la candidature",
+    "delete": "Annuler la candidature",
+    "edit": "Modifier la candidature",
+    "reject": "Rejeter la candidature",
+    "owner": "Candidat",
+    "createMessage" : "CANDIDATURE EFFECTUEE"
   }
 }

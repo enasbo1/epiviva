@@ -6,6 +6,7 @@ import {DateService} from "../http/shared/date.service";
 import {RubricElement} from "../shared/base-shared/rubric/rubricObject";
 import {FormFieldObject} from "../shared/base-shared/form-field/formFieldObject";
 import {FormService} from "../shared/foundation/form/form.service";
+import {UserMapperService} from "./user-mapper.service";
 
 @Injectable({
   providedIn: 'root'
@@ -30,16 +31,16 @@ export class CandidateMapperService {
       ],
       left:[
         null,
-        null,
         {text:model.validation_date?
               LanguageService.static_resolve('candidate.validated_on') + ' : ' + DateService.to_front(model.validation_date)
               :
               CandidateMapperService.states[model.validated?? ''], style:'font-weight:bold'},
+        null
       ],
       properties:[
         {name:'candidate.validation', value:CandidateMapperService.states[model.validated?? '']},
-        {name:'service', value:model.service.nom},
-        {name:'number', value:model.id?? ''},
+        {name:'Service', value:model.service.nom},
+        {name:'Number', value:model.id?? ''},
       ]
     }
   }
@@ -54,4 +55,19 @@ export class CandidateMapperService {
       value: ((answer.value=='')?'rubric.unspecified':answer.value),
     }
   }
+
+    static model_to_list(model:CandidateObject, linkPage?:string, id_key:string = ':id'):ListObject {
+        let n = CandidateMapperService.model_to_list_from_self(model, linkPage);
+        if (n.right){
+          n.right = [
+            {text:LanguageService.static_resolve('candidate.owner') + ' : ' + UserMapperService.get_U_Name(model.user, true), style:'font-weight:bold'},
+            n.right[0],
+            n.right[1]
+          ]
+        }
+        n.properties?.push(
+            {name:'candidate.owner', value: UserMapperService.get_U_Name(model.user, true)}
+        )
+        return n;
+    }
 }

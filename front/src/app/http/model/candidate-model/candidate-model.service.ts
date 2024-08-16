@@ -36,7 +36,7 @@ export class CandidateModelService extends RequestService {
     return (this.edit(content, 'candidate'))
   }
 
-  delete_candidate(id: bigint): Observable<object> {
+  delete_candidate(id: bigint|number): Observable<object> {
     return (this.delete('candidate', id))
   }
 
@@ -50,5 +50,13 @@ export class CandidateModelService extends RequestService {
 
   update_selfCandidate(content: CandidateEditObject, errorEvent?: EventEmitter<HttpErrorResponse>): Observable<object> {
     return (this.edit(content, `candidate/self`, errorEvent));
+  }
+
+  validate_candidature(id: number | bigint): Observable<object> {
+    return (this.edit({id:id}, `candidate/validate`))
+  }
+
+  reject_candidate(id: number | bigint): Observable<object> {
+    return (this.edit({id:id}, `candidate/reject`))
   }
 }

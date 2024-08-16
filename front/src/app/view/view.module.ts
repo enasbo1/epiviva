@@ -11,6 +11,9 @@ import { InscriptionComponent } from './connection/inscription/inscription.compo
 import { HomeComponent } from './home/home.component';
 import { VisitorHomeComponent } from './home/visitor-home/visitor-home.component';
 import {VisitorModule} from "./visitor/visitor.module";
+import { AdminHomeComponent } from './home/admin-home/admin-home.component';
+import { RhHomeComponent } from './home/rh-home/rh-home.component';
+import {RhModule} from "./rh/rh.module";
 
 
 
@@ -21,12 +24,15 @@ import {VisitorModule} from "./visitor/visitor.module";
     InscriptionComponent,
     HomeComponent,
     VisitorHomeComponent,
+    AdminHomeComponent,
+    RhHomeComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     ViewSharedModule,
     VisitorModule,
+    RhModule,
     ErrorModule,
     RouterModule.forChild([
       { path: EpvPath.login, component: ConnectionComponent},

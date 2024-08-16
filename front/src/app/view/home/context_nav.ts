@@ -8,5 +8,12 @@ export const context_nav : Record<string, SampleListElement[]>={
     'visitor' : [
         {link:'/'+EpvPath.visitor.candidate, value:'home.engage'},
         {link:'/'+EpvPath.visitor.candidated.list, value:'home.engaged'},
+    ],
+    'rh' : [
+        {link:'/'+EpvPath.rh.candidate.list, value:'home.candidates'}
+    ],
+    'admin' : [
+        {link:'/'+EpvPath.visitor.candidate, value:'home.engage'},
+        {link:'/'+EpvPath.visitor.candidated.list, value:'home.engaged'},
     ]
 }

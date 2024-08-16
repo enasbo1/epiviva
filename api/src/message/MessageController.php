@@ -23,7 +23,7 @@ class MessageController extends CrudController{
                 case 'candidate':
                     $candidate = new CandidateService();
                     if (!$candidate->is_candidate($id[1], $_TOKEN->user_id)) {
-                        Privilege::admin();
+                        Privilege::rh();
                     }
                     $message = $request->getFromCandidate($id[1]);
                     break;
@@ -46,11 +46,10 @@ class MessageController extends CrudController{
             switch ($id[0]) {
                 case 'candidate':
                     $candidate = new CandidateService();
-                    if ($candidate->is_candidate($input->candidate_id, $_TOKEN->user_id)){
-                        $request->send($input, $_TOKEN->user_id);
-                    }else{
-                        throw new Exception('{message:"not allowed"}', 403);
+                    if (!$candidate->is_candidate($input->candidate_id, $_TOKEN->user_id)) {
+                        Privilege::rh();
                     }
+                    $request->send($input, $_TOKEN->user_id);
                     break;
                 default:
                     Privilege::admin();
