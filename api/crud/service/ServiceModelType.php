@@ -18,7 +18,8 @@ class ServiceModelType implements ModelType
 			"id" => "!int",
 			"nom" => "r",
 			"form" => "",
-			"description" => ""
+			"description" => "",
+			"active" => ""
         ]);
         if (
             $valid != "validated"
@@ -35,7 +36,8 @@ class ServiceModelType implements ModelType
 			"id" => $params->id ?? $default["id"]  ?? null,
 			"nom" => $params->nom ?? $default["nom"]  ?? null,
 			"form" => $params->form ?? $default["form"]  ?? null,
-			"description" => $params->description ?? $default["description"]  ?? null
+			"description" => $params->description ?? $default["description"]  ?? null,
+			"active" => $params->active ?? $default["active"]  ?? null
         ]);
     }
 }

@@ -13,7 +13,9 @@ import { VisitorHomeComponent } from './home/visitor-home/visitor-home.component
 import {VisitorModule} from "./visitor/visitor.module";
 import { AdminHomeComponent } from './home/admin-home/admin-home.component';
 import { RhHomeComponent } from './home/rh-home/rh-home.component';
-import {RhModule} from "./rh/rh.module";
+import { RhModule } from "./rh/rh.module";
+import { AdminModule } from "./admin/admin.module";
+import { OptionsComponent } from './shared/options/options.component';
 
 
 
@@ -26,16 +28,19 @@ import {RhModule} from "./rh/rh.module";
     VisitorHomeComponent,
     AdminHomeComponent,
     RhHomeComponent,
+    OptionsComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     ViewSharedModule,
     VisitorModule,
+    AdminModule,
     RhModule,
     ErrorModule,
     RouterModule.forChild([
       { path: EpvPath.login, component: ConnectionComponent},
+      { path: EpvPath.options, component: OptionsComponent},
       { path: EpvPath.inscription, component: InscriptionComponent},
       { path: EpvPath.logout, component: DiconnectionComponent},
       ]

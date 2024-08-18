@@ -51,4 +51,12 @@ class Privilege{
             throw new Exception('{message:"only rh or higher allowed"}', 403);
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public static function forbidden(): void
+    {
+        throw new Exception('{message:"not allowed"}', 403);
+    }
 }

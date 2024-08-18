@@ -8,6 +8,7 @@ import { RhCandidateListComponent } from './rh-candidate-list/rh-candidate-list.
 import {FoundationModule} from "../../shared/foundation/foundation.module";
 import { RhCandidateDetailComponent } from './rh-candidate-detail/rh-candidate-detail.component';
 import {BaseSharedModule} from "../../shared/base-shared/base-shared.module";
+import {OptionsComponent} from "../shared/options/options.component";
 
 
 
@@ -22,6 +23,7 @@ import {BaseSharedModule} from "../../shared/base-shared/base-shared.module";
       {path: EpvPath.rh.home, component: HomeComponent},
       {path: EpvPath.rh.candidate.list, component: RhCandidateListComponent},
       {path: EpvPath.rh.candidate.details, component: RhCandidateDetailComponent},
+      {path: EpvPath.rh.options, component: OptionsComponent},
       {path: EpvPath.rh.root, redirectTo: EpvPath.rh.home, pathMatch: "full"},
     ]),
     FoundationModule,

@@ -1,0 +1,51 @@
+<section class="container flex">
+    <div>
+        <ng-container *ngIf="user">
+            <epv-rubric-list
+                    [items]="userRubric"
+            ></epv-rubric-list>
+            <epv-line
+                    [short]="true"
+            ></epv-line>
+        </ng-container>
+        <ng-container *ngIf="!user">
+            <div class="flex">
+                <span class="text-center">{{'connexion.not_connected' | langue}}<br>
+                    <b class="text-hover"
+                       [routerLink]="'/'+EpvPath.login"
+                    >
+                        {{'connexion.connect' | langue}}
+                    </b>
+                </span>
+            </div>
+        </ng-container>
+        <br>
+        <div class="flex">
+            <span class="bubble text-hover"
+                (click)="edit_address()"
+            >
+                <b><i>
+                   {{'address.edit' | langue}}
+                </i></b>
+            </span>
+        </div>
+        <div class="flex">
+            <span class="bubble text-hover"
+                  (click)="edit_user()"
+            >
+                <b><i>
+                   {{'user.edit' | langue}}
+                </i></b>
+            </span>
+        </div>
+        <div class="flex">
+            <span class="bubble text-hover"
+                  (click)="switch_language()"
+            >
+                <b><i>
+                   {{'languages.switch' | langue}}
+                </i></b>
+            </span>
+        </div>
+    </div>
+</section>

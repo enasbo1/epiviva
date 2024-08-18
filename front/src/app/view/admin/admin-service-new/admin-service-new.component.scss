@@ -1,0 +1,16 @@
+@use "../../../shared/palette.scss" as styles;
+
+.flex-shrink-2{
+  flex-shrink: 2;
+}
+
+.flex-shrink-light{
+  flex-shrink: 0.2;
+}
+
+section{
+
+  div &:first-child{
+    padding: 0 0.5rem 1rem;
+  }
+}

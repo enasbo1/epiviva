@@ -10,6 +10,8 @@ import {EpvPath} from "../../../view/routes";
 })
 export class VisitorHeaderComponent extends HeaderComponent implements OnInit {
 
+  override options:string = EpvPath.visitor.options;
+
   override navLinks : NavLink[] = [
     {
       name : "nav.home",

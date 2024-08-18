@@ -21,6 +21,10 @@ export class LanguageService {
     );
   }
 
+  see_languageFiles(){
+      return this.http.get<object>(this.productUrl.replace('**', "langList")) as Observable<string[]>
+  }
+
   private handelError(errorMessage: HttpErrorResponse) {
     console.error(errorMessage);
     return throwError(() => errorMessage)
@@ -53,7 +57,7 @@ export class LanguageService {
 
   static static_resolve(value: string|number|undefined , default_value:string = ""):string{
       if (value && /^\*.*\*$/.test(value.toString())){
-          return value.toString().replace(/\*$/, '').replace(/^\*/, '');
+          return LanguageService.unescape(value)?? "";
       }
       if (GlobalService.languageFile && value){
           const n = value.toString().split('.');
@@ -67,5 +71,9 @@ export class LanguageService {
       }
 
       return value?.toString() ?? default_value;
+  }
+
+  static unescape(value?:string|number):string|undefined{
+      return value?.toString().replace(/\*$/, '').replace(/^\*/, '');
   }
 }

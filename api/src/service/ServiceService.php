@@ -1,6 +1,7 @@
 <?php
 namespace service;
 
+use candidate\CandidateRepository;
 use Exception;
 use shared\Formater;
 use shared\Service;
@@ -22,7 +23,7 @@ class ServiceService extends Service
         $repo = new ServiceRepository();
 
         $service = [];
-        $result = $repo->readAll("unable to find any service");
+        $result = $repo->readActive("unable to find any service");
 
         foreach($result as $row) {
             $service[] = Formater::prepareGet($row);
@@ -76,6 +77,12 @@ class ServiceService extends Service
     public function delete(int $id): void
     {
         $repo = new ServiceRepository();
-        $repo->delete($id);
+        $candidate = new CandidateRepository();
+        $n = $candidate->get(['id'], ['service_id' => $id]);
+        if (count($n)==0){
+            $repo->delete($id);
+        }else{
+            $repo->update(['id'=> $id, 'active' => "false"]);
+        }
     }
 }

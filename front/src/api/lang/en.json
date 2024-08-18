@@ -5,29 +5,95 @@
     "email" : "email",
     "password" : "password",
     "title" : "connection",
-    "no_account" : "don't have an account?",
-    "new_account": "sign up"
+    "no_account" : "Don't have an account?",
+    "new_account": "Sign up"
   },
   "user": {
-    "credential": "Credentials"
+    "credential": "Authentication",
+    "first_name": "First Name",
+    "name":"Last Name"
+  },
+  "address": {
+    "title": "Address",
+    "exemple": "13 Lucky Street",
+    "postal_code": {
+      "title": "Postal Code",
+      "exemple": "53120"
+    },
+    "kind": {
+      "title": "Type",
+      "home": "Home",
+      "work": "Work",
+      "other": "Other"
+    },
+    "instruction": {
+      "title": "Instructions",
+      "exemple": "Apartment #16, 3rd floor"
+    }
   },
   "inscription": {
-    "title": "Inscription",
-    "first_name": "Nom",
-    "name":"Prenom"
+    "title": "Registration",
+    "passwords_match_error": "Passwords do not match"
   },
   "form": {
-    "previous": "previous",
-    "next": "next",
-    "validate": "validate",
-    "validated": "the form has been successfully validated"
+    "previous": "Previous",
+    "next": "Next",
+    "validate": "Validate",
+    "validated": "The form has been successfully validated",
+    "answer": "Entered responses:"
+  },
+  "rubric": {
+    "unspecified": "Unspecified",
+    "edit": "Edit"
   },
   "nav": {
     "home" : "Home",
     "logout": "Logout",
     "login": "Login"
   },
+  "service": {
+    "name": "Service Name",
+    "description": "Service Description",
+    "add": "Add a Service"
+  },
+  "service-list": {
+    "title": "Service List"
+  },
   "home": {
-    "developed": "Developed by :"
+    "developed": "Developed by:",
+    "engage": "Get Involved",
+    "engaged": "Your Applications",
+    "candidates": "Applications"
+  },
+  "options": {
+    "title": "settings"
+  },
+  "date": {
+    "creation_date": "Creation Date",
+    "edition_date": "Modification Date"
+  },
+  "candidate": {
+    "title": "Apply",
+    "registered": "Your application has been successfully registered",
+    "updated": "Your application has been successfully updated",
+    "creation_date": "Application Date",
+    "validated": "Application accepted",
+    "validated_on" : " validated on",
+    "validation" : "validation",
+    "waiting" : "pending",
+    "valid": "accepted",
+    "rejected": "rejected",
+    "the": "on",
+    "name": "Application",
+    "updateMessage" : "The application has been updated",
+    "deleteMessage" : "The application has been successfully deleted",
+    "rejectMessage" : "The application has been rejected",
+    "validateMessage" : "The application has been accepted",
+    "validate": "Validate the application",
+    "delete": "Cancel the application",
+    "edit": "Edit the application",
+    "reject": "Reject the application",
+    "owner": "Applicant",
+    "createMessage" : "APPLICATION SUBMITTED"
   }
 }

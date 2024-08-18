@@ -11,6 +11,7 @@ import {EpvPath} from "../../view/routes";
 })
 export class HeaderComponent implements OnInit {
   @Input() pageTitle?: string;
+  options:string = EpvPath.options;
 
   navLinks : NavLink[] = [
     {

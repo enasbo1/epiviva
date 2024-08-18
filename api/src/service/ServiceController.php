@@ -42,5 +42,8 @@ class ServiceController extends CrudController{
         $request = new ServiceService();
         Privilege::admin();
         $request->delete($id[0]);
+        http_response_code(201);
+        echo('{"message" : "service supprimé avec succès"}');
+
     }
 }

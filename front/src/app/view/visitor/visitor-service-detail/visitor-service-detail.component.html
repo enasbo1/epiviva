@@ -15,6 +15,7 @@
             <epv-form
                     *ngIf="serviceForm && (serviceForm.length>0)"
                     [items]="serviceForm"
+                    [error]="false"
                     (submit)="submit($event)"
                     [endpage]="false"
             ></epv-form>

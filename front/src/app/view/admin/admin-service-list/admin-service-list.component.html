@@ -1,0 +1,13 @@
+<div class="container flex">
+    <button
+            class="bubble bubble_padding hover-0 colored col-12 col-lg-4 col-md-6"
+            [routerLink]="'/'+EpvPath.admin.services.new"
+    >
+        {{'service.add' | langue}}
+    </button>
+</div>
+<epv-list
+        [items]="items"
+        [line_size]="3"
+>
+</epv-list>

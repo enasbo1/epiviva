@@ -8,7 +8,7 @@
                         (value_up)="switch_rubric($event)"
                 ></epv-dropdown>
             </div>
-            <input type="text" [(ngModel)]="search_value" placeholder="search" class="bubble {{critera ? 'bubble-right col-9' : 'col-12'}} hover-w">
+            <input type="text" [(ngModel)]="search_value" [placeholder]="'search.search'|langue" class="bubble {{critera ? 'bubble-right col-9' : 'col-12'}} hover-w">
         </div>
     </div>
     <div class="flex short-line">

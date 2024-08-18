@@ -22,6 +22,6 @@ export interface FormFieldObject{
 
 export type FormFieldValue=string|Date|number|undefined
 
-export const FormFieldTypeList = ["num","longtext","dropdown","text","email","password","place","date","period","url","file"] as const;
+export const FormFieldTypeList = ["num","longtext","dropdown","text","email","password","date","period","url","file"] as const;
 
 export type FormFieldType = typeof FormFieldTypeList[number]

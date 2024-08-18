@@ -27,6 +27,7 @@
           [(ngModel)]="field._value"
     >{{field.default}}</textarea>
   </ng-container>
+
   <ng-container *ngSwitchCase="'num'">
     <input type="number" class="bubble hover-w w-100 {{field.sclass}}"
            [value]="field.default"
@@ -56,10 +57,6 @@
            [placeholder]="field.placeholder | langue"
            [(ngModel)]="field._value"
     >
-  </ng-container>
-
-  <ng-container *ngSwitchCase="'place'">
-    <p> unimplemented field : place </p>
   </ng-container>
 
   <ng-container *ngSwitchCase="'date'">

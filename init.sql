@@ -3,7 +3,8 @@ CREATE TABLE service (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(50),
     form TEXT,
-    description VARCHAR(512)
+    description VARCHAR(512),
+    active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE secteur (

@@ -1,0 +1,33 @@
+<section class="flex justify-spaced" xmlns="http://www.w3.org/1999/html">
+    <div class="col-3 flex-shrink-light">
+        <button
+            class="bubble hover-0 clickable {{savable?'colored':''}}"
+            (click)="save()"
+        >{{'form.save' | langue}}</button>
+        <br>
+        <br>
+        <span><b>{{'service.name' | langue}} : </b>
+            <input type="text" [placeholder]="'service.new' | langue"
+                   class="clean"
+                   [(ngModel)]="nom"
+            >
+        </span>
+        <br><br>
+        <span *ngIf="true">
+            <b>{{"service.description" | langue}} :</b><br>
+            <textarea class="clean w-100 h-50"
+                      [placeholder]="'service.description' | langue"
+                      [(ngModel)]="description"
+            ></textarea>
+            <br>
+        </span>
+    </div>
+    <div class = "flex col-9 flex-shrink-light">
+        <div class="w-100">
+            <h4><i>{{'form.edit' | langue}}</i></h4>
+            <epv-admin-service-form
+                [form]="serviceForm"
+            ></epv-admin-service-form>
+        </div>
+    </div>
+</section>

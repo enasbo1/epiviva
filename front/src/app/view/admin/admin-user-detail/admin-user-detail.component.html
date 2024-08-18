@@ -1,0 +1,12 @@
+<section class = 'flex'>
+    <div>
+        <div *ngIf="user_rubric" class="rubric-container">
+            <epv-rubric-list [items]="user_rubric"></epv-rubric-list>
+        </div>
+        <epv-line [short]="true"></epv-line>
+        <br>
+        <div class="flex" *ngIf="(user?.status!=='5') && (user?.id != GlobalService.currentUser?.id)">
+            <button class="bubble {{editable?'hover-0':'disabled'}}" (click)="witch_privileges()"><b>{{ 'user.privilege.edit' | langue }}</b></button>
+        </div>
+    </div>
+</section>

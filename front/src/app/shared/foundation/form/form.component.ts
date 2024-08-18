@@ -12,10 +12,21 @@ export class FormComponent implements OnInit {
   @Input() items?: FormStepObject[];
   @Input() justify:"center"|"right"|"" = "";
   @Input() endpage?:boolean = true;
+  @Input() error: boolean = true;
+
   @Output() submit:EventEmitter<FormFieldObject[]> = new EventEmitter<FormFieldObject[]>();
   public step:number = 0;
+  private errorEvent ?:EventEmitter<string>;
+  public errorMessage?:string;
 
   ngOnInit(): void {
+    if (this.error) {
+      this.errorEvent = new EventEmitter<string>();
+      this.errorEvent.subscribe((message)=>{
+          this.errorMessage = message
+        }
+      )
+    }
   }
 
   public get_current():FormStepObject|undefined{
@@ -41,6 +52,7 @@ export class FormComponent implements OnInit {
           return field.reg_error?.find(
             (regtest):boolean=>{
               if (!RegExp(regtest.regex).test(val)){
+                this.errorEvent?.emit(regtest.message)
                 current.errorEvent?.emit(regtest.message)
                 return true;
               }

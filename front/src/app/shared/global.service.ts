@@ -58,8 +58,12 @@ export class GlobalService {
     WP_global.pageTitle = name;
   }
 
+  public static set language(lang:string){
+    sessionStorage.setItem('langName',lang);
+  }
+
   public static get language():string{
-    return "fr";
+    return sessionStorage.getItem('langName')?? 'fr';
   }
 
   public static get languageFile():object{

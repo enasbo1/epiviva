@@ -45,9 +45,16 @@ class UsersController extends CrudController{
     function patch(array $id, object $input): void
     {
         $request = new UsersService();
-
-        Privilege::admin();
+        Privilege::allowed();
+        global $_TOKEN;
+        if ($input->id == $_TOKEN->user_id) {
+            $input->status = null;
+        }else{
+            Privilege::admin();
+        }
         $request->update($input);
+        echo('{"message" : "users modifié avec succès"}');
+
     }
 
     function delete(array $id): void

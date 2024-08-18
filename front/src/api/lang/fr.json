@@ -1,21 +1,57 @@
 {
   "language": "fr",
   "title" : "Epivi'a",
+  "languages": {
+    "switch": "langue du contenu",
+    "en": "Anglais",
+    "fr": "Français"
+  },
   "connexion": {
     "email" : "mail",
     "password" : "mot de passe",
     "title" : "connection",
     "no_account" : "vous n'avez pas de compte ?",
-    "new_account": "s'inscrire"
+    "new_account": "s'inscrire",
+    "not_connected": "vous n'êtes pas connecté",
+    "connect": "se connecter"
   },
   "user": {
+    "title": "Utilisateur",
+    "list": "Utilisateurs",
     "credential": "Authentifiacation",
     "first_name": "Nom",
-    "name":"Prenom"
+    "name":"Prenom",
+    "status": "Status",
+    "email": "Mail",
+    "num": "Téléphone",
+    "regex_error": {
+      "first_name": "le Nom doit être renseigné",
+      "name":"le Prénom doit être renseigné",
+      "email": "le Mail doit être renseigné",
+      "num": "le Numero de Télephone doit être renseigné",
+      "num_val": "le Numéro de Téléphone doit être valide"
+    },
+    "edit": "Modifier l'utilisateur",
+    "edited": "L'utilisateur a bien été modifié",
+    "identity": "Identitée",
+    "contact": "Coordonnées",
+    "privilege":{
+      "edit": "changer le rôle",
+      "edited": "Le rôle de l'utilisateur a bien été modifié"
+    },
+    "roles": {
+      "banned": "bannis",
+      "visitor": "visiteur",
+      "unset": "indeterminé",
+      "rh": "Ressources Humaines",
+      "admin": "Administrateur"
+    }
   },
   "address": {
     "title": "Adresse",
     "exemple": "13 rue de la chance",
+    "edit": "Modifier l'addresse",
+    "edited": "L'addresse a bien été modifiée",
     "postal_code": {
       "title": "Code postal",
       "exemple": "53120"
@@ -40,7 +76,26 @@
     "next": "suivant",
     "validate": "valider",
     "validated": "le formulaire a bien été validé",
-    "answer": "Réponses saisies :"
+    "answer": "Réponses saisies :",
+    "view": "Aperçu du formulaire",
+    "edit": "Modifiez le formulaire",
+    "save": "Sauvegarder"
+  },
+  "search": {
+    "title": "Titre",
+    "search": "Rechercher"
+  },
+  "edit_form": {
+    "step": {
+      "title": "étape",
+      "drop": "supprimer l'étape",
+      "new": "nouvelle étape"
+    },
+    "rubric": {
+      "new": "nouvelle rubrique",
+      "drop": "supprimer la  rubrique",
+      "add": "ajouter un titre"
+    }
   },
   "rubric": {
     "unspecified": "non spécifié",
@@ -52,17 +107,30 @@
     "login": "Connection"
   },
   "service": {
+    "title": "Service",
     "name": "Nom du service",
-    "description": "Description du service"
+    "description": "Description du service",
+    "add": "Ajouter un service",
+    "added": "Le service a bien été ajouté",
+    "delete" : "Supprimer le service",
+    "deleteError" : "Erreur lors de la suppression du service",
+    "deleteValidation": "Voulez-vous vraiment supprimer ce service?",
+    "deleteConfirm": " Le service a bien été supprimé",
+    "edit" : "Modifier le service",
+    "edited" : "Le service a bien été modifié",
+    "new" : "Nouveau service"
   },
   "service-list": {
-    "title": "Liste des Services"
+    "title": "Services"
   },
   "home": {
     "developed": "Développé  par :",
     "engage": "Engagez-vous",
     "engaged": "Vos Candidatures",
     "candidates": "Candidatures"
+  },
+  "options": {
+    "title": "Paramètres"
   },
   "date": {
     "creation_date": "Date de création",

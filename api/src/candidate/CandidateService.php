@@ -23,7 +23,7 @@ class CandidateService extends Service
         $repo = new CandidateRepository();
 
         $candidate = [];
-        $result = $repo->get_candidates([]);
+        $result = $repo->get_candidates(['s.active' => "true"]);
 
         foreach($result as $row) {
             $candidate[] = Formater::prepareGet($row);
@@ -40,7 +40,7 @@ class CandidateService extends Service
         $repo = new CandidateRepository();
 
         $candidate = [];
-        $result = $repo->get_candidates(['c.id'=>$id]);
+        $result = $repo->get_candidates(['c.id'=>$id, 's.active' => "true"]);
 
         foreach($result as $row) {
             $candidate[] = Formater::prepareGet($row);
@@ -109,7 +109,7 @@ class CandidateService extends Service
     {
         $repo = new CandidateRepository();
         $candidate = [];
-        $result = $repo->get_candidates(['c.user_id' => $user_id]);
+        $result = $repo->get_candidates(['c.user_id' => $user_id, 's.active' => "true"]);
 
         foreach($result as $row) {
             $candidate[] = Formater::prepareGet($row);
@@ -125,7 +125,7 @@ class CandidateService extends Service
     {
         $repo = new CandidateRepository();
         $candidate = [];
-        $result = $repo->get_candidates(['c.user_id' => $user_id, 'id'=>$id]);
+        $result = $repo->get_candidates(['c.user_id' => $user_id, 'c.id'=>$id, 's.active' => "true"]);
 
         foreach($result as $row) {
             $candidate[] = Formater::prepareGet($row);

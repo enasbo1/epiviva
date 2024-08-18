@@ -14,11 +14,11 @@ import {EpvPath} from "../../routes";
 export class RhCandidateListComponent implements OnInit {
   items: ListObject[] = [];
   filter: FilterObject[] = [
-    {name:'candidate.validation', type: 'auto'},
+    {name:'candidate.validation', type: 'auto', default:'candidate.waiting'},
   ];
   critera:string[] = [
     'Number',
-    'Service',
+    'service.title',
     'candidate.owner'
   ];
 

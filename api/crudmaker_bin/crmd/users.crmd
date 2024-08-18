@@ -2,7 +2,7 @@ id-|-!int
 prenom-|-:M,25
 nom-|-:M,100
 mail-|-r !email
-status-|-r :M,2
+status-|-!int :M,2 :<,5-|-'0'
 num-|-r :e,10
 mdp-|-r :m,5
 id_service-|-!int

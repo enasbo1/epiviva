@@ -21,7 +21,7 @@ export class AddressModelService extends RequestService{
     return (this.get('address') as Observable<AddressObject[]>);
   }
 
-  get_one_address(number:bigint):Observable<AddressObject[]>{
+  get_one_address(number:number|bigint):Observable<AddressObject[]>{
     return (this.get_one('address',number) as Observable<AddressObject[]>);
 
   }

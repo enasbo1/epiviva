@@ -12,6 +12,7 @@ import { VisitorCandidateListComponent } from './visitor-candidate-list/visitor-
 import { VisitorCandidateDetailComponent } from './visitor-candidate-detail/visitor-candidate-detail.component';
 import {ToBeImplementedComponent} from "../../shared/foundation/to-be-implemented/to-be-implemented.component";
 import { VisitorCandidateEditComponent } from './visitor-service-detail/visitor-candidate-edit.component';
+import {OptionsComponent} from "../shared/options/options.component";
 
 
 
@@ -36,6 +37,7 @@ import { VisitorCandidateEditComponent } from './visitor-service-detail/visitor-
       {path: EpvPath.visitor.candidated.edit, component: VisitorCandidateEditComponent},
       {path: EpvPath.visitor.candidated.details, component: VisitorCandidateDetailComponent},
       {path: EpvPath.visitor.addresses, component: AddressesComponent},
+      {path: EpvPath.visitor.options, component: OptionsComponent},
       {path: EpvPath.visitor.root, redirectTo: EpvPath.visitor.home, pathMatch:"full"},
     ]),
   ]

@@ -5,6 +5,7 @@ use connexion\ConnexionService;
 use Exception;
 use shared\Formater;
 use shared\Service;
+use token\Privilege;
 
 include_once "UsersRepository.php";
 
@@ -67,6 +68,12 @@ class UsersService extends Service
     {
         $repo = new UsersRepository();
         $updated = $repo->read($input->id)[0] ?? [];
+        if ($updated['id']=='1'){
+            Privilege::forbidden();
+        }
+        if (isset($input->status) && $input->status==0){
+            $repo->update(['id'=>$input->id, 'status'=>0], "unable to update users");
+        }
         $toQuery = $this->modelType->isValidType($input, $updated);
         $repo->update($toQuery, "unable to update users");
     }
@@ -77,6 +84,9 @@ class UsersService extends Service
     public function delete(int $id): void
     {
         $repo = new UsersRepository();
+        if ($id == 1){
+            Privilege::forbidden();
+        }
         $repo->delete($id);
     }
 

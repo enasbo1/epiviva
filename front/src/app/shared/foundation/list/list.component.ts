@@ -9,7 +9,6 @@ import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
 import {FormService} from "../form/form.service";
 import {DateService} from "../../../http/shared/date.service";
 import {Params} from "@angular/router";
-import {LanguePipe} from "../../base-shared/langue.pipe";
 
 @Component({
   selector: 'epv-list',
@@ -30,7 +29,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.critera){
-      this.critera.splice(0,0,"Title");
+      this.critera.splice(0,0,"search.title");
     }
     if (this.filters){
       this._filters = [];
@@ -58,7 +57,7 @@ export class ListComponent implements OnInit {
         filter.choices =
           this.filter_item().map(
             item =>
-              this.findFlilter(item, filter.name)
+              this.findFilter(item, filter.name)
           ).filter(
             (item, i, ar) =>
               // enlèves les doublons
@@ -88,7 +87,7 @@ export class ListComponent implements OnInit {
           (item:ListObject) =>
             FilterService.isConforme(
               filter,
-              this.findFlilter(item, filter.name)
+              this.findFilter(item, filter.name)
             )
         );
       }else if (filter.required_act !== undefined){
@@ -107,19 +106,19 @@ export class ListComponent implements OnInit {
     }else{
       filtered_list = filtered_list.filter(
         item =>
-          this.findFlilter(item, this.search_crit)
+          this.findFilter(item, this.search_crit)
             ?.value?.toString().toLowerCase().includes(this.search_value.toLowerCase())
       ).sort((a,b)=>
-          (this.findFlilter(a,this.search_crit)?.name?? "")
+          (this.findFilter(a,this.search_crit)?.value?.toString()?? "")
               .localeCompare(
-                  this.findFlilter(b,this.search_crit)?.name?? ""
+                  this.findFilter(b,this.search_crit)?.value?.toString()?? ""
         )
       );
     }
     return filtered_list;
   }
 
-  findFlilter(item:ListObject, name:string):ListObjectPropriety|undefined{
+  findFilter(item:ListObject, name:string):ListObjectPropriety|undefined{
     return item.properties?.find(
       value =>
         value.name?.toLowerCase() === name.toLowerCase()

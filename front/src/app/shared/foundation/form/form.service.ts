@@ -9,6 +9,8 @@ import {ModaleService} from "../modale/modale.service";
 import {FormRubricObject, FormStepObject} from "../../base-shared/form-step/formStepObject";
 import moment from "moment";
 import {RubricType} from "../../base-shared/rubric/rubricObject";
+import placeholder from "lodash/fp/placeholder";
+import {LanguageService} from "../../base-shared/language.service";
 
 @Injectable({
   providedIn: 'root'
@@ -79,7 +81,6 @@ export class FormService {
       form
     ).subscribe(
       (fields:FormFieldObject[])=>{
-        formField.name = FormService.get_value(fields, 'name', formField.name) as string;
         formField.title = FormService.get_value(fields, 'title', formField.title) as string|undefined;
         formField.sclass = FormService.get_value(fields, 'sclass', formField.sclass) as string|undefined;
         formField.type = FormService.get_value(fields, 'type', formField.type) as FormFieldType;
@@ -96,6 +97,7 @@ export class FormService {
 
         }
         formField._value = formField.default;
+        formField.placeholder = formField.placeholder?"*"+formField.placeholder+"*":undefined;
       }
     )
   }
@@ -103,9 +105,8 @@ export class FormService {
   static edit_field_forms_field(formField:FormFieldObject):FormFieldObject[]{
 
     const fields: FormFieldObject[] = [
-      { name: "name", type: "text", placeholder: "name", title: "Name", default: formField.name },
       { name: "title", type: "text", placeholder: "title", title: "Title", default: formField.title },
-      { name: "placeholder", type: "text", placeholder: "placeholder", title: "Placeholder", default: formField.placeholder },
+      { name: "placeholder", type: "text", placeholder: "placeholder", title: "Placeholder", default: LanguageService.unescape(formField.placeholder) },
       { name: "default", type: "text", placeholder: "default value", title: "Default Value", default: formField.default },
       { name: "instruction", type: "longtext", placeholder: "instruction", title: "Instruction", default: formField.instruction },
     ];

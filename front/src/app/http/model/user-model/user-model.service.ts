@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {RequestService} from "../../shared/request.service";
 import { Observable} from "rxjs";
-import {UserObject, UserPost} from "./userObject";
+import {UserObject, UserPatch, UserPost} from "./userObject";
 import {HttpErrorResponse} from "@angular/common/http";
 import {FormFieldObject, FormFieldValue} from "../../../shared/base-shared/form-field/formFieldObject";
 import {WPTokenRequestType} from "../../shared/connection.service";
@@ -25,7 +25,7 @@ export class UserModelService extends RequestService{
 
   }
 
-  update_user(content:UserObject):Observable<object>{
+  update_user(content:UserPatch):Observable<object>{
     return (this.edit(content, 'users'))
   }
 

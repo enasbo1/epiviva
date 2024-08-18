@@ -26,7 +26,7 @@ export class ServiceModelService extends RequestService{
     return (this.edit(content, 'service'))
   }
 
-  delete_service(id:bigint):Observable<object>{
-    return (this.delete('service',id))
+  delete_service(id:bigint|number, errorCatch?:EventEmitter<HttpErrorResponse>):Observable<object>{
+    return (this.delete('service',id, errorCatch))
   }
 }

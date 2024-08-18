@@ -4,13 +4,17 @@ import {RouterLink, RouterLinkWithHref} from "@angular/router";
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from "../shared/shared.module";
 import { VisitorHeaderComponent } from './header/visitor-header/visitor-header.component';
+import { RhHeaderComponent } from './header/rh-header/rh-header.component';
+import { AdminHeaderComponent } from './header/admin-header/admin-header.component';
 
 
 
 @NgModule({
     declarations: [
       HeaderComponent,
-      VisitorHeaderComponent
+      VisitorHeaderComponent,
+      RhHeaderComponent,
+      AdminHeaderComponent
     ],
     imports: [
         CommonModule,
@@ -20,7 +24,9 @@ import { VisitorHeaderComponent } from './header/visitor-header/visitor-header.c
     ],
     exports: [
         HeaderComponent,
-        VisitorHeaderComponent
+        VisitorHeaderComponent,
+        AdminHeaderComponent,
+        RhHeaderComponent
     ]
 })
 export class HeadFootModule { }

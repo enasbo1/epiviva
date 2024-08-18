@@ -1,0 +1,70 @@
+<div class="flex justify-spaced">
+    <div class="flex">
+        <div>
+            <ng-container *ngIf="currentStep">
+                <h3 *ngIf="currentStep.title" [class]="currentStep">{{currentStep.title | langue }}</h3>
+                <ng-container *ngFor="let rubric of currentStep?.content">
+                    <epv-line [short]="true"></epv-line>
+                    <div
+                            class="clickable {{is_current_rubric(rubric)?'font-colored':''}}"
+                            (click)="is_current_rubric(rubric)?edit_rubric(rubric):set_rubric(rubric)">
+                        <h4 *ngIf="rubric.title">{{rubric.title| langue }}</h4>
+                        <h4 *ngIf="!rubric.title"> {{ 'edit_form.rubric.add' | langue}}</h4>
+                    </div>
+                    <div *ngFor="let item of rubric.content" class="form-element"
+                    >
+                        <div class="flex align-end">
+                            <epv-form-field [field]="item" (click)="edit_field(item)"></epv-form-field>
+                            <div class="icon font-red clickable"
+                                 (click)="drop_field(item, rubric)"
+                            >🗑</div>
+                        </div>
+                    </div>
+                    <div class="clickable" style="color:darkred"
+                         (click)="drop_rubric(rubric)"
+                    >
+                        {{ 'edit_form.rubric.drop' | langue}}
+                    </div>
+                </ng-container>
+                <button class="bubble colored w-100"
+                        (click)="newRubric()"
+                        style="padding: 0.5rem"
+                >
+                    {{ 'edit_form.rubric.new' | langue}}
+                </button>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="flex justify-spaced">
+        <div>
+            <ul>
+                <li *ngFor="let i of form">
+                    <button class = "bubble w-100 {{isCurrent(i)?'colored':''}}"
+                            (click)="isCurrent(i)?edit_step(i):currentStep = i"
+                    >{{ 'edit_form.step.title' | langue }} {{(i.title?? stepNumber(i))}}</button>
+                    <span *ngIf="isCurrent(i)" class="clickable" style="color:darkred"
+                          (click)="drop_step(i)"
+                    >
+            {{ 'edit_form.step.drop' | langue }}
+          </span>
+                </li>
+                <li>
+                    <button class = "bubble w-100"
+                            (click)="newStep()"
+                    >{{ 'edit_form.step.new' | langue }}</button>
+                </li>
+
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li *ngFor="let type of FormFieldTypeList">
+                    <button class = "bubble w-100"
+                            (click)="addField(type)"
+                    >{{type}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

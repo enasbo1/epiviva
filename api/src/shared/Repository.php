@@ -66,8 +66,8 @@ class Repository
     /**
      * @throws Exception
      */
-    public function readActif(string $error = ""):array{
-        return $this->get([], ["actif"=>true], $error);
+    public function readActive(string $error = ""):array{
+        return $this->get([], ["active"=>true], $error);
     }
 
     /**
@@ -99,6 +99,9 @@ class Repository
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function delete_abs(string $attribute, string $value, string $error = ""): void
     {
         try{
@@ -117,8 +120,7 @@ class Repository
     public function update_abs(array $updates, array $restrict, string $error = "")
     {
         try {
-            $updates['id'] = null;
-            $updates = array_filter($updates);
+            unset($updates['id']);
             $q = "UPDATE $this->modelName SET ";
             $i = 1;
             foreach ($updates as $col => $value) {

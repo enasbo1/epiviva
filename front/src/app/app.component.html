@@ -21,6 +21,8 @@
 
   <header [ngSwitch]="status">
     <epv-visitor-header *ngSwitchCase="EpvPath.visitor.root" [pageTitle]="pageTitle"></epv-visitor-header>
+    <epv-admin-header *ngSwitchCase="EpvPath.admin.root" [pageTitle]="pageTitle"></epv-admin-header>
+    <epv-rh-header *ngSwitchCase="EpvPath.rh.root" [pageTitle]="pageTitle"></epv-rh-header>
     <epv-header *ngSwitchDefault [pageTitle]="pageTitle"></epv-header>
   </header>
 </div>
