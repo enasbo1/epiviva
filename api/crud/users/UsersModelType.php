@@ -22,9 +22,9 @@ class UsersModelType implements ModelType
 			"status" => ":M,2 :<,5",
 			"num" => "r :e,10",
 			"mdp" => "r :m,5",
-			"id_service" => "!int",
+			"service_id" => "!int",
 			"id_secteur" => "!int",
-			"id_address" => "!int"
+			"address_id" => "!int"
         ]);
         if (
             $valid != "validated"
@@ -45,9 +45,9 @@ class UsersModelType implements ModelType
 			"status" => $params->status ?? $default["status"]  ?? '0',
 			"num" => $params->num ?? $default["num"]  ?? null,
 			"mdp" => $params->mdp ?? $default["mdp"]  ?? null,
-			"id_service" => $params->id_service ?? $default["id_service"]  ?? null,
+			"service_id" => $params->service_id ?? $default["service_id"]  ?? null,
 			"id_secteur" => $params->id_secteur ?? $default["id_secteur"]  ?? null,
-			"id_address" => $params->id_address ?? $default["id_address"]  ?? null
+			"address_id" => $params->address_id ?? $default["address_id"]  ?? null
         ]);
     }
 }

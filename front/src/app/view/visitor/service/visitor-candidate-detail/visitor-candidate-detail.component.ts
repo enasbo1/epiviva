@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {CandidateModelService} from "../../../http/model/candidate-model/candidate-model.service";
+import {CandidateModelService} from "../../../../http/model/candidate-model/candidate-model.service";
+import {ChatTarget} from "../../../../shared/foundation/chat/chat.component";
+import {RubricObject} from "../../../../shared/base-shared/rubric/rubricObject";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CandidateObject} from "../../../http/model/candidate-model/candidateObject";
-import {RubricObject} from "../../../shared/base-shared/rubric/rubricObject";
-import {CandidateMapperService} from "../../../mapper/candidate-mapper.service";
-import {FormStepObject} from "../../../shared/base-shared/form-step/formStepObject";
-import {FormService} from "../../../shared/foundation/form/form.service";
-import {FormFieldObject} from "../../../shared/base-shared/form-field/formFieldObject";
-import {GlobalService} from "../../../shared/global.service";
-import {LanguageService} from "../../../shared/base-shared/language.service";
-import {EpvPath} from "../../routes";
-import {ChatTarget} from "../../../shared/foundation/chat/chat.component";
+import {LanguageService} from "../../../../shared/base-shared/language.service";
+import {FormService} from "../../../../shared/foundation/form/form.service";
+import {GlobalService} from "../../../../shared/global.service";
+import {FormFieldObject} from "../../../../shared/base-shared/form-field/formFieldObject";
+import {CandidateMapperService} from "../../../../mapper/candidate-mapper.service";
+import {FormStepObject} from "../../../../shared/base-shared/form-step/formStepObject";
+import {EpvPath} from "../../../routes";
+import {CandidateObject} from "../../../../http/model/candidate-model/candidateObject";
 
 @Component({
   selector: 'epv-visitor-candidate-detail',

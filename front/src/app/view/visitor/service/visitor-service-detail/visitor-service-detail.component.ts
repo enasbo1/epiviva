@@ -1,14 +1,14 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {ServiceModelService} from "../../../http/model/service-model/service-model.service";
+import {LanguageService} from "../../../../shared/base-shared/language.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ServiceObject} from "../../../http/model/service-model/serviceObject";
-import {FormStepObject} from "../../../shared/base-shared/form-step/formStepObject";
-import {GlobalService} from "../../../shared/global.service";
-import {LanguageService} from "../../../shared/base-shared/language.service";
-import {FormFieldObject} from "../../../shared/base-shared/form-field/formFieldObject";
-import {FormService} from "../../../shared/foundation/form/form.service";
-import {CandidateModelService} from "../../../http/model/candidate-model/candidate-model.service";
-import {EpvPath} from "../../routes";
+import {CandidateModelService} from "../../../../http/model/candidate-model/candidate-model.service";
+import {ServiceModelService} from "../../../../http/model/service-model/service-model.service";
+import {FormStepObject} from "../../../../shared/base-shared/form-step/formStepObject";
+import {ServiceObject} from "../../../../http/model/service-model/serviceObject";
+import {GlobalService} from "../../../../shared/global.service";
+import {FormFieldObject} from "../../../../shared/base-shared/form-field/formFieldObject";
+import {FormService} from "../../../../shared/foundation/form/form.service";
+import {EpvPath} from "../../../routes";
 
 @Component({
   selector: 'epv-visitor-service-detail',

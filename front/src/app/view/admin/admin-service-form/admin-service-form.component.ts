@@ -181,8 +181,8 @@ export class AdminServiceFormComponent implements OnInit {
   }
 
   edit_field(field:FormFieldObject):void{
-    this.edited.emit()
-    FormService.edit_field(field)
+    this.edited.emit();
+    FormService.edit_field(field);
   }
 
   drop_field(field:FormFieldObject, rubric:FormRubricObject):void{

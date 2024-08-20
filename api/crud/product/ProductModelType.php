@@ -19,7 +19,7 @@ class ProductModelType implements ModelType
 			"code_barre" => ":M,24",
 			"name" => ":M,128",
 			"marque" => ":M,50",
-			"id_address" => "r !int"
+			"address_id" => "r !int"
         ]);
         if (
             $valid != "validated"
@@ -37,7 +37,7 @@ class ProductModelType implements ModelType
 			"code_barre" => $params->code_barre ?? $default["code_barre"]  ?? null,
 			"name" => $params->name ?? $default["name"]  ?? null,
 			"marque" => $params->marque ?? $default["marque"]  ?? null,
-			"id_address" => $params->id_address ?? $default["id_address"]  ?? null
+			"address_id" => $params->address_id ?? $default["address_id"]  ?? null
         ]);
     }
 }

@@ -2,4 +2,4 @@ id-|-!int
 code_barre-|-:M,24
 name-|-:M,128
 marque-|-:M,50
-id_address-|-r !int
+address_id-|-r !int

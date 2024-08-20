@@ -4,10 +4,14 @@ import {EpvPath} from "../routes";
 export const context_nav : Record<string, SampleListElement[]>={
     'home' : [
         {link:'/'+EpvPath.login, value:'home.engage'},
+        {link:'/'+EpvPath.login, value:'home.ask'},
+
     ],
     'visitor' : [
         {link:'/'+EpvPath.visitor.candidate, value:'home.engage'},
         {link:'/'+EpvPath.visitor.candidated.list, value:'home.engaged'},
+        {link:'/'+EpvPath.visitor.benefit.root, value:'home.ask'},
+
     ],
     'rh' : [
         {link:'/'+EpvPath.rh.candidate.list, value:'home.candidates'}

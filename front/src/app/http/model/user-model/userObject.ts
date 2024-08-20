@@ -29,7 +29,7 @@ export interface UserMin{
   status?: string;
   mdp?: string;
   num?:string;
-  id_service?: number|bigint;
-  id_secteur?: number|bigint;
-  id_address?: number|bigint
+  service_id?: number|bigint;
+  benefit_id?: number|bigint;
+  address_id?: number|bigint
 }

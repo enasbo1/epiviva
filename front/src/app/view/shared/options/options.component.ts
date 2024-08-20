@@ -45,8 +45,8 @@ export class OptionsComponent implements OnInit {
               ]
             }
           ]
-          if (this.user.id_address){
-            this.addressModelService.get_one_address(this.user.id_address).subscribe((addresses)=>
+          if (this.user.address_id){
+            this.addressModelService.get_one_address(this.user.address_id).subscribe((addresses)=>
               {
                 this.address = addresses[0];
                 if (this.userRubric){

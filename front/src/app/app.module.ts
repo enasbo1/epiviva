@@ -9,6 +9,7 @@ import {ViewModule} from "./view/view.module";
 import {EpvPath} from "./view/routes";
 import {Error404Component} from "./view/error/error404/error404.component";
 import {HomeComponent} from "./view/home/home.component";
+import {Error403Component} from "./view/error/error403/error403.component";
 
 @NgModule({
   declarations: [ // witch component you need from this module
@@ -22,6 +23,8 @@ import {HomeComponent} from "./view/home/home.component";
     HeadFootModule,
     RouterModule.forRoot([
       { path: EpvPath.home, component: HomeComponent},
+      { path: EpvPath._404_, component: Error404Component},
+      { path: EpvPath._403_, component: Error403Component},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: '**', component: Error404Component}
     ]),

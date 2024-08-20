@@ -2,6 +2,7 @@
 namespace api;
 
 use address\AddressController;
+use benefit\BenefitController;
 use candidate\CandidateController;
 use connexion\ConnexionController;
 use distribute\DistributeController;
@@ -57,6 +58,9 @@ require_once 'src/connexion/ConnexionController.php';
 require_once "crud/candidate/CandidateModelType.php";
 require_once 'src/candidate/CandidateController.php';
 
+require_once "crud/benefit/BenefitModelType.php";
+require_once 'src/benefit/BenefitController.php';
+
 // }
 
 
@@ -96,7 +100,8 @@ $controllerList = [
     "product"   => new ProductController(),
     "distribute"=> new DistributeController(),
     "connection"=> new ConnexionController(),
-    "candidate"=> new CandidateController(),
+    "candidate" => new CandidateController(),
+    "benefit"   => new BenefitController(),
 ];
 // }
 

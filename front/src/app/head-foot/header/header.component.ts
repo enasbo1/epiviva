@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
   logoUrl:string = "assets/images/logo.png";
   constructor(
-    private router:Router
+    protected router:Router
   ) { }
 
   ngOnInit(): void {

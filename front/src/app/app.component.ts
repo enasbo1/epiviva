@@ -2,7 +2,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {GlobalService} from "./shared/global.service";
 import {LanguageService} from "./shared/base-shared/language.service";
 import _ from "lodash";
-import {EpvPath} from "./view/routes";
+import {EpvPath, EpvRolePart} from "./view/routes";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -55,15 +55,19 @@ export class AppComponent implements OnInit, OnChanges{
 
   get status():string{
     if (document.documentURI.split('/').length>3){
-      return document.documentURI.split('/')[3]
+      const n = document.documentURI.split('/')[3]
+      if (['403', '404'].includes(n)){
+        return EpvRolePart[GlobalService.currentUser?.status?? '0']?? EpvPath.home
+      }
+      return n
     }
     return ''
   }
 
-  protected readonly GlobalService = GlobalService;
-    protected readonly EpvPath = EpvPath;
-
   delete_message() {
     this.message = undefined
   }
+
+  protected readonly GlobalService = GlobalService;
+  protected readonly EpvPath = EpvPath;
 }

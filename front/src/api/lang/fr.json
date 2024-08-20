@@ -81,6 +81,10 @@
     "edit": "Modifiez le formulaire",
     "save": "Sauvegarder"
   },
+  "list": {
+    "reset_filter": "vider les filtres",
+    "no_data": "aucune donnée à afficher"
+  },
   "search": {
     "title": "Titre",
     "search": "Rechercher"
@@ -127,7 +131,8 @@
     "developed": "Développé  par :",
     "engage": "Engagez-vous",
     "engaged": "Vos Candidatures",
-    "candidates": "Candidatures"
+    "candidates": "Candidatures",
+    "ask": "Bénéficier de l'aide alimentaire"
   },
   "options": {
     "title": "Paramètres"
@@ -159,5 +164,40 @@
     "reject": "Rejeter la candidature",
     "owner": "Candidat",
     "createMessage" : "CANDIDATURE EFFECTUEE"
+  },
+  "benefit": {
+    "title": "Demande d'aide alimentaire",
+    "caf": "Allocation caf",
+    "data": {
+      "peoples": "Taille du foyer (nb de personnes)",
+      "diet": {
+        "ask": "Avez-vous des interdit alimentaires (allergies/religion...)",
+        "new": "Ajouter un interdit alimentaire",
+        "types": {
+          "title": "Type",
+          "none": {
+            "title": "Aucune"
+          },
+          "intolerance": {
+            "title": "Intolérence",
+            "placeholder": "Lactose"
+          },
+          "allergy": {
+            "title": "Allergie",
+            "placeholder": "Gluten"
+          },
+          "forbidden": {
+            "title": "Interdit",
+            "placeholder": "Porc"
+          },
+          "specific_diet": {
+            "title": "regime spécifique",
+            "halal": "Halal",
+            "kasher": "Kasher",
+            "veget": "Végérarien"
+          }
+        }
+      }
+    }
   }
 }

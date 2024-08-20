@@ -46,8 +46,8 @@ export class AdminUserDetailComponent implements OnInit {
                   content:[]
                 }
               ]
-              if (this.user.id_address){
-                this.addressModelService.get_one_address(this.user.id_address).subscribe((addresses)=>
+              if (this.user.address_id){
+                this.addressModelService.get_one_address(this.user.address_id).subscribe((addresses)=>
                     {
                       const address = addresses[0];
                       if (this.user_rubric){

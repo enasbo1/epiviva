@@ -60,15 +60,15 @@ class AddressService extends Service
         $userRepo = new UsersRepository();
         $repo = new AddressRepository();
         $user = $userRepo->read($userId)[0] ?? [];
-        if (isset($user['id_address'])) {
-            $n = $userRepo->get(['id'], ['id_address' => $user['id_address']]);
+        if (isset($user['address_id'])) {
+            $n = $userRepo->get(['id'], ['address_id' => $user['address_id']]);
             if (count($n) < 2) {
-                $n = $user['id_address'];
+                $n = $user['address_id'];
             }
         }
         $toquery = $this->modelType->isValidType($input);;
         $userRepo->update(
-            ['id_address' =>
+            ['address_id' =>
                 $repo->create($toquery, "unable to create address")
                 , 'id' => $userId]);
         if ($n !== 0) {

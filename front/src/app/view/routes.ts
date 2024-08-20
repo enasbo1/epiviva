@@ -2,13 +2,19 @@ export const  EpvPath={
   home: 'home',
   login:'login',
   logout:'logout',
+  _403_:'403',
+  _404_:'404',
   options: 'options',
   inscription:'inscription',
   visitor: {
     home:'visitor/home',
     options: 'visitor/options',
     candidate:'visitor/candidate',
-    benefit:'visitor/benefit',
+    benefit:{
+      root:'visitor/benefit',
+      edit:'visitor/benefit/edit',
+      detail:'visitor/benefit/detail',
+    },
     candidated:{
       edit: 'visitor/candidated/:id/edit',
       list:'visitor/candidated',

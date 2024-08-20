@@ -65,6 +65,7 @@ export class FormFieldComponent implements OnInit {
     if (this.field)
       this.field._value = value;
     this.submit.emit(value);
+    this.field?.event?.emit(value);
   }
 
   is_invalid():boolean{

@@ -1,14 +1,21 @@
 <div *ngIf="field" [ngSwitch]="field.type" [class]="is_invalid()?'reg-error':''">
-  <h6 *ngIf="field.title">{{field.title | langue}}</h6>
+  <h6 *ngIf="field.title && field.type!=='button'">{{field.title | langue}}</h6>
   <ng-container *ngSwitchCase="'dropdown'" >
-      <div [class]="field.sclass">
-          <epv-dropdown
-                  [default]="field.default"
-                  [title]="field.instruction"
-                  [choices] = "(field.choices)?field.choices:[]"
-                  (value_up)="onSubmit($event)"
-          ></epv-dropdown>
-      </div>
+      <epv-dropdown
+              [default]="field.default"
+              [title]="field.instruction"
+              [sclass]="field.sclass"
+              [choices] = "(field.choices)?field.choices:[]"
+              (value_up)="onSubmit($event)"
+      ></epv-dropdown>
+  </ng-container>
+
+
+  <ng-container *ngSwitchCase="'button'" >
+      <button
+        [class]="field.sclass+ ' bubble hover-w w-100'"
+        (click)="field.event?.emit()"
+      >{{field.title|langue}}</button>
   </ng-container>
 
   <ng-container *ngSwitchCase="'text'">
@@ -106,7 +113,7 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="'file'">
-    <div  class="bubble hover-w w-100 bordered">
+    <div  class="bubble hover-w w-100 bordered input">
       <input type="file" class = "w-100 hover-w {{field.sclass}}"
            [name] ="field.name"
            [title]="(field.instruction?? field.placeholder) | langue"

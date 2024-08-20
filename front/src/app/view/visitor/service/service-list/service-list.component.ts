@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {GlobalService} from "../../../shared/global.service";
-import {ServiceModelService} from "../../../http/model/service-model/service-model.service";
-import {ServiceMapperService} from "../../../mapper/service-mapper.service";
-import {ListObject} from "../../../shared/foundation/list/listObject";
-import {EpvPath} from "../../routes";
+import {Router} from "@angular/router";
+import {ListObject} from "../../../../shared/foundation/list/listObject";
+import {ServiceModelService} from "../../../../http/model/service-model/service-model.service";
+import {GlobalService} from "../../../../shared/global.service";
+import {ServiceMapperService} from "../../../../mapper/service-mapper.service";
+import {EpvPath} from "../../../routes";
 
 @Component({
   selector: 'epv-service-list',
@@ -14,7 +15,8 @@ export class ServiceListComponent implements OnInit {
   public items:ListObject[] = [];
 
   constructor(
-      private serviceModelService:ServiceModelService
+      private serviceModelService:ServiceModelService,
+      private router:Router,
   ) { }
 
   ngOnInit(): void {

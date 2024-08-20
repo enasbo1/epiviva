@@ -75,8 +75,8 @@ export class UserMapperService {
                 {name:'user.name', type:'text', text:`${user.prenom[0].toUpperCase()}${user.prenom.slice(1).toLowerCase()}`},
                 {name:'user.first_name', type:'text', text:user.nom.toUpperCase()},
                 {name:'user.mail', type:'text', text: user.mail},
-                {name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user.status]}`},
-                {name:'user.num', type:'text', text: user.num}
+                {name:'user.num', type:'text', text: user.num},
+                {name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user.status]}`}
             ]
         };
     }
@@ -128,7 +128,7 @@ export class UserMapperService {
                                 ]
                             },
                             {
-                                name:"numero",
+                                name:"num",
                                 title:"user.num",
                                 type: "text",
                                 default: user?.num,
@@ -182,7 +182,8 @@ export class UserMapperService {
     static form_to_model(values:FormFieldObject[], user?:UserPatch):UserPatch{
         const mdp = FormService.get_value(values, "mdp")
         return {
-            id: user?.id??0, id_address: user?.id_address??0, num: "0123456789",
+            id: user?.id??0, address_id: user?.address_id??0,
+            num: (FormService.get_value(values, "num", user?.num) as string),
             prenom: (FormService.get_value(values, "prenom") as string).toUpperCase(),
             nom: (FormService.get_value(values, "nom") as string).toUpperCase(),
             mail: (FormService.get_value(values, "mail") as string).toLowerCase(),

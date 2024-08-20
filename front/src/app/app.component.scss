@@ -2,19 +2,19 @@ main{
   max-height: 99vh;
 
   >div{
-    height: 6vw;
+    height: 6rem;
   }
   >section{
     margin: 0;
-    padding: 2vw 2vw 0;
+    padding: 2vh 2vw 0;
     overflow-y: scroll;
     overflow-x: unset;
-    height: calc(100vh - 6vw);
+    height: calc(100vh - 6rem);
 
     >div{
       max-width: 100%;
       >div.page{
-        min-height: calc(100vh - 8vw - 3rem);
+        min-height: calc(98vh - 7rem);
       }
     }
   }

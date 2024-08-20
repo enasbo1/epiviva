@@ -1,3 +1,5 @@
+import {EventEmitter} from "@angular/core";
+
 export interface FormFieldObject{
   name : string;
   title?:string;
@@ -11,6 +13,7 @@ export interface FormFieldObject{
   choices? : string[];
   _value?:FormFieldValue
   _values?:(Date|undefined)[];
+  event?:EventEmitter<string|void>
   max?:Date;
   min?:Date;
   step?:number;
@@ -22,6 +25,6 @@ export interface FormFieldObject{
 
 export type FormFieldValue=string|Date|number|undefined
 
-export const FormFieldTypeList = ["num","longtext","dropdown","text","email","password","date","period","url","file"] as const;
+export const FormFieldTypeList = ["num","longtext","dropdown","text","email","password","date","period","url","file", "button"] as const;
 
 export type FormFieldType = typeof FormFieldTypeList[number]

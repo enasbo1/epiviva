@@ -18,7 +18,7 @@ CREATE TABLE address (
     postal_code VARCHAR(10),
     instruction TEXT,
     kind VARCHAR(50),
-    id_secteur INTEGER REFERENCES secteur(id)
+    secteur_id INTEGER REFERENCES secteur(id)
 );
 
 CREATE TABLE product (
@@ -26,7 +26,16 @@ CREATE TABLE product (
     code_barre VARCHAR(24),
     name VARCHAR(128),
     marque VARCHAR(50),
-    id_address INTEGER REFERENCES address(id)
+    address_id INTEGER REFERENCES address(id)
+);
+
+CREATE TABLE benefit (
+    id SERIAL PRIMARY KEY,
+    people INT NOT NULL,
+    diet TEXT,
+    caf VARCHAR(255) NOT NULL,
+    validated VARCHAR(8) DEFAULT 'wait',
+    secteur_id integer references secteur(id)
 );
 
 CREATE TABLE users (
@@ -37,8 +46,8 @@ CREATE TABLE users (
     status SMALLINT,
     num VARCHAR(11),
     mdp VARCHAR(255),
-    id_secteur INTEGER REFERENCES secteur(id),
-    id_address INTEGER REFERENCES address(id)
+    benefit_id INTEGER REFERENCES benefit(id),
+    address_id INTEGER REFERENCES address(id)
 );
 
 CREATE TABLE distribute (
@@ -58,8 +67,6 @@ CREATE TABLE candidate(
   last_edited TIMESTAMP not null
 );
 
-
--- Création de la table 'message'
 CREATE TABLE message (
     id SERIAL PRIMARY KEY,
     text VARCHAR(255),

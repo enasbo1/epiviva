@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormStepObject} from "./formStepObject";
+import {FormFieldObject} from "../form-field/formFieldObject";
 
 @Component({
   selector: 'epv-form-step',
@@ -13,4 +14,7 @@ export class FormStepComponent implements OnInit {
   ngOnInit(): void {
   }
 
+    filterField(content: FormFieldObject[]) {
+        return content.filter(x => x.sclass!=='hided');
+    }
 }

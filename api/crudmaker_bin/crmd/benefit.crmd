@@ -1,0 +1,6 @@
+id-|-!int
+people-|-r !int
+diet-|-
+caf-|-r :M,255
+secteur_id-|-!int
+validated-|-:M,8-|-"wait"

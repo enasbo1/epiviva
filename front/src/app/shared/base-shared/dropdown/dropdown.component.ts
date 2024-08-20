@@ -12,6 +12,7 @@ export class DropdownComponent implements OnInit {
   @Input() set?:boolean;
   @Input() prefix:string = "";
   @Input() styles:string = "";
+  @Input() sclass?:string = "";
   @Input() choices:string[] = [];
   @Output() value_up:EventEmitter<string> = new EventEmitter<string>();
   constructor(private eRef: ElementRef) { }

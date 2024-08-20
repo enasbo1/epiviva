@@ -3,15 +3,15 @@
     <div></div>
     <section>
       <div>
-        <div class="page">
+          <div class="page">
             <div *ngIf="message" id="message">
                 <epv-line></epv-line>
                 <div class="flex justify-spaced"><div></div><h5>{{message|langue}}</h5><h5 class="clickable" (click)="delete_message()">X</h5></div>
                 <epv-line></epv-line>
                 <br>
             </div>
-          <router-outlet></router-outlet>
-        </div>
+            <router-outlet></router-outlet>
+          </div>
         <epv-line></epv-line>
 
       </div>

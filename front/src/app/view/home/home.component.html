@@ -2,7 +2,7 @@
     <div class = "row w-100 flex">
         <div *ngFor="let cont of content" [class]=divide_space(4)>
             <a [routerLink]="cont.link">
-                <button class="card-service" ><span class="text-center col-6 oneline">{{cont.value | langue}}</span></button>
+                <button class="card-service">{{cont.value | langue}}</button>
             </a>
         </div>
     </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="card-body">
         <div class="container-fluid">
-            <div class="text-center">{{ 'home.developed' | langue}}</div>
+            <div class="text-center">{{'home.developed' | langue}}</div>
             <div class="text-center">
                 <h3>Irenee du Gardin</h3>
             </div>

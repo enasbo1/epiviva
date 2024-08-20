@@ -48,13 +48,13 @@
                     {{act.text | langue}} <b class="text-hover" (click)="act.play()">{{act.clickable_text | langue}}</b>
                 </ng-container>
                 <ng-container *ngIf="!act">
-                    {{'aucune donnée à afficher' | langue}} <b class="text-hover" (click)="reset_filter()">{{'vider les filtres' | langue}}</b>
+                    {{'list_no_data' | langue}} <b class="text-hover" (click)="reset_filter()">{{'list.reset_filter' | langue}}</b>
                 </ng-container>
             </h4>
             <li *ngFor="let item of filter_item()" class="{{elements_size()}} col-12">
                 <button class="list-element bubble {{item.link ? 'linked' : ''}} {{item.style}}" [routerLink]="item.link" [queryParams]="query">
                     <div class="content bubble_padding">
-                        <h6 [class]="item.image?'':'oneline'">{{item?.title | langue}}</h6>
+                        <h6 [class]="item.image?'':'w-100'">{{item?.title | langue}}</h6>
                         <div class="container">
                             <div *ngFor="let pannel of element(item)" [class]="pannel.side">
                                 <div>

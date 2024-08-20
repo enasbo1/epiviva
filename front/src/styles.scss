@@ -150,15 +150,15 @@ div.card {
   background-color: styles.$color-blanc-gris-1;
 }
 
-.hover-0:hover, input{
+.hover-0:hover, input,.input{
   background-color: styles.$color-blanc-gris-0 !important;
 }
 
-.hover-w:hover, input:hover{
+.hover-w:hover, ,.input:hover, input:hover{
   background-color: styles.$color-blanc;
 }
 
-.hover-0,.hover-1,.hover-w,input{
+.hover-0,.hover-1,.hover-w,input,.input{
   transition: background-color;
   transition-duration: 250ms;
 }

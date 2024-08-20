@@ -5,6 +5,6 @@ mail-|-r !email
 status-|-!int :M,2 :<,5-|-'0'
 num-|-r :e,10
 mdp-|-r :m,5
-id_service-|-!int
+service_id-|-!int
 id_secteur-|-!int
-id_address-|-!int
+address_id-|-!int

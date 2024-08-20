@@ -19,12 +19,14 @@ def to_array_string(col: list) -> str:
 
 
 def to_verif_string(col: list) -> str:
-    ret = "";
+    ret = ""
     for i, j in enumerate(col):
+        if len(j)==1:
+            j[1]=''
         ret += '\t\t\t"' + j[0] + '" => "' + j[1] + '"'
         if (i + 1) < len(col):
             ret += ',\n'
-    return ret;
+    return ret
 
 def generate(name:str, table:str, data_files:list[str], validation:bool = True):
     location: str = 'src'

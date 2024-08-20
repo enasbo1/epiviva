@@ -15,7 +15,7 @@ INSERT INTO secteur (nom) VALUES
     ('Transport');
 
 -- Remplissage de la table 'address'
-INSERT INTO address (address, postal_code, instruction, kind, id_secteur) VALUES
+INSERT INTO address (address, postal_code, instruction, kind, secteur_id) VALUES
     ('123 Rue Principale', '75001', 'A côté du parc', 'Bureau', 1),
     ('456 Avenue de la République', '75002', 'Deuxième étage', 'Domicile', 2),
     ('789 Boulevard Voltaire', '75003', 'En face du supermarché', 'Magasin', 3),
@@ -23,7 +23,7 @@ INSERT INTO address (address, postal_code, instruction, kind, id_secteur) VALUES
     ('202 Rue du Louvre', '75005', 'À côté du musée', 'Bureau', 5);
 
 -- Remplissage de la table 'product'
-INSERT INTO product (code_barre, name, marque, id_address) VALUES
+INSERT INTO product (code_barre, name, marque, address_id) VALUES
     ('1234567890123', 'Ordinateur Portable', 'Dell', 1),
     ('2345678901234', 'Téléphone Mobile', 'Samsung', 2),
     ('3456789012345', 'Imprimante', 'HP', 3),
@@ -31,13 +31,13 @@ INSERT INTO product (code_barre, name, marque, id_address) VALUES
     ('5678901234567', 'Souris', 'Microsoft', 5);
 
 -- Remplissage de la table 'users'
-INSERT INTO users (prenom, nom, mail, num, status, mdp, id_secteur, id_address) VALUES
-    ('system', 'system', 'system@system.com', '0583363945', 5, '5d2217b2d33df736cdc3258b1d3bEF46µ7120958504f7da6437dzdzav153MLf18cd12c321376df28', null, null),
-    ('rh', 'user', 'rh@user.com', '0583363945', 3, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 1,  1),
-    ('admin', 'user', 'admin@user.com', '0583363945', 4, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 2, 2),
-    ('visitor', 'user', 'visitor@user.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 3, 3),
-    ('banned', 'user', 'banned@user.com', '0583363945', 0, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 4, 4),
-    ('Eve', 'Moreau', 'eve.moreau@example.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 5, 5);
+INSERT INTO users (prenom, nom, mail, num, status, mdp, address_id) VALUES
+    ('system', 'system', 'system@system.com', '0583363945', 5, '5d2217b2d33df736cdc3258b1d3bEF46µ7120958504f7da6437dzdzav153MLf18cd12c321376df28', null),
+    ('rh', 'user', 'rh@user.com', '0583363945', 3, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28',  1),
+    ('admin', 'user', 'admin@user.com', '0583363945', 4, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 2),
+    ('visitor', 'user', 'visitor@user.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 3),
+    ('banned', 'user', 'banned@user.com', '0583363945', 0, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 4),
+    ('Eve', 'Moreau', 'eve.moreau@example.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 5);
 
 -- Remplissage de la table 'message'
 INSERT INTO message (text, date_send, sender_id, receiver_id) VALUES
