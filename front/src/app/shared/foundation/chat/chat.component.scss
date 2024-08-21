@@ -86,3 +86,11 @@
 .font-black{
   color: #000;
 }
+
+.reg-error{
+  border-width: 2px;
+  border-style: inset;
+  border-color: styles.$color-error styles.$color-error;
+  border-image: initial;
+  color: styles.$color-error;
+}

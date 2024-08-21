@@ -1,7 +1,6 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import { Injectable} from '@angular/core';
 import {RequestService} from "../../shared/request.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable} from "rxjs";
+import { Observable} from "rxjs";
 import {ConstancesService} from "../../shared/constances.service";
 import {GlobalService} from "../../../shared/global.service";
 
@@ -9,26 +8,19 @@ import {GlobalService} from "../../../shared/global.service";
   providedIn: 'root'
 })
 export class FileModelService  extends RequestService{
-  post_file_caf(content:File, errorEvent?:EventEmitter<HttpErrorResponse>):EventEmitter<{filename:string}>{
-    const ret = new EventEmitter<{filename:string}>();
-    content.text().then(text=>{
-        console.log(text);
-        (this.httpClient.post(ConstancesService.api_url + "/" +'file/caf/'+content.type.replace(/^.*[./]/, ''),
-            text,
-            {
-              headers:{
-                "token":GlobalService.token?GlobalService.token:''
-              }
-            }) as Observable<{filename:string}>).subscribe((value)=>
-            ret.emit(value)
-        )
-      }
-    )
-    return ret;
-
+  post_file_caf(content:File):Observable<{filename:string}>{
+      return this.post_file(content, 'caf', '/');
   }
 
-  post_file(content:File, filename:string, errorEvent?:EventEmitter<HttpErrorResponse>):Observable<{filename:string}>{
-    return (this.post(content, 'file/'+filename, errorEvent)) as Observable<{filename:string}>;
+  post_file(content:File, filename:string, extentChar:string='.'):Observable<{filename:string}>{
+    const formData = new FormData();
+    formData.append('input',content);
+    return this.httpClient.post(ConstancesService.api_url + "/file/" +filename+extentChar+content.name.replace(/^.*[./]/, ''),
+      formData,
+      {
+          headers:{
+              "token":GlobalService.token?GlobalService.token:''
+          }
+      }) as Observable<{filename:string}>;
   }
 }

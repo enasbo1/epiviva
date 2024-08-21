@@ -4,3 +4,6 @@ text-|-r
 sender_id-|-r !int
 receiver_id-|-!int
 candidate_id-|-!int
+benefit_id-|-!int
+read-|--|-"false"
+link-|-

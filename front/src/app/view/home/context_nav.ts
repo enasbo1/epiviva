@@ -14,7 +14,8 @@ export const context_nav : Record<string, SampleListElement[]>={
 
     ],
     'rh' : [
-        {link:'/'+EpvPath.rh.candidate.list, value:'home.candidates'}
+        {link:'/'+EpvPath.rh.candidate.list, value:'home.candidates'},
+        {link:'/'+EpvPath.rh.benefit.list, value:'benefit.list'}
     ],
     'admin' : [
         {link:'/'+EpvPath.admin.services.list, value:'service-list.title'},

@@ -206,9 +206,11 @@ class CandidateService extends Service
                 $messages->create(
                     [
                         'sender_id' => 1,
+                        'receiver_id' => $edited['user_id']?? 1,
                         'text' => $message,
                         'candidate_id' => $input->id,
-                        'date_send' => date("Y-m-d H:i:s")
+                        'date_send' => date("Y-m-d H:i:s"),
+                        'link'=>"visitor/candidated/$input->id"
                     ]
                 );
             }

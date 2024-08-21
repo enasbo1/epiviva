@@ -5,6 +5,7 @@ import {BenefitGetObject, BenefitObject} from "../../../../http/model/benefit-mo
 import {RubricObject} from "../../../../shared/base-shared/rubric/rubricObject";
 import {BenefitMapperService} from "../../../../mapper/benefit-mapper.service";
 import {EpvPath} from "../../../routes";
+import {ChatTarget} from "../../../../shared/foundation/chat/chat.component";
 
 @Component({
   selector: 'epv-visitor-benefit-detail',
@@ -14,6 +15,7 @@ import {EpvPath} from "../../../routes";
 export class VisitorBenefitDetailComponent implements OnInit {
   private benefit?:BenefitObject;
   public benefit_rubric?:RubricObject[];
+  public chat_target?: ChatTarget;
 
   constructor(
       private benefitModelService: BenefitModelService,
@@ -26,6 +28,7 @@ export class VisitorBenefitDetailComponent implements OnInit {
         const benefit:BenefitObject|BenefitGetObject = benefits[0];
         benefit.diet = JSON.parse(benefit.diet?? '[]');
         this.benefit = benefit as BenefitObject
+        this.chat_target = {subject:'benefit', id : this.benefit.id??0};
         this.benefit_rubric = BenefitMapperService.model_to_rubrics(this.benefit)
       }
     )

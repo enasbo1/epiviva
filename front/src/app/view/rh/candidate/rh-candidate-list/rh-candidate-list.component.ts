@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ListObject} from "../../../shared/foundation/list/listObject";
-import {FilterObject} from "../../../shared/foundation/list/filterObject";
-import {CandidateModelService} from "../../../http/model/candidate-model/candidate-model.service";
-import {GlobalService} from "../../../shared/global.service";
-import {CandidateMapperService} from "../../../mapper/candidate-mapper.service";
-import {EpvPath} from "../../routes";
+import {ListObject} from "../../../../shared/foundation/list/listObject";
+import {FilterObject} from "../../../../shared/foundation/list/filterObject";
+import {CandidateModelService} from "../../../../http/model/candidate-model/candidate-model.service";
+import {GlobalService} from "../../../../shared/global.service";
+import {CandidateMapperService} from "../../../../mapper/candidate-mapper.service";
+import {EpvPath} from "../../../routes";
 
 @Component({
   selector: 'epv-rh-candidate-list',

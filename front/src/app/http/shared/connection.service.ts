@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {RequestService} from "./request.service";
-import {FormFieldObject, FormFieldValue} from "../../shared/base-shared/form-field/formFieldObject";
-import {catchError, Observable} from "rxjs";
+import {FormFieldObject} from "../../shared/base-shared/form-field/formFieldObject";
+import {Observable} from "rxjs";
 import {GlobalService} from "../../shared/global.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {UserRecap} from "../model/user-model/userObject";

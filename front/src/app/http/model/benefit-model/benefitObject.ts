@@ -1,4 +1,5 @@
 import {BenefitMapperService} from "../../../mapper/benefit-mapper.service";
+import {UserRecap} from "../user-model/userObject";
 
 export interface BenefitObject {
     id ?: number|bigint,
@@ -7,6 +8,14 @@ export interface BenefitObject {
     caf:string,
     secteur_id?:number,
     validated?:'valid'|'wait'|'reject',
+}
+
+export interface BenefitGetLargeObject extends BenefitGetObject {
+    id: number|bigint,
+    people:number,
+    diet:string,
+    caf:string,
+    user:UserRecap,
 }
 
 export interface BenefitGetObject {

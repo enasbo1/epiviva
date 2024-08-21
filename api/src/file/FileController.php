@@ -14,7 +14,7 @@ class FileController{
         try{
             switch ($_SERVER['REQUEST_METHOD']) {
                 case "POST":
-                    $body = file_get_contents("php://input");
+                    $body = file_get_contents($_FILES['input']['tmp_name']);
                     $this->post($id, $body);
                     break;
                 case "GET":

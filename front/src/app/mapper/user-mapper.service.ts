@@ -191,4 +191,16 @@ export class UserMapperService {
             status: (UserMapperService.language_key_rolesList.indexOf(FormService.get_value(values, "role") as string)).toString().toLowerCase()
         }
     }
+
+    static modelRecap_to_rubric(user: UserRecap):RubricObject {
+        return {
+            title : "user.title",
+            content:[
+                {name:'user.name', type:'text', text:`${user.prenom[0].toUpperCase()}${user.prenom.slice(1).toLowerCase()}`},
+                {name:'user.first_name', type:'text', text:user.nom.toUpperCase()},
+                {name:'user.mail', type:'text', text: user.mail},
+                {name:'user.num', type:'text', text: user.num},
+                {name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user.status?? '']}`}
+            ]
+        };    }
 }

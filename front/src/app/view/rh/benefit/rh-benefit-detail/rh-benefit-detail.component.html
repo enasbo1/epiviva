@@ -1,0 +1,30 @@
+<section class="flex">
+    <div>
+        <epv-rubric-list
+                [items]="benefit_rubric"
+        ></epv-rubric-list>
+        <epv-line [short]="true"></epv-line>
+
+        <br>
+        <div class="flex">
+            <button
+                    class="bubble hover-0 clickable {{(benefit && (benefit.validated!=='valid'))?'colored':''}}"
+                    (click)="validate()"
+            >{{'benefit.validate' | langue}}</button>
+        </div>
+        <br>
+        <div class="flex">
+            <button
+                    class="bubble hover-0 clickable {{(benefit && (benefit.validated!=='reject'))?'colored-red':''}}"
+                    (click)="reject()"
+            >{{'benefit.reject' | langue}}</button>
+        </div>
+    </div>
+    <div class = "flex col-7 flex-shrink-light">
+        <div style="width: 35rem">
+            <epv-chat
+                    [target]="chat_target"
+            ></epv-chat>
+        </div>
+    </div>
+</section>

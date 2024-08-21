@@ -73,6 +73,9 @@ div.card {
 
   &.justify-start{
     justify-content: start;
+    >.bubble{
+      margin-right: 1rem;
+    }
   }
 
   &.justify-end{

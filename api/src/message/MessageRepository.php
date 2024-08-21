@@ -10,6 +10,9 @@ class MessageRepository extends Repository {
     m.id as id,
     text,
     date_send,
+    read,
+    link,
+    receiver_id,
     u.id as sender__id,
     u.nom as sender__nom,
     u.prenom as sender__prenom

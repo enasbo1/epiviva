@@ -44,7 +44,7 @@ export class VisitorBenefitEditComponent implements OnInit {
     if (this.benefit_form) {
       const benefit = BenefitMapperService.form_to_model(this.benefit_form)
       const caf = BenefitMapperService.caf_from_form(this.benefit_form)
-      if (caf){
+      if (caf && ['pdf','.docx'].includes(caf.name.replace(/^.*\./, ''))){
         this.fileModelService.post_file_caf(caf).subscribe((fileName)=>
           {
             benefit.caf = fileName.filename;

@@ -2,6 +2,8 @@
 namespace benefit;
 
 use Exception;
+use message\MessageRepository;
+use message\MessageService;
 use shared\Formater;
 use shared\Service;
 use token\Privilege;
@@ -24,7 +26,7 @@ class BenefitService extends Service
         $repo = new BenefitRepository();
 
         $benefit = [];
-        $result = $repo->readAll("unable to find any benefit");
+        $result = $repo->get_benefits([]);
 
         foreach($result as $row) {
             $benefit[] = Formater::prepareGet($row);
@@ -41,7 +43,7 @@ class BenefitService extends Service
         $repo = new BenefitRepository();
 
         $benefit = [];
-        $result = $repo->read($id, "benefit not found");
+        $result = $repo->get_benefits(['b.id'=>$id]);
 
         foreach($result as $row) {
             $benefit[] = Formater::prepareGet($row);
@@ -102,9 +104,10 @@ class BenefitService extends Service
     /**
      * @throws Exception
      */
-    public function save_form_user(object $input, $user_id): void
+    public function save_form_user(object $input, int $user_id): void
     {
         $userRepo = new UsersRepository();
+        $messages = new MessageRepository();
         $user = $userRepo->read($user_id);
         if ($user==[]) {
             Privilege::forbidden();
@@ -112,14 +115,77 @@ class BenefitService extends Service
         if (isset($user[0]['benefit_id'])){
             $input->id = $user[0]['benefit_id'];
             $this->update($input);
+            $messages->create(
+                [
+                    'sender_id' => $user_id,
+                    'text' => 'benefit.edited',
+                    'benefit_id' => $input->id,
+                    'date_send' => date("Y-m-d H:i:s")
+                ]
+            );
         }else{
+            $id = $this->save($input);
             $userRepo->update(
                 [
                     'id'=>$user_id,
-                    'benefit_id'=>$this->save($input)
+                    'benefit_id'=>$id
+                ]
+            );
+            $messages->create(
+                [
+                    'sender_id' => $user_id,
+                    'text' => 'benefit.saved',
+                    'benefit_id' => $id,
+                    'date_send' => date("Y-m-d H:i:s")
                 ]
             );
         }
 
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function validate(object $input):void
+    {
+        $this->update_status($input, 'valid', 'benefit.validateMessage');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function reject(object $input):void
+    {
+        $this->update_status($input, 'reject', 'benefit.rejectMessage');
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function update_status(object $input, string $status, string $message): void
+    {
+        $repo = new BenefitRepository();
+        $messages = new MessageRepository();
+        $edited = $this->findById($input->id)[0];
+        if (isset($edited)){
+            if ($edited['validated'] !== $status) {
+                $edited["validated"] = $status;
+                $toQuery = $this->modelType->isValidType($input, $edited);
+                $repo->update($toQuery, "unable to update candidate");
+
+                $messages->create(
+                    [
+                        'sender_id' => 1,
+                        'receiver_id' => $edited['user']['id'] ?? 0,
+                        'text' => $message,
+                        'benefit_id' => $input->id,
+                        'date_send' => date("Y-m-d H:i:s"),
+                        'link'=>"visitor/benefit/$input->id"
+                    ]
+                );
+            }
+        }else{
+            throw new Exception("not found", 404);
+        }
     }
 }

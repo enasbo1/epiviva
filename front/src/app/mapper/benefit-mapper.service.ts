@@ -1,10 +1,20 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {FormRubricObject, FormStepObject} from "../shared/base-shared/form-step/formStepObject";
-import {BenefitObject, BenefitPostObject, DietObject} from "../http/model/benefit-model/benefitObject";
+import {
+  BenefitGetLargeObject,
+  BenefitGetObject,
+  BenefitObject,
+  BenefitPostObject,
+  DietObject
+} from "../http/model/benefit-model/benefitObject";
 import {RegexBase} from "../shared/RegexBase";
 import {FormFieldObject} from "../shared/base-shared/form-field/formFieldObject";
 import {FormService} from "../shared/foundation/form/form.service";
 import {RubricElement, RubricObject} from "../shared/base-shared/rubric/rubricObject";
+import {ListObject} from "../shared/foundation/list/listObject";
+import {CandidateMapperService} from "./candidate-mapper.service";
+import {LanguageService} from "../shared/base-shared/language.service";
+import {UserMapperService} from "./user-mapper.service";
 
 @Injectable({
   providedIn: 'root'
@@ -172,10 +182,10 @@ export class BenefitMapperService {
       }
     }else { // @ts-ignore
       if (type == 'specific_diet' && value.content[2]._value){
-        const val:string = (value.content[2]._value as string).replace(/^benefit\.data\.diet\.types\.specific_diet./, '');
+        const val:string = (value.content[2]._value as string).replace(/^benefit\.data\.diet\.types\.specific_diet\./, '');
         return {
           type:type,
-          value: value.content[2]._value as (typeof BenefitMapperService.specific_diet[number])
+          value: val as (typeof BenefitMapperService.specific_diet[number])
         }
       }
     }
@@ -193,7 +203,6 @@ export class BenefitMapperService {
   }
 
   static caf_from_form(values: FormStepObject[]) :File|undefined {
-    console.log(values[0].content[1].content[0].file);
     return values[0].content[1].content[0].file
   }
 
@@ -239,5 +248,53 @@ export class BenefitMapperService {
     }
 
     return ret;
+  }
+
+  static model_to_list(benefitGet: BenefitGetLargeObject, linkPage?:string, id_key:string=':id'):ListObject {
+    const user = benefitGet.user
+    const model:BenefitObject = {
+      id: benefitGet.id,
+      caf: benefitGet.caf,
+      diet: JSON.parse(benefitGet.diet) as DietObject[],
+      people: benefitGet.people,
+      secteur_id: benefitGet.secteur_id,
+      validated: benefitGet.validated,
+    };
+    return {
+      title: `${UserMapperService.get_U_Name(user, true)}`,
+      link: linkPage ? '/' + linkPage.replace(id_key, model.id?.toString() ?? '') : undefined,
+      style: { 'valid': 'present', 'wait': 'passe', 'reject': 'futur', '': '' }[model.validated ?? ''],
+      right: [
+        { text: `${LanguageService.static_resolve('benefit.data.people.title')} : ${model.people}` },
+        { text: model.diet?.slice(0,2)?.map(d =>
+            `${LanguageService.static_resolve(`benefit.data.diet.types.${d.type}.title`)} :
+            ${LanguageService.static_resolve(
+              RegexBase.lang_path.test(d.value)?
+                `benefit.data.diet.types.specific_diet.${d.value}`
+                :
+                d.value
+            )
+            }`
+          ).join(', ') || ''
+        },
+        null
+      ],
+      left: [
+        {text:'', style:'height:1.5rem'},
+        { text: model.validated ?
+              `${LanguageService.static_resolve('user.status')} : 
+              ${LanguageService.static_resolve(CandidateMapperService.states[model.validated ?? ''])}`
+              :
+              '',
+          style: 'font-weight:bold' },
+        null,
+      ],
+      properties: [
+        { name: 'user.status', value: CandidateMapperService.states[model.validated ?? ''] },
+        { name: 'CAF', value: model.caf },
+        { name: 'Nombre de personnes', value: model.people },
+        { name: 'Secteur', value: model.secteur_id ?? '' },
+      ]
+    };
   }
 }

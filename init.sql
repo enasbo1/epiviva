@@ -73,5 +73,8 @@ CREATE TABLE message (
     date_send timestamp,
     sender_id INTEGER not null REFERENCES users(id),
     receiver_id INTEGER REFERENCES users(id),
-    candidate_id integer references candidate(id)
+    candidate_id integer references candidate(id),
+    benefit_id integer references benefit(id),
+    read boolean default false,
+    link varchar(255)
 );

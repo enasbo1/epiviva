@@ -67,7 +67,9 @@ export class ConnectionComponent implements OnInit {
   }
 
   submit(values:FormFieldObject[]) : void {
-    this.router.navigateByUrl('/'+(EpvRolePart[GlobalService.currentUser?.status?? '0']?? EpvPath.home)).then();
+    this.router.navigateByUrl('/'+(EpvRolePart[GlobalService.currentUser?.status?? '0']?? EpvPath.home)).then(()=>
+        window.location.reload()
+    );
 
   }
 

@@ -30,6 +30,10 @@ export const  EpvPath={
   rh : {
     home:'rh/home',
     options: 'rh/options',
+    benefit:{
+      list:'rh/benefit',
+      detail:'rh/benefit/:id',
+    },
     candidate:{
       list:'rh/candidate',
       details:'rh/candidate/:id'

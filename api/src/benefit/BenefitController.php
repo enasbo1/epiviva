@@ -54,9 +54,24 @@ class BenefitController extends CrudController{
     function patch(array $id, object $input): void
     {
         $request = new BenefitService();
-
-        Privilege::admin();
-        $request->update($input);
+        if ($id==[]){
+            Privilege::admin();
+            $request->update($input);
+        }else {
+            Privilege::allowed();
+            global $_TOKEN;
+            switch ($id[0]){
+                case 'validate':
+                    Privilege::rh();
+                    $request->validate($input);
+                    break;
+                case 'reject':
+                    Privilege::rh();
+                    $request->reject($input);
+                    break;
+            }
+        }
+        echo('{"message" : "benefit modifié avec succès"}');
     }
 
     function delete(array $id): void

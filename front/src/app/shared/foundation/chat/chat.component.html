@@ -28,7 +28,7 @@
   </div>
   <div class="flex input-bar bubble">
     <textarea
-           class="bubble col-9 {{can_submit()?'':'disabled'}}"
+           class="bubble col-9 {{can_submit()?'':'disabled'}} {{is_valid()?'':'reg-error'}}"
            (keydown.enter)="submit_message()"
            [disabled] = !can_submit()
            [(ngModel)]="new_message"

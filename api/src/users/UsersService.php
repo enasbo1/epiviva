@@ -54,6 +54,24 @@ class UsersService extends Service
     /**
      * @throws Exception
      */
+    public function findByBenefitId(int $benefit_id): array
+    {
+        $repo = new UsersRepository();
+
+        $users = [];
+        $result = $repo->get([],['benefit_id'=>$benefit_id] , "users not found");
+
+        foreach($result as $row) {
+            $users[] = Formater::prepareGet($row);
+        }
+
+        return $users;
+
+    }
+
+    /**
+     * @throws Exception
+     */
     public function save(object $input): void
     {
         $repo = new UsersRepository();
@@ -104,5 +122,14 @@ class UsersService extends Service
         $repo->create($toQuery, "unable to create users");
         $connection = new ConnexionService();
         return $connection->connect($connect_input);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function is_applicant(int $benefit_id, int $user_id): bool
+    {
+        $repo = new UsersRepository();
+        return count($repo->get(['id'], ['id'=>$user_id, 'benefit_id'=>$benefit_id]))>0;
     }
 }
