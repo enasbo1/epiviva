@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {BenefitObject} from "./benefitObject";
+import {BenefitGetObject, BenefitObject, BenefitPostObject} from "./benefitObject";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {RequestService} from "../../shared/request.service";
@@ -9,20 +9,20 @@ import {RequestService} from "../../shared/request.service";
 })
 export class BenefitModelService extends RequestService{
 
-  post_benefit_self(content:BenefitObject, errorEvent?:EventEmitter<HttpErrorResponse>):Observable<object>{
+  post_benefit_self(content:BenefitPostObject, errorEvent?:EventEmitter<HttpErrorResponse>):Observable<object>{
     return (this.post(content, 'benefit/self', errorEvent));
   }
 
-  get_benefit():Observable<BenefitObject[]>{
-    return (this.get('benefit') as Observable<BenefitObject[]>);
+  get_benefit():Observable<BenefitGetObject[]>{
+    return (this.get('benefit') as Observable<BenefitGetObject[]>);
   }
 
-  get_benefit_self():Observable<BenefitObject[]>{
-    return (this.get('benefit/self') as Observable<BenefitObject[]>);
+  get_benefit_self():Observable<BenefitGetObject[]>{
+    return (this.get('benefit/self') as Observable<BenefitGetObject[]>);
   }
 
-  get_one_benefit(number:bigint):Observable<BenefitObject[]>{
-    return (this.get_one('benefit',number) as Observable<BenefitObject[]>);
+  get_one_benefit(number:bigint):Observable<BenefitGetObject[]>{
+    return (this.get_one('benefit',number) as Observable<BenefitGetObject[]>);
 
   }
 

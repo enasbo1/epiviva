@@ -7,6 +7,7 @@ use candidate\CandidateController;
 use connexion\ConnexionController;
 use distribute\DistributeController;
 use Exception;
+use file\FileController;
 use message\MessageController;
 use product\ProductController;
 use secteur\SecteurController;
@@ -61,11 +62,13 @@ require_once 'src/candidate/CandidateController.php';
 require_once "crud/benefit/BenefitModelType.php";
 require_once 'src/benefit/BenefitController.php';
 
+require_once 'src/file/FileController.php';
+
 // }
 
 
 header('Access-Control-Allow-Methods: GET, POST,  PATCH, PUT, DELETE, OPTIONS');
-header("Content-Type: application/json; charset=utf8");
+header("Content-Type: application/json, multipart/form-data; charset=utf8");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: TOKEN");
 
@@ -102,6 +105,7 @@ $controllerList = [
     "connection"=> new ConnexionController(),
     "candidate" => new CandidateController(),
     "benefit"   => new BenefitController(),
+    "file"      => new FileController(),
 ];
 // }
 

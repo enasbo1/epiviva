@@ -81,4 +81,11 @@ export class FormFieldComponent implements OnInit {
   number_limit_pipe(value:number|undefined):number|null{
     return (value!=undefined)?value:null
   }
+
+  fileChange(event:Event) {
+    if (this.field){
+      const files  = (event.target as HTMLInputElement).files;
+      this.field.file = files?files[0]:undefined;
+    }
+  }
 }

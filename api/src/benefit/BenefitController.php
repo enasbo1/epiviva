@@ -33,9 +33,20 @@ class BenefitController extends CrudController{
     function post(array $id, object $input): void
     {
         $request = new BenefitService();
+        if ($id == []) {
+            Privilege::forbidden();
+        }else{
+            switch ($id[0]){
+                case 'self':
+                    Privilege::allowed();
+                    global $_TOKEN;
+                    $request->save_form_user($input, $_TOKEN->user_id);
+                    break;
+                default:
+                    Privilege::forbidden();
+            }
+        }
 
-        Privilege::admin();
-        $request->save($input);
         http_response_code(201);
         echo('{"message" : "benefit créé avec succès"}');
     }

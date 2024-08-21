@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalService} from "../../../../shared/global.service";
 import {BenefitModelService} from "../../../../http/model/benefit-model/benefit-model.service";
-import {BenefitObject} from "../../../../http/model/benefit-model/benefitObject";
+import {BenefitGetObject, BenefitObject} from "../../../../http/model/benefit-model/benefitObject";
 import {FormStepObject} from "../../../../shared/base-shared/form-step/formStepObject";
 import {BenefitMapperService} from "../../../../mapper/benefit-mapper.service";
 import {FormFieldObject} from "../../../../shared/base-shared/form-field/formFieldObject";
+import {FileModelService} from "../../../../http/model/file-model/file-model.service";
+import {EpvPath} from "../../../routes";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'epv-visitor-benefit-edit',
@@ -17,6 +20,8 @@ export class VisitorBenefitEditComponent implements OnInit {
 
   constructor(
       private benefitModelService: BenefitModelService,
+      private fileModelService: FileModelService,
+      private router:Router,
   ) { }
 
   ngOnInit(): void {
@@ -26,7 +31,9 @@ export class VisitorBenefitEditComponent implements OnInit {
         if (benefits.length == 0){
           this.benefit_form = BenefitMapperService.model_to_form()
         }else{
-          this.benefit = benefits[0];
+          const benefit:BenefitObject|BenefitGetObject = benefits[0];
+          benefit.diet = JSON.parse(benefit.diet?? '[]');
+          this.benefit = benefit as BenefitObject
           this.benefit_form = BenefitMapperService.model_to_form(this.benefit)
         }
       }
@@ -35,12 +42,21 @@ export class VisitorBenefitEditComponent implements OnInit {
 
   submit() {
     if (this.benefit_form) {
-      console.log(this.benefit_form);
       const benefit = BenefitMapperService.form_to_model(this.benefit_form)
-      if (this.benefit){
-        console.log('tbi');
+      const caf = BenefitMapperService.caf_from_form(this.benefit_form)
+      if (caf){
+        this.fileModelService.post_file_caf(caf).subscribe((fileName)=>
+          {
+            benefit.caf = fileName.filename;
+            this.benefitModelService.post_benefit_self(benefit).subscribe(()=>
+                this.router.navigate(['/'+EpvPath.visitor.benefit.detail])
+            );
+          }
+        )
       }else{
-        this.benefitModelService.post_benefit_self(benefit).subscribe(()=>undefined);
+        this.benefitModelService.post_benefit_self(benefit).subscribe(()=>
+            this.router.navigate(['/'+EpvPath.visitor.benefit.detail])
+        );
       }
 
     }

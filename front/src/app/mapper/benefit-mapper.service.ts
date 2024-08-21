@@ -1,9 +1,10 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {FormRubricObject, FormStepObject} from "../shared/base-shared/form-step/formStepObject";
-import {BenefitObject, DietObject} from "../http/model/benefit-model/benefitObject";
+import {BenefitObject, BenefitPostObject, DietObject} from "../http/model/benefit-model/benefitObject";
 import {RegexBase} from "../shared/RegexBase";
 import {FormFieldObject} from "../shared/base-shared/form-field/formFieldObject";
 import {FormService} from "../shared/foundation/form/form.service";
+import {RubricElement, RubricObject} from "../shared/base-shared/rubric/rubricObject";
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class BenefitMapperService {
                 default:model?.people??1,
                 step:1,
                 reg_error:[
-                  {regex:RegexBase.required, message:''}
+                  {regex:RegexBase.required, message:'required'}
                 ],
                 number_limit:{
                   min:1,
@@ -50,9 +51,9 @@ export class BenefitMapperService {
               {
                 title: 'benefit.caf',
                 name:'caf',
-                default: model?.caf,
+                file_type:'.pdf, .docx',
                 reg_error:[
-                  {regex:RegexBase.required, message:'coucou'}
+                  {regex:model?.caf?RegexBase.all:RegexBase.required, message:'required'}
                 ],
                 type:'file',
               },
@@ -64,9 +65,9 @@ export class BenefitMapperService {
     model?.diet?.forEach((diet)=>
       {
         const d:FormRubricObject = BenefitMapperService.diet_rubric(diet)
-        d.content[1].event?.subscribe((x)=>
+        d.content[1].event?.subscribe(()=>
           {
-            (x=='kill')?n[0].content.slice(n[0].content.findIndex(v=>v==d),1):undefined;
+            n[0].content.splice(n[0].content.findIndex(v=>v==d),1)
           }
         )
         n[0].content.push(d)
@@ -123,7 +124,7 @@ export class BenefitMapperService {
           default: diet?.value,
           placeholder: diet?.type?`benefit.data.diet.types.${diet.type}.placeholder`:'',
           reg_error:[
-            {regex:RegexBase.required, message:'coucou'}
+            {regex:RegexBase.required, message:'required'}
           ],
         },
         {
@@ -144,6 +145,7 @@ export class BenefitMapperService {
             break;
           case 'specific_diet':
             n.content[1].sclass='hided';
+            n.content[2]._value= 'benefit.data.diet.types.specific_diet.title';
             n.content[1].reg_error=[]
             n.content[2].sclass='half-form';
             break;
@@ -151,7 +153,7 @@ export class BenefitMapperService {
             n.content[1].sclass='half-form';
             n.content[2].sclass='hided';
             n.content[1].reg_error=[
-              {regex:RegexBase.required, message:'coucou'}
+              {regex:RegexBase.required, message:'required'}
             ];
             n.content[1].placeholder = `benefit.data.diet.types.${t}.placeholder`;
             break;
@@ -168,23 +170,74 @@ export class BenefitMapperService {
         type: (type as 'intolerance'|'allergy'|'forbidden'),
         value: value.content[1]._value as string
       }
-    }else if (type == 'specific_diet'){
-      return {
-        type:type,
-        value: value.content[2]._value as (typeof BenefitMapperService.specific_diet[number])
+    }else { // @ts-ignore
+      if (type == 'specific_diet' && value.content[2]._value){
+        const val:string = (value.content[2]._value as string).replace(/^benefit\.data\.diet\.types\.specific_diet./, '');
+        return {
+          type:type,
+          value: value.content[2]._value as (typeof BenefitMapperService.specific_diet[number])
+        }
       }
     }
 
   }
 
-  static form_to_model(values: FormStepObject[], benefit?:BenefitObject): BenefitObject {
+  static form_to_model(values: FormStepObject[], benefit?:BenefitObject): BenefitPostObject {
     const value:FormFieldObject[] = FormService.extract_values([{content: values[0].content.slice(0,2)}])
     const diet:DietObject[] = values[0].content.slice(2).map(r=>BenefitMapperService.form_to_diet(r)).filter(x=>x) as DietObject[]
     return {
       id:benefit?.id,
       people:FormService.get_value(value, 'people', benefit?.people) as number,
-      caf:FormService.get_value(value, 'caf', benefit?.people) as string,
-      diet:diet
+      diet:JSON.stringify(diet)
     }
+  }
+
+  static caf_from_form(values: FormStepObject[]) :File|undefined {
+    console.log(values[0].content[1].content[0].file);
+    return values[0].content[1].content[0].file
+  }
+
+  static model_to_rubrics(benefit: BenefitObject) :RubricObject[]{
+    const ret:RubricObject[] = [
+          {
+            title:'benefit.data.people.title',
+            content:[
+              {
+                name:'benefit.data.people.content',
+                type:'text',
+                text:benefit.people.toString()
+              }
+            ]
+          },
+          {
+            title:'benefit.data.caf',
+            content:[
+              {
+                name: 'benefit.file',
+                type: 'file',
+                text:'<-->',
+                value: benefit.caf
+              }
+            ]
+          }
+        ]
+    if ((benefit.diet?.length??0) > 0){
+      ret.push(
+        {
+          title:'benefit.data.diet.small_title',
+          content: benefit.diet?.map((diet):RubricElement=>
+            {
+              return {
+                name: `benefit.data.diet.types.${diet.type}.title`,
+                type: "text",
+                text: RegexBase.lang_path.test(diet.value)?`benefit.data.diet.types.specific_diet.${diet.value}`:diet.value
+              }
+            }
+          )?? []
+        }
+      )
+    }
+
+    return ret;
   }
 }

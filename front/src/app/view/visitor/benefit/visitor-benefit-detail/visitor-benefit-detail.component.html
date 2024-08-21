@@ -1,3 +1,16 @@
 <div class="flex">
-    <p>visitor-benefit-detail works!</p>
+    <div>
+        <epv-rubric-list
+                [items]="benefit_rubric"
+        ></epv-rubric-list>
+        <epv-line [short]="true"></epv-line>
+        <br>
+        <div class="flex">
+            <button
+                class = 'bubble hover-1'
+                [routerLink]="'/'+EpvPath.visitor.benefit.edit">
+                {{'rubric.edit'|langue}}
+            </button>
+        </div>
+    </div>
 </div>

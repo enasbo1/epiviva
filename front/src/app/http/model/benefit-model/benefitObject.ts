@@ -9,6 +9,24 @@ export interface BenefitObject {
     validated?:'valid'|'wait'|'reject',
 }
 
+export interface BenefitGetObject {
+    id ?: number|bigint,
+    people:number,
+    diet?:string,
+    caf?:string,
+    secteur_id?:number,
+    validated?:'valid'|'wait'|'reject',
+}
+
+export interface BenefitPostObject {
+    id ?: number|bigint,
+    people:number,
+    diet?:string,
+    caf?:string,
+    secteur_id?:number,
+    validated?:'valid'|'wait'|'reject',
+}
+
 export type DietObject = DietDefault | DietSpecific
 
 interface DietDefault{

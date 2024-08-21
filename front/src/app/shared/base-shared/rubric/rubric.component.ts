@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RubricElement, RubricObject} from "./rubricObject";
 import {ModaleService} from "../../foundation/modale/modale.service";
+import {ConstancesService} from "../../../http/shared/constances.service";
 
 @Component({
   selector: 'epv-rubric',
@@ -55,4 +56,6 @@ export class RubricComponent implements OnInit {
   rate(value?:string|RubricObject|number):number{
     return <number>value;
   }
+
+  protected readonly ConstancesService = ConstancesService;
 }

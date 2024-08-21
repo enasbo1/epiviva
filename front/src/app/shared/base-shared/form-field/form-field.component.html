@@ -115,10 +115,12 @@
   <ng-container *ngSwitchCase="'file'">
     <div  class="bubble hover-w w-100 bordered input">
       <input type="file" class = "w-100 hover-w {{field.sclass}}"
-           [name] ="field.name"
-           [title]="(field.instruction?? field.placeholder) | langue"
-           [placeholder]="field.placeholder | langue"
-           [(ngModel)]="field._value"
+        [accept]="field.file_type"
+        [name] ="field.name"
+        [title]="(field.instruction?? field.placeholder) | langue"
+        [placeholder]="field.placeholder | langue"
+        (change)="fileChange($event)"
+        [(ngModel)]="field._value"
       >
     </div>
  </ng-container>

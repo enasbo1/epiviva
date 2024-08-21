@@ -44,7 +44,6 @@ class BenefitService extends Service
         $result = $repo->read($id, "benefit not found");
 
         foreach($result as $row) {
-            $row['diet'] = json_decode($row['diet']);
             $benefit[] = Formater::prepareGet($row);
         }
 
@@ -58,9 +57,6 @@ class BenefitService extends Service
     public function save(object $input): string
     {
         $repo = new BenefitRepository();
-        if (isset($input->diet)){
-            $input->diet = json_encode($input->diet);
-        }
         $toQuery = $this->modelType->isValidType($input);
         return $repo->create($toQuery, "unable to create benefit");
     }
@@ -72,9 +68,6 @@ class BenefitService extends Service
     {
         $repo = new BenefitRepository();
         $updated = $repo->read($input->id)[0] ?? [];
-        if (isset($input->diet)){
-            $input->diet = json_encode($input->diet);
-        }
         $toQuery = $this->modelType->isValidType($input, $updated);
         $repo->update($toQuery, "unable to update benefit");
     }
@@ -104,5 +97,29 @@ class BenefitService extends Service
             }
         }
         Privilege::forbidden();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function save_form_user(object $input, $user_id): void
+    {
+        $userRepo = new UsersRepository();
+        $user = $userRepo->read($user_id);
+        if ($user==[]) {
+            Privilege::forbidden();
+        }
+        if (isset($user[0]['benefit_id'])){
+            $input->id = $user[0]['benefit_id'];
+            $this->update($input);
+        }else{
+            $userRepo->update(
+                [
+                    'id'=>$user_id,
+                    'benefit_id'=>$this->save($input)
+                ]
+            );
+        }
+
     }
 }

@@ -6,5 +6,5 @@ status-|-!int :M,2 :<,5-|-'0'
 num-|-r :e,10
 mdp-|-r :m,5
 service_id-|-!int
-id_secteur-|-!int
+benefit_id-|-!int
 address_id-|-!int

@@ -168,10 +168,17 @@
   "benefit": {
     "title": "Demande d'aide alimentaire",
     "caf": "Allocation caf",
+    "file": "fichier d'allocations",
     "data": {
       "peoples": "Taille du foyer (nb de personnes)",
+      "people": {
+        "title": "Taille du foyer",
+        "content": "Nombre de personnes"
+      },
       "diet": {
-        "ask": "Avez-vous des interdit alimentaires (allergies/religion...)",
+        "title": "Interdits alimentaires (allergies/religion...)",
+        "small_title":  "Interdits alimentaires",
+        "ask": "Avez-vous des interdits alimentaires (allergies/religion...)",
         "new": "Ajouter un interdit alimentaire",
         "types": {
           "title": "Type",

@@ -13,7 +13,9 @@ export interface FormFieldObject{
   choices? : string[];
   _value?:FormFieldValue
   _values?:(Date|undefined)[];
-  event?:EventEmitter<string|void>
+  event?:EventEmitter<string|void>;
+  file?:File
+  file_type?:string;
   max?:Date;
   min?:Date;
   step?:number;

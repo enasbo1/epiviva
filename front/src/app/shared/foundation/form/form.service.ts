@@ -62,6 +62,11 @@ export class FormService {
     return v?v:defaut;
   }
 
+  static get_file(formFields:FormFieldObject[],name:string, defaut?:File):File|undefined{
+    const v:File|undefined = FormService.get_field(formFields, name)?.file
+    return v?v:defaut;
+  }
+
   static get_field(formFields:FormFieldObject[],name:string):FormFieldObject|undefined{
     return formFields.find((form:FormFieldObject):boolean=>form.name===name)
   }
