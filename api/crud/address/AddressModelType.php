@@ -18,9 +18,10 @@ class AddressModelType implements ModelType
 			"id" => "!int",
 			"address" => "r",
 			"postal_code" => "r",
+			"city" => "r M,64",
 			"instruction" => "",
 			"kind" => ":M,50",
-			"id_secteur" => "!int"
+			"id_sector" => "!int"
         ]);
         if (
             $valid != "validated"
@@ -37,9 +38,10 @@ class AddressModelType implements ModelType
 			"id" => $params->id ?? $default["id"]  ?? null,
 			"address" => $params->address ?? $default["address"]  ?? null,
 			"postal_code" => $params->postal_code ?? $default["postal_code"]  ?? null,
+			"city" => $params->city ?? $default["city"]  ?? null,
 			"instruction" => $params->instruction ?? $default["instruction"]  ?? null,
 			"kind" => $params->kind ?? $default["kind"]  ?? null,
-			"id_secteur" => $params->id_secteur ?? $default["id_secteur"]  ?? null
+			"id_sector" => $params->id_sector ?? $default["id_sector"]  ?? null
         ]);
     }
 }

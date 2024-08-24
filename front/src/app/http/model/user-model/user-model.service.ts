@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {RequestService} from "../../shared/request.service";
 import { Observable} from "rxjs";
-import {UserObject, UserPatch, UserPost} from "./userObject";
+import {UserGivingObject, UserObject, UserPatch, UserPost} from "./userObject";
 import {HttpErrorResponse} from "@angular/common/http";
 import {FormFieldObject, FormFieldValue} from "../../../shared/base-shared/form-field/formFieldObject";
 import {WPTokenRequestType} from "../../shared/connection.service";
@@ -76,5 +76,9 @@ export class UserModelService extends RequestService{
 
   get_self():Observable<UserObject[]> {
     return (this.get('users/self') as Observable<UserObject[]>);
+  }
+
+  get_user_giving() {
+    return (this.get('users/giving') as Observable<UserGivingObject[]>);
   }
 }

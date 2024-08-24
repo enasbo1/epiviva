@@ -10,7 +10,7 @@ use Exception;
 use file\FileController;
 use message\MessageController;
 use product\ProductController;
-use secteur\SecteurController;
+use sector\SectorController;
 use service\ServiceController;
 use token\Token;
 use users\UsersController;
@@ -37,9 +37,9 @@ require_once 'src/message/MessageController.php';
 require_once "crud/service/ServiceModelType.php";
 require_once 'src/service/ServiceController.php';
 
-// Imports pour le modèle et le contrôleur des secteurs
-require_once "crud/secteur/SecteurModelType.php";
-require_once 'src/secteur/SecteurController.php';
+// Imports pour le modèle et le contrôleur des sectors
+require_once "crud/sector/SectorModelType.php";
+require_once 'src/sector/SectorController.php';
 
 // Imports pour le modèle et le contrôleur des adresses
 require_once "crud/address/AddressModelType.php";
@@ -98,7 +98,7 @@ $controllerList = [
     "users"     => new UsersController(),
     "message"   => new MessageController(),
     "service"   => new ServiceController(),
-    "secteur"   => new SecteurController(),
+    "sector"   => new SectorController(),
     "address"   => new AddressController(),
     "product"   => new ProductController(),
     "distribute"=> new DistributeController(),

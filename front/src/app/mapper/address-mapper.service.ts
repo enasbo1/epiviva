@@ -15,6 +15,7 @@ export class AddressMapperService {
       content:[
         {name:'address.title', type:'text', text: address.address},
         {name:'address.postal_code.title', type:'text', text: address.postal_code},
+        {name:'address.city.title', type:'text', text: address.city},
         {name:'address.kind.title', type:'text', text: address.kind},
         {
           name:'address.instruction.title',
@@ -26,7 +27,7 @@ export class AddressMapperService {
     }
   }
 
-  static form(verify ?:(step:FormStepObject)=>EventEmitter<boolean>, address?:AddressMin): FormStepObject[] {
+  static form(verify ?:(step:FormStepObject)=>EventEmitter<boolean>|false, address?:AddressMin): FormStepObject[] {
     return[
       {
         validator:verify,
@@ -56,6 +57,16 @@ export class AddressMapperService {
                 placeholder: "address.postal_code.exemple",
                 reg_error: [
                   { regex: RegexBase.code_postal, message: "Enter a valid postal code (5 digits)" }
+                ],
+              },
+              {
+                name: "city",
+                title: "address.city.title",
+                type: "text",
+                default: address?.city,
+                placeholder: "address.city.exemple",
+                reg_error: [
+                  { regex: RegexBase.required, message: "vetillez saisir une ville" }
                 ],
               },
               {

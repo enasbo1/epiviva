@@ -1,0 +1,13 @@
+@use "../../../shared/palette.scss" as style;
+
+ul{
+  li{
+    display: block;
+    &.passed{
+      color: #aaa;
+    }
+    &.refused{
+      color: style.$color-error;
+    }
+  }
+}

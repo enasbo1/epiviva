@@ -2,4 +2,6 @@ id-|-!int
 code_barre-|-:M,24
 name-|-:M,128
 marque-|-:M,50
-address_id-|-r !int
+user_id-|-r !int
+expiration_date-|-r :d,MDY
+refused-|-

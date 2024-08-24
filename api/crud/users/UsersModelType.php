@@ -46,7 +46,7 @@ class UsersModelType implements ModelType
 			"num" => $params->num ?? $default["num"]  ?? null,
 			"mdp" => $params->mdp ?? $default["mdp"]  ?? null,
 			"service_id" => $params->service_id ?? $default["service_id"]  ?? null,
-			"benefit_id" => $params->id_secteur ?? $default["id_secteur"]  ?? null,
+			"benefit_id" => $params->id_sector ?? $default["id_sector"]  ?? null,
 			"address_id" => $params->address_id ?? $default["address_id"]  ?? null
         ]);
     }

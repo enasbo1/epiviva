@@ -12,7 +12,7 @@ class BenefitRepository extends Repository {
     diet, 
     caf, 
     validated, 
-    secteur_id,
+    sector_id,
     u.id as user__id, 
     prenom as user__prenom, 
     nom as user__nom, 

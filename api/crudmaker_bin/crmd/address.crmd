@@ -1,6 +1,7 @@
 id-|-!int
 address-|-r
 postal_code-|-r
+city-|-r M,64
 instruction-|-
 kind-|-:M,50
-id_secteur-|-!int
+id_sector-|-!int

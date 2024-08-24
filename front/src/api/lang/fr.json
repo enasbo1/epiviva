@@ -43,18 +43,22 @@
       "banned": "bannis",
       "visitor": "visiteur",
       "unset": "indeterminé",
-      "rh": "Ressources Humaines",
-      "admin": "Administrateur"
+      "rh": "responsable",
+      "admin": "administrateur"
     }
   },
   "address": {
     "title": "Adresse",
     "exemple": "13 rue de la chance",
-    "edit": "Modifier l'addresse",
-    "edited": "L'addresse a bien été modifiée",
+    "edit": "Modifier l'adresse",
+    "edited": "L'adresse a bien été modifiée",
     "postal_code": {
       "title": "Code postal",
       "exemple": "53120"
+    },
+    "city": {
+      "title": "Ville",
+      "exemple": "Paris"
     },
     "kind": {
       "title": "Type",
@@ -215,6 +219,59 @@
           }
         }
       }
+    }
+  },
+  "gift": {
+    "title": "donner des produits allimentaires",
+    "giver": "Donnateurs",
+    "refused": "Le produit a été refusé",
+    "from_user": "Produits de",
+    "name": "Produits",
+    "refuse": "Refuser le produit",
+    "give": "Donner des produits",
+    "products": "Mes produits à donner",
+    "no_product": "Vous n'avez aucun produit alimentaire en attente",
+    "there_no": "L'utilisateur n'as aucun produit alimentaire en attente",
+    "expiration" : "à consomer avant le",
+    "del": "supprimer le produit",
+    "add": "ajouter un produit",
+    "form": {
+      "name": {
+        "title": "Nom du produit",
+        "placeholder": "haricots vert",
+        "required": "veillez saisir le nom du produit"
+      },
+      "bar_code": {
+        "title":"code barre",
+        "placeholder": "25956632485",
+        "reg_error": "un code barre est une suite de chiffres"
+      },
+      "brand": {
+        "title":"Marque",
+        "placeholder": "Freshona",
+        "required": "veillez saisir la marque du produit"
+      },
+      "expiration_date": {
+        "title":"Date de péremption",
+        "placeholder": "15/12/2026"
+      }
+    }
+  },
+  "sector": {
+    "title": "Secteur",
+    "add": "ajouter un secteur",
+    "created": "le secteur a bien été ajouté",
+    "list_title": "Secteurs",
+    "edit": "Modifier le secteur",
+    "updated": "Le secteur a bien été modifié",
+    "delete": "supprimer le secteur",
+    "sure_delete": "voulez-vous vraiment supprimer le secteur ?",
+    "deleted": "le secteur a bien été supprimé",
+    "list": "liste des Secteurs",
+    "name": {
+      "title": "nom du secteur",
+      "placeholder": "pikachu",
+      "required": "Veillez nommer le secteur"
     }
   }
 }

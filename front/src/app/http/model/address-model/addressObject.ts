@@ -2,6 +2,7 @@ export interface AddressObject extends AddressMin {
     address: string;
     postal_code: string;
     instruction: string;
+    city: string;
     kind: string;
 }
 
@@ -10,6 +11,7 @@ export interface AddressMin {
     address?: string;
     postal_code?: string;
     instruction?: string;
+    city?: string;
     kind?: string;
-    id_secteur?: number | bigint;
+    id_sector?: number | bigint;
 }

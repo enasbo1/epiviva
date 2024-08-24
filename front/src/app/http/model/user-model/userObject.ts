@@ -1,3 +1,5 @@
+import {AddressObject} from "../address-model/addressObject";
+
 export interface UserObject extends UserRecap{
   id: number|bigint;
   prenom: string;
@@ -5,6 +7,12 @@ export interface UserObject extends UserRecap{
   mail: string;
   status: string;
   num:string;
+}
+
+export interface UserGivingObject extends UserRecap{
+  id: number|bigint;
+  gift:number;
+  address:AddressObject
 }
 
 export interface UserPatch extends UserMin{

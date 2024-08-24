@@ -257,7 +257,7 @@ export class BenefitMapperService {
       caf: benefitGet.caf,
       diet: JSON.parse(benefitGet.diet) as DietObject[],
       people: benefitGet.people,
-      secteur_id: benefitGet.secteur_id,
+      sector_id: benefitGet.sector_id,
       validated: benefitGet.validated,
     };
     return {
@@ -293,7 +293,7 @@ export class BenefitMapperService {
         { name: 'user.status', value: CandidateMapperService.states[model.validated ?? ''] },
         { name: 'CAF', value: model.caf },
         { name: 'Nombre de personnes', value: model.people },
-        { name: 'Secteur', value: model.secteur_id ?? '' },
+        { name: 'sector', value: model.sector_id ?? '' },
       ]
     };
   }

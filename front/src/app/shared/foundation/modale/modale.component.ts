@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {GlobalService} from "../../global.service";
 import {ModalObject, ModalOption} from "./modalObject";
 import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
@@ -32,5 +32,11 @@ export class ModaleComponent implements OnInit {
   submit_form(values:FormFieldObject[]):void{
     this.modalObject.visible = false;
     this.modalObject.content.form?.submit.emit(values);
+  }
+
+  hide(event: MouseEvent) {
+    if (event.target == event.currentTarget) {
+      this.modalObject.visible = false;
+    }
   }
 }

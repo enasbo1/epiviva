@@ -1,0 +1,40 @@
+<section class="flex">
+    <div>
+        <ng-container *ngIf="products.length>0">
+            <h5>{{'gift.products'|langue}}</h5>
+            <ul>
+                <li *ngFor="let product of products"
+                    [class]="
+                    moment(product.expiration_date).isBefore(moment())?'passed ':''+
+                    product.refused==='t'?'refused':''"
+                    [title]="product.refused==='t'?('gift.refused'|langue):''"
+                >
+                    <b [class]="product.refused==='t'?'':'clickable'" (click)="edit_product(product)">
+                        {{product.name}} "{{product.marque}}"
+                    </b>;
+                    <i>{{'gift.expiration'|langue}} :
+                        {{DateService.to_front(product.expiration_date)}}</i>
+                    <b
+                            [title]="'gift.del'|langue"
+                            class="clickable"
+                            (click)="drop_product(product)"
+                    >🗑</b>
+                </li>
+            </ul>
+        </ng-container>
+        <ng-container *ngIf="products.length == 0">
+            <br><br>
+            <h5>
+                {{'gift.no_product'|langue}}
+            </h5>
+        </ng-container>
+        <div class="flex">
+            <button
+                class = 'bubble hover-1'
+                (click)="add_product()"
+            >
+                {{'gift.add'|langue}}
+            </button>
+        </div>
+    </div>
+</section>

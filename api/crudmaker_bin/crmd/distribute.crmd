@@ -1,2 +1,2 @@
 user_id-|-r !int
-secteur_id-|-r !int
+sector_id-|-r !int

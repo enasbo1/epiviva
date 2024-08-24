@@ -14,7 +14,6 @@ export class FileModelService  extends RequestService{
 
   post_file(content:File, filename:string, extentChar:string='.'):Observable<{filename:string}>{
     const formData = new FormData();
-    formData.append('input',content);
     return this.httpClient.post(ConstancesService.api_url + "/file/" +filename+extentChar+content.name.replace(/^.*[./]/, ''),
       formData,
       {

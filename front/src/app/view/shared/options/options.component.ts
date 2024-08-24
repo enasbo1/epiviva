@@ -94,7 +94,9 @@ export class OptionsComponent implements OnInit {
       address: FormService.get_value(step_values, 'address') as string,
       instruction: FormService.get_value(step_values, 'instruction') as string,
       kind: FormService.get_value(step_values, 'kind') as string,
+      city: (FormService.get_value(step_values, 'city') as string).toUpperCase(),
       postal_code: FormService.get_value(step_values, 'postal_code') as string
+
 
     }
     this.addressModelService.edit_userAddress(address).subscribe(()=>

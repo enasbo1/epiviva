@@ -1,12 +1,12 @@
 <?php
 
-namespace secteur;
+namespace sector;
 
 use shared\ModelType;
 use shared\Verif;
 use Exception;
 
-class SecteurModelType implements ModelType
+class SectorModelType implements ModelType
 {
     /**
      * @throws Exception
@@ -16,7 +16,8 @@ class SecteurModelType implements ModelType
         $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
-			"nom" => "r"
+			"nom" => "r",
+			"address_id" => "r !int"
         ]);
         if (
             $valid != "validated"
@@ -31,7 +32,8 @@ class SecteurModelType implements ModelType
     {
         return array_filter([
 			"id" => $params->id ?? $default["id"]  ?? null,
-			"nom" => $params->nom ?? $default["nom"]  ?? null
+			"nom" => $params->nom ?? $default["nom"]  ?? null,
+			"address_id" => $params->address_id ?? $default["address_id"]  ?? null
         ]);
     }
 }

@@ -6,7 +6,7 @@ export interface BenefitObject {
     people:number,
     diet?:DietObject[],
     caf:string,
-    secteur_id?:number,
+    sector_id?:number,
     validated?:'valid'|'wait'|'reject',
 }
 
@@ -23,7 +23,7 @@ export interface BenefitGetObject {
     people:number,
     diet?:string,
     caf?:string,
-    secteur_id?:number,
+    sector_id?:number,
     validated?:'valid'|'wait'|'reject',
 }
 
@@ -32,7 +32,7 @@ export interface BenefitPostObject {
     people:number,
     diet?:string,
     caf?:string,
-    secteur_id?:number,
+    sector_id?:number,
     validated?:'valid'|'wait'|'reject',
 }
 

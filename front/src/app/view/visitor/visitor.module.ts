@@ -15,6 +15,7 @@ import { OptionsComponent } from "../shared/options/options.component";
 import { VisitorBenefitComponent } from './benefit/visitor-benefit/visitor-benefit.component';
 import { VisitorBenefitEditComponent } from './benefit/visitor-benefit-edit/visitor-benefit-edit.component';
 import { VisitorBenefitDetailComponent } from './benefit/visitor-benefit-detail/visitor-benefit-detail.component';
+import { VisitorGiftComponent } from './visitor-gift/visitor-gift.component';
 
 
 
@@ -28,7 +29,8 @@ import { VisitorBenefitDetailComponent } from './benefit/visitor-benefit-detail/
     VisitorCandidateEditComponent,
     VisitorBenefitComponent,
     VisitorBenefitEditComponent,
-    VisitorBenefitDetailComponent
+    VisitorBenefitDetailComponent,
+    VisitorGiftComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { VisitorBenefitDetailComponent } from './benefit/visitor-benefit-detail/
       {path: EpvPath.visitor.benefit.root, component: VisitorBenefitComponent},
       {path: EpvPath.visitor.benefit.detail, component: VisitorBenefitDetailComponent},
       {path: EpvPath.visitor.benefit.edit, component: VisitorBenefitEditComponent},
+      {path: EpvPath.visitor.gift.root, component: VisitorGiftComponent},
       {path: EpvPath.visitor.addresses, component: AddressesComponent},
       {path: EpvPath.visitor.options, component: OptionsComponent},
       {path: EpvPath.visitor.root, redirectTo: EpvPath.visitor.home, pathMatch:"full"},

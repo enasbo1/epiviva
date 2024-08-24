@@ -14,14 +14,23 @@ class UsersController extends CrudController{
         if ($id == []) {
             Privilege::admin();
             $users = $request->getAll();
-        } else if($id[0]=='self') {
-            Privilege::allowed();
-            global $_TOKEN;
-            $users = $request->findById($_TOKEN->user_id);
-        }else{
-            Privilege::admin();
-            $users = $request->findById($id[0]);
+        } else {
+            switch ($id[0]) {
+                case 'self':
+                    Privilege::allowed();
+                    global $_TOKEN;
+                    $users = $request->findById($_TOKEN->user_id);
+                    break;
+                case 'giving':
+                    Privilege::rh();
+                    $users = $request->get_giving();
+                    break;
+                default:
+                    Privilege::rh();
+                    $users = $request->findById($id[0]);
+            }
         }
+
         echo json_encode($users);
     }
 

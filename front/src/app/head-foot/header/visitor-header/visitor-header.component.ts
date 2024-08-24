@@ -12,6 +12,7 @@ import {GlobalService} from "../../../shared/global.service";
 export class VisitorHeaderComponent extends HeaderComponent implements OnInit {
 
   override options:string = EpvPath.visitor.options;
+  override home:string = EpvPath.visitor.home;
 
   override navLinks : NavLink[] = [
     {

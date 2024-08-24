@@ -132,4 +132,21 @@ class UsersService extends Service
         $repo = new UsersRepository();
         return count($repo->get(['id'], ['id'=>$user_id, 'benefit_id'=>$benefit_id]))>0;
     }
+
+    /**
+     * @throws Exception
+     */
+    public function get_giving(): array
+    {
+        $repo = new UsersRepository();
+
+        $users = [];
+        $result = $repo->get_giving([]);
+
+        foreach($result as $row) {
+            $users[] = Formater::prepareGet($row);
+        }
+
+        return $users;
+    }
 }

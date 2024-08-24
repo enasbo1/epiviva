@@ -7,26 +7,20 @@ CREATE TABLE service (
     active BOOLEAN DEFAULT TRUE
 );
 
-CREATE TABLE secteur (
+CREATE TABLE sector (
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(50)
+    nom VARCHAR(50),
+    active BOOLEAN default true
 );
 
 CREATE TABLE address (
     id SERIAL PRIMARY KEY,
     address VARCHAR(255),
     postal_code VARCHAR(10),
+    city VARCHAR(64),
     instruction TEXT,
     kind VARCHAR(50),
-    secteur_id INTEGER REFERENCES secteur(id)
-);
-
-CREATE TABLE product (
-    id SERIAL PRIMARY KEY,
-    code_barre VARCHAR(24),
-    name VARCHAR(128),
-    marque VARCHAR(50),
-    address_id INTEGER REFERENCES address(id)
+    sector_id INTEGER REFERENCES sector(id)
 );
 
 CREATE TABLE benefit (
@@ -35,7 +29,7 @@ CREATE TABLE benefit (
     diet TEXT,
     caf VARCHAR(255) NOT NULL,
     validated VARCHAR(8) DEFAULT 'wait',
-    secteur_id integer references secteur(id)
+    sector_id integer references sector(id)
 );
 
 CREATE TABLE users (
@@ -50,10 +44,20 @@ CREATE TABLE users (
     address_id INTEGER REFERENCES address(id)
 );
 
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    code_barre VARCHAR(24),
+    name VARCHAR(128),
+    marque VARCHAR(50),
+    refused boolean default false,
+    expiration_date TIMESTAMP NOT NULL,
+    user_id INTEGER REFERENCES users(id)
+);
+
 CREATE TABLE distribute (
     user_id INTEGER REFERENCES users(id),
-    secteur_id INTEGER REFERENCES secteur(id),
-    PRIMARY KEY (user_id, secteur_id)
+    sector_id INTEGER REFERENCES sector(id),
+    PRIMARY KEY (user_id, sector_id)
 );
 
 CREATE TABLE candidate(
@@ -78,3 +82,5 @@ CREATE TABLE message (
     read boolean default false,
     link varchar(255)
 );
+
+ALTER table sector add column address_id INTEGER REFERENCES address(id);

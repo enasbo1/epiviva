@@ -78,4 +78,43 @@ class ProductService extends Service
         $repo = new ProductRepository();
         $repo->delete($id);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getFromUser(int $user_id, bool $withRefused = true): array
+    {
+        $repo = new ProductRepository();
+
+        $product = [];
+        if ($withRefused) {
+            $result = $repo->get([], ['user_id' => $user_id]);
+        }else{
+            $result = $repo->get([], ['user_id' => $user_id, 'refused'=>"false"]);
+        }
+
+        foreach($result as $row) {
+            $product[] = Formater::prepareGet($row);
+        }
+
+        return $product;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function is_owner(int $id, int $user_id):bool
+    {
+        $repo = new ProductRepository();
+        return count($repo->get(['id'], ["id"=> $id, "user_id" => $user_id])) > 0;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function refuse(object $input): void
+    {
+        $input->refused = "true";
+        $this->update($input);
+    }
 }

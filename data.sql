@@ -6,38 +6,46 @@ INSERT INTO service (nom, description, form) VALUES
     ('Finance', 'description du service finance','[]'),
     ('Support Client', 'description du service support client','[]');
 
--- Remplissage de la table 'secteur'
-INSERT INTO secteur (nom) VALUES
-    ('Technologie'),
-    ('Commerce'),
-    ('Éducation'),
-    ('Santé'),
-    ('Transport');
+
+INSERT INTO address (address, postal_code, instruction, kind, city) VALUES
+   ('303 Avenue des Champs-Élysées', '75008', 'Au 5ème étage', 'Bureau', 'PARIS'),
+   ('404 Rue Saint-Honoré', '75001', 'Au fond du couloir', 'Magasin', 'PARIS'),
+   ('505 Place de la Concorde', '75008', 'Entrée côté jardin', 'Domicile', 'PARIS'),
+   ('606 Quai de la Seine', '75019', 'Porte bleue, deuxième étage', 'Entrepôt', 'PARIS'),
+   ('707 Rue du Faubourg Saint-Antoine', '75011', 'Au rez-de-chaussée', 'Magasin', 'PARIS');
+
+-- Remplissage de la table 'sector'
+INSERT INTO sector (nom, address_id) VALUES
+    ('Technologie', 1),
+    ('Commerce',2),
+    ('Éducation',3),
+    ('Santé',4),
+    ('Transport',5);
 
 -- Remplissage de la table 'address'
-INSERT INTO address (address, postal_code, instruction, kind, secteur_id) VALUES
-    ('123 Rue Principale', '75001', 'A côté du parc', 'Bureau', 1),
-    ('456 Avenue de la République', '75002', 'Deuxième étage', 'Domicile', 2),
-    ('789 Boulevard Voltaire', '75003', 'En face du supermarché', 'Magasin', 3),
-    ('101 Rue de Paris', '75004', 'Près de la station de métro', 'Entrepôt', 4),
-    ('202 Rue du Louvre', '75005', 'À côté du musée', 'Bureau', 5);
-
--- Remplissage de la table 'product'
-INSERT INTO product (code_barre, name, marque, address_id) VALUES
-    ('1234567890123', 'Ordinateur Portable', 'Dell', 1),
-    ('2345678901234', 'Téléphone Mobile', 'Samsung', 2),
-    ('3456789012345', 'Imprimante', 'HP', 3),
-    ('4567890123456', 'Clavier', 'Logitech', 4),
-    ('5678901234567', 'Souris', 'Microsoft', 5);
+INSERT INTO address (address, postal_code, instruction, kind, city, sector_id) VALUES
+    ('123 Rue Principale', '75001', 'A côté du parc', 'Bureau','PARIS', 1),
+    ('456 Avenue de la République', '75002', 'Deuxième étage', 'Domicile','PARIS', 2),
+    ('789 Boulevard Voltaire', '75003', 'En face du supermarché', 'Magasin', 'PARIS', 3),
+    ('101 Rue de Paris', '75004', 'Près de la station de métro', 'Entrepôt', 'PARIS', 4),
+    ('202 Rue du Louvre', '75005', 'À côté du musée', 'Bureau', 'PARIS', 5);
 
 -- Remplissage de la table 'users'
 INSERT INTO users (prenom, nom, mail, num, status, mdp, address_id) VALUES
     ('system', 'system', 'system@system.com', '0583363945', 5, '5d2217b2d33df736cdc3258b1d3bEF46µ7120958504f7da6437dzdzav153MLf18cd12c321376df28', null),
-    ('rh', 'user', 'rh@user.com', '0583363945', 3, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28',  1),
-    ('admin', 'user', 'admin@user.com', '0583363945', 4, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 2),
-    ('visitor', 'user', 'visitor@user.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 3),
-    ('banned', 'user', 'banned@user.com', '0583363945', 0, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 4),
-    ('Eve', 'Moreau', 'eve.moreau@example.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 5);
+    ('rh', 'user', 'rh@user.com', '0583363945', 3, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28',  6),
+    ('admin', 'user', 'admin@user.com', '0583363945', 4, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 7),
+    ('visitor', 'user', 'visitor@user.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 8),
+    ('banned', 'user', 'banned@user.com', '0583363945', 0, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 9),
+    ('Eve', 'Moreau', 'eve.moreau@example.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 10);
+
+-- Remplissage de la table 'product'
+INSERT INTO product (code_barre, name, marque, user_id, expiration_date) VALUES
+    ('1234567890123', 'Ordinateur Portable', 'Dell', 1, '2024-09-05'),
+    ('2345678901234', 'Téléphone Mobile', 'Samsung', 2,'2024-09-05'),
+    ('3456789012345', 'Imprimante', 'HP', 3, '2024-09-05'),
+    ('4567890123456', 'Clavier', 'Logitech', 4,'2024-09-05'),
+    ('5678901234567', 'Souris', 'Microsoft', 5, '2024-09-05');
 
 -- Remplissage de la table 'message'
 INSERT INTO message (text, date_send, sender_id, receiver_id) VALUES
@@ -48,7 +56,7 @@ INSERT INTO message (text, date_send, sender_id, receiver_id) VALUES
     ('Pouvez-vous confirmer la réception ?', '2024-08-05 11:20:00', 5, 1);
 
 -- Remplissage de la table 'distribute'
-INSERT INTO distribute (user_id, secteur_id) VALUES
+INSERT INTO distribute (user_id, sector_id) VALUES
     (1, 1),
     (2, 2),
     (3, 3),

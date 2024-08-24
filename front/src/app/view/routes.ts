@@ -10,10 +10,13 @@ export const  EpvPath={
     home:'visitor/home',
     options: 'visitor/options',
     candidate:'visitor/candidate',
+    gift:{
+      root:'visitor/gift',
+    },
     benefit:{
       root:'visitor/benefit',
       edit:'visitor/benefit/edit',
-      detail:'visitor/benefit/detail',
+      detail:'visitor/benefit/detail'
     },
     candidated:{
       edit: 'visitor/candidated/:id/edit',
@@ -30,9 +33,17 @@ export const  EpvPath={
   rh : {
     home:'rh/home',
     options: 'rh/options',
+    sector:{
+      list:'rh/sector',
+      details:'rh/sector/:id'
+    },
+    gift:{
+      list:'rh/gift',
+      details:'rh/gift/:id',
+    },
     benefit:{
       list:'rh/benefit',
-      detail:'rh/benefit/:id',
+      details:'rh/benefit/:id'
     },
     candidate:{
       list:'rh/candidate',
@@ -45,13 +56,13 @@ export const  EpvPath={
     options: 'admin/options',
     services:{
       list:'admin/service',
-      detail:'admin/service/:id',
+      details:'admin/service/:id',
       edit:'admin/service/:id/edit',
-      new:'admin/service/new',
+      new:'admin/service/new'
     },
     users:{
       list:'admin/users',
-      detail:'admin/users/:id',
+      details:'admin/users/:id',
       edit:'admin/users/:id/edit',
     },
     root:'admin'

@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
   @Input() query?:Params;
   _filters:_FilterObject[]|undefined;
   protected act?:Act<_FilterObject>;
-  search_crit:string="Title";
+  search_crit:string="search.title";
   search_value:string="";
   constructor() {}
 
@@ -97,7 +97,7 @@ export class ListComponent implements OnInit {
       }
     }
 
-    if (this.search_crit === "Title"){
+    if (this.search_crit === "search.title"){
       filtered_list = filtered_list.filter(
         item =>
           item.title?.toLowerCase().includes(this.search_value.toLowerCase())

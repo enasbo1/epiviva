@@ -12,7 +12,7 @@
             </div>
             <div *ngIf="notif" id="notif">
               <epv-line></epv-line>
-              <div class="flex justify-spaced"><div></div><h5 class="clickable" (click)="navigateTo(notif)">{{'message.new' |langue}} : "{{notif.text|langue}}"</h5><h5 class="clickable" (click)="delete_notif(notif)">X</h5></div>
+              <div class="flex justify-spaced"><div></div><h5 [class]="notif.link?'clickable':''" (click)="navigateTo(notif)">{{'message.new' |langue}} : "{{notif.text|langue}}"</h5><h5 class="clickable" (click)="delete_notif(notif)">X</h5></div>
               <epv-line></epv-line>
               <br>
             </div>
