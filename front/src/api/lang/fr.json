@@ -19,6 +19,7 @@
     "title": "Utilisateur",
     "list": "Utilisateurs",
     "credential": "Authentifiacation",
+    "address": "Adresse de l'utilisateur",
     "first_name": "Nom",
     "name":"Prenom",
     "status": "Status",
@@ -113,7 +114,7 @@
     "new": "Nouveau message"
   },
   "nav": {
-    "home" : "Acceuil",
+    "home" : "Accueil",
     "logout": "Déconnection",
     "login": "Connection"
   },
@@ -173,6 +174,8 @@
     "createMessage" : "CANDIDATURE EFFECTUEE"
   },
   "benefit": {
+    "username": "Bénéficiaires",
+    "affect": "Affecter à un secteur",
     "title": "Demande d'aide alimentaire",
     "list": "Demandes d'aide",
     "caf": "Allocation caf",
@@ -183,6 +186,10 @@
     "edited": "la demande a été Modifiée",
     "saved": "la demande a été Enregistrée",
     "file": "fichier d'allocations",
+    "sector": {
+      "fired": "Vous n'êtes plus pris en charge",
+      "affected": "Vous avez été pris en charge"
+    },
     "data": {
       "peoples": "Taille du foyer (nb de personnes)",
       "people": {
@@ -221,6 +228,12 @@
       }
     }
   },
+  "volunteer": {
+    "title": "Bénévole",
+    "username": "Bénévoles",
+    "affects": "Affectations",
+    "affect": "Ajouter une affectation"
+  },
   "gift": {
     "title": "donner des produits allimentaires",
     "giver": "Donnateurs",
@@ -258,6 +271,7 @@
     }
   },
   "sector": {
+    "affected": "Utilisateurs affectés",
     "title": "Secteur",
     "add": "ajouter un secteur",
     "created": "le secteur a bien été ajouté",
@@ -268,10 +282,21 @@
     "sure_delete": "voulez-vous vraiment supprimer le secteur ?",
     "deleted": "le secteur a bien été supprimé",
     "list": "liste des Secteurs",
+    "affect": {
+      "nb": "Affectations",
+      "helped": "Affecter un Beneficiaire",
+      "volunteer": "Affecter un Bénévole"
+    },
     "name": {
       "title": "nom du secteur",
       "placeholder": "pikachu",
       "required": "Veillez nommer le secteur"
+    }
+  },
+  "harvest": {
+    "add": {
+      "pick": "Ajouter à une collecte",
+      "cta": "Planifier une collecte"
     }
   }
 }

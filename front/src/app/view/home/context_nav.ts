@@ -18,7 +18,8 @@ export const context_nav : Record<string, SampleListElement[]>={
         {link:'/'+EpvPath.rh.candidate.list, value:'home.candidates'},
         {link:'/'+EpvPath.rh.benefit.list, value:'benefit.list'},
         {link:'/'+EpvPath.rh.gift.list, value:'gift.name'},
-        {link:'/'+EpvPath.rh.sector.list, value:'sector.list_title'}
+        {link:'/'+EpvPath.rh.sector.list, value:'sector.list_title'},
+        {link:'/'+EpvPath.rh.volunteer.list, value:'volunteer.username'}
     ],
     'admin' : [
         {link:'/'+EpvPath.admin.services.list, value:'service-list.title'},

@@ -49,6 +49,10 @@ export const  EpvPath={
       list:'rh/candidate',
       details:'rh/candidate/:id'
     },
+    volunteer:{
+      list:'rh/volunteer',
+      details:'rh/volunteer/:id'
+    },
     root:'rh'
   },
   admin: {

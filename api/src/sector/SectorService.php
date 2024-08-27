@@ -95,11 +95,10 @@ class SectorService extends Service
             $address->update(['sector_id'=>"null" ,"id"=> $addes['id']]);
         }
         $distribute= new DistributeRepository();
-        if (count($distribute->get([], ['sector_id'=>$id]))==0){
+        if (count($distribute->get([], ['sector_id'=>$id]))==0){ // TODO: changer pour supprimer les lignes de "distribute"
             $repo->delete($id);
         }else{
             $repo->update(['id'=>$id, 'active'=>"false"]);
         }
-
     }
 }

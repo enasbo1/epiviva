@@ -18,6 +18,11 @@
                     >👎</b>
                 </li>
             </ul>
+            <div class="col-12 flex">
+                <span class="text-hover" (click)="pick()">
+                    {{'harvest.add.pick' |langue}}
+                </span>
+            </div>
         </ng-container>
 
         <ng-container *ngIf="products.length == 0">

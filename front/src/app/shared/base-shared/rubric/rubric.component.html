@@ -14,6 +14,7 @@
                     <td *ngSwitchCase="'file'"><a [href]="ConstancesService.files_url+item.value" target="_blank">{{ item.text | langue : '...' }}</a></td>
                     <td *ngSwitchCase="'panel'" class="clickable" (click)="open_panel(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? '<' : '>' }}</b></td>
                     <td *ngSwitchCase="'modal'" class="clickable" (click)="open_modal(item)">{{ item.text | langue : '...' }}<b> {{ item._open ? 'x' : 'o' }}</b></td>
+                    <td *ngSwitchCase="'button'" class="clickable" (click)="item.event?.emit()">{{ item.text | langue : '...' }}<b> o </b></td>
                     <td *ngSwitchCase="'image'" class="clickable" (click)="open_image(item)">{{ item.text | langue : '...' }}</td>
                     <td *ngSwitchCase="'stars'" class="clickable"><epv-star [rating]="rate(item.value)"></epv-star></td>
                 </ng-container>

@@ -28,6 +28,19 @@
           <div *ngSwitchCase="'image'" class="image">
             <img *ngIf="modalObject.content.image" [src]="modalObject.content.image" alt="nope" class="image">
           </div>
+
+          <div *ngSwitchCase="'list'" class="list">
+              <h5 *ngIf="modalObject.content.list?.title">{{modalObject.content.list?.title | langue}}</h5>
+              <ul *ngIf="modalObject.content.list">
+                  <li *ngFor="let element of modalObject.content.list.content">
+                      <span *ngFor="let elem of element.content" (click)="elem.submitEvent?.emit(element.object)" [style]="elem.style" [title]="elem.subtitle|langue"
+                            [class]="elem.submitEvent?'clickable':''"
+                      >
+                          {{elem.text | langue}}
+                      </span>
+                  </li>
+              </ul>
+          </div>
         </ng-container>
 
         <div class="flex">

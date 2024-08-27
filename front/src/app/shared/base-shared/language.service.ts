@@ -67,10 +67,10 @@ export class LanguageService {
               value.toString(),
               d
           );
-          return typeof v === "string" ? v : d;
+          return typeof v === "string" ? v : LanguageService.unescape(d)??'';
       }
 
-      return value?.toString() ?? default_value;
+      return LanguageService.unescape(value?.toString()) ?? default_value;
   }
 
   static unescape(value?:string|number):string|undefined{

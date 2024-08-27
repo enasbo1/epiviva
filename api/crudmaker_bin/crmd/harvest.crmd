@@ -1,0 +1,3 @@
+id-|-!int
+schedule-|-r :d,DMY
+sector_id-|-r !int

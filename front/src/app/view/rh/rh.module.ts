@@ -15,6 +15,8 @@ import { RhGiftListComponent } from './gift/rh-gift-list/rh-gift-list.component'
 import { RhGiftDetailComponent } from './gift/rh-gift-detail/rh-gift-detail.component';
 import { RhSectorListComponent } from './sector/rh-sector-list/rh-sector-list.component';
 import { RhSectorDetailComponent } from './sector/rh-sector-detail/rh-sector-detail.component';
+import { RhVolunteerListComponent } from './volunteer/rh-volunteer-list/rh-volunteer-list.component';
+import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-volunteer-detail.component';
 
 
 
@@ -27,7 +29,9 @@ import { RhSectorDetailComponent } from './sector/rh-sector-detail/rh-sector-det
     RhGiftListComponent,
     RhGiftDetailComponent,
     RhSectorListComponent,
-    RhSectorDetailComponent
+    RhSectorDetailComponent,
+    RhVolunteerListComponent,
+    RhVolunteerDetailComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import { RhSectorDetailComponent } from './sector/rh-sector-detail/rh-sector-det
       {path: EpvPath.rh.gift.details, component: RhGiftDetailComponent},
       {path: EpvPath.rh.sector.list, component: RhSectorListComponent},
       {path: EpvPath.rh.sector.details, component: RhSectorDetailComponent},
+      {path: EpvPath.rh.volunteer.list, component: RhVolunteerListComponent},
+      {path: EpvPath.rh.volunteer.details, component: RhVolunteerDetailComponent},
       {path: EpvPath.rh.options, component: OptionsComponent},
       {path: EpvPath.rh.root, redirectTo: EpvPath.rh.home, pathMatch: "full"},
     ]),

@@ -17,6 +17,7 @@ class SectorModelType implements ModelType
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
 			"nom" => "r",
+			"active" => "",
 			"address_id" => "r !int"
         ]);
         if (
@@ -33,6 +34,7 @@ class SectorModelType implements ModelType
         return array_filter([
 			"id" => $params->id ?? $default["id"]  ?? null,
 			"nom" => $params->nom ?? $default["nom"]  ?? null,
+			"active" => $params->active ?? $default["active"]  ?? "true",
 			"address_id" => $params->address_id ?? $default["address_id"]  ?? null
         ]);
     }

@@ -45,7 +45,6 @@ export class RhGiftDetailComponent implements OnInit {
 
   }
 
-  protected readonly DateService = DateService;
 
   refuse_product(product: ProductSelfObject) {
     this.productModelService.refuse_product(product.id).subscribe(()=>
@@ -53,13 +52,10 @@ export class RhGiftDetailComponent implements OnInit {
     )
   }
 
-  edit_product(product: ProductGetObject) {
-    ModaleService.createFormModal(
-        ProductMapperService.model_to_form(product)
-    ).subscribe((form)=>
-        this.productModelService.patch_product_self(ProductMapperService.form_to_model(form, product)).subscribe(()=>this.ngOnInit())
-    )
+  pick() {
+
   }
 
+  protected readonly DateService = DateService;
   protected readonly moment = moment;
 }

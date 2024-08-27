@@ -180,12 +180,72 @@ class BenefitService extends Service
                         'text' => $message,
                         'benefit_id' => $input->id,
                         'date_send' => date("Y-m-d H:i:s"),
-                        'link'=>"visitor/benefit/$input->id"
+                        'link'=>"visitor/benefit/detail"
                     ]
                 );
             }
         }else{
             throw new Exception("not found", 404);
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getValid(): array
+    {
+        $repo = new BenefitRepository();
+
+        $benefit = [];
+        $result = $repo->get_benefits(['validated'=>'valid']);
+
+        foreach($result as $row) {
+            $benefit[] = Formater::prepareGet($row);
+        }
+
+        return $benefit;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function fire(object $input): void
+    {
+        $repo = new BenefitRepository();
+        $messages = new MessageRepository();
+        $edited = $this->findById($input->id)[0];
+
+        $repo->update(['sector_id'=>"null" ,"id"=> $input->id]);
+        $messages->create(
+            [
+                'sender_id' => 1,
+                'receiver_id' => $edited['user']['id'] ?? 0,
+                'text' => 'benefit.sector.fired',
+                'benefit_id' => $input->id,
+                'date_send' => date("Y-m-d H:i:s"),
+                'link'=>"visitor/benefit/detail"
+            ]
+        );
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function affect(object $input): void
+    {
+        $repo = new BenefitRepository();
+        $messages = new MessageRepository();
+        $edited = $this->findById($input->id)[0];
+        $repo->update(['sector_id'=>$input->sector_id ,"id"=> $input->id]);
+        $messages->create(
+            [
+                'sender_id' => 1,
+                'receiver_id' => $edited['user']['id'] ?? 0,
+                'text' => 'benefit.sector.affected',
+                'benefit_id' => $input->id,
+                'date_send' => date("Y-m-d H:i:s"),
+                'link'=>"visitor/benefit/detail"
+            ]
+        );
     }
 }

@@ -1,5 +1,5 @@
 import {BenefitMapperService} from "../../../mapper/benefit-mapper.service";
-import {UserRecap} from "../user-model/userObject";
+import {UserLocatedObject, UserRecap} from "../user-model/userObject";
 
 export interface BenefitObject {
     id ?: number|bigint,
@@ -15,11 +15,11 @@ export interface BenefitGetLargeObject extends BenefitGetObject {
     people:number,
     diet:string,
     caf:string,
-    user:UserRecap,
+    user:UserLocatedObject,
 }
 
 export interface BenefitGetObject {
-    id ?: number|bigint,
+    id?: number|bigint,
     people:number,
     diet?:string,
     caf?:string,

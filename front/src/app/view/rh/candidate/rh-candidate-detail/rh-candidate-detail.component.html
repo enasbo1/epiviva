@@ -1,5 +1,5 @@
 <section class="flex justify-spaced" xmlns="http://www.w3.org/1999/html">
-    <div class=" col-3 flex-shrink-light">
+    <div class=" col-3">
         <span><b>{{'service.name' | langue}} :</b> {{candidate?.service?.nom | langue}}</span>
         <br><br>
         <span *ngIf="candidate?.service?.description">
@@ -9,6 +9,13 @@
             </p>
         </span>
         <br>
+        <div class="flex">
+            <button
+                    class="bubble hover-0 clickable {{(candidate && candidate.validated!=='valid')?'colored':''}}"
+                    (click)="validate()"
+            >{{'candidate.validate' | langue}}</button>
+            <br>
+        </div>
         <div *ngIf="(answerRubric?.content?.length??0)>0">
             <epv-rubric
                     [name_class]="'text-start'"
@@ -16,13 +23,6 @@
                     [line]="false"
                     [content]="answerRubric"
             ></epv-rubric>
-            <br>
-        </div>
-        <div class="flex">
-            <button
-                    class="bubble hover-0 clickable {{(candidate && candidate.validated!=='valid')?'colored':''}}"
-                    (click)="validate()"
-            >{{'candidate.validate' | langue}}</button>
             <br>
         </div>
         <br>
@@ -34,14 +34,23 @@
             <br>
         </div>
     </div>
-    <div class = "flex col-7 flex-shrink-light">
+    <div class = "col-3">
+        <div class="flex justify-start">
+            <div>
+                <epv-rubric-list
+                        [items]="userRubric"
+                ></epv-rubric-list>
+                <epv-line [short]="true"></epv-line>
+            </div>
+        </div>
+    </div>
+    <div class = "flex col-4">
         <div style="width: 35rem">
             <epv-chat
                     [target]="chat_target"
             ></epv-chat>
         </div>
     </div>
-    <div class = "col-5 flex-shrink-2">
-    </div>
+    <br>
 </section>
 

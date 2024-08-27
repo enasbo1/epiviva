@@ -19,7 +19,7 @@ class CandidateModelType implements ModelType
 			"user_id" => "r",
 			"service_id" => "r",
 			"answer" => "r",
-			"validated" => ""
+			"validated" => ":M,8"
         ]);
         if (
             $valid != "validated"

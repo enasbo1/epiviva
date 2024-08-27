@@ -9,19 +9,23 @@ import {add} from "lodash";
   providedIn: 'root'
 })
 export class AddressMapperService {
-  static model_to_rubric(address:AddressObject):RubricObject{
+  static get_address(address?: AddressObject) {
+    return `${address?.address}, ${address?.postal_code} ${address?.city}`;
+  }
+
+  static model_to_rubric(address?:AddressObject):RubricObject{
     return {
       title:'address.title',
       content:[
-        {name:'address.title', type:'text', text: address.address},
-        {name:'address.postal_code.title', type:'text', text: address.postal_code},
-        {name:'address.city.title', type:'text', text: address.city},
-        {name:'address.kind.title', type:'text', text: address.kind},
+        {name:'address.title', type:'text', text: address?.address},
+        {name:'address.postal_code.title', type:'text', text: address?.postal_code},
+        {name:'address.city.title', type:'text', text: address?.city},
+        {name:'address.kind.title', type:'text', text: address?.kind},
         {
           name:'address.instruction.title',
           type:'modal',
-          text: ((address.instruction=='')?'*...*':'*<<>>*'),
-          value: ((address.instruction=='')?'rubric.unspecified':address.instruction)
+          text: ((address?.instruction=='')?'*...*':'*<<>>*'),
+          value: ((address?.instruction=='')?'rubric.unspecified':address?.instruction)
         }
       ]
     }

@@ -2,7 +2,10 @@
 namespace users;
 
 use connexion\ConnexionService;
+use distribute\DistributeRepository;
+use distribute\DistributeService;
 use Exception;
+use sector\SectorRepository;
 use shared\Formater;
 use shared\Service;
 use token\Privilege;
@@ -144,6 +147,28 @@ class UsersService extends Service
         $result = $repo->get_giving([]);
 
         foreach($result as $row) {
+            $users[] = Formater::prepareGet($row);
+        }
+
+        return $users;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function get_volunteer(int $id = null): array
+    {
+        $repo = new UsersRepository();
+        $distribute = new DistributeService();
+        $users = [];
+        if ($id == null){
+            $result = $repo->get_volunteer([]);
+        }else{
+            $result = $repo->get_volunteer(['volunteer.id'=>$id]);
+        }
+
+        foreach($result as $row) {
+            $row['distribute'] = $distribute->get_sector($row['id']);;
             $users[] = Formater::prepareGet($row);
         }
 

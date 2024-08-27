@@ -25,9 +25,18 @@ class UsersController extends CrudController{
                     Privilege::rh();
                     $users = $request->get_giving();
                     break;
+                case 'volunteer':
+                    Privilege::rh();
+                    if (count($id)>1){
+                        $users = $request->get_volunteer($id[1]);
+                    }else{
+                        $users = $request->get_volunteer();
+                    }
+                    break;
                 default:
                     Privilege::rh();
                     $users = $request->findById($id[0]);
+                    break;
             }
         }
 

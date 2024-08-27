@@ -31,9 +31,9 @@ export class SectorMapperService {
     }
   }
 
-  static model_to_rubric(sector:SectorObject):RubricObject{
+  static model_to_rubric(sector?:SectorObject):RubricObject{
     return {
-      title: `${LanguageService.static_resolve('sector.title')} : ${sector.nom[0].toUpperCase()}${sector?.nom.slice(1).toLowerCase()}`,
+      title: `${LanguageService.static_resolve('sector.title')} : ${sector?.nom[0].toUpperCase()}${sector?.nom.slice(1).toLowerCase()}`,
       content: [
       ]
     }

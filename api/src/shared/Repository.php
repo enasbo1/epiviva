@@ -112,7 +112,6 @@ class Repository
             $error = ($error == "") ? "$this->modelName instance delete failed: " : $error;
             throw new Exception($error . $e->getMessage(), 400);
         }
-
     }
     /**
      * @throws Exception

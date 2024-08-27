@@ -51,7 +51,9 @@ export class AdminServiceEditComponent implements OnInit {
     if (this.savable && this.service){
       this.service.form = JSON.stringify(this.serviceForm?? '[]');
       this.service.nom = "*"+this.service.nom+"*";
-      this.service.description = "*"+this.service.description+"*"
+      if (this.service.description?.indexOf('\n')===undefined){
+        this.service.description = "*"+this.service.description+"*"
+      }
       this.serviceModelService.update_service(this.service).subscribe(()=>{
             this.router.navigate(['/' + EpvPath.admin.services.details.replace(':id', this.service.id?.toString() ?? '0')],{queryParams:{message:'service.edited'}}).then()
           }

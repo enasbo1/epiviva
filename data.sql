@@ -32,7 +32,6 @@ INSERT INTO address (address, postal_code, instruction, kind, city, sector_id) V
 
 -- Remplissage de la table 'users'
 INSERT INTO users (prenom, nom, mail, num, status, mdp, address_id) VALUES
-    ('system', 'system', 'system@system.com', '0583363945', 5, '5d2217b2d33df736cdc3258b1d3bEF46µ7120958504f7da6437dzdzav153MLf18cd12c321376df28', null),
     ('rh', 'user', 'rh@user.com', '0583363945', 3, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28',  6),
     ('admin', 'user', 'admin@user.com', '0583363945', 4, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 7),
     ('visitor', 'user', 'visitor@user.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 8),
