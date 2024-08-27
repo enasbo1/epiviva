@@ -14,6 +14,7 @@ import { AdminServiceEditComponent } from './admin-service-edit/admin-service-ed
 import { ToBeImplementedComponent } from "../../shared/foundation/to-be-implemented/to-be-implemented.component";
 import { AdminUserListComponent } from './admin-user-list/admin-user-list.component';
 import { AdminUserDetailComponent } from './admin-user-detail/admin-user-detail.component';
+import { AdminTestPdfComponent } from './admin-test-pdf/admin-test-pdf.component';
 
 
 
@@ -25,7 +26,8 @@ import { AdminUserDetailComponent } from './admin-user-detail/admin-user-detail.
     AdminServiceFormComponent,
     AdminServiceEditComponent,
     AdminUserListComponent,
-    AdminUserDetailComponent
+    AdminUserDetailComponent,
+    AdminTestPdfComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { AdminUserDetailComponent } from './admin-user-detail/admin-user-detail.
       {path: EpvPath.admin.users.edit, component: ToBeImplementedComponent},
       {path: EpvPath.admin.users.detail, component: AdminUserDetailComponent},
       {path: EpvPath.admin.options, component: OptionsComponent},
+      {path: EpvPath.admin.testPdf, component: AdminTestPdfComponent},
       {path: EpvPath.admin.root, redirectTo: EpvPath.admin.home, pathMatch: "full"},
     ]),
     FoundationModule,
