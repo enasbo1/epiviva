@@ -57,6 +57,7 @@ export const  EpvPath={
   },
   admin: {
     home:'admin/home',
+    testPdf: 'admin/testPdf',
     options: 'admin/options',
     services:{
       list:'admin/service',
