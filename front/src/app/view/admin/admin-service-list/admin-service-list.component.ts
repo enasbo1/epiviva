@@ -22,7 +22,7 @@ export class AdminServiceListComponent implements OnInit {
     this.serviceModelService.get_service().subscribe(
         (services)=>
             this.items = services.map(
-                service=> ServiceMapperService.model_to_list(service, EpvPath.admin.services.detail)
+                service=> ServiceMapperService.model_to_list(service, EpvPath.admin.services.details)
             )
     )
   }

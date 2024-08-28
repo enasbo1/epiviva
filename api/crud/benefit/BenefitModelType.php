@@ -19,7 +19,7 @@ class BenefitModelType implements ModelType
 			"people" => "r !int",
 			"diet" => "",
 			"caf" => "r :M,255",
-			"secteur_id" => "!int",
+			"sector_id" => "!int",
 			"validated" => ":M,8"
         ]);
         if (
@@ -38,7 +38,7 @@ class BenefitModelType implements ModelType
 			"people" => $params->people ?? $default["people"]  ?? null,
 			"diet" => $params->diet ?? $default["diet"]  ?? null,
 			"caf" => $params->caf ?? $default["caf"]  ?? null,
-			"secteur_id" => $params->secteur_id ?? $default["secteur_id"]  ?? null,
+			"sector_id" => $params->sector_id ?? $default["sector_id"]  ?? null,
 			"validated" => $params->validated ?? $default["validated"]  ?? "wait"
         ]);
     }

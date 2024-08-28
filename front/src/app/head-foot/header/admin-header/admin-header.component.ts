@@ -13,6 +13,7 @@ export class AdminHeaderComponent extends HeaderComponent implements OnInit {
 
   override options:string = EpvPath.admin.options;
 
+  override home:string = EpvPath.admin.home;
 
   override navLinks : NavLink[] = [
     {

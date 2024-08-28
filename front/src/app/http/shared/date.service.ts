@@ -14,14 +14,15 @@ export class DateService {
 
   static FORMAT_API = "MM/DD/YYYY HH:mm:ss";
   static FORMAT_FRONT = "DD/MM/YYYY";
+  static FORMAT_TIME = "HH:mm:ss";
 
   static to_api(date?:Date):string{
     date = date?date:new Date();
     return moment(date).format(this.FORMAT_API);
   }
 
-  static to_front(date?:string|Date):string{
-    return moment(date).format(this.FORMAT_FRONT);
+  static to_front(date?:string|Date, time:boolean=false):string{
+    return moment(date).format(this.FORMAT_FRONT + (time?' '+this.FORMAT_TIME:''));
   }
 
   static isCommonPeriod(dates:Period, period: Period):boolean{

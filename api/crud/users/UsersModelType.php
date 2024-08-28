@@ -19,7 +19,7 @@ class UsersModelType implements ModelType
 			"prenom" => ":M,25",
 			"nom" => ":M,100",
 			"mail" => "r !email",
-			"status" => ":M,2 :<,5",
+			"status" => "!int :M,2 :<,5",
 			"num" => "r :e,10",
 			"mdp" => "r :m,5",
 			"service_id" => "!int",
@@ -46,7 +46,7 @@ class UsersModelType implements ModelType
 			"num" => $params->num ?? $default["num"]  ?? null,
 			"mdp" => $params->mdp ?? $default["mdp"]  ?? null,
 			"service_id" => $params->service_id ?? $default["service_id"]  ?? null,
-			"benefit_id" => $params->id_secteur ?? $default["id_secteur"]  ?? null,
+			"benefit_id" => $params->benefit_id ?? $default["benefit_id"]  ?? null,
 			"address_id" => $params->address_id ?? $default["address_id"]  ?? null
         ]);
     }

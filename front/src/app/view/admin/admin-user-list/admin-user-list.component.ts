@@ -30,7 +30,7 @@ export class AdminUserListComponent implements OnInit {
         users)=>
         this.setUser(
             users.map((user)=>
-                UserMapperService.model_to_list(user, '/'+EpvPath.admin.users.detail)
+                UserMapperService.model_to_list(user, '/'+EpvPath.admin.users.details)
             )
         ))
   }

@@ -17,7 +17,7 @@ export interface ModalOption{
 }
 
 export interface ModalContent{
-  type:'text'|'image'|'form'|'rubric'|'void';
+  type:'text'|'image'|'form'|'rubric'|'list'|'void';
   image?: string;
   fileInput?: string;
   form?:{
@@ -25,5 +25,19 @@ export interface ModalContent{
     submit: EventEmitter<FormFieldObject[]>
   };
   rubric?:RubricObject;
+  list?:{
+    title?:string,
+    content:ModalListObject[]
+  }
   text?:string;
+}
+
+export interface ModalListObject{
+  content:{
+    text:string,
+    style?:string,
+    subtitle?:string,
+    submitEvent?:EventEmitter<object|undefined>
+  }[]
+  object?:object;
 }

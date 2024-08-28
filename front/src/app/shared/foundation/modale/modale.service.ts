@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {GlobalService} from "../../global.service";
-import {ModalObject} from "./modalObject";
+import {ModalListObject, ModalObject} from "./modalObject";
 import {FormFieldObject} from "../../base-shared/form-field/formFieldObject";
 import {FormStepObject} from "../../base-shared/form-step/formStepObject";
 import {RubricObject} from "../../base-shared/rubric/rubricObject";
@@ -17,6 +17,29 @@ export class ModaleService {
     modal.visible = true;
     GlobalService.modalCurrent = modal;
   }
+
+  static createListModal(list:ModalListObject[], title?:string):EventEmitter<string> {
+    const event:EventEmitter<string> = new EventEmitter<string>();
+    ModaleService.openModal({
+      visible:true,
+      options: [
+        {
+          name: "quitter",
+          end : true,
+          action:event
+        }
+      ],
+      content: {
+        type:"list",
+        list:{
+          title:title,
+          content:list
+        },
+      }
+    })
+    return event;
+  }
+
   static createValidationModal(text:string):EventEmitter<'Oui'|'Non'> {
     let event:EventEmitter<string> = new EventEmitter<string>();
     ModaleService.openModal({

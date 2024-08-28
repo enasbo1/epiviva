@@ -13,6 +13,7 @@ export class RhHeaderComponent extends HeaderComponent implements OnInit {
 
   override options:string = EpvPath.rh.options;
 
+  override home:string = EpvPath.rh.home;
 
   override navLinks : NavLink[] = [
     {

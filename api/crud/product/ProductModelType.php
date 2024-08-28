@@ -19,7 +19,9 @@ class ProductModelType implements ModelType
 			"code_barre" => ":M,24",
 			"name" => ":M,128",
 			"marque" => ":M,50",
-			"address_id" => "r !int"
+			"user_id" => "r !int",
+			"expiration_date" => "r :d,MDY",
+			"refused" => ""
         ]);
         if (
             $valid != "validated"
@@ -37,7 +39,9 @@ class ProductModelType implements ModelType
 			"code_barre" => $params->code_barre ?? $default["code_barre"]  ?? null,
 			"name" => $params->name ?? $default["name"]  ?? null,
 			"marque" => $params->marque ?? $default["marque"]  ?? null,
-			"address_id" => $params->address_id ?? $default["address_id"]  ?? null
+			"user_id" => $params->user_id ?? $default["user_id"]  ?? null,
+			"expiration_date" => $params->expiration_date ?? $default["expiration_date"]  ?? null,
+			"refused" => $params->refused ?? $default["refused"]  ?? null
         ]);
     }
 }

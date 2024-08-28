@@ -28,10 +28,10 @@ export class RhBenefitListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    GlobalService.pageName = 'home.engaged';
+    GlobalService.pageName = 'benefit.title';
     this.benefitModelService.get_benefit().subscribe((benefit)=>
       {
-        this.items = benefit.map(x=> BenefitMapperService.model_to_list(x, EpvPath.rh.benefit.detail));
+        this.items = benefit.map(x=> BenefitMapperService.model_to_list(x, EpvPath.rh.benefit.details));
       }
     )
   }

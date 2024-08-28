@@ -19,10 +19,12 @@ class CandidateRepository extends Repository {
     u.id as user__id, 
     prenom as user__prenom, 
     u.nom as user__nom, 
-    mail as user__mail
+    mail as user__mail,
+    status as user__status,
+    address_id as user__address_id
 FROM candidate c
-inner join public.service s on s.id = c.service_id
-inner join public.users u on u.id = c.user_id
+inner join service s on s.id = c.service_id
+inner join users u on u.id = c.user_id
 ";
 
     public function __construct()

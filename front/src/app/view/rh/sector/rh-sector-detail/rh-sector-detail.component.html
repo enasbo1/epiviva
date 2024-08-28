@@ -1,0 +1,29 @@
+<section class="flex">
+    <div>
+        <epv-rubric-list
+                [items]="rubric"
+        ></epv-rubric-list>
+        <epv-line
+                [short]="true"
+        ></epv-line>
+        <br>
+        <div class="flex">
+            <span class="bubble text-hover"
+                  (click)="edit_sector()"
+            >
+                <b><i>
+                   {{'sector.edit' | langue}}
+                </i></b>
+            </span>
+        </div>
+        <div class="flex">
+            <span class="bubble font-red text-hover"
+                  (click)="delete_sector()"
+            >
+                <b><i>
+                   {{'sector.delete' | langue}}
+                </i></b>
+            </span>
+        </div>
+    </div>
+</section>

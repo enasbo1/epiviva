@@ -1,0 +1,4 @@
+id-|-!int
+nom-|-r
+active-|--|-"true"
+address_id-|-r !int

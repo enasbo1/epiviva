@@ -1,12 +1,12 @@
 <?php
 
-namespace secteur;
+namespace harvest;
 
 use shared\ModelType;
 use shared\Verif;
 use Exception;
 
-class SecteurModelType implements ModelType
+class HarvestModelType implements ModelType
 {
     /**
      * @throws Exception
@@ -16,7 +16,8 @@ class SecteurModelType implements ModelType
         $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 			"id" => "!int",
-			"nom" => "r"
+			"schedule" => "r :d,DMY",
+			"sector_id" => "r !int"
         ]);
         if (
             $valid != "validated"
@@ -31,7 +32,8 @@ class SecteurModelType implements ModelType
     {
         return array_filter([
 			"id" => $params->id ?? $default["id"]  ?? null,
-			"nom" => $params->nom ?? $default["nom"]  ?? null
+			"schedule" => $params->schedule ?? $default["schedule"]  ?? null,
+			"sector_id" => $params->sector_id ?? $default["sector_id"]  ?? null
         ]);
     }
 }

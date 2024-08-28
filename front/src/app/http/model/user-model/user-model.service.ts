@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {RequestService} from "../../shared/request.service";
 import { Observable} from "rxjs";
-import {UserObject, UserPatch, UserPost} from "./userObject";
+import {UserGivingObject, UserObject, UserPatch, UserPost, UserVolunteerObject} from "./userObject";
 import {HttpErrorResponse} from "@angular/common/http";
 import {FormFieldObject, FormFieldValue} from "../../../shared/base-shared/form-field/formFieldObject";
 import {WPTokenRequestType} from "../../shared/connection.service";
@@ -18,6 +18,14 @@ export class UserModelService extends RequestService{
 
   get_user():Observable<UserObject[]>{
     return (this.get('users') as Observable<UserObject[]>);
+  }
+
+  get_volunteer():Observable<UserVolunteerObject[]>{
+    return (this.get('users/volunteer') as Observable<UserVolunteerObject[]>);
+  }
+
+  get_one_volunteer(id_user: number|bigint):Observable<UserVolunteerObject[]>{
+    return (this.get_one('users/volunteer', id_user) as Observable<UserVolunteerObject[]>);
   }
 
   get_one_user(number:bigint):Observable<UserObject[]>{
@@ -77,4 +85,10 @@ export class UserModelService extends RequestService{
   get_self():Observable<UserObject[]> {
     return (this.get('users/self') as Observable<UserObject[]>);
   }
+
+  get_user_giving() {
+    return (this.get('users/giving') as Observable<UserGivingObject[]>);
+  }
+
+
 }

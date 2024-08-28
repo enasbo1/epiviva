@@ -21,6 +21,10 @@ class BenefitController extends CrudController{
                     global $_TOKEN;
                     $benefit = $request->findFromUser($_TOKEN->user_id);
                     break;
+                case 'valid':
+                    Privilege::rh();
+                    $benefit = $request->getValid();
+                    break;
                 default:
                     Privilege::rh();
                     $benefit = $request->findById($id[0]);
@@ -68,6 +72,14 @@ class BenefitController extends CrudController{
                 case 'reject':
                     Privilege::rh();
                     $request->reject($input);
+                    break;
+                case 'fire':
+                    Privilege::rh();
+                    $request->fire($input);
+                    break;
+                case 'affect':
+                    Privilege::rh();
+                    $request->affect($input);
                     break;
             }
         }

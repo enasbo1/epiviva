@@ -12,14 +12,22 @@ class BenefitRepository extends Repository {
     diet, 
     caf, 
     validated, 
-    secteur_id,
+    b.sector_id as sector_id,
     u.id as user__id, 
     prenom as user__prenom, 
     nom as user__nom, 
     mail as user__mail, 
-    status as user__status
+    status as user__status,
+    a.id as user__address__id, 
+    a.address as user__address__address, 
+    a.postal_code as user__address__postal_code, 
+    a.city as user__address__city, 
+    a.instruction as user__address__instruction, 
+    a.kind as user__address__kind, 
+    a.sector_id as user__address__sector_id
 from benefit b
-inner join public.users u on b.id = u.benefit_id
+inner join users u on b.id = u.benefit_id
+inner join address a on a.id = u.address_id
 ";
 
     public function __construct()

@@ -10,15 +10,25 @@ import {BaseSharedModule} from "../../shared/base-shared/base-shared.module";
 import {OptionsComponent} from "../shared/options/options.component";
 import { RhBenefitListComponent } from './benefit/rh-benefit-list/rh-benefit-list.component';
 import { RhBenefitDetailComponent } from './benefit/rh-benefit-detail/rh-benefit-detail.component';
-
-
+import { RhGiftListComponent } from './gift/rh-gift-list/rh-gift-list.component';
+import { RhGiftDetailComponent } from './gift/rh-gift-detail/rh-gift-detail.component';
+import { RhSectorListComponent } from './sector/rh-sector-list/rh-sector-list.component';
+import { RhSectorDetailComponent } from './sector/rh-sector-detail/rh-sector-detail.component';
+import { RhVolunteerListComponent } from './volunteer/rh-volunteer-list/rh-volunteer-list.component';
+import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-volunteer-detail.component';
 
 @NgModule({
   declarations: [
     RhCandidateListComponent,
     RhCandidateDetailComponent,
     RhBenefitListComponent,
-    RhBenefitDetailComponent
+    RhBenefitDetailComponent,
+    RhGiftListComponent,
+    RhGiftDetailComponent,
+    RhSectorListComponent,
+    RhSectorDetailComponent,
+    RhVolunteerListComponent,
+    RhVolunteerDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +37,13 @@ import { RhBenefitDetailComponent } from './benefit/rh-benefit-detail/rh-benefit
       {path: EpvPath.rh.candidate.list, component: RhCandidateListComponent},
       {path: EpvPath.rh.candidate.details, component: RhCandidateDetailComponent},
       {path: EpvPath.rh.benefit.list, component: RhBenefitListComponent},
-      {path: EpvPath.rh.benefit.detail, component: RhBenefitDetailComponent},
+      {path: EpvPath.rh.benefit.details, component: RhBenefitDetailComponent},
+      {path: EpvPath.rh.gift.list, component: RhGiftListComponent},
+      {path: EpvPath.rh.gift.details, component: RhGiftDetailComponent},
+      {path: EpvPath.rh.sector.list, component: RhSectorListComponent},
+      {path: EpvPath.rh.sector.details, component: RhSectorDetailComponent},
+      {path: EpvPath.rh.volunteer.list, component: RhVolunteerListComponent},
+      {path: EpvPath.rh.volunteer.details, component: RhVolunteerDetailComponent},
       {path: EpvPath.rh.options, component: OptionsComponent},
       {path: EpvPath.rh.root, redirectTo: EpvPath.rh.home, pathMatch: "full"},
     ]),

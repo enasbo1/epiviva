@@ -35,6 +35,22 @@
       >.rubric{
         padding: 1rem 1rem 0.5rem;
       }
+
+      >.list{
+        ul{
+          padding: 0;
+          display: block;
+
+          li{
+            display: flex;
+            justify-content: start;
+            >span{
+              margin-right: 0.5rem;
+            }
+
+          }
+        }
+      }
     }
   }
 }

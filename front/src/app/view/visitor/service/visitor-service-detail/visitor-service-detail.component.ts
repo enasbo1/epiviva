@@ -37,7 +37,7 @@ export class VisitorServiceDetailComponent implements OnInit {
         this.serviceModelService.get_one_service(params['id']).subscribe(
             (services)=>{
               this.service = services[0]
-              GlobalService.pageName = this.language.resolve('candidate.title') + ' : ' + this.service.nom;
+              GlobalService.pageName = this.language.resolve('candidate.title') + ' : ' + this.language.resolve(this.service.nom);
               this.serviceForm = JSON.parse(this.service.form?? '[]') as FormStepObject[];
               this.serviceForm.forEach(fs=> fs.errorEvent = this.errorCatch)
             }
@@ -48,7 +48,6 @@ export class VisitorServiceDetailComponent implements OnInit {
 
   submit(values: FormFieldObject[]) {
     this.error = '*...*'
-    console.log('coucou')
     let answer:string = JSON.stringify(FormService.extract_answer(values));
     this.candidateModelService.post_self_candidate(
         {

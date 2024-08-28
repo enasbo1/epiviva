@@ -1,0 +1,40 @@
+<section class="flex">
+    <div>
+        <ng-container *ngIf="products.length>0">
+            <h5>{{'gift.name'|langue}}</h5>
+            <ul>
+                <li *ngFor="let product of products"
+                    [class]="moment(product.expiration_date).isBefore(moment())?'passed':product.harvest_id?'text-colored':''"
+                >
+                    <b>
+                        {{product.name}} "{{product.marque}}"
+                    </b> ;
+                    <i>{{'gift.expiration'|langue}} :
+                        {{DateService.to_front(product.expiration_date)}}</i>
+                    <b
+                            [title]="'gift.refuse'|langue"
+                            class="clickable"
+                            (click)="refuse_product(product)"
+                    >👎</b>
+                </li>
+            </ul>
+            <div class="col-12 flex">
+                <span class="text" *ngFor="let harv of get_harvest()">
+                    {{'harvest.name' | langue}} : <b>{{harv.sector.nom}} </b> <i>{{DateService.to_front(harv.schedule, true) }}</i>
+                </span>
+            </div>
+            <div class="col-12 flex">
+                <span class="text-hover" (click)="pick()"><b>
+                    {{'harvest.add.pick' |langue}}
+                </b></span>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="products.length == 0">
+            <br><br>
+            <h5>
+                {{'gift.there_no'|langue}}
+            </h5>
+        </ng-container>
+    </div>
+</section>

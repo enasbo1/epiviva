@@ -43,6 +43,7 @@ export class DropdownComponent implements OnInit {
     this.value = value;
     this.value_up.emit(value);
   }
+
   @HostListener('document:click', ['$event'])
   clickout(event: { target: any; }) {
     if(!this.eRef.nativeElement.contains(event.target)) {

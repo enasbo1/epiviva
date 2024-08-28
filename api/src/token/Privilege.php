@@ -59,4 +59,15 @@ class Privilege{
     {
         throw new Exception('{message:"not allowed"}', 403);
     }
+
+    /**
+     * @throws Exception
+     */
+    public static function volunteer()
+    {
+        global $_TOKEN;
+        if ($_TOKEN->user_role<2){
+            throw new Exception('{message:"only volunteer or higher allowed"}', 403);
+        }
+    }
 }

@@ -78,4 +78,41 @@ class DistributeService extends Service
         $repo = new DistributeRepository();
         $repo->delete($id);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function get_affected(int $sector_id): array
+    {
+        $repo = new DistributeRepository();
+
+        $distribute = [];
+        $result = $repo->get_affected(['d.sector_id' => $sector_id]);
+
+        foreach($result as $row) {
+            $distribute[] = Formater::prepareGet($row);
+        }
+
+        return $distribute;
+
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function get_sector(int $user_id): array
+    {
+        $repo = new DistributeRepository();
+
+        $distribute = [];
+
+        $result = $repo->get_sector(['d.user_id' => $user_id]);
+
+        foreach($result as $row) {
+            $distribute[] = Formater::prepareGet($row);
+        }
+
+        return $distribute;
+
+    }
 }

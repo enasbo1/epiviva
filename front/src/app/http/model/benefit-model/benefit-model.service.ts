@@ -17,8 +17,12 @@ export class BenefitModelService extends RequestService{
     return (this.get('benefit') as Observable<BenefitGetLargeObject[]>);
   }
 
-  get_benefit_self():Observable<BenefitGetObject[]>{
-    return (this.get('benefit/self') as Observable<BenefitGetObject[]>);
+  get_benefit_self():Observable<BenefitGetLargeObject[]>{
+    return (this.get('benefit/self') as Observable<BenefitGetLargeObject[]>);
+  }
+
+  get_benefit_valid():Observable<BenefitGetLargeObject[]>{
+    return (this.get('benefit/valid') as Observable<BenefitGetLargeObject[]>);
   }
 
   get_one_benefit(number:bigint):Observable<BenefitGetLargeObject[]>{
@@ -40,5 +44,13 @@ export class BenefitModelService extends RequestService{
 
   reject_benefit(id: number | bigint) {
     return (this.edit({id:id}, `benefit/reject`))
+  }
+
+  unAffect_benefit(id: number | bigint) {
+    return (this.edit({id:id}, `benefit/fire`))
+  }
+
+  affect_benefit(id: number | bigint, sector:number|bigint) {
+    return (this.edit({id:id, sector_id:sector}, `benefit/affect`))
   }
 }

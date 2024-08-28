@@ -1,13 +1,20 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {UserMin, UserObject, UserPatch, UserRecap} from "../http/model/user-model/userObject";
+import {
+    UserGivingObject,
+    UserMin,
+    UserObject,
+    UserPatch,
+    UserRecap,
+    UserVolunteerObject
+} from "../http/model/user-model/userObject";
 import {ListObject} from "../shared/foundation/list/listObject";
 import {RubricObject} from "../shared/base-shared/rubric/rubricObject";
 import {FormStepObject} from "../shared/base-shared/form-step/formStepObject";
 import {FormFieldObject} from "../shared/base-shared/form-field/formFieldObject";
 import {FormService} from "../shared/foundation/form/form.service";
 import {RegexBase} from "../shared/RegexBase";
-import {UserModelService} from "../http/model/user-model/user-model.service";
 import {LanguageService} from "../shared/base-shared/language.service";
+import {AddressMapperService} from "./address-mapper.service";
 
 @Injectable({
     providedIn: 'root'
@@ -44,7 +51,7 @@ export class UserMapperService {
         return i+". " +user?.nom.toUpperCase()
     }
 
-    static model_to_list(user?:UserObject, detailPage?:string):ListObject{
+    static model_to_list(user?:UserRecap, detailPage?:string):ListObject{
         return {
             title:UserMapperService.get_U_Name(user, true),
             link:detailPage?.replace(':id',user?.id?.toString()??'0'),
@@ -59,6 +66,31 @@ export class UserMapperService {
                 {text: 'Role : ' + LanguageService.static_resolve(`user.roles.${UserMapperService.roles[user?.status?? '0']}`), style:'font-weight:bold;'}
             ],
             properties:[
+                {name : 'connexion.email' , value: user?.mail},
+                {name : 'user.first_name' , value: user?.nom},
+                {name : 'user.name' , value: user?.prenom},
+                {name : 'number', value: user?.id},
+                {name : 'role', value: UserMapperService.roles[user?.status?? '0']},
+            ]
+        }
+    }
+
+    static giving_to_list(user?:UserGivingObject, detailPage?:string):ListObject{
+        return {
+            title:UserMapperService.get_U_Name(user, true),
+            link:detailPage?.replace(':id',user?.id?.toString()??'0'),
+            right:[
+                {text : `${LanguageService.static_resolve('address.title')} :  ${AddressMapperService.get_address(user?.address)}`},
+                {text : `${LanguageService.static_resolve('gift.name')} :  ${user?.gift}`,},
+                null
+            ],
+            left:[
+                null,
+                null,
+                {text: 'Role : ' + LanguageService.static_resolve(`user.roles.${UserMapperService.roles[user?.status?? '0']}`), style:'font-weight:bold;'}
+            ],
+            properties:[
+                {name: 'address.title', value: AddressMapperService.get_address(user?.address)},
                 {name : 'connexion.email' , value: user?.mail},
                 {name : 'user.first_name' , value: user?.nom},
                 {name : 'user.name' , value: user?.prenom},
@@ -192,15 +224,44 @@ export class UserMapperService {
         }
     }
 
-    static modelRecap_to_rubric(user: UserRecap):RubricObject {
+    static modelRecap_to_rubric(user?: UserRecap):RubricObject {
         return {
             title : "user.title",
             content:[
-                {name:'user.name', type:'text', text:`${user.prenom[0].toUpperCase()}${user.prenom.slice(1).toLowerCase()}`},
-                {name:'user.first_name', type:'text', text:user.nom.toUpperCase()},
-                {name:'user.mail', type:'text', text: user.mail},
-                {name:'user.num', type:'text', text: user.num},
-                {name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user.status?? '']}`}
+                {name:'user.name', type:'text', text:`${user?.prenom[0].toUpperCase()}${user?.prenom.slice(1).toLowerCase()}`},
+                {name:'user.first_name', type:'text', text:user?.nom.toUpperCase()},
+                {name:'user.mail', type:'text', text: user?.mail},
+                {name:'user.num', type:'text', text: user?.num},
+                {name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user?.status?? '']}`}
             ]
-        };    }
+        };
+    }
+
+    static volunteer_to_list(user: UserVolunteerObject, detailPage: string) :ListObject{
+        const sector:string[]= user.distribute.map(x=>x.sector.nom);
+        if (sector.length>2){
+            sector[2] = '...'
+            sector.splice(3);
+        }
+        return {
+            title:UserMapperService.get_U_Name(user, true),
+            link:detailPage?.replace(':id',user?.id?.toString()??'0'),
+            right:[
+                {text : "Mail : " + user?.mail},
+                {text : `${LanguageService.static_resolve('address.title')} : ${AddressMapperService.get_address(user.address)}`},
+                {text : `${LanguageService.static_resolve('volunteer.affects')} : ${sector.join(', ')}`}
+            ],
+            left:[
+                null,
+                null,
+                {text: 'Role : ' + LanguageService.static_resolve(`user.roles.${UserMapperService.roles[user?.status?? '0']}`), style:'font-weight:bold;'}
+            ],
+            properties:[
+                {name : 'connexion.email' , value: user?.mail},
+                {name : 'user.first_name' , value: user?.nom},
+                {name : 'user.name' , value: user?.prenom},
+                {name : 'number', value: user?.id},
+                {name : 'role', value: UserMapperService.roles[user?.status?? '0']},
+            ]
+        }    }
 }

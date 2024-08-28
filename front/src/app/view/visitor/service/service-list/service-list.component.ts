@@ -16,7 +16,6 @@ export class ServiceListComponent implements OnInit {
 
   constructor(
       private serviceModelService:ServiceModelService,
-      private router:Router,
   ) { }
 
   ngOnInit(): void {

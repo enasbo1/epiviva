@@ -16,7 +16,7 @@ class DistributeModelType implements ModelType
         $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
 			"user_id" => "r !int",
-			"secteur_id" => "r !int"
+			"sector_id" => "r !int"
         ]);
         if (
             $valid != "validated"
@@ -31,7 +31,7 @@ class DistributeModelType implements ModelType
     {
         return array_filter([
 			"user_id" => $params->user_id ?? $default["user_id"]  ?? null,
-			"secteur_id" => $params->secteur_id ?? $default["secteur_id"]  ?? null
+			"sector_id" => $params->sector_id ?? $default["sector_id"]  ?? null
         ]);
     }
 }

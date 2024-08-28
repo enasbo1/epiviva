@@ -112,7 +112,6 @@ class Repository
             $error = ($error == "") ? "$this->modelName instance delete failed: " : $error;
             throw new Exception($error . $e->getMessage(), 400);
         }
-
     }
     /**
      * @throws Exception
@@ -124,11 +123,17 @@ class Repository
             $q = "UPDATE $this->modelName SET ";
             $i = 1;
             foreach ($updates as $col => $value) {
-                $q .= $col . " = $" . $i;
-                if ($i < count($updates)) {
+                if ($value=='null'){
+                    $q .= $col . " = null";
+                    unset ($updates[$col]);
+                }else{
+                    $q .= $col . " = $" . $i;
+                    $i += 1;
+                }
+                if ($i <= count($updates)) {
                     $q = $q . ",";
                 }
-                $i += 1;
+
             }
             $q.= $this->restrict($restrict, $i);
             pg_prepare($this->connection,"", $q);

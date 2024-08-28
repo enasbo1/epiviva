@@ -19,6 +19,7 @@
     "title": "Utilisateur",
     "list": "Utilisateurs",
     "credential": "Authentifiacation",
+    "address": "Adresse de l'utilisateur",
     "first_name": "Nom",
     "name":"Prenom",
     "status": "Status",
@@ -43,18 +44,22 @@
       "banned": "bannis",
       "visitor": "visiteur",
       "unset": "indeterminé",
-      "rh": "Ressources Humaines",
-      "admin": "Administrateur"
+      "rh": "responsable",
+      "admin": "administrateur"
     }
   },
   "address": {
     "title": "Adresse",
     "exemple": "13 rue de la chance",
-    "edit": "Modifier l'addresse",
-    "edited": "L'addresse a bien été modifiée",
+    "edit": "Modifier l'adresse",
+    "edited": "L'adresse a bien été modifiée",
     "postal_code": {
       "title": "Code postal",
       "exemple": "53120"
+    },
+    "city": {
+      "title": "Ville",
+      "exemple": "Paris"
     },
     "kind": {
       "title": "Type",
@@ -169,6 +174,8 @@
     "createMessage" : "CANDIDATURE EFFECTUEE"
   },
   "benefit": {
+    "username": "Bénéficiaires",
+    "affect": "Affecter à un secteur",
     "title": "Demande d'aide alimentaire",
     "list": "Demandes d'aide",
     "caf": "Allocation caf",
@@ -179,6 +186,10 @@
     "edited": "la demande a été Modifiée",
     "saved": "la demande a été Enregistrée",
     "file": "fichier d'allocations",
+    "sector": {
+      "fired": "Vous n'êtes plus pris en charge",
+      "affected": "Vous avez été pris en charge"
+    },
     "data": {
       "peoples": "Taille du foyer (nb de personnes)",
       "people": {
@@ -215,6 +226,89 @@
           }
         }
       }
+    }
+  },
+  "volunteer": {
+    "title": "Bénévole",
+    "username": "Bénévoles",
+    "affects": "Affectations",
+    "affect": "Ajouter une affectation"
+  },
+  "gift": {
+    "title": "donner des produits allimentaires",
+    "giver": "Donnateurs",
+    "refused": "Le produit a été refusé",
+    "from_user": "Produits de",
+    "name": "Produits",
+    "refuse": "Refuser le produit",
+    "give": "Donner des produits",
+    "products": "Mes produits à donner",
+    "no_product": "Vous n'avez aucun produit alimentaire en attente",
+    "there_no": "L'utilisateur n'as aucun produit alimentaire en attente",
+    "expiration" : "à consomer avant le",
+    "del": "supprimer le produit",
+    "add": "ajouter un produit",
+    "form": {
+      "name": {
+        "title": "Nom du produit",
+        "placeholder": "haricots vert",
+        "required": "veillez saisir le nom du produit"
+      },
+      "bar_code": {
+        "title":"code barre",
+        "placeholder": "25956632485",
+        "reg_error": "un code barre est une suite de chiffres"
+      },
+      "brand": {
+        "title":"Marque",
+        "placeholder": "Freshona",
+        "required": "veillez saisir la marque du produit"
+      },
+      "expiration_date": {
+        "title":"Date de péremption",
+        "placeholder": "15/12/2026"
+      }
+    }
+  },
+  "sector": {
+    "affected": "Utilisateurs affectés",
+    "title": "Secteur",
+    "add": "ajouter un secteur",
+    "created": "le secteur a bien été ajouté",
+    "list_title": "Secteurs",
+    "edit": "Modifier le secteur",
+    "updated": "Le secteur a bien été modifié",
+    "delete": "supprimer le secteur",
+    "sure_delete": "voulez-vous vraiment supprimer le secteur ?",
+    "deleted": "le secteur a bien été supprimé",
+    "list": "liste des Secteurs",
+    "affect": {
+      "nb": "Affectations",
+      "helped": "Affecter un Beneficiaire",
+      "volunteer": "Affecter un Bénévole"
+    },
+    "name": {
+      "title": "nom du secteur",
+      "placeholder": "pikachu",
+      "required": "Veillez nommer le secteur"
+    }
+  },
+  "harvest": {
+    "titles": "Collectes",
+    "name": "Collecte",
+    "form": {
+      "schedule": {
+        "name": "Date et Heure"
+      }
+    },
+    "abort": {
+      "validate": "voulez-vous vraiment anuler cette collecte",
+      "prevent": "annuler"
+    },
+    "add": {
+      "pick": "Ajouter à une collecte",
+      "cta": "Planifier une collecte",
+      "already": "Une récuperation est déjà prévue pour tout ces produits voulez-vous cependant la changer"
     }
   }
 }

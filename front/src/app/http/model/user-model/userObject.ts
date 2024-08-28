@@ -1,3 +1,7 @@
+import {AddressObject} from "../address-model/addressObject";
+import {SectorObject} from "../sector-model/sectorObject";
+import {DistributeAffectedObject, DistributeSectorObject} from "../distribute-model/distributeObject";
+
 export interface UserObject extends UserRecap{
   id: number|bigint;
   prenom: string;
@@ -5,6 +9,21 @@ export interface UserObject extends UserRecap{
   mail: string;
   status: string;
   num:string;
+}
+
+export interface UserGivingObject extends UserLocatedObject{
+  gift:number;
+}
+
+export interface UserVolunteerObject extends UserLocatedObject{
+  status:string;
+  num:string;
+  distribute:DistributeSectorObject[];
+}
+
+export interface UserLocatedObject extends UserRecap{
+  id: number|bigint;
+  address:AddressObject;
 }
 
 export interface UserPatch extends UserMin{
