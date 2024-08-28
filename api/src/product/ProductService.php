@@ -117,4 +117,13 @@ class ProductService extends Service
         $input->refused = "true";
         $this->update($input);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function set_harvest(object $input):void
+    {
+        $repo = new ProductRepository();
+        $repo->update(["id"=>$input->id, "harvest_id"=>$input->harvest_idZ]);
+    }
 }

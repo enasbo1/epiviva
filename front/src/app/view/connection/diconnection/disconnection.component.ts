@@ -4,10 +4,10 @@ import { Router} from "@angular/router";
 
 @Component({
   selector: 'epv-diconnection',
-  templateUrl: './diconnection.component.html',
-  styleUrls: ['./diconnection.component.scss']
+  templateUrl: './disconnection.component.html',
+  styleUrls: ['./disconnection.component.scss']
 })
-export class DiconnectionComponent implements OnInit {
+export class DisconnectionComponent implements OnInit {
 
   constructor(private router: Router) { }
 

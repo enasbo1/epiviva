@@ -10,11 +10,20 @@ require_once 'HarvestService.php';
 class HarvestController extends CrudController{
     function get(array $id): void
     {
+        Privilege::volunteer();
         $request = new HarvestService();
         if ($id == []) {
+            Privilege::rh();
             $harvest = $request->getAll();
         } else {
-            $harvest = $request->findById($id[0]);
+            switch ($id[0]){
+                case 'sector':
+                    $harvest = $request->findFormSector($id[1]);
+                    break;
+                default:
+                    $harvest = $request->findById($id[0]);
+                    break;
+            }
         }
         echo json_encode($harvest);
     }
@@ -23,7 +32,7 @@ class HarvestController extends CrudController{
     {
         $request = new HarvestService();
 
-        Privilege::admin();
+        Privilege::rh();
         $request->save($input);
         http_response_code(201);
         echo('{"message" : "harvest créé avec succès"}');
@@ -33,14 +42,14 @@ class HarvestController extends CrudController{
     {
         $request = new HarvestService();
 
-        Privilege::admin();
+        Privilege::rh();
         $request->update($input);
     }
 
     function delete(array $id): void
     {
         $request = new HarvestService();
-        Privilege::admin();
+        Privilege::rh();
         $request->delete($id[0]);
     }
 }

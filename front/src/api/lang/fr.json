@@ -294,9 +294,21 @@
     }
   },
   "harvest": {
+    "titles": "Collectes",
+    "name": "Collecte",
+    "form": {
+      "schedule": {
+        "name": "Date et Heure"
+      }
+    },
+    "abort": {
+      "validate": "voulez-vous vraiment anuler cette collecte",
+      "prevent": "annuler"
+    },
     "add": {
       "pick": "Ajouter à une collecte",
-      "cta": "Planifier une collecte"
+      "cta": "Planifier une collecte",
+      "already": "Une récuperation est déjà prévue pour tout ces produits voulez-vous cependant la changer"
     }
   }
 }

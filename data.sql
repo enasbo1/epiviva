@@ -68,3 +68,7 @@ INSERT INTO candidate (user_id, service_id, creation_date, last_edited) VALUES
     (3, 3, now(), now()),
     (4, 4, now(), now()),
     (5, 5, now(), now());
+
+INSERT INTO harvest (schedule, sector_id) VALUES
+    ('2024-09-10 09:15:00',  1),
+    ('2024-09-10 09:16:00',  2);

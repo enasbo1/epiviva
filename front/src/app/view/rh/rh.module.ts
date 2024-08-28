@@ -10,15 +10,12 @@ import {BaseSharedModule} from "../../shared/base-shared/base-shared.module";
 import {OptionsComponent} from "../shared/options/options.component";
 import { RhBenefitListComponent } from './benefit/rh-benefit-list/rh-benefit-list.component';
 import { RhBenefitDetailComponent } from './benefit/rh-benefit-detail/rh-benefit-detail.component';
-import {ToBeImplementedComponent} from "../../shared/foundation/to-be-implemented/to-be-implemented.component";
 import { RhGiftListComponent } from './gift/rh-gift-list/rh-gift-list.component';
 import { RhGiftDetailComponent } from './gift/rh-gift-detail/rh-gift-detail.component';
 import { RhSectorListComponent } from './sector/rh-sector-list/rh-sector-list.component';
 import { RhSectorDetailComponent } from './sector/rh-sector-detail/rh-sector-detail.component';
 import { RhVolunteerListComponent } from './volunteer/rh-volunteer-list/rh-volunteer-list.component';
 import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-volunteer-detail.component';
-
-
 
 @NgModule({
   declarations: [
@@ -31,7 +28,7 @@ import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-v
     RhSectorListComponent,
     RhSectorDetailComponent,
     RhVolunteerListComponent,
-    RhVolunteerDetailComponent
+    RhVolunteerDetailComponent,
   ],
   imports: [
     CommonModule,

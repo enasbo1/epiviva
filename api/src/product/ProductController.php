@@ -75,6 +75,10 @@ class ProductController extends CrudController{
                     Privilege::rh();
                     $request->refuse($input);
                     break;
+                case 'harvest':
+                    Privilege::rh();
+                    $request->set_harvest($input);
+                    break;
                 default:
                     Privilege::forbidden();
             }

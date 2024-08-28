@@ -2,6 +2,7 @@ import {UserRecap} from "../user-model/userObject";
 
 export interface ProductGetObject extends ProductSelfObject{
     user:UserRecap
+    harvest_id:number|bigint
 }
 
 

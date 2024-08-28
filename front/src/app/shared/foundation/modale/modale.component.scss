@@ -39,9 +39,14 @@
       >.list{
         ul{
           padding: 0;
+          display: block;
 
           li{
-            display: block;
+            display: flex;
+            justify-content: start;
+            >span{
+              margin-right: 0.5rem;
+            }
 
           }
         }

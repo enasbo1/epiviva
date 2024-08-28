@@ -5,6 +5,7 @@ use Exception;
 use message\MessageRepository;
 use shared\Formater;
 use shared\Service;
+use users\UsersRepository;
 
 include_once "CandidateRepository.php";
 
@@ -213,6 +214,16 @@ class CandidateService extends Service
                         'link'=>"visitor/candidated/$input->id"
                     ]
                 );
+                if ($status == 'valid'){
+                    $user = new UsersRepository();
+                    $u = $user->get(['status'], ['id'=>$edited['user_id']?? 0]);
+                    if ((count($u)>0) && ($u[0]['status']<2)){
+                        $user->update(
+                            ['id'=>$edited['user_id']?? 0,
+                                'status'=>2]
+                        );
+                    }
+                }
             }
         }else{
             throw new Exception("not found", 404);

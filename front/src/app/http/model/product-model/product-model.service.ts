@@ -36,4 +36,8 @@ export class ProductModelService extends RequestService{
   refuse_product(id: number | bigint):Observable<object>  {
     return this.edit({id:id}, 'product/refuse')
   }
+
+  set_harvest(id: number | bigint, harvest: number | bigint) {
+    return this.edit({id:id, harvest_id:harvest}, 'product/harvest')
+  }
 }

@@ -90,6 +90,7 @@ export class UserMapperService {
                 {text: 'Role : ' + LanguageService.static_resolve(`user.roles.${UserMapperService.roles[user?.status?? '0']}`), style:'font-weight:bold;'}
             ],
             properties:[
+                {name: 'address.title', value: AddressMapperService.get_address(user?.address)},
                 {name : 'connexion.email' , value: user?.mail},
                 {name : 'user.first_name' , value: user?.nom},
                 {name : 'user.name' , value: user?.prenom},

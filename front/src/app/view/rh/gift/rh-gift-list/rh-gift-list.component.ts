@@ -11,7 +11,9 @@ import {EpvPath} from "../../../routes";
   styleUrls: ['./rh-gift-list.component.scss']
 })
 export class RhGiftListComponent implements OnInit {
-
+  public critera:string[]=[
+    'address.title'
+  ]
   public items:ListObject[] = [];
 
   constructor(

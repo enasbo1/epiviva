@@ -22,7 +22,7 @@ class HarvestService extends Service
         $repo = new HarvestRepository();
 
         $harvest = [];
-        $result = $repo->readAll("unable to find any harvest");
+        $result = $repo->get_harvest([]);
 
         foreach($result as $row) {
             $harvest[] = Formater::prepareGet($row);
@@ -39,14 +39,13 @@ class HarvestService extends Service
         $repo = new HarvestRepository();
 
         $harvest = [];
-        $result = $repo->read($id, "harvest not found");
+        $result = $repo->get_harvest(['h.id' => $id]);
 
         foreach($result as $row) {
             $harvest[] = Formater::prepareGet($row);
         }
 
         return $harvest;
-
     }
 
     /**
@@ -77,5 +76,22 @@ class HarvestService extends Service
     {
         $repo = new HarvestRepository();
         $repo->delete($id);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function findFormSector(int $id):array
+    {
+        $repo = new HarvestRepository();
+
+        $harvest = [];
+        $result = $repo->get_harvest(['h.sector_id' => $id]);
+
+        foreach($result as $row) {
+            $harvest[] = Formater::prepareGet($row);
+        }
+
+        return $harvest;
     }
 }

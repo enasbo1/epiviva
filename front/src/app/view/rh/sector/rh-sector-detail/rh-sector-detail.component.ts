@@ -17,6 +17,11 @@ import {UserPatch, UserVolunteerObject} from "../../../../http/model/user-model/
 import {UserModelService} from "../../../../http/model/user-model/user-model.service";
 import {DistributeModelService} from "../../../../http/model/distribute-model/distribute-model.service";
 import {DistributeAffectedObject} from "../../../../http/model/distribute-model/distributeObject";
+import {HarvestGetObject, HarvestObject} from "../../../../http/model/harvest-model/harvestObject";
+import {HarvestModelService} from "../../../../http/model/harvest-model/harvest-model.service";
+import {DateService} from "../../../../http/shared/date.service";
+import moment from "moment";
+import {HarvestMapperService} from "../../../../mapper/harvest-mapper.service";
 
 @Component({
   selector: 'epv-rh-sector-detail',
@@ -30,6 +35,7 @@ export class RhSectorDetailComponent implements OnInit {
   private affected?:DistributeAffectedObject[];
   public rubric?:RubricObject[];
   private helped?:BenefitGetLargeObject[];
+  private harvest?:HarvestGetObject[];
 
   constructor(
       private route : ActivatedRoute,
@@ -37,6 +43,7 @@ export class RhSectorDetailComponent implements OnInit {
       private benefitModelService: BenefitModelService,
       private userModelService:UserModelService,
       private distributeModelService:DistributeModelService,
+      private harvestModelService:HarvestModelService,
       private router: Router
   ) { }
 
@@ -60,6 +67,10 @@ export class RhSectorDetailComponent implements OnInit {
                 this.affected = distribute;
                 this.set_rubric()
               })
+              this.harvestModelService.get_form_sector(params['id']).subscribe((harvest)=>{
+                this.harvest = harvest;
+                this.set_rubric()
+              })
             }
           }
         )
@@ -70,7 +81,7 @@ export class RhSectorDetailComponent implements OnInit {
   }
 
   private set_rubric(){
-    if (this.sector && this.volunteer && this.helped && this.affected){
+    if (this.sector && this.volunteer && this.helped && this.affected && this.harvest){
 
 
       const validSelected:EventEmitter<void> = new EventEmitter<void>();
@@ -90,6 +101,13 @@ export class RhSectorDetailComponent implements OnInit {
             this.add_volunteer()
       )
 
+      const harvestSelected:EventEmitter<void> = new EventEmitter<void>();
+      harvestSelected.subscribe(()=>
+          (this.harvest?.length??0)>0?
+            this.show_harvest()
+          :
+            this.add_harvest()
+      );
 
       this.rubric = [
         SectorMapperService.model_to_rubric(this.sector),
@@ -108,6 +126,17 @@ export class RhSectorDetailComponent implements OnInit {
               type:'button',
               text: this.affected.length.toString(),
               event:volunteerSelected
+            }
+          ]
+        },
+        {
+          title:"harvest.name",
+          content:[
+            {
+              name:'harvest.titles',
+              type:'button',
+              text: this.harvest.length.toString(),
+              event:harvestSelected
             }
           ]
         }
@@ -211,6 +240,7 @@ export class RhSectorDetailComponent implements OnInit {
             content:[
               {
                 text:'sector.affect.helped',
+                style:'width:100%;text-align:center',
                 submitEvent:add_helper
               }
             ]
@@ -314,6 +344,7 @@ export class RhSectorDetailComponent implements OnInit {
               content:[
                 {
                   text:'sector.affect.volunteer',
+                  style:'width:100%;text-align:center',
                   submitEvent:add_helper
                 }
               ]
@@ -374,6 +405,86 @@ export class RhSectorDetailComponent implements OnInit {
           ],
           'sector.affect.helped'
       ).subscribe(()=>undefined)
+    }
+  }
+
+  private show_harvest() {
+    if (this.harvest) {
+      const event:EventEmitter<object|undefined> = new EventEmitter<object|undefined>();
+      event.subscribe(()=>{
+        const  n = GlobalService.modalCurrent
+        if (n)
+          n.visible = false;
+        this.add_harvest();
+      })
+
+      const selectEvent:EventEmitter<object|undefined> = new EventEmitter<object|undefined>();
+      selectEvent.subscribe((h)=>{
+        const  n = GlobalService.modalCurrent
+        if (n)
+          n.visible = false;
+        this.edit_harvest(h as HarvestObject);
+      })
+
+      ModaleService.createListModal(
+          [
+            ...this.harvest.sort((h1,h2)=>moment(h1.schedule).isAfter(h2.schedule)?-1:1).map(h=> {
+              return {
+                object: h,
+                content: [
+                  {
+                    text:DateService.to_front(h.schedule, true)
+                  },
+                  {
+                    text:h.sector.nom,
+                    style:'font-weight:bolder',
+                    subtitle:'harvest.abort.prevent',
+                    submitEvent:selectEvent
+                  },
+                  {
+                    text:AddressMapperService.get_address(h.sector.address),
+                    style:'font-style:italic'
+                  }
+                ]
+              }
+            }),
+            {
+              content: [
+                {
+                  text:'harvest.add.cta',
+                  style:'width:100%;text-align:center',
+                  submitEvent:event
+                }
+              ]
+            }
+          ],
+          'harvest.add.pick'
+      )
+    }
+  }
+
+  private add_harvest() {
+    if (this.sector){
+      ModaleService.createFormModal(
+          HarvestMapperService.form()
+      ).subscribe((fields)=>
+        this.harvestModelService.post_harvest(
+            HarvestMapperService.resolve_form(fields, this.sector?.id)
+        ).subscribe(()=>this.ngOnInit())
+      )
+    }
+  }
+
+  private edit_harvest(harvest:HarvestObject) {
+    if (this.sector){
+      ModaleService.createValidationModal(
+        'harvest.abort.validate'
+      ).subscribe((yes)=>yes=='Oui'?
+        this.harvestModelService.delete_harvest(
+            harvest?.id??0
+        ).subscribe(()=>this.ngOnInit())
+        :undefined
+      )
     }
   }
 }

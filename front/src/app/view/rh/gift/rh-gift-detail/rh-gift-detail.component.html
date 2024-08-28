@@ -4,7 +4,7 @@
             <h5>{{'gift.name'|langue}}</h5>
             <ul>
                 <li *ngFor="let product of products"
-                    [class]="moment(product.expiration_date).isBefore(moment())?'passed':''"
+                    [class]="moment(product.expiration_date).isBefore(moment())?'passed':product.harvest_id?'text-colored':''"
                 >
                     <b>
                         {{product.name}} "{{product.marque}}"
@@ -19,9 +19,14 @@
                 </li>
             </ul>
             <div class="col-12 flex">
-                <span class="text-hover" (click)="pick()">
-                    {{'harvest.add.pick' |langue}}
+                <span class="text" *ngFor="let harv of get_harvest()">
+                    {{'harvest.name' | langue}} : <b>{{harv.sector.nom}} </b> <i>{{DateService.to_front(harv.schedule, true) }}</i>
                 </span>
+            </div>
+            <div class="col-12 flex">
+                <span class="text-hover" (click)="pick()"><b>
+                    {{'harvest.add.pick' |langue}}
+                </b></span>
             </div>
         </ng-container>
 
