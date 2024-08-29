@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     'partie-admin'
   ]
 
-  logoUrl:string = "assets/images/logo.png";
+  logoUrl:string = "assets/images/logo.svg";
   constructor(
     protected router:Router
   ) { }

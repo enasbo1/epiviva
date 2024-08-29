@@ -3,6 +3,7 @@ import { GlobalService } from "../../shared/global.service";
 import { Space_divider } from "../../shared/base-shared/space_divider";
 import { SampleListElement } from "../../shared/foundation/list/listObject";
 import {context_nav} from "./context_nav";
+import {EpvPath} from "../routes";
 
 @Component({
   selector: 'epv-home',
@@ -34,6 +35,11 @@ export class HomeComponent  extends Space_divider implements OnInit {
 
   private update_context_nav():void{
     this.content =  context_nav[this.status]?? []
+    if (GlobalService.currentUser?.status=='2'){
+      this.content.push(
+        {link:'/'+EpvPath.volunteer.distribute.list, value:'volunteer.distribute'},
+      )
+    }
   }
 
   bidon(arg : any):void{

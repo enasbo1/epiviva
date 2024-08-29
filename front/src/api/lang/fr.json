@@ -44,6 +44,7 @@
       "banned": "bannis",
       "visitor": "visiteur",
       "unset": "indeterminé",
+      "volunteer": "bénévole",
       "rh": "responsable",
       "admin": "administrateur"
     }
@@ -232,7 +233,8 @@
     "title": "Bénévole",
     "username": "Bénévoles",
     "affects": "Affectations",
-    "affect": "Ajouter une affectation"
+    "affect": "Ajouter une affectation",
+    "distribute": "Mes distributions"
   },
   "gift": {
     "title": "donner des produits allimentaires",

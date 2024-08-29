@@ -23,7 +23,7 @@ export class UserMapperService {
     static rolesList = [
         'banned',
         'visitor',
-        'unset',
+        'volunteer',
         'rh',
         'admin',
         'system'
