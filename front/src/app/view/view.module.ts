@@ -16,6 +16,9 @@ import { RhHomeComponent } from './home/rh-home/rh-home.component';
 import { RhModule } from "./rh/rh.module";
 import { AdminModule } from "./admin/admin.module";
 import { OptionsComponent } from './shared/options/options.component';
+import { VolunteerDistributeListComponent } from './volunteer/volunteer-distribute-list/volunteer-distribute-list.component';
+import { VolunteerDistributeDetailsComponent } from './volunteer/volunteer-distribute-details/volunteer-distribute-details.component';
+import {VolunteerModule} from "./volunteer/volunteer.module";
 
 
 
@@ -34,6 +37,7 @@ import { OptionsComponent } from './shared/options/options.component';
     CommonModule,
     SharedModule,
     ViewSharedModule,
+    VolunteerModule,
     VisitorModule,
     AdminModule,
     RhModule,

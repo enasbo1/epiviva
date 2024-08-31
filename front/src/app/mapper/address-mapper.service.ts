@@ -13,9 +13,9 @@ export class AddressMapperService {
     return `${address?.address}, ${address?.postal_code} ${address?.city}`;
   }
 
-  static model_to_rubric(address?:AddressObject):RubricObject{
+  static model_to_rubric(address?:AddressObject, title:string = 'address.title'):RubricObject{
     return {
-      title:'address.title',
+      title: title,
       content:[
         {name:'address.title', type:'text', text: address?.address},
         {name:'address.postal_code.title', type:'text', text: address?.postal_code},

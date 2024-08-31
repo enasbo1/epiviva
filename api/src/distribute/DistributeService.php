@@ -106,7 +106,7 @@ class DistributeService extends Service
 
         $distribute = [];
 
-        $result = $repo->get_sector(['d.user_id' => $user_id]);
+        $result = $repo->get_sector(['d.distributor_id' => $user_id]);
 
         foreach($result as $row) {
             $distribute[] = Formater::prepareGet($row);
@@ -114,5 +114,11 @@ class DistributeService extends Service
 
         return $distribute;
 
+    }
+
+    public function is_distributor(int $user_id, int $id):bool
+    {
+        $repo = new DistributeRepository();
+        return count($repo->get(['id'],['id'=>$id, 'distributor_id'=>$user_id]))>0;
     }
 }

@@ -35,9 +35,9 @@ export class HomeComponent  extends Space_divider implements OnInit {
 
   private update_context_nav():void{
     this.content =  context_nav[this.status]?? []
-    if (GlobalService.currentUser?.status=='2'){
+    if (GlobalService.currentUser?.status=='2' && !this.content.find(c=>c.value=='volunteer.affect')){
       this.content.push(
-        {link:'/'+EpvPath.volunteer.affect.list, value:'volunteer.affect'},
+        {link:'/'+EpvPath.volunteer.distribute.list, value:'volunteer.affect'},
       )
     }
   }

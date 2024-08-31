@@ -14,6 +14,7 @@ class DistributeController extends CrudController{
         Privilege::volunteer();
         $request = new DistributeService();
         if ($id == []) {
+            Privilege::admin();
             $distribute = $request->getAll();
         } else {
             switch ($id[0]){
@@ -39,6 +40,10 @@ class DistributeController extends CrudController{
                     }
                     break;
                 default:
+                    global $_TOKEN;
+                    if (!$request->is_distributor($_TOKEN->user_id, $id[0])){
+                        Privilege::rh();
+                    }
                     $distribute = $request->findById($id[0]);
                     break;
             }

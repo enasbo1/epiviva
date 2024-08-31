@@ -8,21 +8,11 @@
             {{candidate?.service?.description | langue}}
             </p>
         </span>
-        <br>
         <div class="flex">
             <button
                     class="bubble hover-0 clickable {{(candidate && candidate.validated!=='valid')?'colored':''}}"
                     (click)="validate()"
             >{{'candidate.validate' | langue}}</button>
-            <br>
-        </div>
-        <div *ngIf="(answerRubric?.content?.length??0)>0">
-            <epv-rubric
-                    [name_class]="'text-start'"
-                    [title_class]="'text-start text-size-normal bolder'"
-                    [line]="false"
-                    [content]="answerRubric"
-            ></epv-rubric>
             <br>
         </div>
         <br>
@@ -31,6 +21,16 @@
                     class="bubble hover-0 clickable {{(candidate && candidate.validated!=='reject')?'colored-red':''}}"
                     (click)="reject()"
             >{{'candidate.reject' | langue}}</button>
+            <br>
+        </div>
+        <br>
+        <div *ngIf="(answerRubric?.content?.length??0)>0">
+            <epv-rubric
+                    [name_class]="'text-start'"
+                    [title_class]="'text-start text-size-normal bolder'"
+                    [line]="false"
+                    [content]="answerRubric"
+            ></epv-rubric>
             <br>
         </div>
     </div>

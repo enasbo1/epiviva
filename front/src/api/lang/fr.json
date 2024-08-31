@@ -234,7 +234,7 @@
     "username": "Bénévoles",
     "affects": "Affectations",
     "distribute": "Ajouter une affectation",
-    "Affect": "Mes distributions"
+    "affect": "Mes distributions"
   },
   "gift": {
     "title": "donner des produits allimentaires",

@@ -31,9 +31,9 @@ export const  EpvPath={
     root:'visitor'
   },
   volunteer:{
-    affect:{
-      list: 'visitor/affect',
-      details: 'visitor/affect/:id'
+    distribute:{
+      list: 'visitor/distribute',
+      details: 'visitor/distribute/:id'
     }
   },
   rh : {

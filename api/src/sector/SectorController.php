@@ -10,7 +10,7 @@ require_once 'SectorService.php';
 class SectorController extends CrudController{
     function get(array $id): void
     {
-        Privilege::rh();
+        Privilege::volunteer();
         $request = new SectorService();
         if ($id == []) {
             $sector = $request->getAll();

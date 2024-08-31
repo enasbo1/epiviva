@@ -1,5 +1,6 @@
 <?php
 namespace product;
+use distribute\DistributeService;
 use token\Privilege;
 use shared\CrudController;
 
@@ -30,7 +31,12 @@ class ProductController extends CrudController{
                     $product = $request->get_stock($id[1]);
                     break;
                 case 'distribute':
-                    Privilege::rh();
+                    Privilege::volunteer();
+                    $distribute = new DistributeService();
+                    global $_TOKEN;
+                    if (!$distribute->is_distributor($_TOKEN->user_id, $id[1])){
+                        Privilege::rh();
+                    }
                     $product = $request->get_distribute($id[1]);
                     break;
                 default:

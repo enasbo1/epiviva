@@ -75,7 +75,7 @@ export class RhCandidateDetailComponent implements OnInit {
         this.add_affect(sector)?.subscribe(()=> {
           this.candidateModelService.validate_candidature(this.candidate?.id ?? 0).subscribe(() => {
             this.router.navigate(
-                ['/' + EpvPath.rh.volunteer.details.replace(':id', (this.candidate?.id ?? 0).toString())],
+                ['/' + EpvPath.rh.volunteer.details.replace(':id', (this.candidate?.user?.id ?? 0).toString())],
                 {queryParams: {message: "candidate.validateMessage"}}
             ).then();
           })
