@@ -1,24 +1,66 @@
 {
   "language": "en",
-  "title" : "Epivi'a",
+  "title": "Epivi'a",
+  "languages": {
+    "switch": "content language",
+    "en": "English",
+    "fr": "French"
+  },
   "connexion": {
-    "email" : "email",
-    "password" : "password",
-    "title" : "connection",
-    "no_account" : "Don't have an account?",
-    "new_account": "Sign up"
+    "email": "email",
+    "password": "password",
+    "title": "login",
+    "no_account": "don't have an account?",
+    "new_account": "sign up",
+    "not_connected": "you are not connected",
+    "connect": "log in"
   },
   "user": {
+    "title": "User",
+    "list": "Users",
     "credential": "Authentication",
+    "address": "User Address",
     "first_name": "First Name",
-    "name":"Last Name"
+    "name": "Last Name",
+    "status": "Status",
+    "email": "Email",
+    "num": "Phone",
+    "regex_error": {
+      "first_name": "First Name is required",
+      "name": "Last Name is required",
+      "email": "Email is required",
+      "num": "Phone Number is required",
+      "num_val": "Phone Number must be valid"
+    },
+    "edit": "Edit User",
+    "edited": "User has been successfully edited",
+    "identity": "Identity",
+    "contact": "Contact Details",
+    "privilege": {
+      "edit": "change role",
+      "edited": "User role has been successfully changed"
+    },
+    "roles": {
+      "banned": "banned",
+      "visitor": "visitor",
+      "unset": "undetermined",
+      "volunteer": "volunteer",
+      "rh": "manager",
+      "admin": "administrator"
+    }
   },
   "address": {
     "title": "Address",
     "exemple": "13 Lucky Street",
+    "edit": "Edit Address",
+    "edited": "Address has been successfully edited",
     "postal_code": {
       "title": "Postal Code",
       "exemple": "53120"
+    },
+    "city": {
+      "title": "City",
+      "exemple": "Paris"
     },
     "kind": {
       "title": "Type",
@@ -28,45 +70,81 @@
     },
     "instruction": {
       "title": "Instructions",
-      "exemple": "Apartment #16, 3rd floor"
+      "exemple": "Apartment no.16, 3rd floor"
     }
   },
   "inscription": {
-    "title": "Registration",
-    "passwords_match_error": "Passwords do not match"
+    "title": "Sign Up",
+    "passwords_match_error": "passwords do not match"
   },
   "form": {
-    "previous": "Previous",
-    "next": "Next",
-    "validate": "Validate",
-    "validated": "The form has been successfully validated",
-    "answer": "Entered responses:"
+    "previous": "previous",
+    "next": "next",
+    "validate": "validate",
+    "validated": "the form has been successfully validated",
+    "answer": "Entered Answers:",
+    "view": "Form Preview",
+    "edit": "Edit Form",
+    "save": "Save"
+  },
+  "list": {
+    "reset_filter": "clear filters",
+    "no_data": "no data to display"
+  },
+  "search": {
+    "title": "Title",
+    "search": "Search"
+  },
+  "edit_form": {
+    "step": {
+      "title": "step",
+      "drop": "delete step",
+      "new": "new step"
+    },
+    "rubric": {
+      "new": "new rubric",
+      "drop": "delete rubric",
+      "add": "add a title"
+    }
   },
   "rubric": {
-    "unspecified": "Unspecified",
+    "unspecified": "unspecified",
     "edit": "Edit"
   },
+  "message": {
+    "new": "New Message"
+  },
   "nav": {
-    "home" : "Home",
+    "home": "Home",
     "logout": "Logout",
     "login": "Login"
   },
   "service": {
+    "title": "Service",
     "name": "Service Name",
     "description": "Service Description",
-    "add": "Add a Service"
+    "add": "Add a Service",
+    "added": "Service has been successfully added",
+    "delete": "Delete Service",
+    "deleteError": "Error while deleting the service",
+    "deleteValidation": "Do you really want to delete this service?",
+    "deleteConfirm": "Service has been successfully deleted",
+    "edit": "Edit Service",
+    "edited": "Service has been successfully edited",
+    "new": "New Service"
   },
   "service-list": {
-    "title": "Service List"
+    "title": "Services"
   },
   "home": {
     "developed": "Developed by:",
     "engage": "Get Involved",
     "engaged": "Your Applications",
-    "candidates": "Applications"
+    "candidates": "Applications",
+    "ask": "Request Food Aid"
   },
   "options": {
-    "title": "settings"
+    "title": "Settings"
   },
   "date": {
     "creation_date": "Creation Date",
@@ -77,23 +155,185 @@
     "registered": "Your application has been successfully registered",
     "updated": "Your application has been successfully updated",
     "creation_date": "Application Date",
-    "validated": "Application accepted",
-    "validated_on" : " validated on",
-    "validation" : "validation",
-    "waiting" : "pending",
+    "validated": "application accepted",
+    "validated_on": " validated on",
+    "validation": "validation",
+    "waiting": "waiting",
     "valid": "accepted",
     "rejected": "rejected",
     "the": "on",
     "name": "Application",
-    "updateMessage" : "The application has been updated",
-    "deleteMessage" : "The application has been successfully deleted",
-    "rejectMessage" : "The application has been rejected",
-    "validateMessage" : "The application has been accepted",
-    "validate": "Validate the application",
-    "delete": "Cancel the application",
-    "edit": "Edit the application",
-    "reject": "Reject the application",
+    "updateMessage": "The application has been updated",
+    "deleteMessage": "The application has been successfully deleted",
+    "rejectMessage": "The application has been rejected",
+    "validateMessage": "The application has been validated",
+    "validate": "Validate Application",
+    "delete": "Cancel Application",
+    "edit": "Edit Application",
+    "reject": "Reject Application",
     "owner": "Applicant",
-    "createMessage" : "APPLICATION SUBMITTED"
+    "createMessage": "APPLICATION SUBMITTED"
+  },
+  "benefit": {
+    "username": "Beneficiaries",
+    "distribute": "Assign to a sector",
+    "title": "Food Aid Request",
+    "list": "Aid Requests",
+    "caf": "CAF Allocation",
+    "validate": "Validate Request",
+    "validateMessage": "Request has been validated",
+    "reject": "Reject Request",
+    "rejectMessage": "Request has been rejected",
+    "edited": "request has been edited",
+    "saved": "request has been saved",
+    "file": "allocation file",
+    "sector": {
+      "fired": "You are no longer supported",
+      "affected": "You have been supported"
+    },
+    "data": {
+      "peoples": "Household size (no. of people)",
+      "people": {
+        "title": "Household size",
+        "content": "Number of people"
+      },
+      "diet": {
+        "title": "Dietary restrictions (allergies/religion...)",
+        "small_title": "Dietary restrictions",
+        "ask": "Do you have any dietary restrictions (allergies/religion...)",
+        "new": "Add a dietary restriction",
+        "types": {
+          "title": "Type",
+          "none": {
+            "title": "None"
+          },
+          "intolerance": {
+            "title": "Intolerance",
+            "placeholder": "Lactose"
+          },
+          "allergy": {
+            "title": "Allergy",
+            "placeholder": "Gluten"
+          },
+          "forbidden": {
+            "title": "Forbidden",
+            "placeholder": "Pork"
+          },
+          "specific_diet": {
+            "title": "Specific Diet",
+            "halal": "Halal",
+            "kasher": "Kosher",
+            "veget": "Vegetarian"
+          }
+        }
+      }
+    }
+  },
+  "volunteer": {
+    "title": "Volunteer",
+    "username": "Volunteers",
+    "affects": "Assignments",
+    "affect": "Add an assignment",
+    "distribute": "My Distributions"
+  },
+  "gift": {
+    "title": "donate food products",
+    "giver": "Donors",
+    "refused": "The product has been refused",
+    "from_user": "Products from",
+    "name": "Products",
+    "refuse": "Refuse the product",
+    "give": "Donate products",
+    "products": "My products to donate",
+    "no_product": "You have no food products pending",
+    "there_no": "The user has no food products pending",
+    "expiration": "to be consumed before",
+    "del": "delete product",
+    "add": "add a product",
+    "form": {
+      "name": {
+        "title": "Product Name",
+        "placeholder": "green beans",
+        "required": "please enter the product name"
+      },
+      "bar_code": {
+        "title": "barcode",
+        "placeholder": "25956632485",
+        "reg_error": "a barcode is a sequence of digits"
+      },
+      "brand": {
+        "title": "Brand",
+        "placeholder": "Freshona",
+        "required": "please enter the product brand"
+      },
+      "expiration_date": {
+        "title": "Expiration Date",
+        "placeholder": "15/12/2026"
+      }
+    }
+  },
+  "sector": {
+    "affected": "Assigned Users",
+    "title": "Sector",
+    "add": "add a sector",
+    "created": "sector has been successfully added",
+    "list_title": "Sectors",
+    "edit": "Edit Sector",
+    "updated": "Sector has been successfully edited",
+    "delete": "delete sector",
+    "sure_delete": "do you really want to delete the sector?",
+    "deleted": "sector has been successfully deleted",
+    "list": "Sector List",
+    "distribute": {
+      "nb": "Assignments",
+      "helped": "Assign a Beneficiary",
+      "volunteer": "Assign a Volunteer"
+    },
+    "name": {
+      "title": "sector name",
+      "placeholder": "pikachu",
+      "required": "Please name the sector"
+    }
+  },
+  "harvest": {
+    "titles": "Harvests",
+    "done": {
+      "validate": "Do you really want to mark the Harvest as completed?",
+      "set": "Mark as completed"
+    },
+    "name": "Harvest",
+    "form": {
+      "schedule": {
+        "name": "Date and Time"
+      }
+    },
+    "abort": {
+      "validate": "do you really want to cancel this harvest",
+      "prevent": "Cancel Harvest"
+    },
+    "add": {
+      "pick": "Add to a harvest",
+      "cta": "Schedule a harvest",
+      "already": "A pickup is already planned for all these products. Do you still want to change it?"
+    }
+  },
+  "distribute": {
+    "title": "Distribution",
+    "add": "Add a distribution",
+    "new": "New distribution",
+    "list_title": "Distributions",
+    "state": "state",
+    "schedule": "Schedule",
+    "user": "Distributor",
+    "products": "Products",
+    "no_stock": "There are no products",
+    "no_helped": "There are no Beneficiaries",
+    "edit": "Edit distribution",
+    "save": "Save changes",
+    "add_stock": "add a product",
+    "do": "Finish",
+    "done": "Completed",
+    "confirm_do": "Do you really want to mark the distribution as completed",
+    "toPdf": "Export to PDF"
   }
 }

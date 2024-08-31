@@ -1,4 +1,8 @@
 services:
+  front:
+    build: front/
+    ports:
+      - 4200:80
   api:
     build: api/
     depends_on:
@@ -17,8 +21,6 @@ services:
       - db-data:/var/lib/postgresql/data/
       - ./init.sql:/docker-entrypoint-initdb.d/0-init.sql
       - ./data.sql:/docker-entrypoint-initdb.d/1-data.sql
-    ports:
-      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=epivia

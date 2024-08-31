@@ -1,5 +1,16 @@
 # Epivia
 
+lancer le projet en mode "dev":
+> docker compose up -d
+> 
+> cd ./front
+> 
+> npm install
+> 
+> npm i --save @types/lodash 
+> 
+> npm start
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
 
 ## Development server
