@@ -10,6 +10,7 @@ class DistributeRepository extends Repository {
         "
 select 
     d.id as id,
+    d.done as done,
     d.sector_id as sector_id,
     d.schedule as schedule,
     u.id as distributor__id,
@@ -32,6 +33,7 @@ inner join address a on a.id = u.address_id
     "
 select 
     d.id as id,
+    d.done as done,
     d.distributor_id as distributor_id,
     d.schedule as schedule,
     s.id as sector__id,

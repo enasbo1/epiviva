@@ -20,13 +20,14 @@ export interface DistributeSectorObject {
     id:number|bigint;
     sector:SectorObject;
     schedule:Date;
-
+    done:string;
     distributor_id:number|bigint;
 }
 
 export interface DistributeAffectedObject {
     id:number|bigint;
     sector_id:number|bigint;
+    done:string;
     schedule:Date;
     distributor:UserLocatedObject
 }

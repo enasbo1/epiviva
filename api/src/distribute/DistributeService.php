@@ -2,6 +2,7 @@
 namespace distribute;
 
 use Exception;
+use product\ProductRepository;
 use shared\Formater;
 use shared\Service;
 
@@ -116,9 +117,23 @@ class DistributeService extends Service
 
     }
 
+    /**
+     * @throws Exception
+     */
     public function is_distributor(int $user_id, int $id):bool
     {
         $repo = new DistributeRepository();
         return count($repo->get(['id'],['id'=>$id, 'distributor_id'=>$user_id]))>0;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function set_done($id): void
+    {
+        $repo = new DistributeRepository();
+        $product = new ProductRepository();
+        $product->update_abs(['gave'=>'true'], ['distribute_id'=>$id]);
+        $repo->update(['id'=>$id, 'done'=>'true']);
     }
 }

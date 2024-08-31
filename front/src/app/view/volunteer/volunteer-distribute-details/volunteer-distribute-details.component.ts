@@ -15,6 +15,8 @@ import {SectorMapperService} from "../../../mapper/sector-mapper.service";
 import {UserMapperService} from "../../../mapper/user-mapper.service";
 import {DateService} from "../../../http/shared/date.service";
 import {AddressMapperService} from "../../../mapper/address-mapper.service";
+import {EpvPath} from "../../routes";
+import moment from "moment";
 
 @Component({
   selector: 'epv-volunteer-distribute-details',
@@ -142,17 +144,18 @@ export class VolunteerDistributeDetailsComponent implements OnInit {
   private show_helped() {
     const event:EventEmitter<object|undefined> = new EventEmitter<object|undefined>();
     event.subscribe((helped:BenefitGetLargeObject)=>
-        ModaleService.createRubricModal(
-            UserMapperService.located_to_rubric(helped.user)
-        )
+      ModaleService.createRubricModal(
+        UserMapperService.located_to_rubric(helped.user)
+      )
     )
 
     const address:EventEmitter<object|undefined> = new EventEmitter<object|undefined>();
     address.subscribe((helped:BenefitGetLargeObject)=>
-        ModaleService.createRubricModal(
-            AddressMapperService.model_to_rubric(helped.user.address, UserMapperService.get_U_Name(helped.user, true))
-        )
+      ModaleService.createRubricModal(
+        AddressMapperService.model_to_rubric(helped.user.address, UserMapperService.get_U_Name(helped.user, true))
+      )
     )
+
     ModaleService.createListModal(
         this.helped?.map(helped=>{
           return {
@@ -174,4 +177,21 @@ export class VolunteerDistributeDetailsComponent implements OnInit {
         'benefit.username'
     )
   }
+
+  set_done(){
+    if (this.distribute && moment(this.distribute.schedule).isBefore(moment())){
+      ModaleService.createValidationModal('distribute.confirm_do').subscribe((yes)=>
+        yes=='Oui'?
+          this.distributeModelService.set_done(this.distribute?.id??0).subscribe(()=>
+              this.ngOnInit()
+          )
+        :
+          undefined
+      )
+
+    }
+  }
+
+  protected readonly EpvPath = EpvPath;
+  protected readonly moment = moment;
 }

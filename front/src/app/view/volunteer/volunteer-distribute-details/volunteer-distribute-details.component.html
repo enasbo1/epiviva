@@ -5,5 +5,14 @@
         ></epv-rubric-list>
         <epv-line [short]="true"></epv-line>
         <br>
+        <div class="w-100 text-center {{moment(distribute?.schedule).isBefore(moment())?'text-hover':''}} bolder"
+             *ngIf="distribute?.done!=='t'"
+             (click)="set_done()"
+        >
+            {{'distribute.do' | langue}}
+        </div>
+        <div  class="w-100 text-center bolder" *ngIf="distribute?.done==='t'">
+            {{'distribute.done' | langue}}
+        </div>
     </div>
 </section>

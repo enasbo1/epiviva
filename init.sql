@@ -85,9 +85,11 @@ ALTER table sector add column address_id INTEGER REFERENCES address(id);
 CREATE table distribute (
     id serial primary key,
     schedule timestamp,
+    done boolean default false,
     sector_id integer references sector(id),
     distributor_id integer references users(id)
 );
+
 
 create table helped (
     id serial primary key,

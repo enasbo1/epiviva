@@ -38,10 +38,10 @@ export class DistributeMapperService {
         {text: `${LanguageService.static_resolve('sector.title')} : ${distribute.sector.nom}`},
         null
       ],
-      style:DateService.checkDateStatus(distribute.schedule),
+      style:distribute.done==='t'?'present':DateService.checkDateStatus(distribute.schedule),
       properties:[
         {name:'sector.title', value: `${distribute.sector.nom} ${AddressMapperService.get_address(distribute.sector.address)}`},
-        {name:'distribute.state', value: DateService.checkDateStatus(distribute.schedule)},
+        {name:'distribute.state', value: distribute.done==='t'?'distribute.done':DateService.checkDateStatus(distribute.schedule)},
       ]
     }
   }

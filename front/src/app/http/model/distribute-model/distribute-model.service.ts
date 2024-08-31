@@ -45,4 +45,8 @@ export class DistributeModelService extends RequestService{
   get_self():Observable<DistributeSectorObject[]>{
     return (this.get('distribute/sector/self') as Observable<DistributeSectorObject[]>);
   }
+
+  set_done(id: number|bigint) :Observable<object> {
+    return (this.edit({id: id}, 'distribute/set_done') as Observable<object>)
+  }
 }

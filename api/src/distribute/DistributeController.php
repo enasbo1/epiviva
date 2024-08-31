@@ -65,8 +65,22 @@ class DistributeController extends CrudController{
     {
         $request = new DistributeService();
 
-        Privilege::rh();
-        $request->update($input);
+        if ($id == []) {
+            Privilege::rh();
+            $request->update($input);
+        }else{
+            if ($id[0] == 'set_done'){
+                Privilege::volunteer();
+                global $_TOKEN;
+                if (!$request->is_distributor($_TOKEN->user_id, $input->id)){
+                    Privilege::rh();
+                }
+                $request->set_done($input->id);
+            }else{
+                throw new Exception('not found', 404);
+            }
+        }
+
         echo('{"message" : "distribute mis à jours avec succès"}');
     }
 

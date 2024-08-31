@@ -330,6 +330,9 @@
     "no_helped": "Il n'y a pas de de Bénéficiaires",
     "edit": "Modifier la distributrion",
     "save": "Enregistrer les modifications",
-    "add_stock": "ajouter un produit"
+    "add_stock": "ajouter un produit",
+    "do": "Terminer",
+    "done": "Terminé",
+    "confirm_do": "Voulez-vous vraiment renseigner la distribution comme terminée"
   }
 }
