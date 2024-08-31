@@ -23,7 +23,6 @@ export const context_nav : Record<string, SampleListElement[]>={
     ],
     'admin' : [
         {link:'/'+EpvPath.admin.services.list, value:'service-list.title'},
-        {link:'/'+EpvPath.admin.testPdf, value:'*info-Livraison*'},
         {link:'/'+EpvPath.admin.users.list, value:'user.list'},
     ]
 }

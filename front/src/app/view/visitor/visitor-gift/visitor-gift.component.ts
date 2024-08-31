@@ -9,6 +9,7 @@ import {ModaleService} from "../../../shared/foundation/modale/modale.service";
 import {ProductMapperService} from "../../../mapper/product-mapper.service";
 import {GlobalService} from "../../../shared/global.service";
 import moment from "moment";
+import {HarvestGetObject} from "../../../http/model/harvest-model/harvestObject";
 
 @Component({
   selector: 'epv-visitor-gift',
@@ -18,6 +19,7 @@ import moment from "moment";
 export class VisitorGiftComponent implements OnInit {
 
   public products:ProductSelfObject[] = [];
+  public harvest?:HarvestGetObject;
 
   constructor(
       private userModelService: UserModelService,
@@ -39,6 +41,7 @@ export class VisitorGiftComponent implements OnInit {
     this.productModelService.get_self_product().subscribe((products)=>
       {
         this.products = products;
+        this.harvest =  this.products.find(p=>p.harvest?.id)?.harvest
       }
     )
 

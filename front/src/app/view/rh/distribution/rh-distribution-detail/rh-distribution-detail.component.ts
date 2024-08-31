@@ -16,6 +16,9 @@ import {AddressMapperService} from "../../../../mapper/address-mapper.service";
 import {DateService} from "../../../../http/shared/date.service";
 import {ModaleService} from "../../../../shared/foundation/modale/modale.service";
 import {EpvPath} from "../../../routes";
+import {jsPDF} from "jspdf";
+import {HttpClient} from "@angular/common/http";
+import html2canvas from "html2canvas";
 
 @Component({
   selector: 'epv-rh-distribution-detail',
@@ -34,7 +37,8 @@ export class RhDistributionDetailComponent implements OnInit {
     private distributeModelService: DistributeModelService,
     private sectorModelService:SectorModelService,
     private productModelService:ProductModelService,
-    private helpedModelService:HelpedModelService
+    private helpedModelService:HelpedModelService,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +61,6 @@ export class RhDistributionDetailComponent implements OnInit {
           this.helped = benefit;
           this.set_rubric();
         })
-
       }
     })
   }
@@ -161,4 +164,23 @@ export class RhDistributionDetailComponent implements OnInit {
   }
 
   protected readonly EpvPath = EpvPath;
+
+  toPdf() {
+    const doc = new jsPDF('p', 'mm', 'a4');
+
+    var text = "\t\tdistribution \n\n horaire : {{schedule}} \n\n\t secteur : {{sector}}\n {{address}}\n\n\t distributeur : {{distributor}}\n {{user}}\n\n\t bénéfiaires\n {{benefit}}\n\n\t produits\n {{product}}"
+
+    text = text.replace('{{schedule}}', DateService.to_front(this.distribute?.schedule, true))
+    text = text.replace('{{sector}}', this.sector?.nom?? '')
+    text = text.replace('{{address}}', `- adressse : ${this.sector?.address.address}\n - code postal : ${this.sector?.address.postal_code}\n - ville : ${this.sector?.address.city}\n - type : ${this.sector?.address.kind}\n - instructions : ${this.sector?.address.instruction}`)
+    text = text.replace('{{distributor}}', UserMapperService.get_U_Name(this.distribute?.distributor, true));
+    text = text.replace('{{user}}', `- adressse : ${this.distribute?.distributor?.address.address}\n - code postal : ${this.distribute?.distributor?.address.postal_code}\n - ville : ${this.distribute?.distributor?.address.city}\n - type : ${this.distribute?.distributor?.address.kind}\n - instructions : ${this.distribute?.distributor?.address.instruction}`)
+    text = text.replace('{{benefit}}', this.helped?.map(h=>`- ${UserMapperService.get_U_Name(h.user, true)} -${AddressMapperService.get_address(h.user.address)}-`).join('\n ')?? '');
+    text = text.replace('{{product}}', this.stock?.map(s=>`- ${s.name} "${s.marque}" ${s.expiration_date} -${s.code_barre}-`).join('\n ')?? '');
+
+    doc.text(text, 15, 25);
+
+    doc.save('export_distribute_*date*.pdf'.replace('*date*', DateService.now_numbers()));
+
+  }
 }

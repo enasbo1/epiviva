@@ -88,9 +88,9 @@ class ProductService extends Service
 
         $product = [];
         if ($withRefused) {
-            $result = $repo->get([], ['user_id' => $user_id, 'collected'=>'false']);
+            $result = $repo->get_product(['p.user_id' => $user_id, 'p.collected'=>'false']);
         }else{
-            $result = $repo->get([], ['user_id' => $user_id, 'refused'=>'false', 'collected'=>'false']);
+            $result = $repo->get_product(['p.user_id' => $user_id, 'p.refused'=>'false', 'p.collected'=>'false']);
         }
 
         foreach($result as $row) {

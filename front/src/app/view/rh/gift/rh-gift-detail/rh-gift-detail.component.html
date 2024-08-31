@@ -4,7 +4,7 @@
             <h5>{{'gift.name'|langue}}</h5>
             <ul>
                 <li *ngFor="let product of products"
-                    [class]="moment(product.expiration_date).isBefore(moment())?'passed':product.harvest_id?'text-colored':''"
+                    [class]="moment(product.expiration_date).isBefore(moment())?'passed':product.harvest?.id?'text-colored':''"
                 >
                     <b>
                         {{product.name}} "{{product.marque}}"

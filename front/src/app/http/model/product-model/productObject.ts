@@ -1,8 +1,8 @@
 import {UserRecap} from "../user-model/userObject";
+import {HarvestGetObject, HarvestObject} from "../harvest-model/harvestObject";
 
 export interface ProductGetObject extends ProductSelfObject{
     user:UserRecap
-    harvest_id:number|bigint
 }
 
 export interface ProductObject extends ProductMinObject{
@@ -27,6 +27,7 @@ export interface ProductSelfObject extends ProductMinObject {
     refused?:string;
     marque:string;
     expiration_date:Date;
+    harvest?:HarvestGetObject;
     distribute_id?:number|bigint;
 }
 

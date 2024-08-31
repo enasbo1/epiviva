@@ -117,6 +117,7 @@ export class RhVolunteerDetailComponent implements OnInit {
               content:[
                 {
                   text:'volunteer.affect',
+                  style:'width:100%;text-align:center',
                   submitEvent:add_affected
                 }
               ]

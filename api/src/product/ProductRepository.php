@@ -5,7 +5,7 @@ use shared\Repository;
 
 
 class ProductRepository extends Repository {
-    private static $get_query =
+    private string $get_product =
         "
 SELECT 
     p.id as id, 
@@ -52,11 +52,18 @@ left join harvest h on h.id = p.harvest_id
     /**
      * @throws Exception
      */
+    public function get_product(array $restrict): array
+    {
+        $q = $this->get_product . $this->restrict($restrict) . ';';
+        return $this->query($q, $restrict);
+    }
+
+    /**
+     * @throws Exception
+     */
     public function get_stocks(array $restrict): array
     {
-        {
-            $q = $this->get_stock . $this->restrict($restrict) . ';';
-            return $this->query($q, $restrict);
-        }
+        $q = $this->get_stock . $this->restrict($restrict) . ';';
+        return $this->query($q, $restrict);
     }
 }

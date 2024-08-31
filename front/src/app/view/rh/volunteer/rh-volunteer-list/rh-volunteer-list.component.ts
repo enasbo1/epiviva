@@ -14,7 +14,7 @@ import {EpvPath} from "../../../routes";
 export class RhVolunteerListComponent implements OnInit {
   users:ListObject[] = []
   filters:FilterObject[] = [
-    {name : 'role', type:'auto'},
+    {name : 'role', type:'auto', default:'user.roles.volunteer'},
   ]
   critera : string[] = [
     'connexion.email',

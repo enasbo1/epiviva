@@ -1,0 +1,4 @@
+{
+  "text" : "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><style>h1,h2{text-align: center;}h3{margin-left: 5rem;}</style></head><body><h2>distribution</h2>horaire : {{schedule}}<h3>secteur : {{sector}}</h3>{{address}}<h3>distributeur : {{distributor}}</h3>{{user}}<h3>bénéfiaires</h3><ul>{{benefit}}</ul><h3>produits</h3><ul>{{product}}</ul></body></html>",
+  "font" : "coucou"
+}

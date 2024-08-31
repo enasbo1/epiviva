@@ -21,10 +21,10 @@ export class DistributeMapperService {
         {text: `${LanguageService.static_resolve('distribute.user')} : ${UserMapperService.get_U_Name(distribute.distributor, true)}`},
         null
       ],
-      style:DateService.checkDateStatus(distribute.schedule),
+      style:distribute.done==='t'?'present':DateService.checkDateStatus(distribute.schedule),
       properties:[
         {name:'distribute.user', value: UserMapperService.get_U_Name(distribute.distributor, true)},
-        {name:'distribute.state', value: DateService.checkDateStatus(distribute.schedule)},
+        {name:'distribute.state', value: distribute.done==='t'?'distribute.done':DateService.checkDateStatus(distribute.schedule)},
       ]
     }
   }

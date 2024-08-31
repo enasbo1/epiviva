@@ -15,6 +15,7 @@ export class DateService {
   static FORMAT_API = "MM/DD/YYYY HH:mm:ss";
   static FORMAT_FRONT = "DD/MM/YYYY";
   static FORMAT_TIME = "HH:mm:ss";
+  static FORMAT_NUMBER = "YYYYMMDD_HHmmss";
 
   static to_api(date?:Date):string{
     date = date?date:new Date();
@@ -23,6 +24,10 @@ export class DateService {
 
   static to_front(date?:string|Date, time:boolean=false):string{
     return moment(date).format(this.FORMAT_FRONT + (time?' '+this.FORMAT_TIME:''));
+  }
+
+  static now_numbers():string{
+    return moment().format(this.FORMAT_NUMBER);
   }
 
   static isCommonPeriod(dates:Period, period: Period):boolean{

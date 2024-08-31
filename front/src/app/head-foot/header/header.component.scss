@@ -3,7 +3,7 @@
 
 .navbar{
   align-items: flex-start;
-  box-shadow: -1rem 0.25rem 1rem styles.$color-colored-gris;
+  box-shadow: -1rem 0.25rem 1rem styles.$color-colored;
   position: fixed;
   top:0;
   width: 100%;
@@ -50,7 +50,7 @@
     }
 
     &.actif:hover{
-      color: styles.$color-colored-gris;
+      color: styles.$color-colored;
     }
   }
 }

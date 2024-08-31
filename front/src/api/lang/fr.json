@@ -233,8 +233,8 @@
     "title": "Bénévole",
     "username": "Bénévoles",
     "affects": "Affectations",
-    "distribute": "Ajouter une affectation",
-    "affect": "Mes distributions"
+    "affect": "Ajouter une affectation",
+    "distribute": "Mes distributions"
   },
   "gift": {
     "title": "donner des produits allimentaires",
@@ -333,6 +333,7 @@
     "add_stock": "ajouter un produit",
     "do": "Terminer",
     "done": "Terminé",
-    "confirm_do": "Voulez-vous vraiment renseigner la distribution comme terminée"
+    "confirm_do": "Voulez-vous vraiment renseigner la distribution comme terminée",
+    "toPdf": "Exporter au format pdf"
   }
 }

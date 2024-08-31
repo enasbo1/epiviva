@@ -61,12 +61,12 @@ export class RhGiftDetailComponent implements OnInit {
   }
 
   get_harvest():HarvestGetObject[] {
-    return this.harvest?.filter(h => this.products.map(p=>p.harvest_id).includes(h.id))??[];
+    return this.harvest?.filter(h => this.products.map(p=>p.harvest?.id).includes(h.id))??[];
   }
 
   pick() {
     if (this.harvest) {
-      if (!this.products.find(p => !p.harvest_id)) {
+      if (!this.products.find(p => !p.harvest?.id)) {
         ModaleService.createValidationModal('harvest.add.already').subscribe((yes) =>
             yes == 'Oui' ? this._pick() : undefined
         )

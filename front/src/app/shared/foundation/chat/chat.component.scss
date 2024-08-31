@@ -21,7 +21,7 @@
 .message {
   margin-bottom: 10px;
   padding: 0.5rem 1rem; /* Ajoutez un padding pour les messages */
-  box-shadow: 0.2rem 0.2rem 0.2rem styles.$color-colored-gris;
+  box-shadow: 0.2rem 0.2rem 0.2rem styles.$color-colored;
   margin-top: 10px;
 
   &.sending{
@@ -44,7 +44,7 @@
   background-color: #cfd9e6;
   border-radius: 50%;
   color: white;
-  box-shadow: 0.2rem 0.2rem 0.2rem styles.$color-colored-gris;
+  box-shadow: 0.2rem 0.2rem 0.2rem styles.$color-colored;
   display: flex;
   justify-content: center;
   align-items: center;

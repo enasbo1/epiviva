@@ -282,7 +282,7 @@ export class UserMapperService {
                 {name : 'user.first_name' , value: user?.nom},
                 {name : 'user.name' , value: user?.prenom},
                 {name : 'number', value: user?.id},
-                {name : 'role', value: UserMapperService.roles[user?.status?? '0']},
+                {name : 'role', value: 'user.roles.' + UserMapperService.roles[user?.status?? '0']},
             ]
         }    }
 }

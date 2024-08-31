@@ -131,7 +131,7 @@ div.card {
 
 .font-colored{
   font-weight: bold;
-  color: styles.$color-colored-gris;
+  color:  styles.$color-colored-gris;
 }
 
 .text-colored{
@@ -140,7 +140,7 @@ div.card {
 
 .colored{
   font-weight: bold;
-  background-color: styles.$color-colored-gris;
+  background-color:  styles.$color-colored;
 }
 
 .colored-red{
@@ -195,7 +195,7 @@ button{
 }
 
 .text-hover{
-  color: styles.$color-colored-gris;
+  color:  styles.$color-colored-gris;
 
   &:hover{
     color: black;

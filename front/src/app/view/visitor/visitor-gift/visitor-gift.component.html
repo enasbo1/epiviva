@@ -6,7 +6,7 @@
                 <li *ngFor="let product of products"
                     [class]="
                     moment(product.expiration_date).isBefore(moment())?'passed ':''+
-                    product.refused==='t'?'refused':''"
+                    product.refused==='t'?'refused':product.harvest?.id?'text-colored':''"
                     [title]="product.refused==='t'?('gift.refused'|langue):''"
                 >
                     <b [class]="product.refused==='t'?'':'clickable'" (click)="edit_product(product)">
@@ -28,6 +28,11 @@
                 {{'gift.no_product'|langue}}
             </h5>
         </ng-container>
+        <div class="col-12 flex">
+                <span class="text" *ngIf="harvest">
+                    {{'harvest.name' | langue}} : <b>{{harvest.sector.nom}} </b> <i>{{DateService.to_front(harvest.schedule, true) }}</i>
+                </span>
+        </div>
         <div class="flex">
             <button
                 class = 'bubble hover-1'
