@@ -38,7 +38,8 @@ SELECT
     name, 
     marque, 
     expiration_date, 
-    user_id
+    user_id,
+    p.distribute_id as distribute_id
 FROM product p
 left join harvest h on h.id = p.harvest_id
 ";

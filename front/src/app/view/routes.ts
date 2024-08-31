@@ -61,6 +61,7 @@ export const  EpvPath={
     },
     distribute:{
       list:'rh/distribute/:id_sector',
+      new:'rh/distribute/:id_sector/new',
       details:'rh/distribute/detail/:id',
       edit: 'rh/distribute/edit/:id',
     },

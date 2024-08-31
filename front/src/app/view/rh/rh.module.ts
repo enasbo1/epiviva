@@ -16,9 +16,10 @@ import { RhSectorListComponent } from './sector/rh-sector-list/rh-sector-list.co
 import { RhSectorDetailComponent } from './sector/rh-sector-detail/rh-sector-detail.component';
 import { RhVolunteerListComponent } from './volunteer/rh-volunteer-list/rh-volunteer-list.component';
 import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-volunteer-detail.component';
-import {RhDistributionListComponent} from "./distribution/rh-distribution-list/rh-distribution-list.component";
-import {RhDistributionDetailComponent} from "./distribution/rh-distribution-detail/rh-distribution-detail.component";
+import { RhDistributionListComponent} from "./distribution/rh-distribution-list/rh-distribution-list.component";
+import { RhDistributionDetailComponent } from "./distribution/rh-distribution-detail/rh-distribution-detail.component";
 import { RhDistributionEditComponent } from './distribution/rh-distribution-edit/rh-distribution-edit.component';
+import { RhDistributionNewComponent } from './distribution/rh-distribution-new/rh-distribution-new.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RhDistributionEditComponent } from './distribution/rh-distribution-edit
     RhDistributionListComponent,
     RhDistributionDetailComponent,
     RhDistributionEditComponent,
+    RhDistributionNewComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { RhDistributionEditComponent } from './distribution/rh-distribution-edit
       {path: EpvPath.rh.sector.details, component: RhSectorDetailComponent},
       {path: EpvPath.rh.volunteer.list, component: RhVolunteerListComponent},
       {path: EpvPath.rh.volunteer.details, component: RhVolunteerDetailComponent},
+      {path: EpvPath.rh.distribute.new, component: RhDistributionNewComponent},
       {path: EpvPath.rh.distribute.list, component: RhDistributionListComponent},
       {path: EpvPath.rh.distribute.edit, component: RhDistributionEditComponent},
       {path: EpvPath.rh.distribute.details, component: RhDistributionDetailComponent},

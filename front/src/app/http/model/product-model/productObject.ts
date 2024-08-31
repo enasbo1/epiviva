@@ -27,6 +27,7 @@ export interface ProductSelfObject extends ProductMinObject {
     refused?:string;
     marque:string;
     expiration_date:Date;
+    distribute_id?:number|bigint;
 }
 
 export interface ProductMinObject {

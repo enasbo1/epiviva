@@ -319,6 +319,8 @@
   },
   "distribute": {
     "title": "Distribution",
+    "add": "Ajouter une distribution",
+    "new": "Nouvelle distribution",
     "list_title": "Distributions",
     "state": "état",
     "schedule": "Horaires",

@@ -8,6 +8,7 @@ import {SectorModelService} from "../../../../http/model/sector-model/sector-mod
 import {GlobalService} from "../../../../shared/global.service";
 import {LanguageService} from "../../../../shared/base-shared/language.service";
 import {FilterObject} from "../../../../shared/foundation/list/filterObject";
+import {EpvPath} from "../../../routes";
 
 @Component({
   selector: 'epv-rh-distribution-list',
@@ -17,6 +18,7 @@ import {FilterObject} from "../../../../shared/foundation/list/filterObject";
 export class RhDistributionListComponent implements OnInit {
   private distribute ?: DistributeAffectedObject[];
   public listItems: ListObject[] = [];
+  public sector?:number|bigint;
   public critera: string[] = [
       'distribute.user'
   ];
@@ -34,6 +36,7 @@ export class RhDistributionListComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params['id_sector']) {
+        this.sector = params['id_sector'];
         this.sectorModelService.get_one_sector(params['id_sector']).subscribe((sector)=> {
           GlobalService.pageName = `${this.language.resolve('sector.title')} "${sector[0].nom}" : ${this.language.resolve('distribute.list_title')}`
         })
@@ -47,4 +50,5 @@ export class RhDistributionListComponent implements OnInit {
     })
   }
 
+  protected readonly EpvPath = EpvPath;
 }

@@ -52,11 +52,11 @@ class DistributeService extends Service
     /**
      * @throws Exception
      */
-    public function save(object $input): void
+    public function save(object $input): string
     {
         $repo = new DistributeRepository();
         $toQuery = $this->modelType->isValidType($input);
-        $repo->create($toQuery, "unable to create distribute");
+        return $repo->create($toQuery, "unable to create distribute");
     }
 
     /**

@@ -1,0 +1,14 @@
+<section class="flex">
+    <div>
+        <epv-rubric-list
+                [items]="rubric"
+        ></epv-rubric-list>
+        <epv-line [short]="true"></epv-line>
+        <br>
+        <div class="w-100 text-center {{submitable?'text-hover':''}} bolder"
+             (click)="submit()"
+        >
+            {{'distribute.save' | langue}}
+        </div>
+    </div>
+</section>

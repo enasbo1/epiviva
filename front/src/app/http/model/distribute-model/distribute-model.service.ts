@@ -8,8 +8,8 @@ import {DistributeAffectedObject, DistributeObject, DistributePostObject} from "
   providedIn: 'root'
 })
 export class DistributeModelService extends RequestService{
-  post_distribute(content:DistributePostObject, errorEvent?:EventEmitter<HttpErrorResponse>):Observable<object>{
-    return (this.post(content, 'distribute', errorEvent));
+  post_distribute(content:DistributePostObject, errorEvent?:EventEmitter<HttpErrorResponse>):Observable<{id:bigint|number}>{
+    return (this.post(content, 'distribute', errorEvent)) as Observable<{id:bigint|number}>;
   }
 
   get_distribute():Observable<DistributeObject[]>{

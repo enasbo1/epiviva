@@ -51,9 +51,9 @@ class DistributeController extends CrudController{
         $request = new DistributeService();
 
         Privilege::rh();
-        $request->save($input);
+        $answer = $request->save($input);
         http_response_code(201);
-        echo('{"message" : "distribute créé avec succès"}');
+        echo('{"message" : "distribute créé avec succès","id":"'.$answer.'"}');
     }
 
     function patch(array $id, object $input): void
