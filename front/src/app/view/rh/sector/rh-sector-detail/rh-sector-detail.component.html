@@ -9,6 +9,15 @@
         <br>
         <div class="flex">
             <span class="bubble text-hover"
+                  [routerLink]="'/'+EpvPath.rh.distribute.list.replace(':id_sector', sector?.id?.toString()??'0')"
+            >
+                <b><i>
+                   {{'distribute.title' | langue}}
+                </i></b>
+            </span>
+        </div>
+        <div class="flex">
+            <span class="bubble text-hover"
                   (click)="edit_sector()"
             >
                 <b><i>

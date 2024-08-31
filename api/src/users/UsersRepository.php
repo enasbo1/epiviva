@@ -15,7 +15,7 @@ select
     mail, 
     status, 
     num, 
-    (select count(p.id) from product p where  u.id = p.user_id and not p.refused) as gift,
+    (select count(p.id) from product p where  u.id = p.user_id and not p.refused and not p.collected) as gift,
     a.id as address__id, 
     address as address__address, 
     postal_code as address__postal_code, 

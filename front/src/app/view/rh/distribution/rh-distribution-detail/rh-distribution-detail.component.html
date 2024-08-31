@@ -1,0 +1,14 @@
+<section class="flex">
+    <div>
+        <epv-rubric-list
+                [items]="rubric"
+        ></epv-rubric-list>
+        <epv-line [short]="true"></epv-line>
+        <br>
+        <div class="w-100 text-center text-hover bolder"
+             [routerLink]="'/'+EpvPath.rh.distribute.edit.replace(':id', distribute?.id?.toString()?? '0')"
+        >
+            {{'distribute.edit' | langue}}
+        </div>
+    </div>
+</section>

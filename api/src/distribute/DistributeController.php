@@ -62,6 +62,7 @@ class DistributeController extends CrudController{
 
         Privilege::rh();
         $request->update($input);
+        echo('{"message" : "distribute mis à jours avec succès"}');
     }
 
     function delete(array $id): void

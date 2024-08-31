@@ -47,14 +47,16 @@ export class DateService {
     return DateService.to_front(period.start.toDate()) + " - " + DateService.to_front(period.end.toDate());
   }
 
-  static checkDateStatus(startDate: string | undefined, endDate: string | undefined, date: moment.Moment = moment()): string {
-
+  static checkDateStatus(startDate: string | Date, endDate?: string|Date, date: moment.Moment = moment()): string {
+    if (!endDate){
+      endDate = startDate;
+    }
     if (date.isBefore(moment(startDate))) {
       return 'futur';
     } else if (date.isBetween(moment(startDate), moment(endDate), undefined, '[]')) {
-      return 'présent';
+      return 'present';
     } else {
-      return 'passé';
+      return 'passe';
     }
   }
 }

@@ -16,14 +16,11 @@ class HarvestController extends CrudController{
             Privilege::rh();
             $harvest = $request->getAll();
         } else {
-            switch ($id[0]){
-                case 'sector':
-                    $harvest = $request->findFormSector($id[1]);
-                    break;
-                default:
-                    $harvest = $request->findById($id[0]);
-                    break;
-            }
+            $harvest = match ($id[0]) {
+                'sector' => $request->findFormSector($id[1]),
+                'progressing' => $request->findProgressing(),
+                default => $request->findById($id[0]),
+            };
         }
         echo json_encode($harvest);
     }
@@ -43,7 +40,15 @@ class HarvestController extends CrudController{
         $request = new HarvestService();
 
         Privilege::rh();
-        $request->update($input);
+        if (count($id)>0){
+            if ($id[0]=='collect'){
+                $request->collect($input->id);
+            }
+        }else{
+            $request->update($input);
+        }
+        echo('{"message" : "harvest mis à jours avec succès"}');
+
     }
 
     function delete(array $id): void

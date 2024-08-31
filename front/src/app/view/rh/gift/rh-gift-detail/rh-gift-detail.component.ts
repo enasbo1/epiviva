@@ -48,7 +48,7 @@ export class RhGiftDetailComponent implements OnInit {
         )
       }
     })
-    this.harvestModelService.get_harvest().subscribe((harvest)=>
+    this.harvestModelService.get_progressing().subscribe((harvest)=>
       this.harvest = harvest
     )
   }

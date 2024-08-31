@@ -248,4 +248,22 @@ class BenefitService extends Service
             ]
         );
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getFromSector(int $sector_id):array
+    {
+        $repo = new BenefitRepository();
+
+        $benefit = [];
+        $result = $repo->get_benefits(['b.sector_id'=>$sector_id, 'b.validated'=>'valid']);
+
+        foreach($result as $row) {
+            $benefit[] = Formater::prepareGet($row);
+        }
+
+        return $benefit;
+
+    }
 }

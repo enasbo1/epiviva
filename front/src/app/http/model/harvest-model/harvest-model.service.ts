@@ -34,4 +34,12 @@ export class HarvestModelService extends RequestService{
   delete_harvest(id:bigint|number):Observable<object>{
     return (this.delete('harvest',id))
   }
+
+  collect_harvest(id:bigint|number):Observable<object>{
+    return (this.edit({id:id}, 'harvest/collect'))
+  }
+
+  get_progressing():Observable<HarvestGetObject[]> {
+    return (this.get('harvest/progressing')as Observable<HarvestGetObject[]>);
+  }
 }

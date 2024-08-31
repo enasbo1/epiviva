@@ -1,5 +1,6 @@
 <?php
 namespace product;
+use Exception;
 use shared\Repository;
 
 
@@ -29,9 +30,32 @@ left join harvest h on h.id = p.harvest_id
 left join sector s on s.id = h.sector_id
 left join address a on a.id = s.address_id
 ";
+    private string $get_stock =
+"
+SELECT 
+    p.id as id, 
+    code_barre, 
+    name, 
+    marque, 
+    expiration_date, 
+    user_id
+FROM product p
+left join harvest h on h.id = p.harvest_id
+";
 
     public function __construct()
     {
         parent::__construct('product', new ProductModelType());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function get_stocks(array $restrict): array
+    {
+        {
+            $q = $this->get_stock . $this->restrict($restrict) . ';';
+            return $this->query($q, $restrict);
+        }
     }
 }

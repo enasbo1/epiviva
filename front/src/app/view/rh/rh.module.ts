@@ -16,6 +16,9 @@ import { RhSectorListComponent } from './sector/rh-sector-list/rh-sector-list.co
 import { RhSectorDetailComponent } from './sector/rh-sector-detail/rh-sector-detail.component';
 import { RhVolunteerListComponent } from './volunteer/rh-volunteer-list/rh-volunteer-list.component';
 import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-volunteer-detail.component';
+import {RhDistributionListComponent} from "./distribution/rh-distribution-list/rh-distribution-list.component";
+import {RhDistributionDetailComponent} from "./distribution/rh-distribution-detail/rh-distribution-detail.component";
+import { RhDistributionEditComponent } from './distribution/rh-distribution-edit/rh-distribution-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,14 @@ import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-v
     RhSectorDetailComponent,
     RhVolunteerListComponent,
     RhVolunteerDetailComponent,
+    RhDistributionListComponent,
+    RhDistributionDetailComponent,
+    RhDistributionEditComponent,
   ],
   imports: [
     CommonModule,
+    FoundationModule,
+    BaseSharedModule,
     RouterModule.forRoot([
       {path: EpvPath.rh.home, component: HomeComponent},
       {path: EpvPath.rh.candidate.list, component: RhCandidateListComponent},
@@ -44,11 +52,12 @@ import { RhVolunteerDetailComponent } from './volunteer/rh-volunteer-detail/rh-v
       {path: EpvPath.rh.sector.details, component: RhSectorDetailComponent},
       {path: EpvPath.rh.volunteer.list, component: RhVolunteerListComponent},
       {path: EpvPath.rh.volunteer.details, component: RhVolunteerDetailComponent},
+      {path: EpvPath.rh.distribute.list, component: RhDistributionListComponent},
+      {path: EpvPath.rh.distribute.edit, component: RhDistributionEditComponent},
+      {path: EpvPath.rh.distribute.details, component: RhDistributionDetailComponent},
       {path: EpvPath.rh.options, component: OptionsComponent},
       {path: EpvPath.rh.root, redirectTo: EpvPath.rh.home, pathMatch: "full"},
     ]),
-    FoundationModule,
-    BaseSharedModule,
   ]
 })
 export class RhModule { }

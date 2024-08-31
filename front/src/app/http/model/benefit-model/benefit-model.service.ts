@@ -21,11 +21,15 @@ export class BenefitModelService extends RequestService{
     return (this.get('benefit/self') as Observable<BenefitGetLargeObject[]>);
   }
 
+  get_from_sector(id:bigint|number):Observable<BenefitGetLargeObject[]>{
+    return (this.get_one('benefit/sector', id) as Observable<BenefitGetLargeObject[]>);
+  }
+
   get_benefit_valid():Observable<BenefitGetLargeObject[]>{
     return (this.get('benefit/valid') as Observable<BenefitGetLargeObject[]>);
   }
 
-  get_one_benefit(number:bigint):Observable<BenefitGetLargeObject[]>{
+  get_one_benefit(number:bigint|number):Observable<BenefitGetLargeObject[]>{
     return (this.get_one('benefit',number) as Observable<BenefitGetLargeObject[]>);
 
   }

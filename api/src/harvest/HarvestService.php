@@ -2,6 +2,7 @@
 namespace harvest;
 
 use Exception;
+use product\ProductRepository;
 use shared\Formater;
 use shared\Service;
 
@@ -86,7 +87,7 @@ class HarvestService extends Service
         $repo = new HarvestRepository();
 
         $harvest = [];
-        $result = $repo->get_harvest(['h.sector_id' => $id]);
+        $result = $repo->get_harvest(['h.sector_id' => $id, 'h.collected'=>"false"]);
 
         foreach($result as $row) {
             $harvest[] = Formater::prepareGet($row);
@@ -94,4 +95,32 @@ class HarvestService extends Service
 
         return $harvest;
     }
+
+    /**
+     * @throws Exception
+     */
+    public function collect(int $id):void{
+        $repo = new HarvestRepository();
+        $product = new ProductRepository();
+        $product->update_abs(['collected'=>"true"], ['harvest_id'=>$id, 'refused'=>'false']);
+        $repo->update(['id'=>$id, 'collected'=>"true"]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function findProgressing(): array
+    {
+        $repo = new HarvestRepository();
+
+        $harvest = [];
+        $result = $repo->get_harvest(['h.collected'=>"false"]);
+
+        foreach($result as $row) {
+            $harvest[] = Formater::prepareGet($row);
+        }
+
+        return $harvest;
+    }
+
 }

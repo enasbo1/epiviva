@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {
-    UserGivingObject,
+    UserGivingObject, UserLocatedObject,
     UserMin,
     UserObject,
     UserPatch,
@@ -8,7 +8,7 @@ import {
     UserVolunteerObject
 } from "../http/model/user-model/userObject";
 import {ListObject} from "../shared/foundation/list/listObject";
-import {RubricObject} from "../shared/base-shared/rubric/rubricObject";
+import {RubricElement, RubricObject} from "../shared/base-shared/rubric/rubricObject";
 import {FormStepObject} from "../shared/base-shared/form-step/formStepObject";
 import {FormFieldObject} from "../shared/base-shared/form-field/formFieldObject";
 import {FormService} from "../shared/foundation/form/form.service";
@@ -100,16 +100,37 @@ export class UserMapperService {
         }
     }
 
-    static model_to_rubric(user:UserObject, title?:string):RubricObject{
+    static model_to_rubric(user:UserRecap, title:string = "user.title"):RubricObject{
+        const n:RubricElement[] = [
+            {name:'user.name', type:'text', text:`${user.prenom[0].toUpperCase()}${user.prenom.slice(1).toLowerCase()}`},
+            {name:'user.first_name', type:'text', text:user.nom.toUpperCase()},
+            {name:'user.mail', type:'text', text: user.mail},
+            {name:'user.num', type:'text', text: user.num},
+        ]
+        if (user.status!==undefined){
+            n.push({name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user.status]}`})
+        }
+
         return {
-            title : "user.title",
-            content:[
-                {name:'user.name', type:'text', text:`${user.prenom[0].toUpperCase()}${user.prenom.slice(1).toLowerCase()}`},
-                {name:'user.first_name', type:'text', text:user.nom.toUpperCase()},
-                {name:'user.mail', type:'text', text: user.mail},
-                {name:'user.num', type:'text', text: user.num},
-                {name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user.status]}`}
-            ]
+            title : title,
+            content : n
+        };
+    }
+
+    static located_to_rubric(user?:UserLocatedObject, title:string = "user.title"){
+        const n:RubricElement[] = [
+            {name:'user.name', type:'text', text:`${user?.prenom[0].toUpperCase()}${user?.prenom.slice(1).toLowerCase()}`},
+            {name:'user.first_name', type:'text', text:user?.nom.toUpperCase()},
+            {name:'user.mail', type:'text', text: user?.mail},
+            {name:'user.num', type:'text', text: user?.num},
+        ]
+        if (user?.status!==undefined){
+            n.push({name:'user.status', type:'text', text: `user.roles.${UserMapperService.roles[user.status]}`})
+        }
+        n.push({name:'address.title', type:'text', text:AddressMapperService.get_address(user?.address)})
+        return {
+            title : title,
+            content : n
         };
     }
 
@@ -238,7 +259,7 @@ export class UserMapperService {
     }
 
     static volunteer_to_list(user: UserVolunteerObject, detailPage: string) :ListObject{
-        const sector:string[]= user.distribute.map(x=>x.sector.nom);
+        const sector:string[]= user.affect.map(x=>x.sector.nom);
         if (sector.length>2){
             sector[2] = '...'
             sector.splice(3);

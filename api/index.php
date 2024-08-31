@@ -5,10 +5,12 @@ use address\AddressController;
 use benefit\BenefitController;
 use candidate\CandidateController;
 use connexion\ConnexionController;
+use affect\AffectController;
 use distribute\DistributeController;
 use Exception;
 use file\FileController;
 use harvest\HarvestController;
+use helped\HelpedController;
 use message\MessageController;
 use product\ProductController;
 use sector\SectorController;
@@ -54,6 +56,9 @@ require_once 'src/product/ProductController.php';
 require_once "crud/distribute/DistributeModelType.php";
 require_once 'src/distribute/DistributeController.php';
 
+require_once "crud/affect/AffectModelType.php";
+require_once 'src/affect/AffectController.php';
+
 require_once "crud/connexion/ConnexionModelType.php";
 require_once 'src/connexion/ConnexionController.php';
 
@@ -65,6 +70,9 @@ require_once 'src/benefit/BenefitController.php';
 
 require_once "crud/harvest/HarvestModelType.php";
 require_once 'src/harvest/HarvestController.php';
+
+require_once "crud/helped/HelpedModelType.php";
+require_once 'src/helped/HelpedController.php';
 
 require_once 'src/file/FileController.php';
 
@@ -111,6 +119,8 @@ $controllerList = [
     "benefit"   => new BenefitController(),
     "file"      => new FileController(),
     "harvest"   => new HarvestController(),
+    "helped"   => new HelpedController(),
+    "affect"    => new AffectController()
 ];
 // }
 

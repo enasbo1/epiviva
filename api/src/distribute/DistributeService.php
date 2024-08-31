@@ -39,7 +39,7 @@ class DistributeService extends Service
         $repo = new DistributeRepository();
 
         $distribute = [];
-        $result = $repo->read($id, "distribute not found");
+        $result = $repo->get_affected(['d.id'=>$id]);
 
         foreach($result as $row) {
             $distribute[] = Formater::prepareGet($row);

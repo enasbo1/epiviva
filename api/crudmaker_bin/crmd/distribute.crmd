@@ -1,2 +1,4 @@
-user_id-|-r !int
+id-|-!int
+schedule-|-r d,DMY
+distributor_id-|-r !int
 sector_id-|-r !int

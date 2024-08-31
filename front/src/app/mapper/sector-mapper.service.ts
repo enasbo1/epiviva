@@ -31,10 +31,14 @@ export class SectorMapperService {
     }
   }
 
-  static model_to_rubric(sector?:SectorObject):RubricObject{
+  static model_to_rubric(sector?:SectorObject, address:boolean = false):RubricObject{
     return {
       title: `${LanguageService.static_resolve('sector.title')} : ${sector?.nom[0].toUpperCase()}${sector?.nom.slice(1).toLowerCase()}`,
-      content: [
+      content:
+        address?
+          AddressMapperService.model_to_rubric(sector?.address).content
+        :
+          [
       ]
     }
   }

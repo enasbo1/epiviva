@@ -11,7 +11,7 @@ import {FormService} from "../../../../shared/foundation/form/form.service";
 import {FormStepObject} from "../../../../shared/base-shared/form-step/formStepObject";
 import {CandidateMapperService} from "../../../../mapper/candidate-mapper.service";
 import {EpvPath} from "../../../routes";
-import {DistributeModelService} from "../../../../http/model/distribute-model/distribute-model.service";
+import {AffectModelService} from "../../../../http/model/affect-model/affect-model.service";
 import {SectorModelService} from "../../../../http/model/sector-model/sector-model.service";
 import {ModaleService} from "../../../../shared/foundation/modale/modale.service";
 import {AddressMapperService} from "../../../../mapper/address-mapper.service";
@@ -37,7 +37,7 @@ export class RhCandidateDetailComponent implements OnInit {
       private candidateModelService:CandidateModelService,
       private route: ActivatedRoute,
       private sectorModelService:SectorModelService,
-      private distributeModelService: DistributeModelService,
+      private affectModelService: AffectModelService,
       private addressModelService: AddressModelService,
       private router: Router
   ) { }
@@ -91,7 +91,7 @@ export class RhCandidateDetailComponent implements OnInit {
       affect.subscribe((obj:object|undefined)=>
           {
             if (obj){
-              this.distributeModelService.post_distribute(
+              this.affectModelService.post_affect(
                   {
                     user_id : this.candidate?.id??0,
                     sector_id : (obj as {id:number|bigint}).id

@@ -1,0 +1,3 @@
+id-|-!int
+user_id-|-r !int
+sector_id-|-r !int

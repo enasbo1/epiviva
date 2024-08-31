@@ -5,7 +5,6 @@ export interface ProductGetObject extends ProductSelfObject{
     harvest_id:number|bigint
 }
 
-
 export interface ProductObject extends ProductMinObject{
     code_barre:string;
     name:string;

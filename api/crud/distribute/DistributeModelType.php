@@ -15,7 +15,9 @@ class DistributeModelType implements ModelType
     {
         $arr_params = $this->toArray($params, $default);
         $valid = Verif::verification($arr_params,[
-			"user_id" => "r !int",
+			"id" => "!int",
+			"schedule" => "r d,DMY",
+			"distributor_id" => "r !int",
 			"sector_id" => "r !int"
         ]);
         if (
@@ -30,7 +32,9 @@ class DistributeModelType implements ModelType
     public function toArray(object $params, array $default=[]): array
     {
         return array_filter([
-			"user_id" => $params->user_id ?? $default["user_id"]  ?? null,
+			"id" => $params->id ?? $default["id"]  ?? null,
+			"schedule" => $params->schedule ?? $default["schedule"]  ?? null,
+			"distributor_id" => $params->distributor_id ?? $default["distributor_id"]  ?? null,
 			"sector_id" => $params->sector_id ?? $default["sector_id"]  ?? null
         ]);
     }

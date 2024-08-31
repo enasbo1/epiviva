@@ -12,7 +12,7 @@ export class SectorModelService extends RequestService{
     return (this.get('sector') as Observable<SectorObject[]>);
   }
 
-  get_one_sector(number:bigint):Observable<SectorObject[]>{
+  get_one_sector(number:bigint|number):Observable<SectorObject[]>{
     return (this.get_one('sector',number) as Observable<SectorObject[]>);
 
   }
