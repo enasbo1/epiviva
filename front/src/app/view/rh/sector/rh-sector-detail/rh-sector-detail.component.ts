@@ -15,8 +15,8 @@ import {BenefitModelService} from "../../../../http/model/benefit-model/benefit-
 import {UserMapperService} from "../../../../mapper/user-mapper.service";
 import {UserPatch, UserVolunteerObject} from "../../../../http/model/user-model/userObject";
 import {UserModelService} from "../../../../http/model/user-model/user-model.service";
-import {DistributeModelService} from "../../../../http/model/distribute-model/distribute-model.service";
-import {DistributeAffectedObject} from "../../../../http/model/distribute-model/distributeObject";
+import {AffectModelService} from "../../../../http/model/affect-model/affect-model.service";
+import {AffectAffectedObject} from "../../../../http/model/affect-model/affectObject";
 import {HarvestGetObject, HarvestObject} from "../../../../http/model/harvest-model/harvestObject";
 import {HarvestModelService} from "../../../../http/model/harvest-model/harvest-model.service";
 import {DateService} from "../../../../http/shared/date.service";
@@ -30,9 +30,9 @@ import {HarvestMapperService} from "../../../../mapper/harvest-mapper.service";
 })
 export class RhSectorDetailComponent implements OnInit {
 
-  private sector?:SectorObject;
+  public sector?:SectorObject;
   private volunteer?:UserVolunteerObject[];
-  private affected?:DistributeAffectedObject[];
+  private affected?:AffectAffectedObject[];
   public rubric?:RubricObject[];
   private helped?:BenefitGetLargeObject[];
   private harvest?:HarvestGetObject[];
@@ -42,7 +42,7 @@ export class RhSectorDetailComponent implements OnInit {
       private sectorModelService: SectorModelService,
       private benefitModelService: BenefitModelService,
       private userModelService:UserModelService,
-      private distributeModelService:DistributeModelService,
+      private affectModelService:AffectModelService,
       private harvestModelService:HarvestModelService,
       private router: Router
   ) { }
@@ -63,8 +63,8 @@ export class RhSectorDetailComponent implements OnInit {
                 this.volunteer = volunteer
                 this.set_rubric()
               });
-              this.distributeModelService.get_affected(params['id']).subscribe((distribute)=>{
-                this.affected = distribute;
+              this.affectModelService.get_affected(params['id']).subscribe((affect)=>{
+                this.affected = affect;
                 this.set_rubric()
               })
               this.harvestModelService.get_form_sector(params['id']).subscribe((harvest)=>{
@@ -239,7 +239,7 @@ export class RhSectorDetailComponent implements OnInit {
             {
             content:[
               {
-                text:'sector.affect.helped',
+                text:'sector.distribute.helped',
                 style:'width:100%;text-align:center',
                 submitEvent:add_helper
               }
@@ -287,7 +287,7 @@ export class RhSectorDetailComponent implements OnInit {
               }
             }),
           ],
-          'sector.affect.helped'
+          'sector.distribute.helped'
       ).subscribe(()=>undefined)
     }
   }
@@ -298,7 +298,7 @@ export class RhSectorDetailComponent implements OnInit {
       unAffect_user.subscribe((obj:object|undefined)=>
           {
             if (obj){
-              this.distributeModelService.delete_distribute((obj as DistributeAffectedObject).id).subscribe(()=>
+              this.affectModelService.delete_affect((obj as AffectAffectedObject).id).subscribe(()=>
                   {
                     if (GlobalService.modalCurrent)
                       GlobalService.modalCurrent.visible=false
@@ -331,7 +331,7 @@ export class RhSectorDetailComponent implements OnInit {
                     text: 'sector.affect.nb'
                   },
                   {
-                    text: ' : ' + (this.volunteer?.find(x=>x.id == affect.user.id)?.distribute.length??0).toString()
+                    text: ' : ' + (this.volunteer?.find(x=>x.id == affect.user.id)?.affect.length??0).toString()
                   },
                   {
                     text:'❌',
@@ -362,7 +362,7 @@ export class RhSectorDetailComponent implements OnInit {
       affect_user.subscribe((obj:object|undefined)=>
           {
             if (obj){
-              this.distributeModelService.post_distribute(
+              this.affectModelService.post_affect(
                 {
                   sector_id : this.sector?.id??0,
                   user_id : (obj as {id:number|bigint}).id
@@ -397,13 +397,13 @@ export class RhSectorDetailComponent implements OnInit {
                     text: 'sector.affect.nb'
                   },
                   {
-                    text: ' : ' + volunteer.distribute.length.toString()
+                    text: ' : ' + volunteer.affect.length.toString()
                   },
                 ]
               }
             }),
           ],
-          'sector.affect.helped'
+          'sector.distribute.helped'
       ).subscribe(()=>undefined)
     }
   }
@@ -477,14 +477,53 @@ export class RhSectorDetailComponent implements OnInit {
 
   private edit_harvest(harvest:HarvestObject) {
     if (this.sector){
-      ModaleService.createValidationModal(
-        'harvest.abort.validate'
-      ).subscribe((yes)=>yes=='Oui'?
-        this.harvestModelService.delete_harvest(
-            harvest?.id??0
-        ).subscribe(()=>this.ngOnInit())
-        :undefined
+      const event:EventEmitter<object|undefined> = new EventEmitter<object|undefined>();
+      event.subscribe((obj)=>{
+        switch ((obj as {option:string}).option) {
+          case 'del':
+            ModaleService.createValidationModal('harvest.abort.validate').subscribe((yes)=>yes=='Oui'?
+              this.harvestModelService.delete_harvest(
+                  harvest?.id ?? 0
+              ).subscribe(() => this.ngOnInit())
+              :undefined
+            )
+            break;
+          case 'done':
+            ModaleService.createValidationModal('harvest.done.validate').subscribe((yes)=>yes=='Oui'?
+                this.harvestModelService.collect_harvest(
+                    harvest?.id ?? 0
+                ).subscribe(() => this.ngOnInit())
+                :undefined
+            )
+            break;        }
+      })
+      ModaleService.createListModal(
+        [
+          {
+            object:{option:'done'},
+            content:[
+              {
+                text:'harvest.done.set',
+                submitEvent:event,
+                style:'text-align:center;width:100%;font-weight:bolder'
+              }
+            ]
+          },
+          {
+            object:{option:'del'},
+            content:[
+              {
+                text:'harvest.abort.prevent',
+                submitEvent:event,
+                style:'text-align:center;width:100%;font-weight:bolder',
+              }
+            ]
+          }
+        ],
+          '*Action*'
       )
     }
   }
+
+  protected readonly EpvPath = EpvPath;
 }

@@ -25,9 +25,18 @@ class ProductController extends CrudController{
                     Privilege::rh();
                     $product = $request->getFromUser($id[1], false);
                     break;
+                case 'stock':
+                    Privilege::rh();
+                    $product = $request->get_stock($id[1]);
+                    break;
+                case 'distribute':
+                    Privilege::rh();
+                    $product = $request->get_distribute($id[1]);
+                    break;
                 default:
                     Privilege::rh();
                     $product = $request->findById($id[0]);
+                    break;
             }
         }
         echo json_encode($product);
@@ -78,6 +87,14 @@ class ProductController extends CrudController{
                 case 'harvest':
                     Privilege::rh();
                     $request->set_harvest($input);
+                    break;
+                case 'distribute':
+                    Privilege::rh();
+                    $request->distribute($input);
+                    break;
+                case 'unAffect':
+                    Privilege::rh();
+                    $request->unAffect($input);
                     break;
                 default:
                     Privilege::forbidden();

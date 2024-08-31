@@ -30,21 +30,16 @@ INSERT INTO address (address, postal_code, instruction, kind, city, sector_id) V
     ('101 Rue de Paris', '75004', 'Près de la station de métro', 'Entrepôt', 'PARIS', 4),
     ('202 Rue du Louvre', '75005', 'À côté du musée', 'Bureau', 'PARIS', 5);
 
--- Remplissage de la table 'users'
-INSERT INTO users (prenom, nom, mail, num, status, mdp, address_id) VALUES
-    ('rh', 'user', 'rh@user.com', '0583363945', 3, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28',  6),
-    ('admin', 'user', 'admin@user.com', '0583363945', 4, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 7),
-    ('visitor', 'user', 'visitor@user.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 8),
-    ('banned', 'user', 'banned@user.com', '0583363945', 0, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 9),
-    ('Eve', 'Moreau', 'eve.moreau@example.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 10);
+INSERT INTO benefit (people, diet, caf, validated, sector_id) values
+    (1, '[]', 'coucou.pdf', 'valid', 5);
 
--- Remplissage de la table 'product'
-INSERT INTO product (code_barre, name, marque, user_id, expiration_date) VALUES
-    ('1234567890123', 'Ordinateur Portable', 'Dell', 1, '2024-09-05'),
-    ('2345678901234', 'Téléphone Mobile', 'Samsung', 2,'2024-09-05'),
-    ('3456789012345', 'Imprimante', 'HP', 3, '2024-09-05'),
-    ('4567890123456', 'Clavier', 'Logitech', 4,'2024-09-05'),
-    ('5678901234567', 'Souris', 'Microsoft', 5, '2024-09-05');
+-- Remplissage de la table 'users'
+INSERT INTO users (prenom, nom, mail, num, status, mdp, address_id, benefit_id) VALUES
+    ('rh', 'user', 'rh@user.com', '0583363945', 3, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28',  6, null),
+    ('admin', 'user', 'admin@user.com', '0583363945', 4, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 7, null),
+    ('visitor', 'user', 'visitor@user.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 8, null),
+    ('banned', 'user', 'banned@user.com', '0583363945', 0, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 9, null),
+    ('Eve', 'Moreau', 'eve.moreau@example.com', '0583363945', 1, '5d2217b2d33df736cdc3258b1d3b7120958504f7da6437d18cd12c321376df28', 10, 1);
 
 -- Remplissage de la table 'message'
 INSERT INTO message (text, date_send, sender_id, receiver_id) VALUES
@@ -55,7 +50,7 @@ INSERT INTO message (text, date_send, sender_id, receiver_id) VALUES
     ('Pouvez-vous confirmer la réception ?', '2024-08-05 11:20:00', 5, 1);
 
 -- Remplissage de la table 'distribute'
-INSERT INTO distribute (user_id, sector_id) VALUES
+INSERT INTO affect (user_id, sector_id) VALUES
     (1, 1),
     (2, 2),
     (3, 3),
@@ -72,3 +67,18 @@ INSERT INTO candidate (user_id, service_id, creation_date, last_edited) VALUES
 INSERT INTO harvest (schedule, sector_id) VALUES
     ('2024-09-10 09:15:00',  1),
     ('2024-09-10 09:16:00',  2);
+
+INSERT INTO distribute (schedule, sector_id, distributor_id) values
+    (now(), 5, 4);
+
+INSERT INTO helped (distribute_id, benefit_id) values
+    (1, 1);
+
+-- Remplissage de la table 'product'
+INSERT INTO product (code_barre, name, marque, user_id, expiration_date, collected) VALUES
+    ('1234567890123', 'Ordinateur Portable', 'Dell', 1, '2024-09-05', false),
+    ('2345678901234', 'Téléphone Mobile', 'Samsung', 2,'2024-09-05', false),
+    ('3456789012345', 'Imprimante', 'HP', 3, '2024-09-05', false),
+    ('4567890123456', 'Clavier', 'Logitech', 4,'2024-09-05', true),
+    ('5678901234567', 'Souris', 'Microsoft', 5, '2024-09-05', true);
+

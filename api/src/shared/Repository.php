@@ -119,7 +119,9 @@ class Repository
     public function update_abs(array $updates, array $restrict, string $error = "")
     {
         try {
-            unset($updates['id']);
+            foreach ($restrict as $key => $value) {
+                unset($updates[$key]);
+            }
             $q = "UPDATE $this->modelName SET ";
             $i = 1;
             foreach ($updates as $col => $value) {

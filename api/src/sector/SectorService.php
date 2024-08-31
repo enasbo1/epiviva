@@ -3,8 +3,8 @@ namespace sector;
 
 use address\AddressRepository;
 use address\AddressService;
-use distribute\DistributeRepository;
-use distribute\DistributeService;
+use distribute\AffectRepository;
+use distribute\AffectService;
 use Exception;
 use shared\Formater;
 use shared\Service;
@@ -94,7 +94,7 @@ class SectorService extends Service
         foreach($addesses as $addes) {
             $address->update(['sector_id'=>"null" ,"id"=> $addes['id']]);
         }
-        $distribute= new DistributeRepository();
+        $distribute= new AffectRepository();
         if (count($distribute->get([], ['sector_id'=>$id]))==0){ // TODO: changer pour supprimer les lignes de "distribute"
             $repo->delete($id);
         }else{

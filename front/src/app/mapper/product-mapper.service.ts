@@ -11,6 +11,7 @@ import {DateService} from "../http/shared/date.service";
 import {FormFieldObject} from "../shared/base-shared/form-field/formFieldObject";
 import {FormService} from "../shared/foundation/form/form.service";
 import moment from "moment";
+import {ModalListObject} from "../shared/foundation/modale/modalObject";
 
 @Injectable({
   providedIn: 'root'

@@ -8,10 +8,10 @@ import {AddressMapperService} from "../../../../mapper/address-mapper.service";
 import {SectorObject} from "../../../../http/model/sector-model/sectorObject";
 import {SectorModelService} from "../../../../http/model/sector-model/sector-model.service";
 import {BenefitGetLargeObject} from "../../../../http/model/benefit-model/benefitObject";
-import {DistributeAffectedObject} from "../../../../http/model/distribute-model/distributeObject";
+import {AffectAffectedObject} from "../../../../http/model/affect-model/affectObject";
 import {GlobalService} from "../../../../shared/global.service";
 import {ModaleService} from "../../../../shared/foundation/modale/modale.service";
-import {DistributeModelService} from "../../../../http/model/distribute-model/distribute-model.service";
+import {AffectModelService} from "../../../../http/model/affect-model/affect-model.service";
 import {LanguageService} from "../../../../shared/base-shared/language.service";
 
 @Component({
@@ -28,7 +28,7 @@ export class RhVolunteerDetailComponent implements OnInit {
       private route: ActivatedRoute,
       private userModelService : UserModelService,
       private sectorModelService: SectorModelService,
-      private distributeModelService: DistributeModelService
+      private affectModelService: AffectModelService
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class RhVolunteerDetailComponent implements OnInit {
     if (this.sector && this.user){
       const selected:EventEmitter<void> = new EventEmitter<void>();
       selected.subscribe(()=>
-          (this.user?.distribute.length??0)>0?
+          (this.user?.affect.length??0)>0?
               this.show_affected()
               :
               this.add_affected()
@@ -63,7 +63,7 @@ export class RhVolunteerDetailComponent implements OnInit {
           content:[{
             name: 'volunteer.affects',
             type: 'button',
-            text: this.user.distribute.length.toString(),
+            text: this.user.affect.length.toString(),
             event: selected
           }]
         }
@@ -77,7 +77,7 @@ export class RhVolunteerDetailComponent implements OnInit {
       fire.subscribe((obj:object|undefined)=>
           {
             if (obj){
-              this.distributeModelService.delete_distribute((obj as DistributeAffectedObject).id).subscribe(()=>
+              this.affectModelService.delete_affect((obj as AffectAffectedObject).id).subscribe(()=>
                   {
                     if (GlobalService.modalCurrent)
                       GlobalService.modalCurrent.visible=false
@@ -93,17 +93,17 @@ export class RhVolunteerDetailComponent implements OnInit {
       )
       ModaleService.createListModal(
           [
-            ...this.user.distribute.map(distribute=>
+            ...this.user.affect.map(affect=>
             {
               return {
-                object:distribute,
+                object:affect,
                 content:[
                   {
-                    text:distribute.sector.nom,
+                    text:affect.sector.nom,
                     style:'font-weight:bolder'
                   },
                   {
-                    text:AddressMapperService.get_address(distribute.sector.address),
+                    text:AddressMapperService.get_address(affect.sector.address),
                     style:'font-style:italic'
                   },
                   {
@@ -133,7 +133,7 @@ export class RhVolunteerDetailComponent implements OnInit {
       affect.subscribe((obj:object|undefined)=>
           {
             if (obj){
-              this.distributeModelService.post_distribute(
+              this.affectModelService.post_affect(
                   {
                     user_id : this.user?.id??0,
                     sector_id : (obj as {id:number|bigint}).id
@@ -150,7 +150,7 @@ export class RhVolunteerDetailComponent implements OnInit {
       )
       ModaleService.createListModal(
           [
-            ...this.sector.filter(h=>!this.user?.distribute.map(x=>x.sector.id).includes(h.id)).map(sector=>
+            ...this.sector.filter(h=>!this.user?.affect.map(x=>x.sector.id).includes(h.id)).map(sector=>
             {
               return {
                 object:sector,

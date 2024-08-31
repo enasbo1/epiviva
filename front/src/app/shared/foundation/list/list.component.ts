@@ -21,6 +21,7 @@ export class ListComponent implements OnInit {
   @Input() critera?:string[];
   @Input() filters:FilterObject[]|undefined;
   @Input() query?:Params;
+  @Input() titleLess: boolean=false;
   _filters:_FilterObject[]|undefined;
   protected act?:Act<_FilterObject>;
   search_crit:string="search.title";
@@ -28,7 +29,7 @@ export class ListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    if (this.critera){
+    if (this.critera && !this.titleLess){
       this.critera.splice(0,0,"search.title");
     }
     if (this.filters){
@@ -221,6 +222,7 @@ export class ListComponent implements OnInit {
   }
 
   reset_filter():void{
+    this.search_value = '';
     for(let filt of this._filters?this._filters:[]){
       filt.set_value = "all"
       filt.value = "all"

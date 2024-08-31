@@ -47,21 +47,11 @@ CREATE TABLE users (
 CREATE TABLE harvest(
     id serial primary key,
     schedule timestamp,
+    collected boolean default false,
     sector_id integer references sector(id)
 );
 
-CREATE TABLE product (
-    id SERIAL PRIMARY KEY,
-    code_barre VARCHAR(24),
-    name VARCHAR(128),
-    marque VARCHAR(50),
-    refused boolean default false,
-    expiration_date TIMESTAMP NOT NULL,
-    user_id INTEGER REFERENCES users(id),
-    harvest_id INTEGER REFERENCES harvest(id)
-);
-
-CREATE TABLE distribute (
+CREATE TABLE affect (
     id serial PRIMARY KEY ,
     user_id INTEGER REFERENCES users(id),
     sector_id INTEGER REFERENCES sector(id)
@@ -91,6 +81,34 @@ CREATE TABLE message (
 );
 
 ALTER table sector add column address_id INTEGER REFERENCES address(id);
+
+CREATE table distribute (
+    id serial primary key,
+    schedule timestamp,
+    sector_id integer references sector(id),
+    distributor_id integer references users(id)
+);
+
+create table helped (
+    id serial primary key,
+    distribute_id integer references distribute(id),
+    benefit_id integer references benefit(id)
+);
+
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    code_barre VARCHAR(24),
+    name VARCHAR(128),
+    marque VARCHAR(50),
+    gave boolean default false,
+    collected boolean default false,
+    refused boolean default false,
+    expiration_date TIMESTAMP NOT NULL,
+    user_id INTEGER REFERENCES users(id),
+    harvest_id INTEGER REFERENCES harvest(id),
+    distribute_id integer references distribute(id)
+);
+
 
 INSERT INTO users (prenom, nom, mail, num, status, mdp) VALUES
     ('system', 'system', 'system@system.com', '0583363945', 5, '5d2217b2d33df736cdc3258b1d3bEF46µ7120958504f7da6437dzdzav153MLf18cd12c321376df28');

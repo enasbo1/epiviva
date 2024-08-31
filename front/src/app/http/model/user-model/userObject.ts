@@ -1,6 +1,6 @@
 import {AddressObject} from "../address-model/addressObject";
 import {SectorObject} from "../sector-model/sectorObject";
-import {DistributeAffectedObject, DistributeSectorObject} from "../distribute-model/distributeObject";
+import {AffectAffectedObject, AffectSectorObject} from "../affect-model/affectObject";
 
 export interface UserObject extends UserRecap{
   id: number|bigint;
@@ -18,7 +18,7 @@ export interface UserGivingObject extends UserLocatedObject{
 export interface UserVolunteerObject extends UserLocatedObject{
   status:string;
   num:string;
-  distribute:DistributeSectorObject[];
+  affect:AffectSectorObject[];
 }
 
 export interface UserLocatedObject extends UserRecap{

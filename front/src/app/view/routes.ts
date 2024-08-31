@@ -30,6 +30,12 @@ export const  EpvPath={
     addresses:'visitor/addresses',
     root:'visitor'
   },
+  volunteer:{
+    affect:{
+      list: 'visitor/affect',
+      details: 'visitor/affect/:id'
+    }
+  },
   rh : {
     home:'rh/home',
     options: 'rh/options',
@@ -53,6 +59,11 @@ export const  EpvPath={
       list:'rh/volunteer',
       details:'rh/volunteer/:id'
     },
+    distribute:{
+      list:'rh/distribute/:id_sector',
+      details:'rh/distribute/detail/:id',
+      edit: 'rh/distribute/edit/:id',
+    },
     root:'rh'
   },
   admin: {
@@ -72,11 +83,13 @@ export const  EpvPath={
     },
     root:'admin'
   },
+
 }
 
 export const EpvRolePart:Record<string, string> = {
   "0":EpvPath.home,
   "1":EpvPath.visitor.root,
+  "2":EpvPath.visitor.root,
   "3":EpvPath.rh.root,
   "4":EpvPath.admin.root
 }

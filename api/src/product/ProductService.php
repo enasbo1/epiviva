@@ -88,9 +88,9 @@ class ProductService extends Service
 
         $product = [];
         if ($withRefused) {
-            $result = $repo->get([], ['user_id' => $user_id]);
+            $result = $repo->get([], ['user_id' => $user_id, 'collected'=>'false']);
         }else{
-            $result = $repo->get([], ['user_id' => $user_id, 'refused'=>"false"]);
+            $result = $repo->get([], ['user_id' => $user_id, 'refused'=>'false', 'collected'=>'false']);
         }
 
         foreach($result as $row) {
@@ -124,6 +124,57 @@ class ProductService extends Service
     public function set_harvest(object $input):void
     {
         $repo = new ProductRepository();
-        $repo->update(["id"=>$input->id, "harvest_id"=>$input->harvest_idZ]);
+        $repo->update(["id"=>$input->id, "harvest_id"=>$input->harvest_id]);
     }
-}
+
+    /**
+     * @throws Exception
+     */
+    public function get_stock(int $sector_id): array
+    {
+        $repo = new ProductRepository();
+
+        $product = [];
+        $result = $repo->get_stocks(['h.sector_id' => $sector_id, 'h.collected'=>'true', 'p.collected' => 'true', 'p.refused' => 'false']);
+
+        foreach($result as $row) {
+            $product[] = Formater::prepareGet($row);
+        }
+
+        return $product;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function get_distribute(int $distribute_id): array
+    {
+        $repo = new ProductRepository();
+
+        $product = [];
+        $result = $repo->get([], ['distribute_id' => $distribute_id, 'collected'=>'true', 'refused' => 'false']);
+
+        foreach($result as $row) {
+            $product[] = Formater::prepareGet($row);
+        }
+
+        return $product;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function unAffect(object $input): void
+    {
+        $repo = new ProductRepository();
+        $repo->update(['distribute_id'=>"null" ,"id"=> $input->id]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function distribute(object $input): void
+    {
+        $repo = new ProductRepository();
+        $repo->update(['distribute_id'=>$input->distribute_id ,"id"=> $input->id]);
+    }}

@@ -11,27 +11,29 @@ class DistributeRepository extends Repository {
 select 
     d.id as id,
     d.sector_id as sector_id,
-    u.id as user__id, 
-    prenom as user__prenom, 
-    nom as user__nom, 
-    mail as user__mail, 
-    status as user__status, 
-    num as user__num, 
-    a.id as user__address__id,
-    a.address as user__address__address, 
-    a.postal_code as user__address__postal_code, 
-    a.city as user__address__city,
-    a.instruction as user__address__instruction,
-    a.kind as user__address__kind
+    d.schedule as schedule,
+    u.id as distributor__id,
+    prenom as distributor__prenom, 
+    nom as distributor__nom, 
+    mail as distributor__mail, 
+    status as distributor__status, 
+    num as distributor__num, 
+    a.id as distributor__address__id,
+    a.address as distributor__address__address, 
+    a.postal_code as distributor__address__postal_code, 
+    a.city as distributor__address__city,
+    a.instruction as distributor__address__instruction,
+    a.kind as distributor__address__kind
 from distribute d
-inner join users u on u.id = d.user_id
+inner join users u on u.id = d.distributor_id
 inner join address a on a.id = u.address_id
 ";
     private string $get_sector =
     "
 select 
     d.id as id,
-    d.user_id as user__id,
+    d.distributor_id as distributor_id,
+    d.schedule as schedule,
     s.id as sector__id,
     s.nom as sector__nom,
     a.id as sector__address__id,

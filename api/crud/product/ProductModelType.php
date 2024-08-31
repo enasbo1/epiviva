@@ -21,7 +21,10 @@ class ProductModelType implements ModelType
 			"marque" => ":M,50",
 			"user_id" => "r !int",
 			"expiration_date" => "r :d,MDY",
-			"refused" => ""
+			"collected" => "",
+			"refused" => "",
+			"harvest_id" => "!int",
+			"gift_id" => "!int"
         ]);
         if (
             $valid != "validated"
@@ -41,7 +44,10 @@ class ProductModelType implements ModelType
 			"marque" => $params->marque ?? $default["marque"]  ?? null,
 			"user_id" => $params->user_id ?? $default["user_id"]  ?? null,
 			"expiration_date" => $params->expiration_date ?? $default["expiration_date"]  ?? null,
-			"refused" => $params->refused ?? $default["refused"]  ?? null
+			"collected" => $params->collected ?? $default["collected"]  ?? null,
+			"refused" => $params->refused ?? $default["refused"]  ?? null,
+			"harvest_id" => $params->harvest_id ?? $default["harvest_id"]  ?? null,
+			"gift_id" => $params->gift_id ?? $default["gift_id"]  ?? null
         ]);
     }
 }

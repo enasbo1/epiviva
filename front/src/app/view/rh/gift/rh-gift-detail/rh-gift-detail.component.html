@@ -11,6 +11,7 @@
                     </b> ;
                     <i>{{'gift.expiration'|langue}} :
                         {{DateService.to_front(product.expiration_date)}}</i>
+                    ; {{'gift.form.bar_code.title'|langue}} -{{product.code_barre}}-
                     <b
                             [title]="'gift.refuse'|langue"
                             class="clickable"

@@ -4,4 +4,7 @@ name-|-:M,128
 marque-|-:M,50
 user_id-|-r !int
 expiration_date-|-r :d,MDY
+collected-|-
 refused-|-
+harvest_id-|-!int
+gift_id-|-!int

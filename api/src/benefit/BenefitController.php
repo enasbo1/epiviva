@@ -25,6 +25,10 @@ class BenefitController extends CrudController{
                     Privilege::rh();
                     $benefit = $request->getValid();
                     break;
+                case 'sector':
+                    Privilege::rh();
+                    $benefit = $request->getFromSector($id[1]);
+                    break;
                 default:
                     Privilege::rh();
                     $benefit = $request->findById($id[0]);
